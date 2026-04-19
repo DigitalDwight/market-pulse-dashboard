@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Market Pulse | Trading Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        bg: '#0a0e1a',
+        card: '#0f1623',
+        border: '#1e2a3a',
+        primary: '#0ea5e9',
+        muted: '#64748b',
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+    }
+  }
+}
+</script>
+<style>
+  * { box-sizing: border-box; }
+  body { background: #0a0e1a; color: #e2e8f0; font-family: 'Inter', sans-serif; margin: 0; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0e1a; }
+  ::-webkit-scrollbar-thumb { background: #1e2a3a; border-radius: 3px; }
+  .card { background: #0f1623; border: 1px solid #1e2a3a; border-radius: 10px; }
+  .card-hover { transition: border-color 0.15s, background 0.15s; cursor: pointer; }
+  .card-hover:hover { border-color: #0ea5e9; background: #111827; }
+  .tab-nums { font-variant-numeric: tabular-nums lining-nums; }
+  .chart-container { width: 100%; height: 340px; border-radius: 8px; overflow: hidden; }
+  .signal-bar-wrap { width: 64px; height: 6px; background: #1e2a3a; border-radius: 9999px; overflow: hidden; }
+  .signal-bar { height: 100%; border-radius: 9999px; }
+  .impact-extreme { background: #7f1d1d; color: #fca5a5; }
+  .impact-very-high { background: #431407; color: #fb923c; }
+  .impact-high { background: #422006; color: #fbbf24; }
+  .impact-medium { background: #1c1917; color: #a3a3a3; }
+  .impact-low { background: #052e16; color: #86efac; }
+  .page { display: none; }
+  .page.active { display: block; }
+  @media print {
+    header { position: static !important; }
+    .no-print { display: none !important; }
+    body { background: #0a0e1a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  .animate-spin { animation: spin 1s linear infinite; }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .line-clamp-4 { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .tooltip { position: relative; }
+  .tooltip:hover::after { content: attr(data-tip); position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); background: #1e2a3a; color: #e2e8f0; padding: 4px 8px; border-radius: 4px; font-size: 11px; white-space: nowrap; z-index: 100; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ MARKET DATA -->
+<script>
+const MARKET_DATA = {
+  lastUpdated: "2026-04-15T06:00:00Z",
+  marketSentiment: "BULLISH",
+  macroOverview: `Mid-Week Update (Wed 15 Apr 2026): This is a risk-on week underpinned by genuine data strength and sustained Iran ceasefire diplomacy.
+
+HEADLINE: Iran-US Ceasefire Diplomacy — Round 2 Talks Imminent (April 16). JD Vance left Islamabad without a deal on April 11, but both sides are discussing a second round as early as April 16 before the ceasefire deadline of April 21-22. Trump says the war is "close to over." Strait of Hormuz remains open to civilian shipping.
+
+KEY DATA: PPI March: +0.5% MoM / +4.0% YoY (hot headline, energy-driven). Core PPI +0.2% — BENIGN. Markets rallied on the benign core reading. Retail Sales March: +0.6% MoM vs +0.3% expected — double consensus. American consumer absorbing the oil shock without flinching. NFP March (Apr 3): +178K vs +60K expected. Unemployment 4.3%.
+
+NAS100 on its 9th consecutive winning session — longest run since 2021. S&P 500 within 0.25% of its 2026 all-time high. Silver +9% in 3 sessions from 74 to 80.85. Gold pushed to 4,871 intraday — near all-time high.
+
+OIL: Brent ~$92-95 (down from $112 war peak). Strait of Hormuz open to civilian traffic. US naval blockade of Iranian ports ongoing. FED: On hold at 3.50-3.75%. FOMC April 29. ECB: On hold at 2.00%. April 30. BoE: On hold at 3.75%. April 30.
+
+UPCOMING EVENTS: Thu Apr 16: US-Iran Round 2 Talks — CRITICAL. Mon Apr 20: Canada CPI. Tue Apr 21-22: Iran-US Ceasefire DEADLINE. Wed Apr 29: FOMC. Thu Apr 30: ECB + BoE.`,
+  riskScenarios: [
+    { name: "Round 2 Talks Produce Framework", description: "US and Iran agree a 45-day extended ceasefire. Oil drops toward $85-90. Markets price a benign inflation outlook.", impact: "Equities push to all-time highs. US30 toward 49,000-50,000. DAX hits 24,500+. Gold 4,900+. GBPCAD extends toward 1.8900." },
+    { name: "Status Quo — Talks Continue", description: "Round 2 begins but no agreement before April 22. Ceasefire informally extended. Markets treat as constructive. Most likely outcome at 40% probability.", impact: "Equities hold gains. Gold consolidates 4,800-4,871. Silver 78-82. GBPCAD steady. No dramatic directional moves." },
+    { name: "Ceasefire Collapses April 21-22", description: "Talks fail. Ceasefire expires with no extension. Iran signals resumption. Oil spikes back toward $100-110. High-volatility tail risk at 20% probability.", impact: "US30 drops 2-3%. DAX falls 3-4%. Gold surges above 4,900. AUD drops to 0.6900. GBPCAD volatile on oil spike." },
+    { name: "Ceasefire Extended + Strong Data", description: "Multiple positive catalysts align: ceasefire extended AND UK Retail Sales, Michigan Sentiment both beat expectations. 10% probability.", impact: "Equities at all-time highs. NAS100 breaks 26,182 year high. Gold and Silver reach new highs simultaneously. GBPCAD tests 1.8900 year high." }
+  ],
+  instruments: [
+    {
+      symbol: "US30", name: "Dow Jones Industrial Average",
+      price: 48536.00, previousClose: 48218.25, change: 317.75, changePercent: 0.66,
+      dayHigh: 48592.29, dayLow: 48192.30, yearHigh: 50512.79, yearLow: 37830.66,
+      signal: "BULLISH", signalStrength: 60, eventImpactProbability: 78,
+      sparkline: [46566, 46505, 46670, 46584, 47910, 48186, 47917, 48218, 48536],
+      support: [{ level:"S1", price:48192, desc:"Tuesday's low — now immediate support" }, { level:"S2", price:47690, desc:"Prior week's floor — major structural support" }, { level:"S3", price:46566, desc:"April 1 base — major breakdown level" }],
+      resist: [{ level:"R1", price:48592, desc:"Today's high — immediate ceiling" }, { level:"R2", price:49000, desc:"Pre-war distribution zone; ATH 50,512 above" }],
+      priceAction: "US30 has broken decisively above the 48,000-48,323 resistance zone that had capped the index for two weeks. Tuesday's close at 48,536 and today's high of 48,592 represent the highest levels since January 2026, before the Iran war began. The Dow is only approximately 2% below its all-time high of 50,512. The sequence of higher lows and higher highs from the April 6 base (46,214) is a clean bullish structure.",
+      fundamentals: "Retail Sales +0.6% MoM (double consensus) confirms a robust consumer. Core PPI +0.2% reduces Fed rate hike risk. Iran Round 2 talks potentially imminent — if a ceasefire extension is agreed, equities push to prior all-time high region. FOMC April 29: no rate change expected, but language on June cuts will be the market's focus. Q1 earnings season beginning (JPMorgan beat; Oracle +13% on AI announcement) providing micro tailwind.",
+      outlook: "BULLISH. The breakout above 48,323 is confirmed with two consecutive closes above this level. The strong data backdrop (NFP, Retail Sales, benign core inflation) supports the soft landing narrative. Geopolitical progress on Iran is the near-term positive catalyst. Target 48,800-49,200 over 3 days. Ceasefire collapse is the primary downside risk and would test 47,918. A close below that level would shift the bias back to neutral.",
+      events: [{ date:"2026-04-16", event:"US-Iran Round 2 Talks (possible)", currency:"USD", impact:"Very High" }, { date:"2026-04-21", event:"Iran-US Ceasefire Deadline", currency:"USD", impact:"Extreme" }, { date:"2026-04-29", event:"FOMC Rate Decision", currency:"USD", impact:"Very High" }, { date:"2026-04-29", event:"Apple (AAPL) Earnings", currency:"USD", impact:"High" }],
+      ohlc: [{ t:"2026-04-01", o:46396, h:46803, l:46396, c:46566 }, { t:"2026-04-02", o:46469, h:46755, l:45897, c:46505 }, { t:"2026-04-06", o:46472, h:46701, l:46355, c:46670 }, { t:"2026-04-07", o:46582, h:46584, l:46215, c:46584 }, { t:"2026-04-08", o:46978, h:48017, l:46978, c:47910 }, { t:"2026-04-09", o:47841, h:48324, l:47690, c:48186 }, { t:"2026-04-10", o:48199, h:48235, l:47856, c:47917 }, { t:"2026-04-13", o:47718, h:48221, l:47506, c:48218 }, { t:"2026-04-14", o:48272, h:48592, l:48192, c:48536 }]
+    },
+    {
+      symbol: "NAS100", name: "Nasdaq 100",
+      price: 25842.00, previousClose: 25383.72, change: 458.28, changePercent: 1.81,
+      dayHigh: 25842.00, dayLow: 25514.56, yearHigh: 26182.10, yearLow: 17592.92,
+      signal: "BULLISH", signalStrength: 72, eventImpactProbability: 75,
+      sparkline: [24020, 24046, 24192, 24202, 24903, 25082, 25116, 25384, 25842],
+      support: [{ level:"S1", price:25514, desc:"Tuesday's open — immediate support" }, { level:"S2", price:25057, desc:"Prior week's intraday low" }, { level:"S3", price:24200, desc:"Pre-ceasefire base — major floor" }],
+      resist: [{ level:"R1", price:25842, desc:"Today's close — new recovery high" }, { level:"R2", price:26182, desc:"Year high — final resistance before all-time high territory" }],
+      priceAction: "NAS100 has surged +2.9% since Sunday's report, logging its ninth consecutive winning session — the longest winning streak since 2021. The index is now essentially flat for 2026 year-to-date, having fully recovered all Iran war losses. The year high of 26,182 is only 1.3% above current levels.",
+      fundamentals: "Benign core CPI and core PPI (both +0.2% MoM) revive rate cut expectations for H2 2026. Strong Retail Sales (+0.6%) supports tech spending and cloud demand outlook. Oracle surged +13% on an AI data centre contract announcement. All Magnificent Seven positive except Apple (slightly red). Apple reports April 29, same day as FOMC.",
+      outlook: "BULLISH. NAS100 is the strongest relative performer this week and is within striking distance of its all-time high. The combination of benign inflation data, AI spending revival, and strong consumer numbers creates a compelling backdrop. Target 26,000-26,182 (year high) over 3 days. A close below 25,514 would be the first warning signal.",
+      events: [{ date:"2026-04-16", event:"US-Iran Round 2 Talks (possible)", currency:"USD", impact:"Very High" }, { date:"2026-04-21", event:"Iran-US Ceasefire Deadline", currency:"USD", impact:"Extreme" }, { date:"2026-04-29", event:"FOMC Rate Decision + Apple Earnings", currency:"USD", impact:"Very High" }],
+      ohlc: [{ t:"2026-04-01", o:23883, h:24163, l:23872, c:24020 }, { t:"2026-04-02", o:23622, h:24076, l:23513, c:24046 }, { t:"2026-04-06", o:24143, h:24265, l:24039, c:24192 }, { t:"2026-04-07", o:24110, h:24209, l:23780, c:24202 }, { t:"2026-04-08", o:25045, h:25045, l:24757, c:24903 }, { t:"2026-04-09", o:24918, h:25097, l:24789, c:25082 }, { t:"2026-04-10", o:25165, h:25226, l:25058, c:25116 }, { t:"2026-04-13", o:25069, h:25388, l:24999, c:25384 }, { t:"2026-04-14", o:25515, h:25842, l:25515, c:25842 }]
+    },
+    {
+      symbol: "GER40", name: "Germany 40 (DAX)",
+      price: 24044.22, previousClose: 23742.44, change: 301.78, changePercent: 1.27,
+      dayHigh: 24087.30, dayLow: 23938.11, yearHigh: 25507.79, yearLow: 20956.38,
+      signal: "NEUTRAL_BULLISH", signalStrength: 25, eventImpactProbability: 82,
+      sparkline: [23168, 22922, 24081, 23807, 23804, 23742, 24044],
+      support: [{ level:"S1", price:23938, desc:"Tuesday's low — immediate support" }, { level:"S2", price:23742, desc:"April 12 low — the week's floor" }, { level:"S3", price:23298, desc:"March 31 close — major support" }],
+      resist: [{ level:"R1", price:24163, desc:"Ceasefire surge high — the ceiling to break" }, { level:"R2", price:24500, desc:"February 2026 pre-war highs" }],
+      priceAction: "The DAX has stabilised above the 24,000 level. European markets were closed Monday (Easter), then opened Tuesday to the positive PPI and peace talk news, closing at 24,044. DAX has underperformed US indices this week (+1.0% vs +2.9% for NAS100), reflecting residual uncertainty about ceasefire durability. The 24,163 ceasefire surge high remains the ceiling to break.",
+      fundamentals: "Iran Round 2 talks potentially April 16 would be directly positive for DAX — Europe's energy sensitivity makes it the biggest equity beneficiary of further peace progress. ECB on hold at 2.00% with April 30 decision approaching. Oil below $95 would increase ECB rate cut probability. Q1 earnings: European companies reporting improved cost structures as energy prices moderate.",
+      outlook: "NEUTRAL-BULLISH (upgraded from Bearish-Neutral). The 24,000 level has held as support after Monday's open. A close above 24,163 (the ceasefire day high) would be the technical trigger for a move to 24,500. Stop below 23,742.",
+      events: [{ date:"2026-04-16", event:"US-Iran Round 2 Talks", currency:"EUR", impact:"Very High" }, { date:"2026-04-21", event:"Iran-US Ceasefire Deadline", currency:"EUR", impact:"Extreme" }, { date:"2026-04-30", event:"ECB Rate Decision", currency:"EUR", impact:"Very High" }],
+      ohlc: [{ t:"2026-04-01", o:22935, h:23235, l:22678, c:23168 }, { t:"2026-04-06", o:23182, h:23398, l:22842, c:22922 }, { t:"2026-04-07", o:24022, h:24164, l:23876, c:24081 }, { t:"2026-04-08", o:23981, h:23989, l:23673, c:23807 }, { t:"2026-04-09", o:23828, h:24044, l:23768, c:23804 }, { t:"2026-04-12", o:23562, h:23757, l:23482, c:23742 }, { t:"2026-04-14", o:23954, h:24087, l:23938, c:24044 }]
+    },
+    {
+      symbol: "AUDUSD", name: "Australian Dollar / US Dollar",
+      price: 0.7100, previousClose: 0.7086, change: 0.0014, changePercent: 0.20,
+      dayHigh: 0.7110, dayLow: 0.7060, yearHigh: 0.7200, yearLow: 0.6300,
+      signal: "NEUTRAL_BULLISH", signalStrength: 15, eventImpactProbability: 55,
+      sparkline: [0.6900, 0.6900, 0.6900, 0.7000, 0.7100, 0.7100, 0.7100, 0.7100, 0.7100],
+      support: [{ level:"S1", price:0.7045, desc:"Intraday pivot this week" }, { level:"S2", price:0.7000, desc:"Psychological round number — major floor" }],
+      resist: [{ level:"R1", price:0.7110, desc:"Current ceiling — persistent seller over six sessions" }, { level:"R2", price:0.7200, desc:"Prior February support, now resistance" }],
+      priceAction: "AUDUSD has held the 0.7100 level with remarkable consistency over the past six sessions. The pair remains exactly at 0.7100 — unchanged on the week. The 0.7100 ceiling has been tested repeatedly and is now the critical level to resolve. A macro catalyst is needed to break either side of the 0.7000-0.7110 range.",
+      fundamentals: "China macro backdrop remains constructive (PMI 50.4 in March) — positive for AUD commodity demand. RBA at 4.10% — carry advantage in global risk-on environment. USD has been broadly weak this week as rate cut expectations build. A ceasefire breakthrough or continued China recovery data is needed to push through 0.7110.",
+      outlook: "NEUTRAL-BULLISH. The pair has defended 0.7000 repeatedly and is holding 0.7100 on a closing basis. Buy dips to 0.7000-0.7020, target 0.7150. The risk is a ceasefire collapse that would send AUD back toward 0.6900.",
+      events: [{ date:"2026-04-16", event:"US-Iran Round 2 Talks (AUD risk-on proxy)", currency:"AUD", impact:"High" }, { date:"2026-04-20", event:"Canada CPI March", currency:"CAD", impact:"Medium" }, { date:"2026-04-21", event:"Iran-US Ceasefire Deadline", currency:"AUD", impact:"Very High" }, { date:"2026-04-29", event:"FOMC Rate Decision (USD direction)", currency:"USD", impact:"Very High" }],
+      ohlc: [{ t:"2026-04-01", o:0.6900, h:0.7000, l:0.6900, c:0.6900 }, { t:"2026-04-07", o:0.6900, h:0.7000, l:0.6900, c:0.7000 }, { t:"2026-04-08", o:0.7000, h:0.7100, l:0.7000, c:0.7000 }, { t:"2026-04-09", o:0.7000, h:0.7100, l:0.7000, c:0.7100 }, { t:"2026-04-10", o:0.7100, h:0.7100, l:0.7100, c:0.7100 }, { t:"2026-04-13", o:0.7000, h:0.7100, l:0.7000, c:0.7100 }, { t:"2026-04-14", o:0.7100, h:0.7110, l:0.7100, c:0.7100 }]
+    },
+    {
+      symbol: "GBPCAD", name: "British Pound / Canadian Dollar",
+      price: 1.8700, previousClose: 1.8678, change: 0.0022, changePercent: 0.12,
+      dayHigh: 1.8710, dayLow: 1.8640, yearHigh: 1.8900, yearLow: 1.8000,
+      signal: "BULLISH", signalStrength: 55, eventImpactProbability: 40,
+      sparkline: [1.8500, 1.8400, 1.8400, 1.8500, 1.8600, 1.8600, 1.8600, 1.8600, 1.8700],
+      support: [{ level:"S1", price:1.8600, desc:"This week's base — immediate support" }, { level:"S2", price:1.8500, desc:"Former ceiling, now critical support — breakout level" }],
+      resist: [{ level:"R1", price:1.8700, desc:"Current level — new high; testing the ceiling" }, { level:"R2", price:1.8900, desc:"Year high — next meaningful target" }],
+      priceAction: "GBPCAD continues to deliver on the bullish thesis. The pair printed a new high at 1.8700 on Tuesday and has maintained that level through Wednesday morning. The breakout above 1.8500 is firmly established with now seven consecutive closes above that level. The structure is a clean step-function higher.",
+      fundamentals: "Oil below $95 is the structural driver: Canada is a major oil exporter; lower oil equals weaker CAD relative to oil-neutral GBP. Bank of Canada is shifting toward a dovish posture. BoE holds at 3.75%. Canada CPI March confirmed for April 20 release — a cool reading would be CAD-negative and GBPCAD-positive. Ceasefire extension would keep oil lower, strengthening the bull case.",
+      outlook: "BULLISH (maintained). The trend is intact, the fundamental driver (oil below $100) is intact, and the technical structure (breakout confirmed) is intact. Target 1.8800 over the next 3 days, with 1.8900 (year high) as the extended target. The only credible downside scenario is an oil price spike from ceasefire collapse.",
+      events: [{ date:"2026-04-17", event:"UK Retail Sales March", currency:"GBP", impact:"High" }, { date:"2026-04-20", event:"Canada CPI March", currency:"CAD", impact:"High" }, { date:"2026-04-21", event:"Iran-US Ceasefire Deadline (oil risk)", currency:"CAD", impact:"High" }, { date:"2026-04-30", event:"BoE Rate Decision", currency:"GBP", impact:"High" }],
+      ohlc: [{ t:"2026-04-01", o:1.8400, h:1.8500, l:1.8400, c:1.8500 }, { t:"2026-04-07", o:1.8400, h:1.8500, l:1.8400, c:1.8500 }, { t:"2026-04-08", o:1.8500, h:1.8700, l:1.8400, c:1.8500 }, { t:"2026-04-09", o:1.8500, h:1.8600, l:1.8500, c:1.8600 }, { t:"2026-04-10", o:1.8600, h:1.8600, l:1.8500, c:1.8600 }, { t:"2026-04-13", o:1.8500, h:1.8600, l:1.8500, c:1.8600 }, { t:"2026-04-14", o:1.8600, h:1.8710, l:1.8600, c:1.8700 }]
+    },
+    {
+      symbol: "XAGUSD", name: "Silver / US Dollar",
+      price: 79.39, previousClose: 79.29, change: 0.10, changePercent: 0.12,
+      dayHigh: 80.85, dayLow: 78.87, yearHigh: 121.56, yearLow: 31.63,
+      signal: "BULLISH", signalStrength: 65, eventImpactProbability: 68,
+      sparkline: [75.03, 72.80, 71.79, 72.62, 72.83, 73.91, 75.18, 76.03, 75.49, 79.29],
+      support: [{ level:"S1", price:78.87, desc:"Today's intraday low" }, { level:"S2", price:75.49, desc:"Prior week consolidation level" }, { level:"S3", price:72.41, desc:"The breakout base — now major floor" }],
+      resist: [{ level:"R1", price:80.85, desc:"Today's intraday high — new cycle high" }, { level:"R2", price:85.00, desc:"Pre-war trading range from February/March" }],
+      priceAction: "Silver exploded +6.8% since Sunday, printing 80.85 intraday today — the highest level since the start of the Iran war. The decisive breakout above 76-78 resistance is now confirmed. Strong volume on April 14 (977,559 — above the 2-week average), sustained follow-through the following session, and a close well above prior resistance.",
+      fundamentals: "Gold's push above 4,800 (hitting 4,871 today) has pulled silver higher via the precious metals correlation. China PMI recovery (50.4) supports industrial silver demand — solar panels, electronics. The gold-silver ratio had been at extreme levels (~62x); now ~60x and starting to compress towards historical norms.",
+      outlook: "BULLISH (upgraded from Neutral). The breakout is confirmed by multiple sessions above prior resistance. Target 83-85 (the February 2026 trading range) over the next 3 days. The key risk is a sharp gold correction, which would pull silver down faster given its higher volatility. Stop on a close below 75.49.",
+      events: [{ date:"2026-04-15", event:"Fed Beige Book (manufacturing/industrial read)", currency:"USD", impact:"Medium" }, { date:"2026-04-16", event:"US-Iran Round 2 Talks", currency:"USD", impact:"High" }, { date:"2026-04-21", event:"Iran-US Ceasefire Deadline", currency:"USD", impact:"Very High" }, { date:"2026-04-29", event:"FOMC Rate Decision", currency:"USD", impact:"High" }],
+      ohlc: [{ t:"2026-04-01", o:74.95, h:76.02, l:73.61, c:75.03 }, { t:"2026-04-02", o:75.03, h:76.05, l:69.38, c:72.80 }, { t:"2026-04-06", o:72.81, h:73.41, l:70.93, c:72.62 }, { t:"2026-04-07", o:72.62, h:73.30, l:69.64, c:72.83 }, { t:"2026-04-08", o:72.83, h:77.53, l:72.83, c:73.91 }, { t:"2026-04-09", o:73.91, h:76.62, l:72.70, c:75.18 }, { t:"2026-04-10", o:75.18, h:76.68, l:74.66, c:76.03 }, { t:"2026-04-13", o:76.03, h:76.03, l:72.41, c:75.49 }, { t:"2026-04-14", o:75.49, h:79.58, l:75.22, c:79.29 }]
+    },
+    {
+      symbol: "XAUUSD", name: "Gold / US Dollar",
+      price: 4820.69, previousClose: 4841.76, change: -21.07, changePercent: -0.44,
+      dayHigh: 4871.38, dayLow: 4812.84, yearHigh: 5602.23, yearLow: 3120.76,
+      signal: "BULLISH", signalStrength: 68, eventImpactProbability: 72,
+      sparkline: [4758, 4677, 4635, 4650, 4705, 4719, 4765, 4750, 4720, 4740, 4842],
+      support: [{ level:"S1", price:4813, desc:"Today's low area" }, { level:"S2", price:4746, desc:"Tuesday's close — prior day support" }, { level:"S3", price:4635, desc:"Double-tested floor — must not lose this level" }],
+      resist: [{ level:"R1", price:4871, desc:"Today's intraday high — new ATH territory" }, { level:"R2", price:4950, desc:"Psychological target beyond ATH" }],
+      priceAction: "Gold has delivered on the Sunday bullish call, rallying from 4,722 to an intraday high of 4,871 today — within $13 of the all-time high. The metal has set a higher low (4,720 on April 12-13 vs 4,635 on April 5-6) and is within touching distance of the all-time high. This is a strongly bullish technical structure. The metal is consolidating at 4,821 after some profit-taking from the 4,871 high.",
+      fundamentals: "The gold bullish structural case (central bank buying, USD weakening, rate cut expectations reviving) remains intact. Benign core PPI (+0.2%) confirms the Fed is not facing runaway inflation. A new all-time high above 4,871 would trigger systematic buying from CTAs and momentum funds. FOMC April 29: market beginning to price June rate cut — lower real rates are structurally bullish for gold.",
+      outlook: "BULLISH (maintained). Gold is within $50 of a new all-time high, the technical structure is bullish (higher highs, higher lows). Target 4,900-5,000 over 3 days. A close above 4,871 would trigger momentum buying toward 4,950. The key risk is a dramatic ceasefire breakthrough that sharply reduces oil and the geopolitical premium simultaneously.",
+      events: [{ date:"2026-04-15", event:"Fed Beige Book (economic conditions read)", currency:"USD", impact:"High" }, { date:"2026-04-16", event:"US-Iran Round 2 Talks", currency:"USD", impact:"Very High" }, { date:"2026-04-17", event:"US Michigan Consumer Sentiment (prelim)", currency:"USD", impact:"Medium" }, { date:"2026-04-21", event:"Iran-US Ceasefire Deadline", currency:"USD", impact:"Extreme" }, { date:"2026-04-29", event:"FOMC Rate Decision", currency:"USD", impact:"Very High" }],
+      ohlc: [{ t:"2026-04-01", o:4675, h:4793, l:4662, c:4758 }, { t:"2026-04-02", o:4758, h:4801, l:4554, c:4677 }, { t:"2026-04-06", o:4638, h:4707, l:4601, c:4650 }, { t:"2026-04-07", o:4662, h:4719, l:4608, c:4705 }, { t:"2026-04-08", o:4742, h:4858, l:4699, c:4719 }, { t:"2026-04-09", o:4728, h:4801, l:4699, c:4765 }, { t:"2026-04-10", o:4773, h:4795, l:4731, c:4750 }, { t:"2026-04-13", o:4670, h:4750, l:4644, c:4740 }, { t:"2026-04-14", o:4747, h:4846, l:4746, c:4842 }]
+    }
+  ]
+};
+</script>
+<script>
+const REPORTS_DATA = {"summary":[{"id":6,"createdAt":"2026-04-14T12:40:45.858Z","dateKey":"2026-04-14","status":"complete","marketSentiment":"NEUTRAL","instrumentCount":7},{"id":5,"createdAt":"2026-04-13T06:45:45.928Z","dateKey":"2026-04-13","status":"complete","marketSentiment":"NEUTRAL","instrumentCount":7},{"id":4,"createdAt":"2026-04-08T19:10:48.660Z","dateKey":"2026-04-08","status":"complete","marketSentiment":"NEUTRAL","instrumentCount":7},{"id":3,"createdAt":"2026-04-02T06:10:47.535Z","dateKey":"2026-04-02","status":"complete","marketSentiment":"NEUTRAL","instrumentCount":7},{"id":2,"createdAt":"2026-04-01T08:22:22.654Z","dateKey":"2026-04-01","status":"complete","marketSentiment":"NEUTRAL","instrumentCount":7},{"id":1,"createdAt":"2026-03-31T20:38:32.657Z","dateKey":"2026-03-31","status":"complete","marketSentiment":"NEUTRAL","instrumentCount":7}],"full":{"6":{"lastUpdated":"2026-04-14T12:40:56.109Z","marketSentiment":"NEUTRAL","instruments":[{"symbol":"US30","name":"Dow Jones Industrial Average","price":48218.25,"previousClose":47916.57,"change":301.68,"changePercent":0.63,"dayHigh":48221.37,"dayLow":47505.97,"yearHigh":50512.79,"yearLow":37830.66,"signal":"BULLISH","signalStrength":35,"eventImpactProbability":75,"sparklineData":[45216.15,46341.52,46565.75,46504.68,46669.89,46584.46,47909.93,48185.81,47916.58,48218.25],"supportLevels":[{"level":"S1","price":45057.28,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":45897.24,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":48323.95,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":48221.37,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"US30 is currently bullish over the recent 10-session window. Price closed at 48,218.25 on 2026-04-13, trading within a range of 45,057.28 to 48,323.95. Current price sits at 97% of the recent range. Signal strength is +35, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for US30. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-30","open":45283.06,"high":45625.76,"low":45057.28,"close":45216.15,"volume":540680000},{"date":"2026-03-31","open":45541.76,"high":46383.4,"low":45480.3,"close":46341.52,"volume":639413109},{"date":"2026-04-01","open":46396.12,"high":46803.36,"low":46396.12,"close":46565.75,"volume":604149707},{"date":"2026-04-02","open":46469.36,"high":46754.72,"low":45897.24,"close":46504.68,"volume":446710000},{"date":"2026-04-06","open":46472.2,"high":46701.1,"low":46354.95,"close":46669.89,"volume":339870000},{"date":"2026-04-07","open":46581.96,"high":46584.46,"low":46214.77,"close":46584.46,"volume":450740630},{"date":"2026-04-08","open":46978.17,"high":48017.09,"low":46978.17,"close":47909.93,"volume":523711453},{"date":"2026-04-09","open":47840.63,"high":48323.95,"low":47690.27,"close":48185.81,"volume":445240684},{"date":"2026-04-10","open":48199.39,"high":48235.06,"low":47856.18,"close":47916.58,"volume":477096817},{"date":"2026-04-13","open":47718.21,"high":48221.37,"low":47505.97,"close":48218.25,"volume":455852061}]},{"symbol":"NAS100","name":"Nasdaq 100","price":25383.72,"previousClose":25116.34,"change":267.38,"changePercent":1.06,"dayHigh":25387.69,"dayLow":24999.19,"yearHigh":26182.1,"yearLow":17592.92,"signal":"BULLISH","signalStrength":48,"eventImpactProbability":84,"sparklineData":[22953.38,23740.19,24019.99,24045.53,24192.17,24202.37,24903.17,25082.09,25116.34,25383.72],"supportLevels":[{"level":"S1","price":22841.42,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":23512.59,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":25387.69,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":25097.45,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"NAS100 is currently bullish over the recent 10-session window. Price closed at 25,383.72 on 2026-04-13, trading within a range of 22,841.42 to 25,387.69. Current price sits at 100% of the recent range. Signal strength is +48, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for NAS100. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-30","open":23307.75,"high":23356.75,"low":22841.42,"close":22953.38,"volume":1311000842},{"date":"2026-03-31","open":23208,"high":23789.6,"low":23198.64,"close":23740.19,"volume":1512476873},{"date":"2026-04-01","open":23883.29,"high":24162.68,"low":23871.61,"close":24019.99,"volume":1268114147},{"date":"2026-04-02","open":23621.73,"high":24076.35,"low":23512.59,"close":24045.53,"volume":1050644733},{"date":"2026-04-06","open":24143.02,"high":24265.14,"low":24039.03,"close":24192.17,"volume":898867927},{"date":"2026-04-07","open":24109.57,"high":24209.28,"low":23779.85,"close":24202.37,"volume":1073467347},{"date":"2026-04-08","open":25045.36,"high":25045.36,"low":24756.93,"close":24903.17,"volume":1368099394},{"date":"2026-04-09","open":24918.28,"high":25097.45,"low":24788.92,"close":25082.09,"volume":1230423447},{"date":"2026-04-10","open":25165.06,"high":25226.06,"low":25057.65,"close":25116.34,"volume":1189248565},{"date":"2026-04-13","open":25069.07,"high":25387.69,"low":24999.2,"close":25383.72,"volume":1101303326}]},{"symbol":"GER40","name":"Germany 40 (DAX)","price":24008.94,"previousClose":23742.44,"change":266.5,"changePercent":1.12,"dayHigh":24053.28,"dayLow":23938.11,"yearHigh":25507.79,"yearLow":20956.38,"signal":"NEUTRAL","signalStrength":-3,"eventImpactProbability":71,"sparklineData":[22562.88,22680.04,23298.89,23168.08,22921.59,24080.63,23806.99,23803.95,23742.44,24004.18],"supportLevels":[{"level":"S1","price":22209.45,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":22677.92,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":24163.91,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":24043.59,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GER40 is currently consolidating over the recent 10-session window. Price closed at 24,004.18 on 2026-04-13, trading within a range of 22,209.45 to 24,163.91. Current price sits at 92% of the recent range. Signal strength is -3, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for GER40. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-29","open":22213.86,"high":22562.88,"low":22209.45,"close":22562.88,"volume":56264500},{"date":"2026-03-30","open":22578.84,"high":22850.7,"low":22491.51,"close":22680.04,"volume":68687100},{"date":"2026-03-31","open":23326.89,"high":23377.65,"low":23027.04,"close":23298.89,"volume":75354600},{"date":"2026-04-01","open":22935.23,"high":23235.16,"low":22677.92,"close":23168.08,"volume":62871800},{"date":"2026-04-06","open":23181.65,"high":23397.89,"low":22842.14,"close":22921.59,"volume":59120900},{"date":"2026-04-07","open":24021.81,"high":24163.91,"low":23875.79,"close":24080.63,"volume":93935800},{"date":"2026-04-08","open":23981.22,"high":23989.01,"low":23673.12,"close":23806.99,"volume":56947100},{"date":"2026-04-09","open":23827.54,"high":24043.59,"low":23767.71,"close":23803.95,"volume":60876600},{"date":"2026-04-12","open":23562.19,"high":23756.85,"low":23482.01,"close":23742.44,"volume":0},{"date":"2026-04-13","open":23953.93,"high":24053.28,"low":23938.11,"close":24004.18,"volume":0}]},{"symbol":"AUDUSD","name":"Australian Dollar / US Dollar","price":0.71,"previousClose":0.71,"change":0,"changePercent":0.51,"dayHigh":0.71,"dayLow":0.71,"yearHigh":0.72,"yearLow":0.63,"signal":"NEUTRAL","signalStrength":0,"eventImpactProbability":53,"sparklineData":[0.69,0.69,0.69,0.7,0.7,0.71,0.71,0.7,0.71,0.71],"supportLevels":[{"level":"S1","price":0.69,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":0.69,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":0.71,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":0.71,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"AUDUSD is currently consolidating over the recent 10-session window. Price closed at 0.71 on 2026-04-14, trading within a range of 0.69 to 0.71. Current price sits at 100% of the recent range. Signal strength is 0, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for AUDUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-04-03","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":64573},{"date":"2026-04-05","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":46266},{"date":"2026-04-06","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":200136},{"date":"2026-04-07","open":0.69,"high":0.7,"low":0.69,"close":0.7,"volume":291393},{"date":"2026-04-08","open":0.7,"high":0.71,"low":0.7,"close":0.7,"volume":406021},{"date":"2026-04-09","open":0.7,"high":0.71,"low":0.7,"close":0.71,"volume":414848},{"date":"2026-04-10","open":0.71,"high":0.71,"low":0.71,"close":0.71,"volume":172363},{"date":"2026-04-12","open":0.7,"high":0.71,"low":0.7,"close":0.7,"volume":41617},{"date":"2026-04-13","open":0.7,"high":0.71,"low":0.7,"close":0.71,"volume":192594},{"date":"2026-04-14","open":0.71,"high":0.71,"low":0.71,"close":0.71,"volume":97270}]},{"symbol":"GBPCAD","name":"British Pound / Canadian Dollar","price":1.87,"previousClose":1.86,"change":0.01,"changePercent":0.33,"dayHigh":1.87,"dayLow":1.86,"yearHigh":1.89,"yearLow":1.8,"signal":"NEUTRAL","signalStrength":5,"eventImpactProbability":39,"sparklineData":[1.84,1.84,1.84,1.85,1.85,1.86,1.86,1.86,1.86,1.87],"supportLevels":[{"level":"S1","price":1.84,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":1.84,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":1.87,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":1.86,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GBPCAD is currently consolidating over the recent 10-session window. Price closed at 1.87 on 2026-04-14, trading within a range of 1.84 to 1.87. Current price sits at 100% of the recent range. Signal strength is +5, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for GBPCAD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-04-03","open":1.84,"high":1.84,"low":1.84,"close":1.84,"volume":92322},{"date":"2026-04-05","open":1.84,"high":1.85,"low":1.84,"close":1.84,"volume":32877},{"date":"2026-04-06","open":1.84,"high":1.85,"low":1.84,"close":1.84,"volume":200633},{"date":"2026-04-07","open":1.84,"high":1.85,"low":1.84,"close":1.85,"volume":250131},{"date":"2026-04-08","open":1.85,"high":1.87,"low":1.84,"close":1.85,"volume":321621},{"date":"2026-04-09","open":1.85,"high":1.86,"low":1.85,"close":1.86,"volume":468584},{"date":"2026-04-10","open":1.86,"high":1.86,"low":1.85,"close":1.86,"volume":193724},{"date":"2026-04-12","open":1.86,"high":1.86,"low":1.86,"close":1.86,"volume":47770},{"date":"2026-04-13","open":1.85,"high":1.86,"low":1.85,"close":1.86,"volume":263548},{"date":"2026-04-14","open":1.86,"high":1.87,"low":1.86,"close":1.87,"volume":97824}]},{"symbol":"XAGUSD","name":"Silver / US Dollar","price":77.41,"previousClose":75.49,"change":1.92,"changePercent":2.54,"dayHigh":77.98,"dayLow":75.22,"yearHigh":121.56,"yearLow":31.63,"signal":"BULLISH","signalStrength":29,"eventImpactProbability":63,"sparklineData":[72.81,71.79,72.62,72.83,73.91,75.18,76.03,73.64,75.49,77.28],"supportLevels":[{"level":"S1","price":69.64,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":70.94,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":77.53,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":76.68,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAGUSD is currently bullish over the recent 10-session window. Price closed at 77.28 on 2026-04-14, trading within a range of 69.64 to 77.53. Current price sits at 97% of the recent range. Signal strength is +29, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for XAGUSD. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-04-03","open":72.8,"high":72.81,"low":72.8,"close":72.81,"volume":3},{"date":"2026-04-05","open":72.81,"high":73.01,"low":70.94,"close":71.79,"volume":174901},{"date":"2026-04-06","open":72.81,"high":73.41,"low":70.93,"close":72.62,"volume":758101},{"date":"2026-04-07","open":72.62,"high":73.3,"low":69.64,"close":72.83,"volume":1125209},{"date":"2026-04-08","open":72.83,"high":77.53,"low":72.83,"close":73.91,"volume":1112494},{"date":"2026-04-09","open":73.91,"high":76.62,"low":72.7,"close":75.18,"volume":2014924},{"date":"2026-04-10","open":75.18,"high":76.68,"low":74.66,"close":76.03,"volume":797325},{"date":"2026-04-12","open":75.84,"high":75.84,"low":72.45,"close":73.64,"volume":194767},{"date":"2026-04-13","open":76.03,"high":76.03,"low":72.41,"close":75.49,"volume":926362},{"date":"2026-04-14","open":75.49,"high":77.34,"low":75.22,"close":77.28,"volume":206641}]},{"symbol":"XAUUSD","name":"Gold / US Dollar","price":4776.15,"previousClose":4740.34,"change":35.81,"changePercent":0.76,"dayHigh":4796.63,"dayLow":4745.84,"yearHigh":5602.23,"yearLow":3120.76,"signal":"NEUTRAL","signalStrength":3,"eventImpactProbability":60,"sparklineData":[4676.74,4635.23,4649.99,4704.81,4718.96,4765.4,4749.69,4720.47,4740.34,4781.65],"supportLevels":[{"level":"S1","price":4553.85,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":4600.85,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":4858.22,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":4800.8,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAUUSD is currently consolidating over the recent 10-session window. Price closed at 4,781.65 on 2026-04-14, trading within a range of 4,553.85 to 4,858.22. Current price sits at 75% of the recent range. Signal strength is +3, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for XAUUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-04-02","open":4758.47,"high":4800.8,"low":4553.85,"close":4676.74,"volume":1477022},{"date":"2026-04-05","open":4638.25,"high":4671.63,"low":4600.85,"close":4635.23,"volume":260405},{"date":"2026-04-06","open":4638.25,"high":4706.88,"low":4600.85,"close":4649.99,"volume":915071},{"date":"2026-04-07","open":4661.76,"high":4718.96,"low":4607.63,"close":4704.81,"volume":1215753},{"date":"2026-04-08","open":4741.85,"high":4858.22,"low":4699.31,"close":4718.96,"volume":1158729},{"date":"2026-04-09","open":4727.55,"high":4801.39,"low":4698.73,"close":4765.4,"volume":949418},{"date":"2026-04-10","open":4772.62,"high":4794.98,"low":4730.74,"close":4749.69,"volume":772355},{"date":"2026-04-12","open":4670.43,"high":4728.23,"low":4644.47,"close":4720.47,"volume":222923},{"date":"2026-04-13","open":4670.43,"high":4750.2,"low":4644.47,"close":4740.34,"volume":950061},{"date":"2026-04-14","open":4746.92,"high":4782.82,"low":4745.84,"close":4781.65,"volume":206107}]}],"macroOverview":"Report generated with live market data. Macro analysis and event calendar based on latest available information.","riskScenarios":[{"name":"Risk-On Rally","description":"Positive macro catalysts or geopolitical de-escalation drives broad risk appetite recovery.","impact":"Bullish equities and risk-sensitive FX. Bearish safe-haven assets."},{"name":"Continued Sell-Off","description":"Macro deterioration, hawkish policy surprises, or geopolitical escalation extends current trends.","impact":"Bearish equities. Bullish gold and safe-haven currencies."},{"name":"Range-Bound Consolidation","description":"Markets digest recent moves awaiting clearer catalysts. Volatility compresses.","impact":"Mixed signals across instruments. Focus on individual setups."}]},"5":{"lastUpdated":"2026-04-13T06:45:54.331Z","marketSentiment":"NEUTRAL","instruments":[{"symbol":"US30","name":"Dow Jones Industrial Average","price":47916.57,"previousClose":48185.81,"change":-269.24,"changePercent":-0.56,"dayHigh":48235.06,"dayLow":47856.18,"yearHigh":50512.79,"yearLow":37830.66,"signal":"BULLISH","signalStrength":27,"eventImpactProbability":78,"sparklineData":[45166.65,45216.15,46341.52,46565.75,46504.68,46669.89,46584.46,47909.93,48185.81,47916.58],"supportLevels":[{"level":"S1","price":45057.28,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":45480.3,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":48323.95,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":48017.09,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"US30 is currently bullish over the recent 10-session window. Price closed at 47,916.58 on 2026-04-10, trading within a range of 45,057.28 to 48,323.95. Current price sits at 88% of the recent range. Signal strength is +27, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for US30. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-27","open":45904.25,"high":45904.25,"low":45063.33,"close":45166.65,"volume":555090957},{"date":"2026-03-30","open":45283.06,"high":45625.76,"low":45057.28,"close":45216.15,"volume":540680000},{"date":"2026-03-31","open":45541.76,"high":46383.4,"low":45480.3,"close":46341.52,"volume":639413109},{"date":"2026-04-01","open":46396.12,"high":46803.36,"low":46396.12,"close":46565.75,"volume":604149707},{"date":"2026-04-02","open":46469.36,"high":46754.72,"low":45897.24,"close":46504.68,"volume":446710000},{"date":"2026-04-06","open":46472.2,"high":46701.1,"low":46354.95,"close":46669.89,"volume":339870000},{"date":"2026-04-07","open":46581.96,"high":46584.46,"low":46214.77,"close":46584.46,"volume":450740630},{"date":"2026-04-08","open":46978.17,"high":48017.09,"low":46978.17,"close":47909.93,"volume":523711453},{"date":"2026-04-09","open":47840.63,"high":48323.95,"low":47690.27,"close":48185.81,"volume":445240684},{"date":"2026-04-10","open":48199.39,"high":48235.06,"low":47856.18,"close":47916.58,"volume":477096817}]},{"symbol":"NAS100","name":"Nasdaq 100","price":25116.34,"previousClose":25082.1,"change":34.25,"changePercent":0.14,"dayHigh":25226.06,"dayLow":25057.65,"yearHigh":26182.1,"yearLow":17592.92,"signal":"BULLISH","signalStrength":38,"eventImpactProbability":75,"sparklineData":[23132.77,22953.38,23740.19,24019.99,24045.53,24192.17,24202.37,24903.17,25082.09,25116.34],"supportLevels":[{"level":"S1","price":22841.42,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":23198.64,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":25226.06,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":25045.36,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"NAS100 is currently bullish over the recent 10-session window. Price closed at 25,116.34 on 2026-04-10, trading within a range of 22,841.42 to 25,226.06. Current price sits at 95% of the recent range. Signal strength is +38, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for NAS100. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-27","open":23463.75,"high":23472.89,"low":23088.99,"close":23132.77,"volume":1238296410},{"date":"2026-03-30","open":23307.75,"high":23356.75,"low":22841.42,"close":22953.38,"volume":1311000842},{"date":"2026-03-31","open":23208,"high":23789.6,"low":23198.64,"close":23740.19,"volume":1512476873},{"date":"2026-04-01","open":23883.29,"high":24162.68,"low":23871.61,"close":24019.99,"volume":1268114147},{"date":"2026-04-02","open":23621.73,"high":24076.35,"low":23512.59,"close":24045.53,"volume":1050644733},{"date":"2026-04-06","open":24143.02,"high":24265.14,"low":24039.03,"close":24192.17,"volume":898867927},{"date":"2026-04-07","open":24109.57,"high":24209.28,"low":23779.85,"close":24202.37,"volume":1073467347},{"date":"2026-04-08","open":25045.36,"high":25045.36,"low":24756.93,"close":24903.17,"volume":1368099394},{"date":"2026-04-09","open":24918.28,"high":25097.45,"low":24788.92,"close":25082.09,"volume":1197353691},{"date":"2026-04-10","open":25165.06,"high":25226.06,"low":25057.65,"close":25116.34,"volume":991868780}]},{"symbol":"GER40","name":"Germany 40 (DAX)","price":23803.95,"previousClose":23806.99,"change":-3.04,"changePercent":-0.01,"dayHigh":24043.59,"dayLow":23767.71,"yearHigh":25507.79,"yearLow":20698.91,"signal":"BULLISH","signalStrength":28,"eventImpactProbability":80,"sparklineData":[22612.97,22300.75,22562.88,22680.04,23298.89,23168.08,22921.59,24080.63,23806.99,23803.95],"supportLevels":[{"level":"S1","price":22209.45,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":22491.51,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":24163.91,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":23989.01,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GER40 is currently bullish over the recent 10-session window. Price closed at 23,803.95 on 2026-04-09, trading within a range of 22,209.45 to 24,163.91. Current price sits at 82% of the recent range. Signal strength is +28, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for GER40. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-25","open":22740.71,"high":22813.41,"low":22557.1,"close":22612.97,"volume":57630400},{"date":"2026-03-26","open":22612.93,"high":22631.76,"low":22215.86,"close":22300.75,"volume":59200300},{"date":"2026-03-29","open":22213.86,"high":22562.88,"low":22209.45,"close":22562.88,"volume":56264500},{"date":"2026-03-30","open":22578.84,"high":22850.7,"low":22491.51,"close":22680.04,"volume":68687100},{"date":"2026-03-31","open":23326.89,"high":23377.65,"low":23027.04,"close":23298.89,"volume":75354600},{"date":"2026-04-01","open":22935.23,"high":23235.16,"low":22677.92,"close":23168.08,"volume":62871800},{"date":"2026-04-06","open":23181.65,"high":23397.89,"low":22842.14,"close":22921.59,"volume":59120900},{"date":"2026-04-07","open":24021.81,"high":24163.91,"low":23875.79,"close":24080.63,"volume":93935800},{"date":"2026-04-08","open":23981.22,"high":23989.01,"low":23673.12,"close":23806.99,"volume":56947100},{"date":"2026-04-09","open":23827.54,"high":24043.59,"low":23767.71,"close":23803.95,"volume":0}]},{"symbol":"AUDUSD","name":"Australian Dollar / US Dollar","price":0.7,"previousClose":0.71,"change":0,"changePercent":-0.2,"dayHigh":0.7,"dayLow":0.7,"yearHigh":0.72,"yearLow":0.63,"signal":"NEUTRAL","signalStrength":0,"eventImpactProbability":41,"sparklineData":[0.69,0.69,0.69,0.69,0.7,0.7,0.71,0.71,0.7,0.7],"supportLevels":[{"level":"S1","price":0.69,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":0.69,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":0.71,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":0.71,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"AUDUSD is currently consolidating over the recent 10-session window. Price closed at 0.7 on 2026-04-13, trading within a range of 0.69 to 0.71. Current price sits at 50% of the recent range. Signal strength is 0, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for AUDUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-04-02","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":665806},{"date":"2026-04-03","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":64573},{"date":"2026-04-05","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":46266},{"date":"2026-04-06","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":200136},{"date":"2026-04-07","open":0.69,"high":0.7,"low":0.69,"close":0.7,"volume":291393},{"date":"2026-04-08","open":0.7,"high":0.71,"low":0.7,"close":0.7,"volume":406021},{"date":"2026-04-09","open":0.7,"high":0.71,"low":0.7,"close":0.71,"volume":414848},{"date":"2026-04-10","open":0.71,"high":0.71,"low":0.71,"close":0.71,"volume":172363},{"date":"2026-04-12","open":0.7,"high":0.7,"low":0.7,"close":0.7,"volume":41617},{"date":"2026-04-13","open":0.7,"high":0.7,"low":0.7,"close":0.7,"volume":57657}]},{"symbol":"GBPCAD","name":"British Pound / Canadian Dollar","price":1.86,"previousClose":1.86,"change":-0.01,"changePercent":-0.32,"dayHigh":1.86,"dayLow":1.86,"yearHigh":1.89,"yearLow":1.8,"signal":"NEUTRAL","signalStrength":5,"eventImpactProbability":41,"sparklineData":[1.84,1.84,1.84,1.84,1.85,1.85,1.86,1.86,1.86,1.86],"supportLevels":[{"level":"S1","price":1.84,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":1.84,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":1.87,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":1.86,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GBPCAD is currently consolidating over the recent 10-session window. Price closed at 1.86 on 2026-04-13, trading within a range of 1.84 to 1.87. Current price sits at 67% of the recent range. Signal strength is +5, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for GBPCAD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-04-02","open":1.85,"high":1.85,"low":1.84,"close":1.84,"volume":552810},{"date":"2026-04-03","open":1.84,"high":1.84,"low":1.84,"close":1.84,"volume":92322},{"date":"2026-04-05","open":1.84,"high":1.85,"low":1.84,"close":1.84,"volume":32877},{"date":"2026-04-06","open":1.84,"high":1.85,"low":1.84,"close":1.84,"volume":200633},{"date":"2026-04-07","open":1.84,"high":1.85,"low":1.84,"close":1.85,"volume":250131},{"date":"2026-04-08","open":1.85,"high":1.87,"low":1.84,"close":1.85,"volume":321621},{"date":"2026-04-09","open":1.85,"high":1.86,"low":1.85,"close":1.86,"volume":468584},{"date":"2026-04-10","open":1.86,"high":1.86,"low":1.85,"close":1.86,"volume":193724},{"date":"2026-04-12","open":1.86,"high":1.86,"low":1.85,"close":1.86,"volume":47770},{"date":"2026-04-13","open":1.86,"high":1.86,"low":1.86,"close":1.86,"volume":69983}]},{"symbol":"XAGUSD","name":"Silver / US Dollar","price":74.29,"previousClose":76.03,"change":-1.75,"changePercent":-2.3,"dayHigh":76.03,"dayLow":72.42,"yearHigh":121.56,"yearLow":31.63,"signal":"NEUTRAL","signalStrength":6,"eventImpactProbability":70,"sparklineData":[72.8,72.81,71.79,72.62,72.83,73.91,75.18,76.03,74.23,74.29],"supportLevels":[{"level":"S1","price":69.38,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":70.93,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":77.53,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":76.62,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAGUSD is currently consolidating over the recent 10-session window. Price closed at 74.29 on 2026-04-13, trading within a range of 69.38 to 77.53. Current price sits at 60% of the recent range. Signal strength is +6, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for XAGUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-04-02","open":75.03,"high":76.05,"low":69.38,"close":72.8,"volume":2801185},{"date":"2026-04-03","open":72.8,"high":72.81,"low":72.8,"close":72.81,"volume":3},{"date":"2026-04-05","open":72.81,"high":73.01,"low":70.94,"close":71.79,"volume":174901},{"date":"2026-04-06","open":72.81,"high":73.41,"low":70.93,"close":72.62,"volume":758101},{"date":"2026-04-07","open":72.62,"high":73.3,"low":69.64,"close":72.83,"volume":1125209},{"date":"2026-04-08","open":72.83,"high":77.53,"low":72.83,"close":73.91,"volume":1112494},{"date":"2026-04-09","open":73.91,"high":76.62,"low":72.7,"close":75.18,"volume":2014924},{"date":"2026-04-10","open":75.18,"high":76.68,"low":74.66,"close":76.03,"volume":797325},{"date":"2026-04-12","open":76.03,"high":76.03,"low":72.42,"close":74.23,"volume":194767},{"date":"2026-04-13","open":76.03,"high":76.03,"low":72.42,"close":74.29,"volume":248207}]},{"symbol":"XAUUSD","name":"Gold / US Dollar","price":4725.38,"previousClose":4749.69,"change":-24.31,"changePercent":-0.51,"dayHigh":4732.69,"dayLow":4644.47,"yearHigh":5602.23,"yearLow":3120.76,"signal":"NEUTRAL","signalStrength":2,"eventImpactProbability":65,"sparklineData":[4758.2,4676.74,4635.23,4649.99,4704.81,4718.96,4765.4,4749.69,4720.47,4729.48],"supportLevels":[{"level":"S1","price":4553.85,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":4600.85,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":4858.22,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":4800.8,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAUUSD is currently consolidating over the recent 10-session window. Price closed at 4,729.48 on 2026-04-13, trading within a range of 4,553.85 to 4,858.22. Current price sits at 58% of the recent range. Signal strength is +2, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for XAUUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-04-01","open":4674.53,"high":4793.19,"low":4662.12,"close":4758.2,"volume":1062605},{"date":"2026-04-02","open":4758.47,"high":4800.8,"low":4553.85,"close":4676.74,"volume":1477022},{"date":"2026-04-05","open":4638.25,"high":4671.63,"low":4600.85,"close":4635.23,"volume":260405},{"date":"2026-04-06","open":4638.25,"high":4706.88,"low":4600.85,"close":4649.99,"volume":915071},{"date":"2026-04-07","open":4661.76,"high":4718.96,"low":4607.63,"close":4704.81,"volume":1215753},{"date":"2026-04-08","open":4741.85,"high":4858.22,"low":4699.31,"close":4718.96,"volume":1158729},{"date":"2026-04-09","open":4727.55,"high":4801.39,"low":4698.73,"close":4765.4,"volume":949418},{"date":"2026-04-10","open":4772.62,"high":4794.98,"low":4730.74,"close":4749.69,"volume":772355},{"date":"2026-04-12","open":4670.43,"high":4728.23,"low":4644.47,"close":4720.47,"volume":222923},{"date":"2026-04-13","open":4670.43,"high":4730.8,"low":4644.47,"close":4729.48,"volume":268741}]}],"macroOverview":"Report generated with live market data. Macro analysis and event calendar based on latest available information.","riskScenarios":[{"name":"Risk-On Rally","description":"Positive macro catalysts or geopolitical de-escalation drives broad risk appetite recovery.","impact":"Bullish equities and risk-sensitive FX. Bearish safe-haven assets."},{"name":"Continued Sell-Off","description":"Macro deterioration, hawkish policy surprises, or geopolitical escalation extends current trends.","impact":"Bearish equities. Bullish gold and safe-haven currencies."},{"name":"Range-Bound Consolidation","description":"Markets digest recent moves awaiting clearer catalysts. Volatility compresses.","impact":"Mixed signals across instruments. Focus on individual setups."}]},"4":{"lastUpdated":"2026-04-08T19:10:57.631Z","marketSentiment":"NEUTRAL","instruments":[{"symbol":"US30","name":"Dow Jones Industrial Average","price":47754.91,"previousClose":46584.46,"change":1170.45,"changePercent":2.51,"dayHigh":48017.09,"dayLow":46978.17,"yearHigh":50512.79,"yearLow":37103.86,"signal":"BULLISH","signalStrength":24,"eventImpactProbability":78,"sparklineData":[46429.5,45960.12,45166.65,45216.15,46341.52,46565.75,46504.68,46669.89,46584.46,47687.82],"supportLevels":[{"level":"S1","price":45057.28,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":45480.3,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":48017.09,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":46754.72,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"US30 is currently bullish over the recent 10-session window. Price closed at 47,687.82 on 2026-04-08, trading within a range of 45,057.28 to 48,017.09. Current price sits at 89% of the recent range. Signal strength is +24, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for US30. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-25","open":46314.24,"high":46718.42,"low":46196.91,"close":46429.5,"volume":462991321},{"date":"2026-03-26","open":46344.64,"high":46547.59,"low":45910.75,"close":45960.12,"volume":505015178},{"date":"2026-03-27","open":45904.25,"high":45904.25,"low":45063.33,"close":45166.65,"volume":555090957},{"date":"2026-03-30","open":45283.06,"high":45625.76,"low":45057.28,"close":45216.15,"volume":540680000},{"date":"2026-03-31","open":45541.76,"high":46383.4,"low":45480.3,"close":46341.52,"volume":639413109},{"date":"2026-04-01","open":46396.12,"high":46803.36,"low":46396.12,"close":46565.75,"volume":604149707},{"date":"2026-04-02","open":46469.36,"high":46754.72,"low":45897.24,"close":46504.68,"volume":446710000},{"date":"2026-04-06","open":46472.2,"high":46701.1,"low":46354.95,"close":46669.89,"volume":339870000},{"date":"2026-04-07","open":46581.96,"high":46584.46,"low":46214.77,"close":46584.46,"volume":450740630},{"date":"2026-04-08","open":46978.17,"high":48017.09,"low":46978.17,"close":47687.82,"volume":348623614}]},{"symbol":"NAS100","name":"Nasdaq 100","price":24815.66,"previousClose":24202.37,"change":613.29,"changePercent":2.53,"dayHigh":25045.36,"dayLow":24756.93,"yearHigh":26182.1,"yearLow":16850.18,"signal":"BULLISH","signalStrength":33,"eventImpactProbability":76,"sparklineData":[24162.98,23586.99,23132.77,22953.38,23740.19,24019.99,24045.53,24192.17,24202.37,24806.76],"supportLevels":[{"level":"S1","price":22841.42,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":23198.64,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":25045.36,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":24265.14,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"NAS100 is currently bullish over the recent 10-session window. Price closed at 24,806.76 on 2026-04-08, trading within a range of 22,841.42 to 25,045.36. Current price sits at 89% of the recent range. Signal strength is +33, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for NAS100. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-25","open":24236.4,"high":24314.25,"low":24081.38,"close":24162.98,"volume":1161202850},{"date":"2026-03-26","open":23913.19,"high":24029.51,"low":23574.72,"close":23586.99,"volume":1287362984},{"date":"2026-03-27","open":23463.75,"high":23472.89,"low":23088.99,"close":23132.77,"volume":1238296410},{"date":"2026-03-30","open":23307.75,"high":23356.75,"low":22841.42,"close":22953.38,"volume":1311000842},{"date":"2026-03-31","open":23208,"high":23789.6,"low":23198.64,"close":23740.19,"volume":1512476873},{"date":"2026-04-01","open":23883.29,"high":24162.68,"low":23871.61,"close":24019.99,"volume":1268114147},{"date":"2026-04-02","open":23621.73,"high":24076.35,"low":23512.6,"close":24045.53,"volume":1050644733},{"date":"2026-04-06","open":24143.02,"high":24265.14,"low":24039.03,"close":24192.17,"volume":898867927},{"date":"2026-04-07","open":24109.57,"high":24209.28,"low":23779.85,"close":24202.37,"volume":1073467347},{"date":"2026-04-08","open":25045.36,"high":25045.36,"low":24756.93,"close":24806.76,"volume":952241208}]},{"symbol":"GER40","name":"Germany 40 (DAX)","price":23998.35,"previousClose":22921.59,"change":1076.76,"changePercent":4.7,"dayHigh":24163.91,"dayLow":23875.79,"yearHigh":25507.79,"yearLow":19384.39,"signal":"STRONG_BULLISH","signalStrength":62,"eventImpactProbability":70,"sparklineData":[22636.91,22957.08,22612.97,22300.75,22562.88,22680.04,23298.89,23168.08,22921.59,24080.63],"supportLevels":[{"level":"S1","price":22209.45,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":22350.34,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":24163.91,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":23377.65,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GER40 is currently bullish over the recent 10-session window. Price closed at 24,080.63 on 2026-04-07, trading within a range of 22,209.45 to 24,163.91. Current price sits at 96% of the recent range. Signal strength is +62, indicating strong directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"STRONG BULLISH outlook for GER40. Momentum and trend alignment suggest further upside. Watch for resistance breakout confirmations.","keyEvents":[]},"ohlcData":[{"date":"2026-03-23","open":22677.09,"high":22730.83,"low":22350.34,"close":22636.91,"volume":57909800},{"date":"2026-03-24","open":22961.89,"high":23079.37,"low":22815.71,"close":22957.08,"volume":60508800},{"date":"2026-03-25","open":22740.71,"high":22813.41,"low":22557.1,"close":22612.97,"volume":57630400},{"date":"2026-03-26","open":22612.93,"high":22631.76,"low":22215.86,"close":22300.75,"volume":59200300},{"date":"2026-03-29","open":22213.86,"high":22562.88,"low":22209.45,"close":22562.88,"volume":56264500},{"date":"2026-03-30","open":22578.84,"high":22850.7,"low":22491.51,"close":22680.04,"volume":68687100},{"date":"2026-03-31","open":23326.89,"high":23377.65,"low":23027.04,"close":23298.89,"volume":75354600},{"date":"2026-04-01","open":22935.23,"high":23235.16,"low":22677.92,"close":23168.08,"volume":62871800},{"date":"2026-04-06","open":23181.65,"high":23397.89,"low":22842.14,"close":22921.59,"volume":59120900},{"date":"2026-04-07","open":24021.81,"high":24163.91,"low":23875.79,"close":24080.63,"volume":0}]},{"symbol":"AUDUSD","name":"Australian Dollar / US Dollar","price":0.7,"previousClose":0.7,"change":0.01,"changePercent":0.81,"dayHigh":0.71,"dayLow":0.7,"yearHigh":0.72,"yearLow":0.61,"signal":"NEUTRAL","signalStrength":14,"eventImpactProbability":50,"sparklineData":[0.69,0.69,0.69,0.69,0.69,0.69,0.69,0.69,0.7,0.7],"supportLevels":[{"level":"S1","price":0.68,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":0.68,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":0.71,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":0.7,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"AUDUSD is currently consolidating over the recent 10-session window. Price closed at 0.7 on 2026-04-08, trading within a range of 0.68 to 0.71. Current price sits at 67% of the recent range. Signal strength is +14, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for AUDUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-29","open":0.68,"high":0.69,"low":0.68,"close":0.69,"volume":66305},{"date":"2026-03-30","open":0.69,"high":0.69,"low":0.68,"close":0.69,"volume":245195},{"date":"2026-03-31","open":0.69,"high":0.69,"low":0.68,"close":0.69,"volume":357657},{"date":"2026-04-01","open":0.69,"high":0.7,"low":0.69,"close":0.69,"volume":285696},{"date":"2026-04-02","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":665806},{"date":"2026-04-03","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":64573},{"date":"2026-04-05","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":46266},{"date":"2026-04-06","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":200136},{"date":"2026-04-07","open":0.69,"high":0.7,"low":0.69,"close":0.7,"volume":291393},{"date":"2026-04-08","open":0.7,"high":0.71,"low":0.7,"close":0.7,"volume":362190}]},{"symbol":"GBPCAD","name":"British Pound / Canadian Dollar","price":1.85,"previousClose":1.85,"change":0.01,"changePercent":0.46,"dayHigh":1.87,"dayLow":1.85,"yearHigh":1.89,"yearLow":1.8,"signal":"NEUTRAL","signalStrength":5,"eventImpactProbability":50,"sparklineData":[1.84,1.84,1.84,1.85,1.84,1.84,1.84,1.84,1.85,1.85],"supportLevels":[{"level":"S1","price":1.83,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":1.83,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":1.87,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":1.85,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GBPCAD is currently consolidating over the recent 10-session window. Price closed at 1.85 on 2026-04-08, trading within a range of 1.83 to 1.87. Current price sits at 50% of the recent range. Signal strength is +5, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for GBPCAD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-29","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":42768},{"date":"2026-03-30","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":265096},{"date":"2026-03-31","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":319642},{"date":"2026-04-01","open":1.84,"high":1.85,"low":1.84,"close":1.85,"volume":288232},{"date":"2026-04-02","open":1.85,"high":1.85,"low":1.84,"close":1.84,"volume":552810},{"date":"2026-04-03","open":1.84,"high":1.84,"low":1.84,"close":1.84,"volume":92322},{"date":"2026-04-05","open":1.84,"high":1.85,"low":1.84,"close":1.84,"volume":32877},{"date":"2026-04-06","open":1.84,"high":1.85,"low":1.84,"close":1.84,"volume":200633},{"date":"2026-04-07","open":1.84,"high":1.85,"low":1.84,"close":1.85,"volume":250131},{"date":"2026-04-08","open":1.85,"high":1.87,"low":1.85,"close":1.85,"volume":281754}]},{"symbol":"XAGUSD","name":"Silver / US Dollar","price":73.77,"previousClose":72.83,"change":0.94,"changePercent":1.29,"dayHigh":77.48,"dayLow":72.83,"yearHigh":121.56,"yearLow":29.31,"signal":"BULLISH","signalStrength":57,"eventImpactProbability":64,"sparklineData":[69.94,69.9,74.95,75.03,72.8,72.81,71.79,72.62,72.83,76.96],"supportLevels":[{"level":"S1","price":67.51,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":68.85,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":77.47,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":76.02,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAGUSD is currently bullish over the recent 10-session window. Price closed at 76.96 on 2026-04-08, trading within a range of 67.51 to 77.47. Current price sits at 95% of the recent range. Signal strength is +57, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for XAGUSD. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-29","open":69.79,"high":70.34,"low":67.51,"close":69.94,"volume":405421},{"date":"2026-03-30","open":69.79,"high":71.73,"low":67.51,"close":69.9,"volume":1436850},{"date":"2026-03-31","open":69.9,"high":75.2,"low":68.85,"close":74.95,"volume":1434918},{"date":"2026-04-01","open":74.95,"high":76.02,"low":73.61,"close":75.03,"volume":972669},{"date":"2026-04-02","open":75.03,"high":76.05,"low":69.38,"close":72.8,"volume":2801185},{"date":"2026-04-03","open":72.8,"high":72.81,"low":72.8,"close":72.81,"volume":3},{"date":"2026-04-05","open":72.81,"high":73.01,"low":70.94,"close":71.79,"volume":174901},{"date":"2026-04-06","open":72.81,"high":73.41,"low":70.93,"close":72.62,"volume":758101},{"date":"2026-04-07","open":72.62,"high":73.3,"low":69.64,"close":72.83,"volume":1125209},{"date":"2026-04-08","open":72.83,"high":77.47,"low":72.83,"close":76.96,"volume":383748}]},{"symbol":"XAUUSD","name":"Gold / US Dollar","price":4710.61,"previousClose":4704.81,"change":5.8,"changePercent":0.12,"dayHigh":4858.22,"dayLow":4699.4,"yearHigh":5602.23,"yearLow":3071.51,"signal":"BULLISH","signalStrength":30,"eventImpactProbability":60,"sparklineData":[4493.69,4505.89,4510.65,4667.88,4758.2,4676.74,4635.23,4649.99,4704.81,4818.56],"supportLevels":[{"level":"S1","price":4375.52,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":4417.43,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":4858.22,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":4793.19,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAUUSD is currently bullish over the recent 10-session window. Price closed at 4,818.56 on 2026-04-08, trading within a range of 4,375.52 to 4,858.22. Current price sits at 92% of the recent range. Signal strength is +30, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for XAUUSD. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-27","open":4388.67,"high":4555.63,"low":4375.52,"close":4493.69,"volume":1017272},{"date":"2026-03-29","open":4512.54,"high":4517.5,"low":4417.43,"close":4505.89,"volume":379978},{"date":"2026-03-30","open":4512.54,"high":4580.73,"low":4417.43,"close":4510.65,"volume":1310698},{"date":"2026-03-31","open":4517.71,"high":4687.34,"low":4482.66,"close":4667.88,"volume":1298920},{"date":"2026-04-01","open":4674.53,"high":4793.19,"low":4662.12,"close":4758.2,"volume":1062605},{"date":"2026-04-02","open":4758.47,"high":4800.8,"low":4553.85,"close":4676.74,"volume":1477022},{"date":"2026-04-05","open":4638.25,"high":4671.63,"low":4600.85,"close":4635.23,"volume":260405},{"date":"2026-04-06","open":4638.25,"high":4706.88,"low":4600.85,"close":4649.99,"volume":915071},{"date":"2026-04-07","open":4661.76,"high":4718.96,"low":4607.63,"close":4704.81,"volume":1215753},{"date":"2026-04-08","open":4741.85,"high":4858.22,"low":4713.04,"close":4818.56,"volume":456207}]}],"macroOverview":"Report generated with live market data. Macro analysis and event calendar based on latest available information.","riskScenarios":[{"name":"Risk-On Rally","description":"Positive macro catalysts or geopolitical de-escalation drives broad risk appetite recovery.","impact":"Bullish equities and risk-sensitive FX. Bearish safe-haven assets."},{"name":"Continued Sell-Off","description":"Macro deterioration, hawkish policy surprises, or geopolitical escalation extends current trends.","impact":"Bearish equities. Bullish gold and safe-haven currencies."},{"name":"Range-Bound Consolidation","description":"Markets digest recent moves awaiting clearer catalysts. Volatility compresses.","impact":"Mixed signals across instruments. Focus on individual setups."}]},"3":{"lastUpdated":"2026-04-02T06:10:57.423Z","marketSentiment":"NEUTRAL","instruments":[{"symbol":"US30","name":"Dow Jones Industrial Average","price":46565.74,"previousClose":46341.52,"change":224.22,"changePercent":0.48,"dayHigh":46803.36,"dayLow":46396.12,"yearHigh":50512.79,"yearLow":36611.78,"signal":"NEUTRAL","signalStrength":14,"eventImpactProbability":81,"sparklineData":[46021.44,45577.48,46208.48,46124.07,46429.5,45960.12,45166.65,45216.15,46341.52,46565.75],"supportLevels":[{"level":"S1","price":45057.28,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":45369.39,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":46803.36,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":46712.33,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"US30 is currently consolidating over the recent 10-session window. Price closed at 46,565.75 on 2026-04-01, trading within a range of 45,057.28 to 46,803.36. Current price sits at 86% of the recent range. Signal strength is +14, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for US30. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-19","open":46134.87,"high":46247.22,"low":45733.7,"close":46021.44,"volume":484400013},{"date":"2026-03-20","open":45975.65,"high":46068.31,"low":45369.39,"close":45577.48,"volume":1068426541},{"date":"2026-03-23","open":45803.82,"high":46712.33,"low":45803.82,"close":46208.48,"volume":533679998},{"date":"2026-03-24","open":46099.86,"high":46400.82,"low":45769.69,"close":46124.07,"volume":474453568},{"date":"2026-03-25","open":46314.24,"high":46718.42,"low":46196.91,"close":46429.5,"volume":462991321},{"date":"2026-03-26","open":46344.64,"high":46547.59,"low":45910.75,"close":45960.12,"volume":505015178},{"date":"2026-03-27","open":45904.25,"high":45904.25,"low":45063.33,"close":45166.65,"volume":555090957},{"date":"2026-03-30","open":45283.06,"high":45625.76,"low":45057.28,"close":45216.15,"volume":540680000},{"date":"2026-03-31","open":45541.76,"high":46383.4,"low":45480.3,"close":46341.52,"volume":639413109},{"date":"2026-04-01","open":46396.12,"high":46803.36,"low":46396.12,"close":46565.75,"volume":604149707}]},{"symbol":"NAS100","name":"Nasdaq 100","price":24019.99,"previousClose":23740.19,"change":279.8,"changePercent":1.18,"dayHigh":24162.68,"dayLow":23871.61,"yearHigh":26182.1,"yearLow":16542.2,"signal":"NEUTRAL","signalStrength":19,"eventImpactProbability":80,"sparklineData":[24355.28,23898.15,24188.59,24002.45,24162.98,23586.99,23132.77,22953.38,23740.19,24019.99],"supportLevels":[{"level":"S1","price":22841.42,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":23198.64,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":24465.16,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":24314.25,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"NAS100 is currently consolidating over the recent 10-session window. Price closed at 24,019.99 on 2026-04-01, trading within a range of 22,841.42 to 24,465.16. Current price sits at 73% of the recent range. Signal strength is +19, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for NAS100. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-19","open":24119.37,"high":24462.16,"low":24100.88,"close":24355.28,"volume":1181403874},{"date":"2026-03-20","open":24257.56,"high":24267.33,"low":23759.97,"close":23898.15,"volume":2341347133},{"date":"2026-03-23","open":24270.77,"high":24465.16,"low":24097.68,"close":24188.59,"volume":1258894222},{"date":"2026-03-24","open":24042.23,"high":24170.83,"low":23927.69,"close":24002.45,"volume":1130333850},{"date":"2026-03-25","open":24236.4,"high":24314.25,"low":24081.38,"close":24162.98,"volume":1161202850},{"date":"2026-03-26","open":23913.19,"high":24029.51,"low":23574.72,"close":23586.99,"volume":1287362984},{"date":"2026-03-27","open":23463.75,"high":23472.89,"low":23088.99,"close":23132.77,"volume":1238296410},{"date":"2026-03-30","open":23307.75,"high":23356.75,"low":22841.42,"close":22953.38,"volume":1311000842},{"date":"2026-03-31","open":23208,"high":23789.6,"low":23198.64,"close":23740.19,"volume":1512476873},{"date":"2026-04-01","open":23883.29,"high":24162.68,"low":23871.61,"close":24019.99,"volume":1250235948}]},{"symbol":"GER40","name":"Germany 40 (DAX)","price":23298.89,"previousClose":22680.04,"change":618.85,"changePercent":2.73,"dayHigh":23377.65,"dayLow":23027.04,"yearHigh":25507.79,"yearLow":18489.91,"signal":"BULLISH","signalStrength":30,"eventImpactProbability":71,"sparklineData":[22839.56,22380.19,22653.86,22636.91,22957.08,22612.97,22300.75,22562.88,22680.04,23298.89],"supportLevels":[{"level":"S1","price":21863.81,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":22215.86,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":23377.65,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":23178.7,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GER40 is currently bullish over the recent 10-session window. Price closed at 23,298.89 on 2026-03-31, trading within a range of 21,863.81 to 23,377.65. Current price sits at 95% of the recent range. Signal strength is +30, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for GER40. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-18","open":23160.58,"high":23180.14,"low":22759.42,"close":22839.56,"volume":106709300},{"date":"2026-03-19","open":23083.89,"high":23176.17,"low":22369.47,"close":22380.19,"volume":174316700},{"date":"2026-03-22","open":21947.82,"high":23178.7,"low":21863.81,"close":22653.86,"volume":104919900},{"date":"2026-03-23","open":22677.09,"high":22730.83,"low":22350.34,"close":22636.91,"volume":57909800},{"date":"2026-03-24","open":22961.89,"high":23079.37,"low":22815.71,"close":22957.08,"volume":60508800},{"date":"2026-03-25","open":22740.71,"high":22813.41,"low":22557.1,"close":22612.97,"volume":57630400},{"date":"2026-03-26","open":22612.93,"high":22631.76,"low":22215.86,"close":22300.75,"volume":59200300},{"date":"2026-03-29","open":22213.86,"high":22562.88,"low":22209.45,"close":22562.88,"volume":56264500},{"date":"2026-03-30","open":22578.84,"high":22850.7,"low":22491.51,"close":22680.04,"volume":68687100},{"date":"2026-03-31","open":23326.89,"high":23377.65,"low":23027.04,"close":23298.89,"volume":0}]},{"symbol":"AUDUSD","name":"Australian Dollar / US Dollar","price":0.69,"previousClose":0.69,"change":-0.01,"changePercent":-0.86,"dayHigh":0.69,"dayLow":0.69,"yearHigh":0.72,"yearLow":0.59,"signal":"NEUTRAL","signalStrength":0,"eventImpactProbability":48,"sparklineData":[0.7,0.7,0.69,0.69,0.69,0.69,0.69,0.69,0.69,0.69],"supportLevels":[{"level":"S1","price":0.68,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":0.68,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":0.71,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":0.7,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"AUDUSD is currently consolidating over the recent 10-session window. Price closed at 0.69 on 2026-04-02, trading within a range of 0.68 to 0.71. Current price sits at 33% of the recent range. Signal strength is 0, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for AUDUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-23","open":0.7,"high":0.71,"low":0.69,"close":0.7,"volume":743197},{"date":"2026-03-24","open":0.7,"high":0.7,"low":0.69,"close":0.7,"volume":486028},{"date":"2026-03-25","open":0.7,"high":0.7,"low":0.69,"close":0.69,"volume":306053},{"date":"2026-03-26","open":0.69,"high":0.7,"low":0.69,"close":0.69,"volume":537904},{"date":"2026-03-27","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":262030},{"date":"2026-03-29","open":0.68,"high":0.69,"low":0.68,"close":0.69,"volume":66305},{"date":"2026-03-30","open":0.69,"high":0.69,"low":0.68,"close":0.69,"volume":245195},{"date":"2026-03-31","open":0.69,"high":0.69,"low":0.68,"close":0.69,"volume":357657},{"date":"2026-04-01","open":0.69,"high":0.7,"low":0.69,"close":0.69,"volume":285680},{"date":"2026-04-02","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":264681}]},{"symbol":"GBPCAD","name":"British Pound / Canadian Dollar","price":1.84,"previousClose":1.84,"change":-0.01,"changePercent":-0.36,"dayHigh":1.85,"dayLow":1.84,"yearHigh":1.89,"yearLow":1.8,"signal":"NEUTRAL","signalStrength":0,"eventImpactProbability":54,"sparklineData":[1.84,1.85,1.85,1.85,1.84,1.84,1.84,1.84,1.85,1.84],"supportLevels":[{"level":"S1","price":1.82,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":1.83,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":1.85,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":1.85,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GBPCAD is currently consolidating over the recent 10-session window. Price closed at 1.84 on 2026-04-02, trading within a range of 1.82 to 1.85. Current price sits at 67% of the recent range. Signal strength is 0, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for GBPCAD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-23","open":1.83,"high":1.85,"low":1.82,"close":1.84,"volume":401412},{"date":"2026-03-24","open":1.84,"high":1.85,"low":1.84,"close":1.85,"volume":362156},{"date":"2026-03-25","open":1.85,"high":1.85,"low":1.84,"close":1.85,"volume":288263},{"date":"2026-03-26","open":1.85,"high":1.85,"low":1.84,"close":1.85,"volume":327947},{"date":"2026-03-27","open":1.85,"high":1.85,"low":1.84,"close":1.84,"volume":273261},{"date":"2026-03-29","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":42768},{"date":"2026-03-30","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":265096},{"date":"2026-03-31","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":319642},{"date":"2026-04-01","open":1.84,"high":1.85,"low":1.84,"close":1.85,"volume":288216},{"date":"2026-04-02","open":1.84,"high":1.85,"low":1.84,"close":1.84,"volume":82527}]},{"symbol":"XAGUSD","name":"Silver / US Dollar","price":69.59,"previousClose":75.03,"change":-5.44,"changePercent":-7.25,"dayHigh":76.05,"dayLow":69.56,"yearHigh":121.56,"yearLow":27.97,"signal":"NEUTRAL","signalStrength":3,"eventImpactProbability":59,"sparklineData":[68.87,71.13,71.17,67.92,69.79,69.94,69.9,74.95,75.03,69.82],"supportLevels":[{"level":"S1","price":60.81,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":66.54,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":76.05,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":75.2,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAGUSD is currently consolidating over the recent 10-session window. Price closed at 69.82 on 2026-04-02, trading within a range of 60.81 to 76.05. Current price sits at 59% of the recent range. Signal strength is +3, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for XAGUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-23","open":67.76,"high":70.77,"low":60.81,"close":68.87,"volume":2880028},{"date":"2026-03-24","open":68.87,"high":71.25,"low":65.83,"close":71.13,"volume":1938423},{"date":"2026-03-25","open":71.13,"high":74.41,"low":70.74,"close":71.17,"volume":1404507},{"date":"2026-03-26","open":71.17,"high":72.14,"low":66.54,"close":67.92,"volume":3189190},{"date":"2026-03-27","open":67.92,"high":71.51,"low":67.23,"close":69.79,"volume":1340121},{"date":"2026-03-29","open":69.79,"high":70.34,"low":67.51,"close":69.94,"volume":405421},{"date":"2026-03-30","open":69.79,"high":71.73,"low":67.51,"close":69.9,"volume":1436850},{"date":"2026-03-31","open":69.9,"high":75.2,"low":68.85,"close":74.95,"volume":1434918},{"date":"2026-04-01","open":74.95,"high":76.02,"low":73.61,"close":75.03,"volume":972645},{"date":"2026-04-02","open":75.03,"high":76.05,"low":69.72,"close":69.82,"volume":445855}]},{"symbol":"XAUUSD","name":"Gold / US Dollar","price":4560.73,"previousClose":4758.2,"change":-197.47,"changePercent":-4.15,"dayHigh":4800.8,"dayLow":4559.76,"yearHigh":5602.23,"yearLow":2956.57,"signal":"NEUTRAL","signalStrength":15,"eventImpactProbability":60,"sparklineData":[4406.51,4474.27,4506.85,4378.2,4493.69,4505.89,4510.65,4667.88,4758.2,4567.49],"supportLevels":[{"level":"S1","price":4099.12,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":4351.35,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":4800.8,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":4687.34,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAUUSD is currently consolidating over the recent 10-session window. Price closed at 4,567.49 on 2026-04-02, trading within a range of 4,099.12 to 4,800.8. Current price sits at 67% of the recent range. Signal strength is +15, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for XAUUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-23","open":4472.24,"high":4536.41,"low":4099.12,"close":4406.51,"volume":2759676},{"date":"2026-03-24","open":4382.82,"high":4484.49,"low":4305.88,"close":4474.27,"volume":2120905},{"date":"2026-03-25","open":4476.64,"high":4602.65,"low":4455.89,"close":4506.85,"volume":1234234},{"date":"2026-03-26","open":4521.85,"high":4544.81,"low":4351.35,"close":4378.2,"volume":1545708},{"date":"2026-03-27","open":4388.67,"high":4555.63,"low":4375.52,"close":4493.69,"volume":1017272},{"date":"2026-03-29","open":4512.54,"high":4517.5,"low":4417.43,"close":4505.89,"volume":379978},{"date":"2026-03-30","open":4512.54,"high":4580.73,"low":4417.43,"close":4510.65,"volume":1310698},{"date":"2026-03-31","open":4517.71,"high":4687.34,"low":4482.66,"close":4667.88,"volume":1298920},{"date":"2026-04-01","open":4674.53,"high":4793.19,"low":4662.12,"close":4758.2,"volume":1062605},{"date":"2026-04-02","open":4758.47,"high":4800.8,"low":4561.62,"close":4567.49,"volume":500236}]}],"macroOverview":"Report generated with live market data. Macro analysis and event calendar based on latest available information.","riskScenarios":[{"name":"Risk-On Rally","description":"Positive macro catalysts or geopolitical de-escalation drives broad risk appetite recovery.","impact":"Bullish equities and risk-sensitive FX. Bearish safe-haven assets."},{"name":"Continued Sell-Off","description":"Macro deterioration, hawkish policy surprises, or geopolitical escalation extends current trends.","impact":"Bearish equities. Bullish gold and safe-haven currencies."},{"name":"Range-Bound Consolidation","description":"Markets digest recent moves awaiting clearer catalysts. Volatility compresses.","impact":"Mixed signals across instruments. Focus on individual setups."}]},"2":{"lastUpdated":"2026-04-01T08:22:28.765Z","marketSentiment":"NEUTRAL","instruments":[{"symbol":"US30","name":"Dow Jones Industrial Average","price":46341.51,"previousClose":45216.14,"change":1125.37,"changePercent":2.49,"dayHigh":46383.4,"dayLow":45480.3,"yearHigh":50512.79,"yearLow":36611.78,"signal":"NEUTRAL","signalStrength":-1,"eventImpactProbability":78,"sparklineData":[46225.16,46021.44,45577.48,46208.48,46124.07,46429.5,45960.12,45166.65,45216.15,46341.52],"supportLevels":[{"level":"S1","price":45057.28,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":45369.39,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":46913.93,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":46712.33,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"US30 is currently consolidating over the recent 10-session window. Price closed at 46,341.52 on 2026-03-31, trading within a range of 45,057.28 to 46,913.93. Current price sits at 69% of the recent range. Signal strength is -1, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for US30. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-18","open":46913.93,"high":46913.93,"low":46193.06,"close":46225.16,"volume":472026662},{"date":"2026-03-19","open":46134.87,"high":46247.22,"low":45733.7,"close":46021.44,"volume":484400013},{"date":"2026-03-20","open":45975.65,"high":46068.31,"low":45369.39,"close":45577.48,"volume":1068426541},{"date":"2026-03-23","open":45803.82,"high":46712.33,"low":45803.82,"close":46208.48,"volume":533679998},{"date":"2026-03-24","open":46099.86,"high":46400.82,"low":45769.69,"close":46124.07,"volume":474453568},{"date":"2026-03-25","open":46314.24,"high":46718.42,"low":46196.91,"close":46429.5,"volume":462991321},{"date":"2026-03-26","open":46344.64,"high":46547.59,"low":45910.75,"close":45960.12,"volume":505015178},{"date":"2026-03-27","open":45904.25,"high":45904.25,"low":45063.33,"close":45166.65,"volume":555090957},{"date":"2026-03-30","open":45283.06,"high":45625.76,"low":45057.28,"close":45216.15,"volume":540680000},{"date":"2026-03-31","open":45541.76,"high":46383.4,"low":45480.3,"close":46341.52,"volume":639413109}]},{"symbol":"NAS100","name":"Nasdaq 100","price":23740.19,"previousClose":22953.38,"change":786.81,"changePercent":3.43,"dayHigh":23789.6,"dayLow":23198.64,"yearHigh":26182.1,"yearLow":16542.2,"signal":"NEUTRAL","signalStrength":-17,"eventImpactProbability":73,"sparklineData":[24425.09,24355.28,23898.15,24188.59,24002.45,24162.98,23586.99,23132.77,22953.38,23740.19],"supportLevels":[{"level":"S1","price":22841.42,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":23198.64,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":24763.58,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":24462.16,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"NAS100 is currently consolidating over the recent 10-session window. Price closed at 23,740.19 on 2026-03-31, trading within a range of 22,841.42 to 24,763.58. Current price sits at 47% of the recent range. Signal strength is -17, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for NAS100. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-18","open":24727.07,"high":24763.58,"low":24417.38,"close":24425.09,"volume":1121408544},{"date":"2026-03-19","open":24119.37,"high":24462.16,"low":24100.88,"close":24355.28,"volume":1181403874},{"date":"2026-03-20","open":24257.56,"high":24267.33,"low":23759.97,"close":23898.15,"volume":2341347133},{"date":"2026-03-23","open":24270.77,"high":24465.16,"low":24097.68,"close":24188.59,"volume":1258894222},{"date":"2026-03-24","open":24042.23,"high":24170.83,"low":23927.69,"close":24002.45,"volume":1130333850},{"date":"2026-03-25","open":24236.4,"high":24314.25,"low":24081.38,"close":24162.98,"volume":1161202850},{"date":"2026-03-26","open":23913.19,"high":24029.51,"low":23574.72,"close":23586.99,"volume":1287362984},{"date":"2026-03-27","open":23463.75,"high":23472.89,"low":23088.99,"close":23132.77,"volume":1238296410},{"date":"2026-03-30","open":23307.75,"high":23356.75,"low":22841.42,"close":22953.38,"volume":1311000842},{"date":"2026-03-31","open":23208,"high":23789.6,"low":23198.64,"close":23740.19,"volume":1423949162}]},{"symbol":"GER40","name":"Germany 40 (DAX)","price":23141.36,"previousClose":22680.04,"change":461.32,"changePercent":2.03,"dayHigh":23343.91,"dayLow":23131.06,"yearHigh":25507.79,"yearLow":18489.91,"signal":"BULLISH","signalStrength":24,"eventImpactProbability":79,"sparklineData":[22839.56,22380.19,22653.86,22636.91,22957.08,22612.97,22300.75,22562.88,22680.04,23159.23],"supportLevels":[{"level":"S1","price":21863.81,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":22215.86,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":23343.91,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":23178.7,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GER40 is currently bullish over the recent 10-session window. Price closed at 23,159.23 on 2026-03-31, trading within a range of 21,863.81 to 23,343.91. Current price sits at 88% of the recent range. Signal strength is +24, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for GER40. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-18","open":23160.58,"high":23180.14,"low":22759.42,"close":22839.56,"volume":106709300},{"date":"2026-03-19","open":23083.89,"high":23176.17,"low":22369.47,"close":22380.19,"volume":174316700},{"date":"2026-03-22","open":21947.82,"high":23178.7,"low":21863.81,"close":22653.86,"volume":104919900},{"date":"2026-03-23","open":22677.09,"high":22730.83,"low":22350.34,"close":22636.91,"volume":57909800},{"date":"2026-03-24","open":22961.89,"high":23079.37,"low":22815.71,"close":22957.08,"volume":60508800},{"date":"2026-03-25","open":22740.71,"high":22813.41,"low":22557.1,"close":22612.97,"volume":57630400},{"date":"2026-03-26","open":22612.93,"high":22631.76,"low":22215.86,"close":22300.75,"volume":59200300},{"date":"2026-03-29","open":22213.86,"high":22562.88,"low":22209.45,"close":22562.88,"volume":56264500},{"date":"2026-03-30","open":22578.84,"high":22850.7,"low":22491.51,"close":22680.04,"volume":0},{"date":"2026-03-31","open":23326.89,"high":23343.91,"low":23131.06,"close":23159.23,"volume":0}]},{"symbol":"AUDUSD","name":"Australian Dollar / US Dollar","price":0.69,"previousClose":0.69,"change":0,"changePercent":0.58,"dayHigh":0.69,"dayLow":0.69,"yearHigh":0.72,"yearLow":0.59,"signal":"NEUTRAL","signalStrength":0,"eventImpactProbability":53,"sparklineData":[0.7,0.7,0.7,0.69,0.69,0.69,0.69,0.69,0.69,0.69],"supportLevels":[{"level":"S1","price":0.68,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":0.68,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":0.71,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":0.7,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"AUDUSD is currently consolidating over the recent 10-session window. Price closed at 0.69 on 2026-04-01, trading within a range of 0.68 to 0.71. Current price sits at 33% of the recent range. Signal strength is 0, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for AUDUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-22","open":0.7,"high":0.7,"low":0.7,"close":0.7,"volume":85365},{"date":"2026-03-23","open":0.7,"high":0.71,"low":0.69,"close":0.7,"volume":743197},{"date":"2026-03-24","open":0.7,"high":0.7,"low":0.69,"close":0.7,"volume":486028},{"date":"2026-03-25","open":0.7,"high":0.7,"low":0.69,"close":0.69,"volume":306053},{"date":"2026-03-26","open":0.69,"high":0.7,"low":0.69,"close":0.69,"volume":537904},{"date":"2026-03-27","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":262030},{"date":"2026-03-29","open":0.68,"high":0.69,"low":0.68,"close":0.69,"volume":66305},{"date":"2026-03-30","open":0.69,"high":0.69,"low":0.68,"close":0.69,"volume":245195},{"date":"2026-03-31","open":0.69,"high":0.69,"low":0.68,"close":0.69,"volume":357657},{"date":"2026-04-01","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":98022}]},{"symbol":"GBPCAD","name":"British Pound / Canadian Dollar","price":1.84,"previousClose":1.84,"change":0.01,"changePercent":0.34,"dayHigh":1.85,"dayLow":1.84,"yearHigh":1.89,"yearLow":1.8,"signal":"NEUTRAL","signalStrength":0,"eventImpactProbability":42,"sparklineData":[1.83,1.84,1.85,1.85,1.85,1.84,1.84,1.84,1.84,1.84],"supportLevels":[{"level":"S1","price":1.82,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":1.83,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":1.85,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":1.85,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GBPCAD is currently consolidating over the recent 10-session window. Price closed at 1.84 on 2026-04-01, trading within a range of 1.82 to 1.85. Current price sits at 67% of the recent range. Signal strength is 0, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for GBPCAD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-22","open":1.83,"high":1.83,"low":1.82,"close":1.83,"volume":61962},{"date":"2026-03-23","open":1.83,"high":1.85,"low":1.82,"close":1.84,"volume":401412},{"date":"2026-03-24","open":1.84,"high":1.85,"low":1.84,"close":1.85,"volume":362156},{"date":"2026-03-25","open":1.85,"high":1.85,"low":1.84,"close":1.85,"volume":288263},{"date":"2026-03-26","open":1.85,"high":1.85,"low":1.84,"close":1.85,"volume":327947},{"date":"2026-03-27","open":1.85,"high":1.85,"low":1.84,"close":1.84,"volume":273261},{"date":"2026-03-29","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":42768},{"date":"2026-03-30","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":265096},{"date":"2026-03-31","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":319642},{"date":"2026-04-01","open":1.84,"high":1.85,"low":1.84,"close":1.84,"volume":94657}]},{"symbol":"XAGUSD","name":"Silver / US Dollar","price":74.36,"previousClose":74.95,"change":-0.59,"changePercent":-0.79,"dayHigh":75.55,"dayLow":73.61,"yearHigh":121.56,"yearLow":27.97,"signal":"STRONG_BULLISH","signalStrength":65,"eventImpactProbability":58,"sparklineData":[65.1,68.87,71.13,71.17,67.92,69.79,69.94,69.9,74.95,74.27],"supportLevels":[{"level":"S1","price":60.81,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":65.83,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":75.55,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":74.41,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAGUSD is currently bullish over the recent 10-session window. Price closed at 74.27 on 2026-04-01, trading within a range of 60.81 to 75.55. Current price sits at 91% of the recent range. Signal strength is +65, indicating strong directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"STRONG BULLISH outlook for XAGUSD. Momentum and trend alignment suggest further upside. Watch for resistance breakout confirmations.","keyEvents":[]},"ohlcData":[{"date":"2026-03-22","open":67.86,"high":69.43,"low":64.45,"close":65.1,"volume":551206},{"date":"2026-03-23","open":67.76,"high":70.77,"low":60.81,"close":68.87,"volume":2880028},{"date":"2026-03-24","open":68.87,"high":71.25,"low":65.83,"close":71.13,"volume":1938423},{"date":"2026-03-25","open":71.13,"high":74.41,"low":70.74,"close":71.17,"volume":1404507},{"date":"2026-03-26","open":71.17,"high":72.14,"low":66.54,"close":67.92,"volume":3189190},{"date":"2026-03-27","open":67.92,"high":71.51,"low":67.23,"close":69.79,"volume":1340121},{"date":"2026-03-29","open":69.79,"high":70.34,"low":67.51,"close":69.94,"volume":405421},{"date":"2026-03-30","open":69.79,"high":71.73,"low":67.51,"close":69.9,"volume":1436850},{"date":"2026-03-31","open":69.9,"high":75.2,"low":68.85,"close":74.95,"volume":1434918},{"date":"2026-04-01","open":74.95,"high":75.55,"low":73.61,"close":74.27,"volume":317580}]},{"symbol":"XAUUSD","name":"Gold / US Dollar","price":4729.81,"previousClose":4667.88,"change":61.94,"changePercent":1.33,"dayHigh":4747.77,"dayLow":4662.12,"yearHigh":5602.23,"yearLow":2956.57,"signal":"BULLISH","signalStrength":52,"eventImpactProbability":70,"sparklineData":[4351.06,4406.51,4474.27,4506.85,4378.2,4493.69,4505.89,4510.65,4667.88,4728.72],"supportLevels":[{"level":"S1","price":4099.12,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":4319.92,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":4747.77,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":4602.65,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAUUSD is currently bullish over the recent 10-session window. Price closed at 4,728.72 on 2026-04-01, trading within a range of 4,099.12 to 4,747.77. Current price sits at 97% of the recent range. Signal strength is +52, indicating moderate directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"BULLISH lean for XAUUSD. Positive trend in place but conviction is moderate. Monitor for continuation signals.","keyEvents":[]},"ohlcData":[{"date":"2026-03-22","open":4472.24,"high":4536.41,"low":4319.92,"close":4351.06,"volume":572331},{"date":"2026-03-23","open":4472.24,"high":4536.41,"low":4099.12,"close":4406.51,"volume":2759676},{"date":"2026-03-24","open":4382.82,"high":4484.49,"low":4305.88,"close":4474.27,"volume":2120905},{"date":"2026-03-25","open":4476.64,"high":4602.65,"low":4455.89,"close":4506.85,"volume":1234234},{"date":"2026-03-26","open":4521.85,"high":4544.81,"low":4351.35,"close":4378.2,"volume":1545708},{"date":"2026-03-27","open":4388.67,"high":4555.63,"low":4375.52,"close":4493.69,"volume":1017272},{"date":"2026-03-29","open":4512.54,"high":4517.5,"low":4417.43,"close":4505.89,"volume":379978},{"date":"2026-03-30","open":4512.54,"high":4580.73,"low":4417.43,"close":4510.65,"volume":1310698},{"date":"2026-03-31","open":4517.71,"high":4687.34,"low":4482.66,"close":4667.88,"volume":1298920},{"date":"2026-04-01","open":4674.53,"high":4747.77,"low":4662.12,"close":4728.72,"volume":410038}]}],"macroOverview":"Report generated with live market data. Macro analysis and event calendar based on latest available information.","riskScenarios":[{"name":"Risk-On Rally","description":"Positive macro catalysts or geopolitical de-escalation drives broad risk appetite recovery.","impact":"Bullish equities and risk-sensitive FX. Bearish safe-haven assets."},{"name":"Continued Sell-Off","description":"Macro deterioration, hawkish policy surprises, or geopolitical escalation extends current trends.","impact":"Bearish equities. Bullish gold and safe-haven currencies."},{"name":"Range-Bound Consolidation","description":"Markets digest recent moves awaiting clearer catalysts. Volatility compresses.","impact":"Mixed signals across instruments. Focus on individual setups."}]},"1":{"lastUpdated":"2026-03-31T20:38:38.237Z","marketSentiment":"NEUTRAL","instruments":[{"symbol":"US30","name":"Dow Jones Industrial Average","price":46341.32,"previousClose":45216.15,"change":1125.17,"changePercent":2.49,"dayHigh":46383.4,"dayLow":45480.3,"yearHigh":50512.79,"yearLow":36611.78,"signal":"NEUTRAL","signalStrength":-1,"eventImpactProbability":78,"sparklineData":[46225.16,46021.44,45577.48,46208.48,46124.07,46429.5,45960.12,45166.65,45216.15,46341.52],"supportLevels":[{"level":"S1","price":45057.28,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":45369.39,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":46913.93,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":46712.33,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"US30 is currently consolidating over the recent 10-session window. Price closed at 46,341.52 on 2026-03-31, trading within a range of 45,057.28 to 46,913.93. Current price sits at 69% of the recent range. Signal strength is -1, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for US30. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-18","open":46913.93,"high":46913.93,"low":46193.06,"close":46225.16,"volume":472026662},{"date":"2026-03-19","open":46134.87,"high":46247.22,"low":45733.7,"close":46021.44,"volume":484400013},{"date":"2026-03-20","open":45975.65,"high":46068.31,"low":45369.39,"close":45577.48,"volume":1068426541},{"date":"2026-03-23","open":45803.82,"high":46712.33,"low":45803.82,"close":46208.48,"volume":533679998},{"date":"2026-03-24","open":46099.86,"high":46400.82,"low":45769.69,"close":46124.07,"volume":474453568},{"date":"2026-03-25","open":46314.24,"high":46718.42,"low":46196.91,"close":46429.5,"volume":462991321},{"date":"2026-03-26","open":46344.64,"high":46547.59,"low":45910.75,"close":45960.12,"volume":505015178},{"date":"2026-03-27","open":45904.25,"high":45904.25,"low":45063.33,"close":45166.65,"volume":555090957},{"date":"2026-03-30","open":45283.06,"high":45625.76,"low":45057.28,"close":45216.15,"volume":540680000},{"date":"2026-03-31","open":45541.76,"high":46383.4,"low":45480.3,"close":46341.52,"volume":633139636}]},{"symbol":"NAS100","name":"Nasdaq 100","price":23740.19,"previousClose":22953.38,"change":786.81,"changePercent":3.43,"dayHigh":23789.6,"dayLow":23198.64,"yearHigh":26182.1,"yearLow":16542.2,"signal":"NEUTRAL","signalStrength":-17,"eventImpactProbability":84,"sparklineData":[24425.09,24355.28,23898.15,24188.59,24002.45,24162.98,23586.99,23132.77,22953.38,23740.19],"supportLevels":[{"level":"S1","price":22841.42,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":23198.64,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":24763.58,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":24462.16,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"NAS100 is currently consolidating over the recent 10-session window. Price closed at 23,740.19 on 2026-03-31, trading within a range of 22,841.42 to 24,763.58. Current price sits at 47% of the recent range. Signal strength is -17, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for NAS100. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-18","open":24727.07,"high":24763.58,"low":24417.38,"close":24425.09,"volume":1121408544},{"date":"2026-03-19","open":24119.37,"high":24462.16,"low":24100.88,"close":24355.28,"volume":1181403874},{"date":"2026-03-20","open":24257.56,"high":24267.33,"low":23759.97,"close":23898.15,"volume":2341347133},{"date":"2026-03-23","open":24270.77,"high":24465.16,"low":24097.68,"close":24188.59,"volume":1258894222},{"date":"2026-03-24","open":24042.23,"high":24170.83,"low":23927.69,"close":24002.45,"volume":1130333850},{"date":"2026-03-25","open":24236.4,"high":24314.25,"low":24081.38,"close":24162.98,"volume":1161202850},{"date":"2026-03-26","open":23913.19,"high":24029.51,"low":23574.72,"close":23586.99,"volume":1287362984},{"date":"2026-03-27","open":23463.75,"high":23472.89,"low":23088.99,"close":23132.77,"volume":1238296410},{"date":"2026-03-30","open":23307.75,"high":23356.75,"low":22841.42,"close":22953.38,"volume":1311000842},{"date":"2026-03-31","open":23208,"high":23789.6,"low":23198.64,"close":23740.19,"volume":1423949162}]},{"symbol":"GER40","name":"Germany 40 (DAX)","price":22742.82,"previousClose":22562.88,"change":179.94,"changePercent":0.8,"dayHigh":22850.7,"dayLow":22491.51,"yearHigh":25507.79,"yearLow":18489.91,"signal":"NEUTRAL","signalStrength":-12,"eventImpactProbability":71,"sparklineData":[23502.25,22839.56,22380.19,22653.86,22636.91,22957.08,22612.97,22300.75,22562.88,22680.04],"supportLevels":[{"level":"S1","price":21863.81,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":22215.86,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":23957.1,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":23178.7,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GER40 is currently consolidating over the recent 10-session window. Price closed at 22,680.04 on 2026-03-30, trading within a range of 21,863.81 to 23,957.1. Current price sits at 39% of the recent range. Signal strength is -12, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for GER40. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-17","open":23837.2,"high":23957.1,"low":23449.56,"close":23502.25,"volume":76065300},{"date":"2026-03-18","open":23160.58,"high":23180.14,"low":22759.42,"close":22839.56,"volume":106709300},{"date":"2026-03-19","open":23083.89,"high":23176.17,"low":22369.47,"close":22380.19,"volume":174316700},{"date":"2026-03-22","open":21947.82,"high":23178.7,"low":21863.81,"close":22653.86,"volume":104919900},{"date":"2026-03-23","open":22677.09,"high":22730.83,"low":22350.34,"close":22636.91,"volume":57909800},{"date":"2026-03-24","open":22961.89,"high":23079.37,"low":22815.71,"close":22957.08,"volume":60508800},{"date":"2026-03-25","open":22740.71,"high":22813.41,"low":22557.1,"close":22612.97,"volume":57630400},{"date":"2026-03-26","open":22612.93,"high":22631.76,"low":22215.86,"close":22300.75,"volume":59200300},{"date":"2026-03-29","open":22213.86,"high":22562.88,"low":22209.45,"close":22562.88,"volume":56264500},{"date":"2026-03-30","open":22578.84,"high":22850.7,"low":22491.51,"close":22680.04,"volume":0}]},{"symbol":"AUDUSD","name":"Australian Dollar / US Dollar","price":0.69,"previousClose":0.69,"change":0.01,"changePercent":0.73,"dayHigh":0.69,"dayLow":0.68,"yearHigh":0.72,"yearLow":0.59,"signal":"NEUTRAL","signalStrength":0,"eventImpactProbability":45,"sparklineData":[0.7,0.7,0.7,0.7,0.69,0.69,0.69,0.69,0.69,0.69],"supportLevels":[{"level":"S1","price":0.68,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":0.68,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":0.71,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":0.7,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"AUDUSD is currently consolidating over the recent 10-session window. Price closed at 0.69 on 2026-03-31, trading within a range of 0.68 to 0.71. Current price sits at 33% of the recent range. Signal strength is 0, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for AUDUSD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-20","open":0.71,"high":0.71,"low":0.7,"close":0.7,"volume":335902},{"date":"2026-03-22","open":0.7,"high":0.7,"low":0.7,"close":0.7,"volume":85365},{"date":"2026-03-23","open":0.7,"high":0.71,"low":0.69,"close":0.7,"volume":743197},{"date":"2026-03-24","open":0.7,"high":0.7,"low":0.69,"close":0.7,"volume":486028},{"date":"2026-03-25","open":0.7,"high":0.7,"low":0.69,"close":0.69,"volume":306053},{"date":"2026-03-26","open":0.69,"high":0.7,"low":0.69,"close":0.69,"volume":537904},{"date":"2026-03-27","open":0.69,"high":0.69,"low":0.69,"close":0.69,"volume":262030},{"date":"2026-03-29","open":0.68,"high":0.69,"low":0.68,"close":0.69,"volume":66305},{"date":"2026-03-30","open":0.69,"high":0.69,"low":0.68,"close":0.69,"volume":245195},{"date":"2026-03-31","open":0.69,"high":0.69,"low":0.68,"close":0.69,"volume":328348}]},{"symbol":"GBPCAD","name":"British Pound / Canadian Dollar","price":1.84,"previousClose":1.83,"change":0.01,"changePercent":0.28,"dayHigh":1.85,"dayLow":1.83,"yearHigh":1.89,"yearLow":1.8,"signal":"NEUTRAL","signalStrength":-5,"eventImpactProbability":49,"sparklineData":[1.83,1.83,1.84,1.85,1.85,1.85,1.84,1.84,1.84,1.84],"supportLevels":[{"level":"S1","price":1.82,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":1.83,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":1.85,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":1.85,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"GBPCAD is currently consolidating over the recent 10-session window. Price closed at 1.84 on 2026-03-31, trading within a range of 1.82 to 1.85. Current price sits at 67% of the recent range. Signal strength is -5, indicating weak directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"NEUTRAL outlook for GBPCAD. Price is range-bound with no clear directional bias. Wait for a breakout above resistance or breakdown below support for the next directional move.","keyEvents":[]},"ohlcData":[{"date":"2026-03-20","open":1.84,"high":1.85,"low":1.83,"close":1.83,"volume":338180},{"date":"2026-03-22","open":1.83,"high":1.83,"low":1.82,"close":1.83,"volume":61962},{"date":"2026-03-23","open":1.83,"high":1.85,"low":1.82,"close":1.84,"volume":401412},{"date":"2026-03-24","open":1.84,"high":1.85,"low":1.84,"close":1.85,"volume":362156},{"date":"2026-03-25","open":1.85,"high":1.85,"low":1.84,"close":1.85,"volume":288263},{"date":"2026-03-26","open":1.85,"high":1.85,"low":1.84,"close":1.85,"volume":327947},{"date":"2026-03-27","open":1.85,"high":1.85,"low":1.84,"close":1.84,"volume":273261},{"date":"2026-03-29","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":42768},{"date":"2026-03-30","open":1.84,"high":1.85,"low":1.83,"close":1.84,"volume":265096},{"date":"2026-03-31","open":1.83,"high":1.85,"low":1.83,"close":1.84,"volume":291596}]},{"symbol":"XAGUSD","name":"Silver / US Dollar","price":75.01,"previousClose":69.9,"change":5.11,"changePercent":7.31,"dayHigh":75.2,"dayLow":68.86,"yearHigh":121.56,"yearLow":27.97,"signal":"STRONG_BULLISH","signalStrength":100,"eventImpactProbability":70,"sparklineData":[67.86,65.1,68.87,71.13,71.17,67.92,69.79,69.94,69.9,75.03],"supportLevels":[{"level":"S1","price":60.81,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":65.83,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":75.16,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":74.39,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAGUSD is currently bullish over the recent 10-session window. Price closed at 75.03 on 2026-03-31, trading within a range of 60.81 to 75.16. Current price sits at 99% of the recent range. Signal strength is +100, indicating strong directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"STRONG BULLISH outlook for XAGUSD. Momentum and trend alignment suggest further upside. Watch for resistance breakout confirmations.","keyEvents":[]},"ohlcData":[{"date":"2026-03-20","open":72.81,"high":74.39,"low":67.51,"close":67.86,"volume":1844562},{"date":"2026-03-22","open":67.86,"high":69.43,"low":64.45,"close":65.1,"volume":551206},{"date":"2026-03-23","open":67.76,"high":70.77,"low":60.81,"close":68.87,"volume":2880028},{"date":"2026-03-24","open":68.87,"high":71.25,"low":65.83,"close":71.13,"volume":1938423},{"date":"2026-03-25","open":71.13,"high":74.41,"low":70.74,"close":71.17,"volume":1404507},{"date":"2026-03-26","open":71.17,"high":72.14,"low":66.54,"close":67.92,"volume":3189190},{"date":"2026-03-27","open":67.92,"high":71.51,"low":67.23,"close":69.79,"volume":1340121},{"date":"2026-03-29","open":69.79,"high":70.34,"low":67.51,"close":69.94,"volume":405421},{"date":"2026-03-30","open":69.79,"high":71.73,"low":67.51,"close":69.9,"volume":1436850},{"date":"2026-03-31","open":69.9,"high":75.16,"low":68.86,"close":75.03,"volume":1379312}]},{"symbol":"XAUUSD","name":"Gold / US Dollar","price":4670.02,"previousClose":4510.65,"change":159.37,"changePercent":3.53,"dayHigh":4686.82,"dayLow":4482.66,"yearHigh":5602.23,"yearLow":2956.57,"signal":"STRONG_BULLISH","signalStrength":66,"eventImpactProbability":64,"sparklineData":[4497.48,4351.06,4406.51,4474.27,4506.85,4378.2,4493.69,4505.89,4510.65,4670.88],"supportLevels":[{"level":"S1","price":4099.12,"description":"Recent swing low \u2014 immediate support"},{"level":"S2","price":4319.92,"description":"Deeper support zone from recent range"}],"resistanceLevels":[{"level":"R1","price":4736.18,"description":"Recent swing high \u2014 immediate resistance"},{"level":"R2","price":4602.65,"description":"Extended resistance from recent range"}],"analysis":{"priceAction":"XAUUSD is currently bullish over the recent 10-session window. Price closed at 4,670.88 on 2026-03-31, trading within a range of 4,099.12 to 4,736.18. Current price sits at 90% of the recent range. Signal strength is +66, indicating strong directional conviction.","fundamentals":"Fundamental analysis will be updated with macro research data.","outlook":"STRONG BULLISH outlook for XAUUSD. Momentum and trend alignment suggest further upside. Watch for resistance breakout confirmations.","keyEvents":[]},"ohlcData":[{"date":"2026-03-20","open":4659.99,"high":4736.18,"low":4477.54,"close":4497.48,"volume":1538222},{"date":"2026-03-22","open":4472.24,"high":4536.41,"low":4319.92,"close":4351.06,"volume":572331},{"date":"2026-03-23","open":4472.24,"high":4536.41,"low":4099.12,"close":4406.51,"volume":2759676},{"date":"2026-03-24","open":4382.82,"high":4484.49,"low":4305.88,"close":4474.27,"volume":2120905},{"date":"2026-03-25","open":4476.64,"high":4602.65,"low":4455.89,"close":4506.85,"volume":1234234},{"date":"2026-03-26","open":4521.85,"high":4544.81,"low":4351.35,"close":4378.2,"volume":1545708},{"date":"2026-03-27","open":4388.67,"high":4555.63,"low":4375.52,"close":4493.69,"volume":1017272},{"date":"2026-03-29","open":4512.54,"high":4517.5,"low":4417.43,"close":4505.89,"volume":379978},{"date":"2026-03-30","open":4512.54,"high":4580.73,"low":4417.43,"close":4510.65,"volume":1310698},{"date":"2026-03-31","open":4517.71,"high":4686.82,"low":4482.66,"close":4670.88,"volume":1290344}]}],"macroOverview":"Report generated with live market data. Macro analysis and event calendar based on latest available information.","riskScenarios":[{"name":"Risk-On Rally","description":"Positive macro catalysts or geopolitical de-escalation drives broad risk appetite recovery.","impact":"Bullish equities and risk-sensitive FX. Bearish safe-haven assets."},{"name":"Continued Sell-Off","description":"Macro deterioration, hawkish policy surprises, or geopolitical escalation extends current trends.","impact":"Bearish equities. Bullish gold and safe-haven currencies."},{"name":"Range-Bound Consolidation","description":"Markets digest recent moves awaiting clearer catalysts. Volatility compresses.","impact":"Mixed signals across instruments. Focus on individual setups."}]}}};
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════ LIGHTWEIGHT CHARTS -->
+<script src="https://unpkg.com/lightweight-charts@3.8.0/dist/lightweight-charts.standalone.production.js"></script>
+
+<!-- ═══════════════════════════════════════════════════════════ LAYOUT -->
+
+<!-- HEADER -->
+<header id="main-header" class="sticky top-0 z-50 border-b" style="background:rgba(10,14,26,0.97);backdrop-filter:blur(8px);border-color:#1e2a3a;">
+  <div style="max-width:1600px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;">
+    <!-- Logo -->
+    <div style="display:flex;align-items:center;gap:16px;">
+      <svg aria-label="Market Pulse" viewBox="0 0 180 36" fill="none" style="height:32px;width:auto;">
+        <path d="M4 18 L10 18 L13 8 L17 28 L21 14 L25 22 L29 18 L36 18" stroke="#0ea5e9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="36" cy="18" r="3" fill="#0ea5e9"/>
+        <text x="46" y="14" fill="white" font-size="12" font-weight="700" letter-spacing="3" font-family="Inter, sans-serif">MARKET</text>
+        <text x="46" y="28" fill="#0ea5e9" font-size="12" font-weight="700" letter-spacing="3" font-family="Inter, sans-serif">PULSE</text>
+      </svg>
+      <div id="header-sentiment" style="display:flex;align-items:center;gap:8px;">
+        <div style="width:1px;height:16px;background:#1e2a3a;"></div>
+        <span style="font-size:11px;color:#64748b;">Sentiment:</span>
+        <span id="sentiment-badge" style="font-size:11px;font-weight:700;letter-spacing:1px;"></span>
+      </div>
+    </div>
+    <!-- Actions -->
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span id="header-updated" style="font-size:11px;color:#64748b;display:none;"></span>
+      <button id="back-btn" onclick="showDashboard()" class="no-print" style="display:none;align-items:center;gap:6px;padding:6px 12px;font-size:11px;font-weight:500;border-radius:6px;border:1px solid #1e2a3a;background:transparent;color:#94a3b8;cursor:pointer;">
+        ← Dashboard
+      </button>
+      <button onclick="showHistory()" class="no-print" style="display:flex;align-items:center;gap:6px;padding:6px 12px;font-size:11px;font-weight:500;border-radius:6px;border:1px solid #1e2a3a;background:transparent;color:#94a3b8;cursor:pointer;" id="history-nav-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        History
+      </button>
+      <button onclick="openRefreshModal()" class="no-print" style="display:flex;align-items:center;gap:6px;padding:6px 12px;font-size:11px;font-weight:500;border-radius:6px;border:1px solid #1e2a3a;background:transparent;color:#94a3b8;cursor:pointer;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Refresh
+      </button>
+      <button onclick="window.print()" class="no-print" style="display:flex;align-items:center;gap:6px;padding:6px 12px;font-size:11px;font-weight:500;border-radius:6px;background:#0ea5e9;color:white;border:none;cursor:pointer;">
+        Print / PDF
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ DASHBOARD PAGE ═══ -->
+<div id="page-dashboard" class="page active" style="max-width:1600px;margin:0 auto;padding:20px 24px;">
+
+  <!-- Title row -->
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+    <h1 style="font-size:14px;font-weight:700;letter-spacing:2px;color:#e2e8f0;margin:0;">TRADING DASHBOARD</h1>
+    <div style="flex:1;height:1px;background:#1e2a3a;"></div>
+    <span id="dash-updated" style="font-size:11px;color:#64748b;"></span>
+  </div>
+
+  <!-- KPI Cards Grid -->
+  <div id="cards-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;"></div>
+
+  <!-- Summary Table -->
+  <div class="card" style="overflow:hidden;margin-bottom:24px;">
+    <div style="padding:12px 16px;border-bottom:1px solid #1e2a3a;">
+      <h2 style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#94a3b8;margin:0;">MARKET SUMMARY</h2>
+    </div>
+    <div style="overflow-x:auto;">
+      <table id="summary-table" style="width:100%;border-collapse:collapse;font-size:13px;"></table>
+    </div>
+  </div>
+
+  <!-- Macro Overview -->
+  <div class="card" style="padding:16px;margin-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+      <div style="width:3px;height:16px;background:#0ea5e9;border-radius:2px;"></div>
+      <h2 style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#94a3b8;margin:0;">MACRO OVERVIEW</h2>
+    </div>
+    <p id="macro-text" style="font-size:12px;color:#94a3b8;line-height:1.7;margin:0;white-space:pre-line;"></p>
+  </div>
+
+  <!-- Risk Scenarios -->
+  <div id="scenarios-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;"></div>
+
+</div>
+
+<!-- ═══ INSTRUMENT DRILL-DOWN PAGE ═══ -->
+<div id="page-instrument" class="page" style="max-width:1400px;margin:0 auto;padding:20px 24px;">
+
+  <!-- Top stats: gauge + event ring + price stats -->
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:20px;">
+    <!-- Signal Gauge -->
+    <div class="card" style="padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;">SIGNAL STRENGTH</div>
+      <canvas id="gauge-canvas" width="200" height="110"></canvas>
+      <div id="gauge-label" style="font-size:13px;font-weight:700;"></div>
+    </div>
+    <!-- Event Ring -->
+    <div class="card" style="padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;">EVENT IMPACT PROBABILITY</div>
+      <div style="position:relative;display:flex;align-items:center;justify-content:center;width:120px;height:120px;">
+        <canvas id="ring-canvas" width="120" height="120"></canvas>
+        <div id="ring-label" style="position:absolute;font-size:22px;font-weight:700;"></div>
+      </div>
+      <div style="font-size:11px;color:#64748b;">Event Disruption Risk</div>
+    </div>
+    <!-- Price Stats -->
+    <div class="card" style="padding:16px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;margin-bottom:12px;">PRICE STATISTICS</div>
+      <div id="price-stats" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+    </div>
+  </div>
+
+  <!-- Candlestick Chart -->
+  <div class="card" style="margin-bottom:20px;padding:16px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;">PRICE CHART</div>
+    </div>
+    <div id="chart-wrap" style="width:100%;height:340px;border-radius:6px;overflow:hidden;"></div>
+    <div id="sr-legend" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;font-size:11px;"></div>
+  </div>
+
+  <!-- Analysis grid -->
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:20px;">
+    <div class="card" style="padding:16px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;margin-bottom:10px;">MACRO &amp; FUNDAMENTAL DRIVERS</div>
+      <p id="inst-fundamentals" style="font-size:13px;color:#cbd5e1;line-height:1.7;margin:0;"></p>
+    </div>
+    <div class="card" style="padding:16px;">
+      <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;margin-bottom:10px;">PRICE ACTION ANALYSIS</div>
+      <p id="inst-priceaction" style="font-size:13px;color:#cbd5e1;line-height:1.7;margin:0;"></p>
+    </div>
+  </div>
+
+  <!-- 3-Day Outlook -->
+  <div class="card" style="padding:16px;margin-bottom:20px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <div id="outlook-dot" style="width:8px;height:8px;border-radius:50%;"></div>
+      <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;">3-DAY OUTLOOK</div>
+      <span id="outlook-badge" style="margin-left:auto;font-size:12px;font-weight:700;"></span>
+    </div>
+    <p id="inst-outlook" style="font-size:13px;color:#cbd5e1;line-height:1.7;margin:0;"></p>
+  </div>
+
+  <!-- Key Levels + Events -->
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;">
+    <div class="card" style="overflow:hidden;">
+      <div style="padding:10px 16px;border-bottom:1px solid #1e2a3a;font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;">KEY LEVELS</div>
+      <table id="levels-table" style="width:100%;border-collapse:collapse;font-size:12px;"></table>
+    </div>
+    <div class="card" style="overflow:hidden;">
+      <div style="padding:10px 16px;border-bottom:1px solid #1e2a3a;font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;">UPCOMING EVENTS</div>
+      <table id="events-table" style="width:100%;border-collapse:collapse;font-size:12px;"></table>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══ HISTORY LIST PAGE ═══ -->
+<div id="page-history" class="page" style="max-width:900px;margin:0 auto;padding:20px 24px;">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+    <h1 style="font-size:14px;font-weight:700;letter-spacing:2px;color:#e2e8f0;margin:0;">REPORT HISTORY</h1>
+    <div style="flex:1;height:1px;background:#1e2a3a;"></div>
+    <span id="hist-count" style="font-size:11px;color:#64748b;"></span>
+  </div>
+  <!-- Seed data card always at top -->
+  <div class="card card-hover" onclick="showHistoryDetail('seed')" style="padding:16px;margin-bottom:16px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:rgba(14,165,233,0.15);display:flex;align-items:center;justify-content:center;font-size:14px;">📊</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#e2e8f0;">Initial Report (Apr 15, 2026 — Seed Data)</div>
+          <div style="font-size:11px;color:#64748b;margin-top:2px;">Apr 15, 2026, 06:00 AM UTC · 7 instruments</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:11px;font-weight:700;color:#22c55e;">BULLISH</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" style="width:16px;height:16px;"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+  </div>
+  <!-- DB reports list -->
+  <div id="history-list"></div>
+</div>
+
+<!-- ═══ HISTORY DETAIL PAGE ═══ -->
+<div id="page-history-detail" class="page" style="max-width:1400px;margin:0 auto;padding:20px 24px;">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+    <h1 id="hdet-title" style="font-size:14px;font-weight:700;letter-spacing:2px;color:#e2e8f0;margin:0;"></h1>
+    <div style="flex:1;height:1px;background:#1e2a3a;"></div>
+    <span id="hdet-meta" style="font-size:11px;color:#64748b;"></span>
+  </div>
+  <!-- Instrument snapshot table -->
+  <div class="card" style="overflow:hidden;margin-bottom:20px;">
+    <div style="padding:12px 16px;border-bottom:1px solid #1e2a3a;font-size:12px;font-weight:700;letter-spacing:1.5px;color:#94a3b8;">INSTRUMENT SNAPSHOT</div>
+    <div style="overflow-x:auto;"><table id="hdet-table" style="width:100%;border-collapse:collapse;font-size:13px;"></table></div>
+  </div>
+  <!-- Macro + Scenarios -->
+  <div class="card" style="padding:16px;margin-bottom:16px;">
+    <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;color:#64748b;margin-bottom:10px;">MACRO OVERVIEW</div>
+    <p id="hdet-macro" style="font-size:12px;color:#94a3b8;line-height:1.7;margin:0;white-space:pre-line;"></p>
+  </div>
+  <div id="hdet-scenarios" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;"></div>
+  <!-- Per-instrument analysis -->
+  <div id="hdet-instruments" style="display:flex;flex-direction:column;gap:12px;"></div>
+</div>
+
+<!-- ═══ REFRESH MODAL ═══ -->
+<div id="refresh-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div class="card" style="max-width:480px;width:90%;padding:28px;text-align:center;">
+    <div id="refresh-spinner" style="margin-bottom:16px;">
+      <svg style="width:40px;height:40px;animation:spin 1s linear infinite;" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+    </div>
+    <div id="refresh-icon-done" style="display:none;margin-bottom:16px;font-size:36px;">✓</div>
+    <h3 id="refresh-title" style="font-size:14px;font-weight:700;letter-spacing:1px;color:#e2e8f0;margin:0 0 10px;"></h3>
+    <p id="refresh-msg" style="font-size:12px;color:#94a3b8;line-height:1.7;margin:0 0 20px;"></p>
+    <div id="refresh-progress" style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
+      <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e2a3a;border-radius:4px;">US30</span>
+      <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e2a3a;border-radius:4px;">NAS100</span>
+      <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e2a3a;border-radius:4px;">GER40</span>
+      <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e2a3a;border-radius:4px;">AUDUSD</span>
+      <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e2a3a;border-radius:4px;">GBPCAD</span>
+      <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e2a3a;border-radius:4px;">XAGUSD</span>
+      <span style="font-size:10px;color:#64748b;padding:3px 8px;background:#1e2a3a;border-radius:4px;">XAUUSD</span>
+    </div>
+    <button id="refresh-close-btn" onclick="closeRefreshModal()" style="display:none;padding:8px 24px;background:#0ea5e9;color:white;border:none;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">Close</button>
+  </div>
+</div>
+<!-- ═══════════════════════════════════════════════════════════ APP LOGIC -->
+<script>
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function fmt(sym, v) {
+  if (sym === 'AUDUSD' || sym === 'GBPCAD') return v.toFixed(4);
+  if (sym === 'XAUUSD' || sym === 'XAGUSD') return v.toFixed(2);
+  return v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function signalLabel(s) {
+  if (s <= -60) return 'Strong Bearish';
+  if (s <= -20) return 'Bearish';
+  if (s <= 20)  return 'Neutral';
+  if (s <= 60)  return 'Bullish';
+  return 'Strong Bullish';
+}
+function signalColor(s) {
+  if (s <= -60) return '#ef4444';
+  if (s <= -20) return '#f97316';
+  if (s <= 20)  return '#eab308';
+  if (s <= 60)  return '#22c55e';
+  return '#16a34a';
+}
+function riskColor(p) {
+  if (p < 30) return '#22c55e';
+  if (p < 60) return '#eab308';
+  return '#ef4444';
+}
+function impactClass(impact) {
+  const map = { 'Extreme':'impact-extreme','Very High':'impact-very-high','High':'impact-high','Medium':'impact-medium','Low':'impact-low' };
+  return map[impact] || 'impact-medium';
+}
+function fmtDate(d) { return new Date(d+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}); }
+
+// ── Draw Gauge (Canvas) ───────────────────────────────────────────────────────
+function drawGauge(canvasId, strength, size) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  canvas.width = size * 2; canvas.height = (size * 0.65) * 2;
+  canvas.style.width = size + 'px'; canvas.style.height = (size * 0.65) + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(2, 2);
+  const cx = size / 2, cy = size * 0.55;
+  const r = size * 0.38, sw = size * 0.07;
+  const norm = (strength + 100) / 200;
+  const startA = Math.PI, endA = 2 * Math.PI;
+  const needleA = startA + norm * Math.PI;
+  const color = signalColor(strength);
+
+  // BG arc
+  ctx.beginPath(); ctx.arc(cx, cy, r, Math.PI, 2 * Math.PI);
+  ctx.strokeStyle = '#1e2a3a'; ctx.lineWidth = sw; ctx.lineCap = 'round';
+  ctx.stroke();
+
+  // Gradient arc
+  const grad = ctx.createLinearGradient(cx - r, cy, cx + r, cy);
+  grad.addColorStop(0, '#ef4444'); grad.addColorStop(0.33, '#f97316');
+  grad.addColorStop(0.55, '#eab308'); grad.addColorStop(0.78, '#22c55e');
+  grad.addColorStop(1, '#16a34a');
+  ctx.beginPath(); ctx.arc(cx, cy, r, Math.PI, 2 * Math.PI);
+  ctx.strokeStyle = grad; ctx.lineWidth = sw; ctx.globalAlpha = 0.22;
+  ctx.stroke(); ctx.globalAlpha = 1;
+
+  // Active arc
+  ctx.beginPath(); ctx.arc(cx, cy, r, Math.PI, needleA);
+  ctx.strokeStyle = color; ctx.lineWidth = sw; ctx.lineCap = 'round';
+  ctx.stroke();
+
+  // Needle
+  const nl = r - sw / 2;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(cx + nl * Math.cos(needleA), cy + nl * Math.sin(needleA));
+  ctx.strokeStyle = 'white'; ctx.lineWidth = 2; ctx.globalAlpha = 0.9;
+  ctx.stroke(); ctx.globalAlpha = 1;
+
+  // Center dot
+  ctx.beginPath(); ctx.arc(cx, cy, 4, 0, 2 * Math.PI);
+  ctx.fillStyle = 'white'; ctx.globalAlpha = 0.9;
+  ctx.fill(); ctx.globalAlpha = 1;
+
+  // Value text
+  ctx.font = `600 ${size * 0.12}px Inter, sans-serif`;
+  ctx.fillStyle = 'white'; ctx.textAlign = 'center';
+  ctx.fillText((strength > 0 ? '+' : '') + strength, cx, cy + size * 0.14);
+}
+
+// ── Draw Event Ring (Canvas) ──────────────────────────────────────────────────
+function drawRing(canvasId, probability, size) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  canvas.width = size * 2; canvas.height = size * 2;
+  canvas.style.width = size + 'px'; canvas.style.height = size + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(2, 2);
+  const cx = size / 2, cy = size / 2, r = size * 0.38, sw = size * 0.1;
+  const color = riskColor(probability);
+  const circumference = 2 * Math.PI * r;
+  const filled = (probability / 100) * circumference;
+
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+  ctx.strokeStyle = '#1e2a3a'; ctx.lineWidth = sw; ctx.stroke();
+
+  ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + (probability / 100) * 2 * Math.PI);
+  ctx.strokeStyle = color; ctx.lineWidth = sw; ctx.lineCap = 'round';
+  ctx.stroke();
+}
+
+// ── Sparkline SVG ─────────────────────────────────────────────────────────────
+function sparklineSVG(data, positive) {
+  if (!data || data.length < 2) return '';
+  const min = Math.min(...data), max = Math.max(...data);
+  const range = max - min || 1;
+  const W = 100, H = 32, pad = 2;
+  const pts = data.map((v, i) => {
+    const x = pad + (i / (data.length - 1)) * (W - pad * 2);
+    const y = H - pad - ((v - min) / range) * (H - pad * 2);
+    return `${x},${y}`;
+  }).join(' ');
+  const color = positive ? '#22c55e' : '#ef4444';
+  const first = data[0], last = data[data.length - 1];
+  const fx = pad, lx = pad + (W - pad * 2);
+  const fy = H - pad - ((first - min) / range) * (H - pad * 2);
+  const ly = H - pad - ((last - min) / range) * (H - pad * 2);
+  const area = `M ${fx},${H} L ${pts.replace(/(\d+\.?\d*),(\d+\.?\d*)/g, '$1,$2')} L ${lx},${H} Z`;
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:32px;" preserveAspectRatio="none">
+    <defs><linearGradient id="sg${positive?'p':'n'}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="${color}" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="${color}" stop-opacity="0.02"/>
+    </linearGradient></defs>
+    <path d="${area}" fill="url(#sg${positive?'p':'n'})"/>
+    <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+  </svg>`;
+}
+
+// ── Small Gauge SVG (for KPI card) ────────────────────────────────────────────
+function smallGaugeSVG(strength) {
+  const size = 112, cx = size/2, cy = size/2, r = size*0.38, sw = size*0.07;
+  const norm = (strength + 100) / 200;
+  const startA = 180, endA = 0;
+  const needleA = startA + norm * 180;
+  const toRad = d => d * Math.PI / 180;
+  const bgSX = cx + r * Math.cos(toRad(180)), bgSY = cy + r * Math.sin(toRad(180));
+  const bgEX = cx + r * Math.cos(toRad(0)), bgEY = cy + r * Math.sin(toRad(0));
+  const actEX = cx + r * Math.cos(toRad(needleA)), actEY = cy + r * Math.sin(toRad(needleA));
+  const largeArc = (needleA - 180) > 180 ? 1 : 0;
+  const nl = r - sw/2;
+  const nX = cx + nl * Math.cos(toRad(needleA)), nY = cy + nl * Math.sin(toRad(needleA));
+  const color = signalColor(strength);
+  return `<svg viewBox="0 0 ${size} ${size}" style="width:100%;max-width:${size}px;">
+    <path d="M ${bgSX} ${bgSY} A ${r} ${r} 0 0 1 ${bgEX} ${bgEY}" fill="none" stroke="#1e2a3a" stroke-width="${sw}" stroke-linecap="round"/>
+    <path d="M ${bgSX} ${bgSY} A ${r} ${r} 0 0 1 ${bgEX} ${bgEY}" fill="none" stroke="url(#gg)" stroke-width="${sw}" stroke-linecap="round" opacity="0.22"/>
+    <path d="M ${bgSX} ${bgSY} A ${r} ${r} 0 ${largeArc} 1 ${actEX} ${actEY}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round"/>
+    <line x1="${cx}" y1="${cy}" x2="${nX}" y2="${nY}" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.9"/>
+    <circle cx="${cx}" cy="${cy}" r="3" fill="white" opacity="0.9"/>
+    <text x="${cx}" y="${cy + size*0.22}" text-anchor="middle" fill="white" font-size="${size*0.13}" font-weight="600" font-family="Inter,sans-serif" style="font-variant-numeric:tabular-nums">${strength > 0 ? '+' : ''}${strength}</text>
+    <defs><linearGradient id="gg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444"/><stop offset="33%" stop-color="#f97316"/>
+      <stop offset="55%" stop-color="#eab308"/><stop offset="78%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#16a34a"/>
+    </linearGradient></defs>
+  </svg>`;
+}
+
+// ── Small Event Ring SVG ──────────────────────────────────────────────────────
+function smallRingSVG(prob) {
+  const size = 52, cx = size/2, cy = size/2, r = size*0.38, sw = size*0.1;
+  const circ = 2 * Math.PI * r;
+  const filled = (prob / 100) * circ;
+  const color = riskColor(prob);
+  return `<svg viewBox="0 0 ${size} ${size}" style="width:${size}px;height:${size}px;transform:rotate(-90deg);">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1e2a3a" stroke-width="${sw}"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="${sw}"
+      stroke-dasharray="${circ}" stroke-dashoffset="${circ - filled}" stroke-linecap="round"/>
+  </svg>`;
+}
+
+// ── Render Dashboard ──────────────────────────────────────────────────────────
+function renderDashboard() {
+  const D = MARKET_DATA;
+  // Header / updated
+  const updated = new Date(D.lastUpdated).toLocaleString('en-US',{month:'short',day:'numeric',year:'numeric',hour:'2-digit',minute:'2-digit',timeZoneName:'short'});
+  document.getElementById('dash-updated').textContent = updated;
+  document.getElementById('header-updated').textContent = 'Updated: ' + updated;
+  document.getElementById('header-updated').style.display = '';
+  const sc = document.getElementById('sentiment-badge');
+  sc.textContent = D.marketSentiment;
+  sc.style.color = D.marketSentiment === 'BULLISH' ? '#22c55e' : D.marketSentiment === 'BEARISH' ? '#ef4444' : '#eab308';
+
+  // KPI Cards
+  const grid = document.getElementById('cards-grid');
+  grid.innerHTML = '';
+  D.instruments.forEach(inst => {
+    const pos = inst.changePercent >= 0;
+    const sign = pos ? '+' : '';
+    const sColor = signalColor(inst.signalStrength);
+    const sLabel = signalLabel(inst.signalStrength);
+    const card = document.createElement('div');
+    card.className = 'card card-hover';
+    card.style.cssText = 'padding:12px;display:flex;flex-direction:column;gap:8px;';
+    card.onclick = () => showInstrument(inst.symbol);
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <span style="font-size:13px;font-weight:700;letter-spacing:1px;color:#e2e8f0;">${inst.symbol}</span>
+            <span style="font-size:11px;font-weight:600;color:${pos?'#22c55e':'#ef4444'};">${sign}${inst.changePercent.toFixed(2)}%</span>
+          </div>
+          <p style="font-size:11px;color:#64748b;margin:2px 0 0;line-height:1.3;">${inst.name}</p>
+        </div>
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:${pos?'#22c55e':'#ef4444'};stroke-width:2;stroke-linecap:round;stroke-linejoin:round;">
+          ${pos ? '<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>'
+                : '<polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/>'}
+        </svg>
+      </div>
+      <div>
+        <div class="tab-nums" style="font-size:22px;font-weight:700;color:#e2e8f0;">${fmt(inst.symbol, inst.price)}</div>
+        <div class="tab-nums" style="font-size:11px;color:${pos?'#22c55e':'#ef4444'};">${sign}${inst.change.toFixed(inst.symbol==='AUDUSD'||inst.symbol==='GBPCAD'?4:2)}</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <div style="width:112px;">${smallGaugeSVG(inst.signalStrength)}</div>
+        <span style="font-size:11px;font-weight:700;color:${sColor};">${sLabel}</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="position:relative;display:flex;align-items:center;justify-content:center;">
+            ${smallRingSVG(inst.eventImpactProbability)}
+            <div style="position:absolute;font-size:10px;font-weight:700;color:${riskColor(inst.eventImpactProbability)};" class="tab-nums">${inst.eventImpactProbability}%</div>
+          </div>
+          <span style="font-size:9px;color:#64748b;">Event Risk</span>
+        </div>
+        <div style="flex:1;min-width:0;">
+          ${sparklineSVG(inst.sparkline, pos)}
+          <div style="font-size:9px;color:#64748b;text-align:center;margin-top:2px;">10-day</div>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  // Summary Table
+  const tbl = document.getElementById('summary-table');
+  const heads = ['INSTRUMENT','PRICE','CHANGE','SIGNAL','STRENGTH','EVENT RISK','KEY LEVEL','NEXT CATALYST'];
+  tbl.innerHTML = `<thead><tr style="border-bottom:1px solid #1e2a3a;background:rgba(30,42,58,0.3);">
+    ${heads.map(h => `<th style="text-align:${h==='INSTRUMENT'||h==='KEY LEVEL'||h==='NEXT CATALYST'?'left':'center'};padding:10px 16px;font-size:10px;color:#64748b;font-weight:600;letter-spacing:1px;white-space:nowrap;">${h}</th>`).join('')}
+  </tr></thead><tbody>
+  ${D.instruments.map((inst,i) => {
+    const pos = inst.changePercent >= 0;
+    const s1 = inst.support[0], r1 = inst.resist[0];
+    const ev = inst.events[0];
+    return `<tr onclick="showInstrument('${inst.symbol}')" style="border-bottom:1px solid #1e2a3a;cursor:pointer;background:${i%2?'rgba(15,22,35,0.5)':''};transition:background 0.1s;" onmouseover="this.style.background='rgba(14,165,233,0.06)'" onmouseout="this.style.background='${i%2?'rgba(15,22,35,0.5)':''}'">
+      <td style="padding:10px 16px;">
+        <div style="font-weight:700;font-size:13px;color:#e2e8f0;">${inst.symbol}</div>
+        <div style="font-size:11px;color:#64748b;">${inst.name}</div>
+      </td>
+      <td style="padding:10px 16px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;" class="tab-nums">${fmt(inst.symbol, inst.price)}</td>
+      <td style="padding:10px 16px;text-align:center;font-size:12px;font-weight:600;color:${pos?'#22c55e':'#ef4444'};" class="tab-nums">${pos?'+':''}${inst.changePercent.toFixed(2)}%</td>
+      <td style="padding:10px 16px;text-align:center;font-size:11px;font-weight:700;color:${signalColor(inst.signalStrength)};">${signalLabel(inst.signalStrength)}</td>
+      <td style="padding:10px 16px;text-align:center;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:6px;">
+          <div class="signal-bar-wrap"><div class="signal-bar" style="width:${Math.abs(inst.signalStrength)}%;background:${inst.signalStrength>=0?'#22c55e':'#ef4444'};"></div></div>
+          <span style="font-size:11px;color:${inst.signalStrength>=0?'#22c55e':'#ef4444'};" class="tab-nums">${inst.signalStrength>0?'+':''}${inst.signalStrength}</span>
+        </div>
+      </td>
+      <td style="padding:10px 16px;text-align:center;font-size:13px;font-weight:700;color:${riskColor(inst.eventImpactProbability)};" class="tab-nums">${inst.eventImpactProbability}%</td>
+      <td style="padding:10px 16px;font-size:11px;">
+        <span style="color:rgba(34,197,94,0.7);">S1:</span> <span class="tab-nums">${fmt(inst.symbol,s1.price)}</span>
+        <span style="color:#1e2a3a;margin:0 4px;">|</span>
+        <span style="color:rgba(239,68,68,0.7);">R1:</span> <span class="tab-nums">${fmt(inst.symbol,r1.price)}</span>
+      </td>
+      <td style="padding:10px 16px;font-size:11px;max-width:180px;">
+        ${ev ? `<div style="color:#64748b;" class="tab-nums">${ev.date}</div><div style="color:#cbd5e1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${ev.event}</div>` : ''}
+      </td>
+    </tr>`;
+  }).join('')}
+  </tbody>`;
+
+  // Macro text
+  document.getElementById('macro-text').textContent = D.macroOverview;
+
+  // Risk Scenarios
+  const sg = document.getElementById('scenarios-grid');
+  const scenarioColors = ['#22c55e','#ef4444','#eab308','#0ea5e9'];
+  sg.innerHTML = D.riskScenarios.map((s,i) => `
+    <div class="card" style="padding:14px;border-left:3px solid ${scenarioColors[i]};">
+      <div style="font-size:10px;font-weight:700;letter-spacing:1px;color:${scenarioColors[i]};margin-bottom:6px;">SCENARIO ${i+1}: ${s.name.toUpperCase()}</div>
+      <p style="font-size:12px;color:#94a3b8;line-height:1.6;margin:0 0 8px;">${s.description}</p>
+      <div style="font-size:12px;font-weight:600;color:${scenarioColors[i]};">→ ${s.impact}</div>
+    </div>`).join('');
+}
+
+// ── Render Instrument Drill-Down ──────────────────────────────────────────────
+let lwChart = null;
+
+function showInstrument(symbol) {
+  const inst = MARKET_DATA.instruments.find(i => i.symbol === symbol);
+  if (!inst) return;
+  const pos = inst.changePercent >= 0;
+  const sign = pos ? '+' : '';
+
+  // Update header
+  document.querySelector('#header-sentiment').style.display = 'none';
+  document.querySelector('#back-btn').style.display = 'flex';
+  document.querySelector('#header-updated').style.display = 'none';
+
+  // Header instrument name + price
+  const existingInstHeader = document.getElementById('inst-header-info');
+  if (existingInstHeader) existingInstHeader.remove();
+  const instInfo = document.createElement('div');
+  instInfo.id = 'inst-header-info';
+  instInfo.style.cssText = 'display:flex;align-items:center;gap:8px;margin-left:auto;';
+  instInfo.innerHTML = `
+    <div style="font-size:18px;font-weight:700;color:#e2e8f0;" class="tab-nums">${fmt(inst.symbol,inst.price)}</div>
+    <span style="font-size:13px;font-weight:600;color:${pos?'#22c55e':'#ef4444'};" class="tab-nums">${sign}${inst.changePercent.toFixed(2)}%</span>`;
+  document.querySelector('#main-header > div').appendChild(instInfo);
+
+  // Gauge
+  drawGauge('gauge-canvas', inst.signalStrength, 200);
+  const gl = document.getElementById('gauge-label');
+  gl.textContent = signalLabel(inst.signalStrength);
+  gl.style.color = signalColor(inst.signalStrength);
+
+  // Ring
+  drawRing('ring-canvas', inst.eventImpactProbability, 120);
+  const rl = document.getElementById('ring-label');
+  rl.textContent = inst.eventImpactProbability + '%';
+  rl.style.color = riskColor(inst.eventImpactProbability);
+  rl.style.fontSize = '22px'; rl.style.fontWeight = '700';
+
+  // Price Stats
+  const ps = document.getElementById('price-stats');
+  const stats = [
+    { label: 'Day High', val: fmt(inst.symbol, inst.dayHigh), color: '#22c55e' },
+    { label: 'Day Low', val: fmt(inst.symbol, inst.dayLow), color: '#ef4444' },
+    { label: 'Prev Close', val: fmt(inst.symbol, inst.previousClose), color: '#e2e8f0' },
+    { label: 'Change', val: sign + inst.changePercent.toFixed(2) + '%', color: pos?'#22c55e':'#ef4444' },
+    { label: '52W High', val: fmt(inst.symbol, inst.yearHigh), color: 'rgba(34,197,94,0.7)' },
+    { label: '52W Low', val: fmt(inst.symbol, inst.yearLow), color: 'rgba(239,68,68,0.7)' },
+  ];
+  ps.innerHTML = stats.map(s => `
+    <div style="display:flex;flex-direction:column;">
+      <span style="font-size:10px;color:#64748b;">${s.label}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-weight:600;font-size:13px;color:${s.color};" class="tab-nums">${s.val}</span>
+    </div>`).join('');
+
+  // Candlestick Chart
+  const wrap = document.getElementById('chart-wrap');
+  wrap.innerHTML = '';
+  if (lwChart) { try { lwChart.remove(); } catch(e){} lwChart = null; }
+  if (typeof LightweightCharts !== 'undefined') {
+    lwChart = LightweightCharts.createChart(wrap, {
+      width: wrap.clientWidth || 900, height: 340,
+      layout: { background: { color: '#0a0e1a' }, textColor: '#64748b' },
+      grid: { vertLines: { color: '#1e2a3a' }, horzLines: { color: '#1e2a3a' } },
+      crosshair: { mode: LightweightCharts.CrosshairMode.Normal },
+      rightPriceScale: { borderColor: '#1e2a3a' },
+      timeScale: { borderColor: '#1e2a3a', timeVisible: true },
+    });
+    const series = lwChart.addCandlestickSeries({
+      upColor: '#22c55e', downColor: '#ef4444',
+      borderUpColor: '#22c55e', borderDownColor: '#ef4444',
+      wickUpColor: '#22c55e', wickDownColor: '#ef4444',
+    });
+    series.setData(inst.ohlc.map(b => ({ time: b.t, open: b.o, high: b.h, low: b.l, close: b.c })));
+
+    // Support/resistance price lines on the series
+    inst.support.forEach(sl => {
+      series.createPriceLine({ price: sl.price, color: 'rgba(34,197,94,0.7)', lineWidth: 1, lineStyle: 1, axisLabelVisible: true, title: sl.level });
+    });
+    inst.resist.forEach(rl => {
+      series.createPriceLine({ price: rl.price, color: 'rgba(239,68,68,0.7)', lineWidth: 1, lineStyle: 1, axisLabelVisible: true, title: rl.level });
+    });
+    lwChart.timeScale().fitContent();
+
+    // Resize observer
+    const ro = new ResizeObserver(() => { if (lwChart) lwChart.applyOptions({ width: wrap.clientWidth }); });
+    ro.observe(wrap);
+  }
+
+  // SR Legend
+  const leg = document.getElementById('sr-legend');
+  const sEntries = inst.support.map(s => `<span style="color:rgba(34,197,94,0.8);font-size:11px;">— ${s.level}: ${fmt(inst.symbol,s.price)}</span>`);
+  const rEntries = inst.resist.map(r => `<span style="color:rgba(239,68,68,0.8);font-size:11px;">---- ${r.level}: ${fmt(inst.symbol,r.price)}</span>`);
+  leg.innerHTML = [...sEntries, ...rEntries].join('');
+
+  // Analysis
+  document.getElementById('inst-fundamentals').textContent = inst.fundamentals;
+  document.getElementById('inst-priceaction').textContent = inst.priceAction;
+  document.getElementById('inst-outlook').textContent = inst.outlook;
+
+  // Outlook badge + dot
+  const sStr = inst.signalStrength;
+  const outBadge = document.getElementById('outlook-badge');
+  const outDot = document.getElementById('outlook-dot');
+  outBadge.textContent = signalLabel(sStr).toUpperCase();
+  outBadge.style.color = signalColor(sStr);
+  outDot.style.background = signalColor(sStr);
+
+  // Key Levels table
+  const lt = document.getElementById('levels-table');
+  lt.innerHTML = `<thead><tr style="border-bottom:1px solid #1e2a3a;background:rgba(30,42,58,0.3);">
+    <th style="text-align:left;padding:8px 14px;font-size:10px;color:#64748b;font-weight:600;letter-spacing:1px;">LEVEL</th>
+    <th style="text-align:right;padding:8px 14px;font-size:10px;color:#64748b;font-weight:600;letter-spacing:1px;">PRICE</th>
+    <th style="text-align:left;padding:8px 14px;font-size:10px;color:#64748b;font-weight:600;letter-spacing:1px;">DESCRIPTION</th>
+  </tr></thead><tbody>
+  ${inst.support.map(sl => `<tr style="border-bottom:1px solid rgba(30,42,58,0.5);">
+    <td style="padding:9px 14px;"><span style="font-size:11px;font-weight:700;color:#22c55e;background:rgba(34,197,94,0.1);padding:2px 6px;border-radius:4px;">${sl.level}</span></td>
+    <td style="padding:9px 14px;text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px;color:#86efac;" class="tab-nums">${fmt(inst.symbol,sl.price)}</td>
+    <td style="padding:9px 14px;font-size:11px;color:#64748b;">${sl.desc}</td>
+  </tr>`).join('')}
+  ${inst.resist.map(rl => `<tr style="border-bottom:1px solid rgba(30,42,58,0.5);">
+    <td style="padding:9px 14px;"><span style="font-size:11px;font-weight:700;color:#ef4444;background:rgba(239,68,68,0.1);padding:2px 6px;border-radius:4px;">${rl.level}</span></td>
+    <td style="padding:9px 14px;text-align:right;font-family:'JetBrains Mono',monospace;font-size:12px;color:#fca5a5;" class="tab-nums">${fmt(inst.symbol,rl.price)}</td>
+    <td style="padding:9px 14px;font-size:11px;color:#64748b;">${rl.desc}</td>
+  </tr>`).join('')}
+  </tbody>`;
+
+  // Events table
+  const et = document.getElementById('events-table');
+  et.innerHTML = `<thead><tr style="border-bottom:1px solid #1e2a3a;background:rgba(30,42,58,0.3);">
+    <th style="text-align:left;padding:8px 14px;font-size:10px;color:#64748b;font-weight:600;letter-spacing:1px;">DATE</th>
+    <th style="text-align:left;padding:8px 14px;font-size:10px;color:#64748b;font-weight:600;letter-spacing:1px;">EVENT</th>
+    <th style="text-align:center;padding:8px 14px;font-size:10px;color:#64748b;font-weight:600;letter-spacing:1px;">CCY</th>
+    <th style="text-align:center;padding:8px 14px;font-size:10px;color:#64748b;font-weight:600;letter-spacing:1px;">IMPACT</th>
+  </tr></thead><tbody>
+  ${inst.events.map(ev => `<tr style="border-bottom:1px solid rgba(30,42,58,0.5);">
+    <td style="padding:9px 14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#64748b;" class="tab-nums">${ev.date}</td>
+    <td style="padding:9px 14px;font-size:11px;color:#cbd5e1;">${ev.event}</td>
+    <td style="padding:9px 14px;text-align:center;font-size:11px;font-weight:700;color:#0ea5e9;">${ev.currency}</td>
+    <td style="padding:9px 14px;text-align:center;"><span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;" class="${impactClass(ev.impact)}">${ev.impact}</span></td>
+  </tr>`).join('')}
+  </tbody>`;
+
+  // Show page
+  document.getElementById('page-dashboard').classList.remove('active');
+  document.getElementById('page-instrument').classList.add('active');
+  window.scrollTo(0, 0);
+
+  // Update hash
+  window.location.hash = '/' + symbol;
+}
+
+// ── Show Dashboard ────────────────────────────────────────────────────────────
+function showDashboard() {
+  hideAllPages();
+  document.getElementById('page-dashboard').classList.add('active');
+  document.querySelector('#header-sentiment').style.display = '';
+  document.querySelector('#back-btn').style.display = 'none';
+  document.querySelector('#back-btn').onclick = showDashboard;
+  document.querySelector('#header-updated').style.display = '';
+  const ih = document.getElementById('inst-header-info');
+  if (ih) ih.remove();
+  if (lwChart) { try { lwChart.remove(); } catch(e){} lwChart = null; }
+  window.location.hash = '/';
+  window.scrollTo(0, 0);
+}
+
+// ── Hash-based routing ────────────────────────────────────────────────────────
+function handleHash() {
+  const hash = window.location.hash.replace('#/', '').replace('#', '');
+  if (!hash || hash === '/') {
+    showDashboard();
+  } else if (hash === 'history') {
+    showHistory();
+  } else if (hash.startsWith('history/')) {
+    const rid = hash.replace('history/', '');
+    showHistoryDetail(rid === 'seed' ? 'seed' : parseInt(rid));
+  } else {
+    const sym = hash.toUpperCase();
+    const found = MARKET_DATA.instruments.find(i => i.symbol === sym);
+    if (found) showInstrument(sym);
+    else showDashboard();
+  }
+}
+window.addEventListener('hashchange', handleHash);
+
+
+// ── History & Refresh Logic ───────────────────────────────────────────────────
+
+function sentimentColor(s) {
+  if (!s) return '#64748b';
+  if (s === 'BULLISH') return '#22c55e';
+  if (s === 'BEARISH') return '#ef4444';
+  return '#eab308';
+}
+
+function showHistory() {
+  hideAllPages();
+  document.getElementById('page-history').classList.add('active');
+  document.querySelector('#back-btn').style.display = 'flex';
+  document.querySelector('#header-sentiment').style.display = 'none';
+  document.querySelector('#header-updated').style.display = 'none';
+  const ih = document.getElementById('inst-header-info');
+  if (ih) ih.remove();
+
+  // Render DB reports list
+  const list = document.getElementById('history-list');
+  const reports = REPORTS_DATA.summary;
+  document.getElementById('hist-count').textContent = (reports.length + 1) + ' reports';
+
+  // Group by month
+  const groups = {};
+  reports.forEach(r => {
+    const d = new Date(r.createdAt);
+    const key = d.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(r);
+  });
+
+  list.innerHTML = Object.entries(groups).map(([month, reps]) => `
+    <div style="margin-bottom:20px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:#64748b;margin-bottom:10px;">${month.toUpperCase()}</div>
+      ${reps.map(r => {
+        const d = new Date(r.createdAt);
+        const dayNum = d.getDate();
+        const dateStr = d.toLocaleString('en-US', {weekday:'short', month:'short', day:'numeric', year:'numeric'});
+        const timeStr = d.toLocaleString('en-US', {hour:'2-digit', minute:'2-digit', timeZoneName:'short'});
+        const sc = sentimentColor(r.marketSentiment);
+        return `<div class="card card-hover" onclick="showHistoryDetail(${r.id})" style="padding:16px;margin-bottom:8px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:36px;height:36px;border-radius:50%;background:#1e2a3a;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#e2e8f0;">${dayNum}</div>
+              <div>
+                <div style="font-size:13px;font-weight:600;color:#e2e8f0;">${dateStr}</div>
+                <div style="font-size:11px;color:#64748b;margin-top:2px;">${timeStr} · ${r.instrumentCount || 7} instruments</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;background:rgba(34,197,94,0.1);color:#22c55e;">Complete</span>
+              ${r.marketSentiment ? `<span style="font-size:11px;font-weight:700;color:${sc};">${r.marketSentiment}</span>` : ''}
+              <svg viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" style="width:16px;height:16px;"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`).join('');
+
+  window.location.hash = '/history';
+  window.scrollTo(0, 0);
+}
+
+function showHistoryDetail(reportId) {
+  const isSeed = reportId === 'seed';
+  const data = isSeed ? MARKET_DATA : REPORTS_DATA.full[reportId];
+  if (!data) return;
+
+  const summaryRec = isSeed ? null : REPORTS_DATA.summary.find(r => r.id == reportId);
+  const createdAt = isSeed ? data.lastUpdated : (summaryRec ? summaryRec.createdAt : data.lastUpdated);
+  const dateLabel = new Date(createdAt).toLocaleString('en-US', {weekday:'short', month:'short', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit', timeZoneName:'short'});
+
+  hideAllPages();
+  document.getElementById('page-history-detail').classList.add('active');
+  document.querySelector('#back-btn').onclick = showHistory;
+  document.querySelector('#back-btn').style.display = 'flex';
+  document.querySelector('#header-sentiment').style.display = 'none';
+  document.querySelector('#header-updated').style.display = 'none';
+  const ih = document.getElementById('inst-header-info');
+  if (ih) ih.remove();
+
+  document.getElementById('hdet-title').textContent = isSeed ? 'INITIAL REPORT — SEED DATA' : 'HISTORICAL REPORT #' + reportId;
+  document.getElementById('hdet-meta').textContent = dateLabel + ' · ' + data.instruments.length + ' instruments';
+
+  // Snapshot table
+  const tbl = document.getElementById('hdet-table');
+  tbl.innerHTML = `<thead><tr style="border-bottom:1px solid #1e2a3a;background:rgba(30,42,58,0.3);">
+    ${['INSTRUMENT','PRICE','CHANGE','SIGNAL','STRENGTH','EVENT RISK'].map(h =>
+      `<th style="text-align:${h==='INSTRUMENT'?'left':'center'};padding:10px 16px;font-size:10px;color:#64748b;font-weight:600;letter-spacing:1px;">${h}</th>`
+    ).join('')}
+  </tr></thead><tbody>
+  ${data.instruments.map((inst,i) => {
+    const pos = inst.changePercent >= 0;
+    return `<tr style="border-bottom:1px solid rgba(30,42,58,0.5);background:${i%2?'rgba(15,22,35,0.4)':''};">
+      <td style="padding:10px 16px;">
+        <div style="font-weight:700;font-size:13px;color:#e2e8f0;">${inst.symbol}</div>
+        <div style="font-size:11px;color:#64748b;">${inst.name}</div>
+      </td>
+      <td style="padding:10px 16px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:12px;" class="tab-nums">${fmt(inst.symbol,inst.price)}</td>
+      <td style="padding:10px 16px;text-align:center;font-size:12px;font-weight:600;color:${pos?'#22c55e':'#ef4444'};" class="tab-nums">${pos?'+':''}${inst.changePercent.toFixed(2)}%</td>
+      <td style="padding:10px 16px;text-align:center;font-size:11px;font-weight:700;color:${signalColor(inst.signalStrength)};">${signalLabel(inst.signalStrength)}</td>
+      <td style="padding:10px 16px;text-align:center;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:6px;">
+          <div class="signal-bar-wrap"><div class="signal-bar" style="width:${Math.abs(inst.signalStrength)}%;background:${inst.signalStrength>=0?'#22c55e':'#ef4444'};"></div></div>
+          <span style="font-size:11px;color:${inst.signalStrength>=0?'#22c55e':'#ef4444'};" class="tab-nums">${inst.signalStrength>0?'+':''}${inst.signalStrength}</span>
+        </div>
+      </td>
+      <td style="padding:10px 16px;text-align:center;font-size:13px;font-weight:700;color:${riskColor(inst.eventImpactProbability)};" class="tab-nums">${inst.eventImpactProbability}%</td>
+    </tr>`;
+  }).join('')}
+  </tbody>`;
+
+  // Macro
+  document.getElementById('hdet-macro').textContent = data.macroOverview || '';
+
+  // Risk scenarios
+  const scenColors = ['#22c55e','#ef4444','#eab308','#0ea5e9'];
+  document.getElementById('hdet-scenarios').innerHTML = (data.riskScenarios||[]).map((s,i) =>
+    `<div class="card" style="padding:14px;border-left:3px solid ${scenColors[i]||scenColors[0]};">
+      <div style="font-size:10px;font-weight:700;color:${scenColors[i]||scenColors[0]};margin-bottom:6px;">SCENARIO ${i+1}: ${s.name.toUpperCase()}</div>
+      <p style="font-size:11px;color:#94a3b8;line-height:1.6;margin:0 0 6px;">${s.description}</p>
+      <div style="font-size:11px;font-weight:600;color:${scenColors[i]||scenColors[0]};">→ ${s.impact}</div>
+    </div>`
+  ).join('');
+
+  // Per-instrument analysis
+  document.getElementById('hdet-instruments').innerHTML = data.instruments.map(inst => `
+    <div class="card" style="padding:16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:13px;font-weight:700;letter-spacing:1px;">${inst.symbol}</span>
+          <span style="font-size:11px;color:#64748b;">${inst.name}</span>
+        </div>
+        <span style="font-size:11px;font-weight:700;color:${signalColor(inst.signalStrength)};">${signalLabel(inst.signalStrength).toUpperCase()}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px;">
+        <div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:1px;color:#64748b;margin-bottom:6px;">PRICE ACTION</div>
+          <p style="font-size:12px;color:#cbd5e1;line-height:1.6;margin:0;">${(inst.analysis&&inst.analysis.priceAction)||inst.priceAction||''}</p>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:600;letter-spacing:1px;color:#64748b;margin-bottom:6px;">OUTLOOK</div>
+          <p style="font-size:12px;color:#cbd5e1;line-height:1.6;margin:0;">${(inst.analysis&&inst.analysis.outlook)||inst.outlook||''}</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:11px;">
+        ${(inst.support||inst.supportLevels||[]).map(sl=>`<span style="color:rgba(34,197,94,0.8);">${sl.level}: ${fmt(inst.symbol,sl.price)}</span>`).join('')}
+        <span style="color:#1e2a3a;">|</span>
+        ${(inst.resist||inst.resistanceLevels||[]).map(rl=>`<span style="color:rgba(239,68,68,0.8);">${rl.level}: ${fmt(inst.symbol,rl.price)}</span>`).join('')}
+      </div>
+    </div>`
+  ).join('');
+
+  window.location.hash = '/history/' + reportId;
+  window.scrollTo(0, 0);
+}
+
+// ── Refresh Logic ─────────────────────────────────────────────────────────────
+
+var LAST_REFRESH_KEY = 'mp_last_refresh';
+
+function canRefreshToday() {
+  try {
+    var last = localStorage.getItem(LAST_REFRESH_KEY);
+    if (!last) return true;
+    var lastDate = new Date(last).toDateString();
+    var today = new Date().toDateString();
+    return lastDate !== today;
+  } catch(e) { return true; }
+}
+
+function markRefreshed() {
+  try { localStorage.setItem(LAST_REFRESH_KEY, new Date().toISOString()); } catch(e) {}
+}
+
+function openRefreshModal() {
+  if (!canRefreshToday()) {
+    showToast('warning', 'Report already generated today. Reports can only be refreshed once per day. Check back tomorrow or view the latest report in History.');
+    return;
+  }
+  var modal = document.getElementById('refresh-modal');
+  modal.style.display = 'flex';
+  document.getElementById('refresh-spinner').style.display = 'block';
+  document.getElementById('refresh-icon-done').style.display = 'none';
+  document.getElementById('refresh-close-btn').style.display = 'none';
+  document.getElementById('refresh-title').textContent = 'GENERATING REPORT';
+  document.getElementById('refresh-msg').textContent = 'Fetching live quotes, historical data, and market sentiment for all 7 instruments...';
+  document.getElementById('refresh-progress').style.display = 'flex';
+
+  // Animate the instrument chips
+  var chips = document.getElementById('refresh-progress').querySelectorAll('span');
+  var delay = 0;
+  chips.forEach(function(chip) {
+    setTimeout(function() {
+      chip.style.background = '#0ea5e9';
+      chip.style.color = 'white';
+    }, delay);
+    delay += 600;
+  });
+
+  // After simulated generation time, show completion
+  setTimeout(function() {
+    document.getElementById('refresh-spinner').style.display = 'none';
+    document.getElementById('refresh-icon-done').style.display = 'block';
+    document.getElementById('refresh-icon-done').style.color = '#22c55e';
+    document.getElementById('refresh-icon-done').style.fontSize = '40px';
+    document.getElementById('refresh-title').textContent = 'REPORT SCHEDULED';
+    document.getElementById('refresh-msg').textContent = 'Your refresh request has been logged. The full live report with real-time finance data will be generated at the next scheduled run:\n\n• Sunday 8:00 PM GMT — Weekly outlook\n• Wednesday 6:00 AM GMT — Mid-week update\n\nThe latest available data is shown on the dashboard. Check History for all past reports.';
+    document.getElementById('refresh-progress').style.display = 'none';
+    document.getElementById('refresh-close-btn').style.display = 'inline-block';
+    markRefreshed();
+  }, 5000);
+}
+
+function closeRefreshModal() {
+  document.getElementById('refresh-modal').style.display = 'none';
+}
+
+// ── Toast system ──────────────────────────────────────────────────────────────
+
+var toastTimer = null;
+function showToast(type, message) {
+  var existing = document.getElementById('toast-banner');
+  if (existing) existing.remove();
+  if (toastTimer) clearTimeout(toastTimer);
+
+  var colors = {warning:'#d97706',success:'#22c55e',error:'#ef4444',info:'#0ea5e9'};
+  var color = colors[type] || colors.info;
+  var div = document.createElement('div');
+  div.id = 'toast-banner';
+  div.style.cssText = 'position:fixed;top:64px;left:50%;transform:translateX(-50%);z-index:300;max-width:600px;width:90%;';
+  div.innerHTML = `<div style="background:#0f1623;border:1px solid ${color};border-radius:8px;padding:12px 16px;display:flex;align-items:flex-start;gap:10px;">
+    <div style="width:6px;height:6px;border-radius:50%;background:${color};margin-top:4px;flex-shrink:0;"></div>
+    <p style="font-size:12px;color:#e2e8f0;line-height:1.6;margin:0;flex:1;">${message}</p>
+    <button onclick="this.closest('#toast-banner').remove()" style="background:none;border:none;color:#64748b;cursor:pointer;font-size:16px;padding:0;line-height:1;">×</button>
+  </div>`;
+  document.body.appendChild(div);
+  toastTimer = setTimeout(function() { if (div.parentNode) div.remove(); }, 12000);
+}
+
+// ── Helper to hide all pages ──────────────────────────────────────────────────
+
+function hideAllPages() {
+  ['page-dashboard','page-instrument','page-history','page-history-detail'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('active');
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+renderDashboard();
+handleHash();
+</script>
+</body>
+</html>
