@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-05-11T07:12:52Z",
+  "count": 2,
+  "reports": [
+    {
+      "slug": "2026-05-10-weekly",
+      "type": "Weekly",
+      "date": "2026-05-10",
+      "displayDate": "Sunday 10 May 2026",
+      "title": "MARKET PULSE — Weekly Trading Report",
+      "markdownFile": "2026-05-10-weekly.md",
+      "lastUpdated": "2026-05-10T20:00:00Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "US equities consolidate near highs as gold deflates further on Iran ceasefire; Fed hold extends into June with stagflation-lite risks intact. RBA delivered 3rd hike, NFP +168K modestly hot.",
+      "jsonFile": "2026-05-10-weekly.json"
+    },
+    {
+      "slug": "2026-05-06-midweek",
+      "type": "Mid-Week",
+      "date": "2026-05-06",
+      "displayDate": "Wednesday 06 May 2026",
+      "title": "MARKET PULSE — Mid-Week Update",
+      "markdownFile": "2026-05-06-midweek.md",
+      "lastUpdated": "2026-05-06T06:00:00Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "NAS100 prints fresh ATH 22,510 on mega-cap follow-through; RBA hike pricing pushes AUD to 0.7185 ahead of today's decision. Gold premium continues to deflate with broken 4,635-4,650 support holding firm as resistance.",
+      "jsonFile": "2026-05-06-midweek.json"
+    }
+  ]
+}

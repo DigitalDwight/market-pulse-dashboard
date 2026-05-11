@@ -1,0 +1,322 @@
+{
+  "slug": "2026-05-10-weekly",
+  "type": "Weekly",
+  "date": "2026-05-10",
+  "displayDate": "Sunday 10 May 2026",
+  "title": "MARKET PULSE — Weekly Trading Report",
+  "markdownFile": "2026-05-10-weekly.md",
+  "lastUpdated": "2026-05-10T20:00:00Z",
+  "marketSentiment": "NEUTRAL_BULLISH",
+  "macroTheme": "US equities consolidate near highs as gold deflates further on Iran ceasefire; Fed hold extends into June with stagflation-lite risks intact. RBA delivered 3rd hike, NFP +168K modestly hot.",
+  "macroOverview": "Risk-on tone in tech persists with NAS100 printing fresh ATH supported by mega-cap earnings. US30 holds 49,500 but rejected 50,000 round number. Gold continues correction from 5,602 ATH on geopolitical premium unwind. ECB June 11 live for a hike given Eurozone inflation 3.0%. RBA expected to deliver third consecutive hike May 6. Brent above $100 keeps energy-shock inflation feed alive globally.",
+  "instruments": [
+    {
+      "symbol": "US30",
+      "name": "Dow Jones Industrial Average",
+      "price": 49499.27,
+      "previousClose": 49652.15,
+      "change": -152.88,
+      "changePercent": -0.31,
+      "dayHigh": 49988.56,
+      "dayLow": 49496.47,
+      "yearHigh": 50512.79,
+      "yearLow": 40759.41,
+      "signal": "NEUTRAL_BULLISH",
+      "signalStrength": 30,
+      "eventImpactProbability": 70,
+      "sparkline": [49447,49443,49612,49778,49920,50104,49885,49710,49652,49499],
+      "ohlc": [
+        {"date":"2026-04-27","open":48789,"high":49718,"low":48789,"close":49447,"volume":585656030},
+        {"date":"2026-04-28","open":49447,"high":49510,"low":49102,"close":49443,"volume":412044100},
+        {"date":"2026-04-29","open":49443,"high":49801,"low":49380,"close":49612,"volume":398220150},
+        {"date":"2026-04-30","open":49612,"high":49890,"low":49555,"close":49778,"volume":421118800},
+        {"date":"2026-05-01","open":49778,"high":50010,"low":49680,"close":49920,"volume":388542010},
+        {"date":"2026-05-04","open":49920,"high":50212,"low":49900,"close":50104,"volume":432980770},
+        {"date":"2026-05-05","open":50104,"high":50213,"low":49770,"close":49885,"volume":467332200},
+        {"date":"2026-05-06","open":49885,"high":49920,"low":49510,"close":49710,"volume":511005600},
+        {"date":"2026-05-07","open":49710,"high":49800,"low":49401,"close":49652,"volume":488122440},
+        {"date":"2026-05-08","open":49710,"high":49989,"low":49496,"close":49499,"volume":502310030}
+      ],
+      "supports": [
+        {"level":"S1","price":49085,"description":"Prior weekly low — first defensive layer"},
+        {"level":"S2","price":48861,"description":"April 24 swing low"},
+        {"level":"S3","price":48709,"description":"50DMA confluence"}
+      ],
+      "resistances": [
+        {"level":"R1","price":49989,"description":"This week's high — first ceiling"},
+        {"level":"R2","price":50000,"description":"Major psychological round number"},
+        {"level":"R3","price":50512,"description":"All-time high"}
+      ],
+      "analysis": "Price action: US30 rejected 50,000 twice this week (Mon and Tue) before fading back to 49,500 support. Tape softened on Friday into close as positioning lightened ahead of NFP. Fundamentals: FOMC Hold confirmed 3.50–3.75% range. PCE at 4.5% keeps cuts off table. Q1 EPS beat rate 81.3% supports floor. Outlook: 3-day NEUTRAL-BULLISH. Buy 49,150–49,300 stop 48,850 target 49,950. Sell 49,950 only on rejection wick. Catalyst: NFP Fri May 8."
+    },
+    {
+      "symbol": "NAS100",
+      "name": "Nasdaq 100",
+      "price": 22418.55,
+      "previousClose": 22361.04,
+      "change": 57.51,
+      "changePercent": 0.26,
+      "dayHigh": 22512.80,
+      "dayLow": 22330.41,
+      "yearHigh": 22612.80,
+      "yearLow": 17204.55,
+      "signal": "BULLISH",
+      "signalStrength": 72,
+      "eventImpactProbability": 85,
+      "sparkline": [21678,21745,21891,22002,22188,22312,22455,22389,22361,22418],
+      "ohlc": [
+        {"date":"2026-04-27","open":21450,"high":21745,"low":21401,"close":21678,"volume":4123550000},
+        {"date":"2026-04-28","open":21678,"high":21822,"low":21555,"close":21745,"volume":3998421000},
+        {"date":"2026-04-29","open":21745,"high":21950,"low":21712,"close":21891,"volume":4221332000},
+        {"date":"2026-04-30","open":21891,"high":22100,"low":21855,"close":22002,"volume":4332115000},
+        {"date":"2026-05-01","open":22002,"high":22245,"low":21980,"close":22188,"volume":4198820000},
+        {"date":"2026-05-04","open":22188,"high":22388,"low":22120,"close":22312,"volume":4421440000},
+        {"date":"2026-05-05","open":22312,"high":22510,"low":22290,"close":22455,"volume":4567231000},
+        {"date":"2026-05-06","open":22455,"high":22480,"low":22301,"close":22389,"volume":4488112000},
+        {"date":"2026-05-07","open":22389,"high":22440,"low":22298,"close":22361,"volume":4310050000},
+        {"date":"2026-05-08","open":22395,"high":22513,"low":22330,"close":22418,"volume":4399887000}
+      ],
+      "supports": [
+        {"level":"S1","price":22188,"description":"Prior week breakout retest"},
+        {"level":"S2","price":22002,"description":"Round number and pivot"},
+        {"level":"S3","price":21745,"description":"21DMA, deeper support"}
+      ],
+      "resistances": [
+        {"level":"R1","price":22513,"description":"This week intraday high"},
+        {"level":"R2","price":22612,"description":"All-time high — price discovery above"},
+        {"level":"R3","price":22800,"description":"Measured-move projection from base"}
+      ],
+      "analysis": "Price action: NAS100 ground higher all week with AAPL, NVDA, META beating Q1. Five-day +3.4% with low volatility. Fundamentals: Mega-cap earnings beat rate 88%. AI capex narrative intact. Sensitive to Fed valuation multiple — hold = goldilocks. Outlook: 3-day BULLISH. Buy dips 22,150–22,250 stop 21,940 target 22,800. Avoid chasing > 22,550 into NFP. Catalyst: NFP Fri May 8 + NVDA earnings May 21."
+    },
+    {
+      "symbol": "GER40",
+      "name": "DAX Performance Index",
+      "price": 21458.32,
+      "previousClose": 21512.66,
+      "change": -54.34,
+      "changePercent": -0.25,
+      "dayHigh": 21598.42,
+      "dayLow": 21401.10,
+      "yearHigh": 22013.50,
+      "yearLow": 17489.30,
+      "signal": "NEUTRAL_BEARISH",
+      "signalStrength": -35,
+      "eventImpactProbability": 80,
+      "sparkline": [21765,21712,21680,21610,21533,21490,21465,21501,21512,21458],
+      "ohlc": [
+        {"date":"2026-04-27","open":21801,"high":21850,"low":21680,"close":21765,"volume":92110000},
+        {"date":"2026-04-28","open":21765,"high":21790,"low":21640,"close":21712,"volume":88311000},
+        {"date":"2026-04-29","open":21712,"high":21740,"low":21601,"close":21680,"volume":86220500},
+        {"date":"2026-04-30","open":21680,"high":21705,"low":21560,"close":21610,"volume":91442100},
+        {"date":"2026-05-04","open":21610,"high":21620,"low":21470,"close":21533,"volume":94559020},
+        {"date":"2026-05-05","open":21533,"high":21580,"low":21430,"close":21490,"volume":89881010},
+        {"date":"2026-05-06","open":21490,"high":21540,"low":21401,"close":21465,"volume":87223100},
+        {"date":"2026-05-07","open":21465,"high":21556,"low":21455,"close":21501,"volume":84119080},
+        {"date":"2026-05-08","open":21498,"high":21598,"low":21401,"close":21458,"volume":90112440}
+      ],
+      "supports": [
+        {"level":"S1","price":21401,"description":"Week low — must hold"},
+        {"level":"S2","price":21300,"description":"50DMA"},
+        {"level":"S3","price":21100,"description":"April swing low"}
+      ],
+      "resistances": [
+        {"level":"R1","price":21600,"description":"Week high consolidation top"},
+        {"level":"R2","price":21800,"description":"Prior breakdown level"},
+        {"level":"R3","price":22013,"description":"All-time high"}
+      ],
+      "analysis": "Price action: DAX rolled lower from 21,800 to 21,400 on weak Eurozone Composite PMI (49.2 — contraction) and stagflation chatter ahead of ECB Jun 11. Market closed May 1 (Labour Day). Fundamentals: ECB at 2.0%, Jun 11 live for hike. German industrial margins squeezed by Brent > $100. Outlook: 3-day NEUTRAL-BEARISH. Sell rallies 21,580–21,620 stop 21,720 target 21,300. Below 21,400 opens 21,100. Catalyst: ECB rhetoric, Eurozone PMI Flash May 23."
+    },
+    {
+      "symbol": "AUDUSD",
+      "name": "Australian Dollar vs US Dollar",
+      "price": 0.7148,
+      "previousClose": 0.7132,
+      "change": 0.0016,
+      "changePercent": 0.22,
+      "dayHigh": 0.7162,
+      "dayLow": 0.7128,
+      "yearHigh": 0.7200,
+      "yearLow": 0.6510,
+      "signal": "BULLISH",
+      "signalStrength": 55,
+      "eventImpactProbability": 90,
+      "sparkline": [0.7102,0.7115,0.7128,0.7144,0.7158,0.7171,0.7165,0.7148,0.7132,0.7148],
+      "ohlc": [
+        {"date":"2026-04-27","open":0.7098,"high":0.7115,"low":0.7088,"close":0.7102,"volume":0},
+        {"date":"2026-04-28","open":0.7102,"high":0.7128,"low":0.7095,"close":0.7115,"volume":0},
+        {"date":"2026-04-29","open":0.7115,"high":0.7142,"low":0.7112,"close":0.7128,"volume":0},
+        {"date":"2026-04-30","open":0.7128,"high":0.7156,"low":0.7125,"close":0.7144,"volume":0},
+        {"date":"2026-05-01","open":0.7144,"high":0.7170,"low":0.7140,"close":0.7158,"volume":0},
+        {"date":"2026-05-04","open":0.7158,"high":0.7185,"low":0.7155,"close":0.7171,"volume":0},
+        {"date":"2026-05-05","open":0.7171,"high":0.7180,"low":0.7155,"close":0.7165,"volume":0},
+        {"date":"2026-05-06","open":0.7165,"high":0.7167,"low":0.7140,"close":0.7148,"volume":0},
+        {"date":"2026-05-07","open":0.7148,"high":0.7150,"low":0.7125,"close":0.7132,"volume":0},
+        {"date":"2026-05-08","open":0.7135,"high":0.7162,"low":0.7128,"close":0.7148,"volume":0}
+      ],
+      "supports": [
+        {"level":"S1","price":0.7128,"description":"Week low — pivot"},
+        {"level":"S2","price":0.7100,"description":"Key floor — psychological"},
+        {"level":"S3","price":0.7050,"description":"April low"}
+      ],
+      "resistances": [
+        {"level":"R1","price":0.7185,"description":"Tuesday spike high"},
+        {"level":"R2","price":0.7200,"description":"52-week high — major resistance"},
+        {"level":"R3","price":0.7260,"description":"2025 high projection"}
+      ],
+      "analysis": "Price action: Aussie pushed to 0.7185 mid-week on rising RBA hike expectations, faded on softer China PMI. Range tight 0.7128–0.7185 in past 4 sessions. Fundamentals: RBA delivered +25bp May 6 (3rd consecutive). Fed/RBA divergence AUD-positive. Iron ore stable above $115. Outlook: 3-day BULLISH conditional on RBA delivering hike. Buy 0.7140–0.7150 stop 0.7115 target 0.7200. Catalyst: RBA Tue May 6, China trade data."
+    },
+    {
+      "symbol": "GBPCAD",
+      "name": "British Pound vs Canadian Dollar",
+      "price": 1.8472,
+      "previousClose": 1.8501,
+      "change": -0.0029,
+      "changePercent": -0.16,
+      "dayHigh": 1.8530,
+      "dayLow": 1.8455,
+      "yearHigh": 1.8920,
+      "yearLow": 1.7980,
+      "signal": "NEUTRAL",
+      "signalStrength": -10,
+      "eventImpactProbability": 60,
+      "sparkline": [1.8628,1.8602,1.8571,1.8540,1.8512,1.8495,1.8480,1.8488,1.8501,1.8472],
+      "ohlc": [
+        {"date":"2026-04-27","open":1.8650,"high":1.8665,"low":1.8612,"close":1.8628,"volume":0},
+        {"date":"2026-04-28","open":1.8628,"high":1.8635,"low":1.8580,"close":1.8602,"volume":0},
+        {"date":"2026-04-29","open":1.8602,"high":1.8612,"low":1.8555,"close":1.8571,"volume":0},
+        {"date":"2026-04-30","open":1.8571,"high":1.8582,"low":1.8520,"close":1.8540,"volume":0},
+        {"date":"2026-05-01","open":1.8540,"high":1.8550,"low":1.8498,"close":1.8512,"volume":0},
+        {"date":"2026-05-04","open":1.8512,"high":1.8520,"low":1.8470,"close":1.8495,"volume":0},
+        {"date":"2026-05-05","open":1.8495,"high":1.8500,"low":1.8455,"close":1.8480,"volume":0},
+        {"date":"2026-05-06","open":1.8480,"high":1.8510,"low":1.8470,"close":1.8488,"volume":0},
+        {"date":"2026-05-07","open":1.8488,"high":1.8525,"low":1.8482,"close":1.8501,"volume":0},
+        {"date":"2026-05-08","open":1.8495,"high":1.8530,"low":1.8455,"close":1.8472,"volume":0}
+      ],
+      "supports": [
+        {"level":"S1","price":1.8455,"description":"Week low"},
+        {"level":"S2","price":1.8400,"description":"Persistent consolidation floor"},
+        {"level":"S3","price":1.8200,"description":"2026 lower bound"}
+      ],
+      "resistances": [
+        {"level":"R1","price":1.8530,"description":"Week high"},
+        {"level":"R2","price":1.8650,"description":"Prior week high"},
+        {"level":"R3","price":1.8920,"description":"52-week high"}
+      ],
+      "analysis": "Price action: GBPCAD drifted -0.8% on the week as oil > $100 kept CAD bid. Held 1.84 consolidation zone. Range-bound 1.8455–1.8530. Fundamentals: BoE 3.75% hold 8-1 (Pill hawk dissent). BoC reassessing after prior cycle cut. Oil > $100 = CAD positive. Outlook: 3-day NEUTRAL. Range trade 1.8430–1.8550. Buy near 1.8430 stop 1.8390 target 1.8530. Catalyst: UK CPI May 21, BoC meeting Jun 4."
+    },
+    {
+      "symbol": "XAGUSD",
+      "name": "Silver Spot",
+      "price": 58.42,
+      "previousClose": 58.91,
+      "change": -0.49,
+      "changePercent": -0.83,
+      "dayHigh": 59.10,
+      "dayLow": 58.05,
+      "yearHigh": 71.20,
+      "yearLow": 28.15,
+      "signal": "NEUTRAL_BEARISH",
+      "signalStrength": -40,
+      "eventImpactProbability": 60,
+      "sparkline": [59.72,59.45,59.18,58.95,58.71,58.55,58.62,58.78,58.91,58.42],
+      "ohlc": [
+        {"date":"2026-04-27","open":59.90,"high":60.10,"low":59.55,"close":59.72,"volume":0},
+        {"date":"2026-04-28","open":59.72,"high":59.80,"low":59.20,"close":59.45,"volume":0},
+        {"date":"2026-04-29","open":59.45,"high":59.50,"low":58.95,"close":59.18,"volume":0},
+        {"date":"2026-04-30","open":59.18,"high":59.25,"low":58.70,"close":58.95,"volume":0},
+        {"date":"2026-05-01","open":58.95,"high":59.00,"low":58.45,"close":58.71,"volume":0},
+        {"date":"2026-05-04","open":58.71,"high":58.80,"low":58.30,"close":58.55,"volume":0},
+        {"date":"2026-05-05","open":58.55,"high":58.85,"low":58.45,"close":58.62,"volume":0},
+        {"date":"2026-05-06","open":58.62,"high":58.95,"low":58.55,"close":58.78,"volume":0},
+        {"date":"2026-05-07","open":58.78,"high":59.10,"low":58.65,"close":58.91,"volume":0},
+        {"date":"2026-05-08","open":58.80,"high":59.10,"low":58.05,"close":58.42,"volume":0}
+      ],
+      "supports": [
+        {"level":"S1","price":58.00,"description":"Week low — round number"},
+        {"level":"S2","price":57.20,"description":"April consolidation base"},
+        {"level":"S3","price":55.50,"description":"Deeper structural support"}
+      ],
+      "resistances": [
+        {"level":"R1","price":59.10,"description":"Week high"},
+        {"level":"R2","price":60.00,"description":"Round number"},
+        {"level":"R3","price":62.50,"description":"Prior swing high"}
+      ],
+      "analysis": "Price action: Silver -2.2% on week tracking gold lower. High beta to XAUUSD continues. Gold/silver ratio at 78x — silver historically cheap. Fundamentals: Tracks gold but industrial demand (solar, semis) provides floor. Higher real yields = headwind. Outlook: 3-day NEUTRAL-BEARISH. Wait below 58 for short setup target 57.2 stop 58.6, or buy reclaim of 59.20 target 60.0. Catalyst: USD direction, gold price action."
+    },
+    {
+      "symbol": "XAUUSD",
+      "name": "Gold Spot",
+      "price": 4587.30,
+      "previousClose": 4612.45,
+      "change": -25.15,
+      "changePercent": -0.55,
+      "dayHigh": 4625.50,
+      "dayLow": 4571.10,
+      "yearHigh": 5602.18,
+      "yearLow": 3215.40,
+      "signal": "BEARISH",
+      "signalStrength": -65,
+      "eventImpactProbability": 75,
+      "sparkline": [4678,4665,4648,4630,4615,4598,4582,4595,4612,4587],
+      "ohlc": [
+        {"date":"2026-04-27","open":4710,"high":4735,"low":4650,"close":4678,"volume":0},
+        {"date":"2026-04-28","open":4678,"high":4690,"low":4640,"close":4665,"volume":0},
+        {"date":"2026-04-29","open":4665,"high":4670,"low":4625,"close":4648,"volume":0},
+        {"date":"2026-04-30","open":4648,"high":4655,"low":4615,"close":4630,"volume":0},
+        {"date":"2026-05-01","open":4630,"high":4640,"low":4598,"close":4615,"volume":0},
+        {"date":"2026-05-04","open":4615,"high":4620,"low":4580,"close":4598,"volume":0},
+        {"date":"2026-05-05","open":4598,"high":4605,"low":4565,"close":4582,"volume":0},
+        {"date":"2026-05-06","open":4582,"high":4612,"low":4575,"close":4595,"volume":0},
+        {"date":"2026-05-07","open":4595,"high":4628,"low":4590,"close":4612,"volume":0},
+        {"date":"2026-05-08","open":4608,"high":4625,"low":4571,"close":4587,"volume":0}
+      ],
+      "supports": [
+        {"level":"S1","price":4571,"description":"Week low — short-term pivot"},
+        {"level":"S2","price":4500,"description":"Round number"},
+        {"level":"S3","price":4400,"description":"Pre-Iran war breakout level"}
+      ],
+      "resistances": [
+        {"level":"R1","price":4635,"description":"Broken support, now resistance"},
+        {"level":"R2","price":4650,"description":"Broken support zone top"},
+        {"level":"R3","price":4741,"description":"Confirmation trigger for bullish recovery"}
+      ],
+      "analysis": "Price action: Gold continues correction from 5,602 ATH (-18%). Broken support 4,635–4,650 (Apr 28) now firm resistance. -2% on week. Fundamentals: Iran ceasefire deflating geopolitical premium. Higher-for-longer Fed = higher real yields = gold headwind. CB buying provides structural floor. Outlook: 3-day BEARISH. Do not buy weakness. Wait for confirmed close above 4,741 to flip bias. Until then, sell rallies 4,630–4,650 stop 4,680 target 4,500. Catalyst: NFP, Fed speakers, Middle East headlines."
+    }
+  ],
+  "scorecard": [
+    {"instrument":"US30","previousBias":"NEUTRAL_BULLISH","result":"+0.1% on week, held 49,500","verdict":"CORRECT"},
+    {"instrument":"NAS100","previousBias":"BULLISH","result":"+3.4% to fresh ATH 22,612","verdict":"CORRECT"},
+    {"instrument":"GER40","previousBias":"NEUTRAL","result":"-1.4% breakdown below 21,700","verdict":"PARTIALLY"},
+    {"instrument":"AUDUSD","previousBias":"NEUTRAL_BULLISH","result":"+0.7% to 0.7185 high","verdict":"CORRECT"},
+    {"instrument":"GBPCAD","previousBias":"NEUTRAL","result":"-0.8% range break lower","verdict":"PARTIALLY"},
+    {"instrument":"XAGUSD","previousBias":"NEUTRAL_BEARISH","result":"-2.2% follow-through","verdict":"CORRECT"},
+    {"instrument":"XAUUSD","previousBias":"BEARISH","result":"-2.0% with broken support holding as resistance","verdict":"CORRECT"}
+  ],
+  "upcomingEvents": [
+    {"date":"2026-05-06","time":"04:30 GMT","event":"RBA Rate Decision (+25bp expected)","impact":"Very High"},
+    {"date":"2026-05-08","time":"12:30 GMT","event":"US Non-Farm Payrolls","impact":"Very High"},
+    {"date":"2026-05-08","time":"12:30 GMT","event":"US Unemployment Rate","impact":"High"},
+    {"date":"2026-05-12","time":"06:00 GMT","event":"UK GDP","impact":"High"},
+    {"date":"2026-05-13","time":"12:30 GMT","event":"US CPI April","impact":"Very High"},
+    {"date":"2026-05-21","time":"06:00 GMT","event":"UK CPI April","impact":"High"},
+    {"date":"2026-05-22","time":"21:00 GMT","event":"NVIDIA Q1 Earnings (after close)","impact":"Very High"},
+    {"date":"2026-05-23","time":"08:00 GMT","event":"Eurozone PMI Flash May","impact":"High"},
+    {"date":"2026-06-04","time":"13:45 GMT","event":"Bank of Canada Rate Decision","impact":"High"},
+    {"date":"2026-06-11","time":"12:15 GMT","event":"ECB Rate Decision (LIVE for hike)","impact":"Very High"}
+  ],
+  "topTrades": [
+    {"rank":1,"instrument":"NAS100","direction":"LONG","entry":"22,150–22,250","target":"22,800","stop":"21,940",
+     "rationale":"Strongest signal (72) and event-impact tailwind from NVDA earnings May 21. AI capex narrative + mega-cap beat rate 88% + Fed hold supports valuation. Buy dips into prior breakout retest."},
+    {"rank":2,"instrument":"XAUUSD","direction":"SHORT","entry":"4,630–4,650","target":"4,500","stop":"4,680",
+     "rationale":"Broken support 4,635–4,650 confirmed as resistance Apr 28. Ceasefire-driven premium unwind intact. Higher real yields headwind. Stop tight above breakdown zone; size for measured move to 4,500 round number."},
+    {"rank":3,"instrument":"AUDUSD","direction":"LONG","entry":"0.7140–0.7150","target":"0.7200","stop":"0.7115",
+     "rationale":"Conditional on RBA delivering third consecutive hike May 6. Fed/RBA divergence supports AUD. Trade is asymmetric — small loss if RBA holds, full reach to 0.7200 52-wk high if hike delivered."}
+  ],
+  "riskScenarios": [
+    {"name":"Iran Ceasefire Breaks","probability":"15-20%","impact":"Gold +5-8%, equities -3-5%, oil +15-25% — risk-off across all 7 instruments. Triggers: Strait of Hormuz disruption, retaliatory strikes."},
+    {"name":"Hot NFP Print (>200K)","probability":"25%","impact":"USD-positive, equities mixed, gold -1-2%, AUDUSD -1%. Removes any residual 2026 cut expectations and revives 'higher for longer' Fed narrative."},
+    {"name":"ECB Hawkish Surprise Jun 11","probability":"35%","impact":"EUR +1-2%, DAX -2-3%, GBPCAD-EUR crosses unsettled. Eurozone 3.0% CPI + weak growth = stagflation pricing."},
+    {"name":"NVDA Miss/Guide Down May 21","probability":"15%","impact":"NAS100 -3-5% gap risk, US30 -1-2%, AI capex narrative unwinds. Tech multiple compression scenario."},
+    {"name":"China Trade Data Weak","probability":"30%","impact":"AUDUSD -0.5-1%, iron ore -3-5%, DAX export pressure. Caixin PMI < 50 trigger."}
+  ]
+}

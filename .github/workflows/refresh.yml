@@ -1,0 +1,92 @@
+name: Market Pulse — refresh dashboard
+
+# Matches the Market Pulse cron schedule from the system spec:
+#   - Sunday  20:00 UTC  (cron 18fb2115, weekly report)
+#   - Wednesday 06:00 UTC (cron 92ba41d1, mid-week update)
+# Plus manual trigger from the Actions tab.
+on:
+  schedule:
+    - cron: "0 20 * * 0"
+    - cron: "0 6 * * 3"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run script but don't commit"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-pulse-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Rebuild manifest
+        run: python build_manifest.py
+
+      - name: Refresh latest report's volatile fields
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python refresh_dashboard.py --dry-run
+          else
+            python refresh_dashboard.py
+          fi
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --quiet --exit-code -- reports/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No data changes to commit."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --stat -- reports/
+          fi
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true' && inputs.dry_run != true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ "${{ github.event.schedule }}" = "0 20 * * 0" ]; then
+            label="Sunday weekly auto-refresh"
+          elif [ "${{ github.event.schedule }}" = "0 6 * * 3" ]; then
+            label="Wednesday mid-week auto-refresh"
+          else
+            label="Manual refresh"
+          fi
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git add reports/
+          git commit -m "Auto-update: ${label} — ${ts}" \
+                     -m "Live yfinance prices for the 7 Market Pulse instruments."
+          git push
+
+      - name: Summary
+        run: |
+          if [ "${{ steps.diff.outputs.changed }}" = "true" ]; then
+            echo "### Dashboard refreshed" >> "$GITHUB_STEP_SUMMARY"
+            git log -1 --pretty=format:"- %s%n- %h%n- %ad" --date=iso >> "$GITHUB_STEP_SUMMARY" || true
+          else
+            echo "### No changes this run" >> "$GITHUB_STEP_SUMMARY"
+          fi

@@ -1,0 +1,52 @@
+name: Market Pulse — rebuild report manifest
+
+# Runs whenever a report .md or .json is added/changed/removed so the
+# dashboard's History list always reflects what's in reports/.
+# Skips its own commits (no infinite loop) via the path filter + manifest exclusion.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "reports/**.md"
+      - "reports/**.json"
+      - "!reports/manifest.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-pulse-manifest
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.actor != 'github-actions[bot]'
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild manifest
+        run: python build_manifest.py
+
+      - name: Commit if manifest changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet --exit-code -- reports/manifest.json; then
+            echo "Manifest is up to date — no commit needed."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/manifest.json
+          git commit -m "Auto-update: rebuild reports/manifest.json"
+          git push
