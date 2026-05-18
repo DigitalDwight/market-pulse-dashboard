@@ -22,6 +22,10 @@ on:
         type: choice
         options: ["", "weekly", "midweek"]
         default: ""
+      date:
+        description: "Override report date YYYY-MM-DD (otherwise today UTC) — use to backfill a missed run"
+        type: string
+        default: ""
       dry_run:
         description: "Skip writing files"
         type: boolean
@@ -59,6 +63,7 @@ jobs:
           set -euo pipefail
           ARGS=()
           if [ -n "${{ inputs.run_type }}" ]; then ARGS+=(--type "${{ inputs.run_type }}"); fi
+          if [ -n "${{ inputs.date }}" ];     then ARGS+=(--date "${{ inputs.date }}"); fi
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS+=(--dry-run); fi
           python author_report.py "${ARGS[@]}"
 
