@@ -27,15 +27,36 @@ A deep link like `#/2026-05-06-midweek` loads that report directly when shared.
 
 ## How reports stay current
 
-Two GitHub Actions keep everything in sync — no local machine required.
+Three GitHub Actions keep everything in sync — no local machine required.
 
 | Workflow | Trigger | What it does |
 |----------|---------|--------------|
+| **author.yml** | `cron: 30 19 * * 0` (Sun) + `cron: 30 5 * * 3` (Wed) + manual | Reads `cron_tracking/<id>/last_run.md`, pre-fetches yfinance prices, calls Claude (Sonnet 4.6 + web search) via `author_report.py` to produce a new `<date>-<weekly\|midweek>.{md,json}`, updates the tracking file, commits, pushes |
 | **refresh.yml** | `cron: 0 20 * * 0` (Sun) + `cron: 0 6 * * 3` (Wed) + manual | Rebuilds manifest, pulls live yfinance prices, writes volatile fields into the latest report's `.json`, commits, pushes |
 | **rebuild-manifest.yml** | Push to `reports/**` | Regenerates `reports/manifest.json` so newly-added reports appear immediately in the dashboard's History |
 
 This matches the two cron jobs from the Market Pulse system spec (`18fb2115`
-and `92ba41d1`).
+and `92ba41d1`). `author.yml` runs ~30 min before `refresh.yml` so the new
+report exists by the time the price refresh fires; `rebuild-manifest.yml` then
+auto-fires on the `reports/**` push.
+
+> **GitHub Actions cron is best-effort** — scheduled workflows routinely lag
+> 30 min to 2 h under platform load. If `author.yml` ends up firing *after*
+> `refresh.yml` because of that lag, the refresh just runs on the prior report
+> for one tick; the next refresh picks up the new one.
+
+### One-time setup for author.yml
+
+`author.yml` calls the Anthropic API. You need to add the API key as a secret:
+
+1. Generate a key at https://console.anthropic.com/settings/keys
+2. In this repo: **Settings → Secrets and variables → Actions → New repository secret**
+   - Name: `ANTHROPIC_API_KEY`
+   - Value: the key
+3. Workflow permissions must be set to **Read and write** (Settings → Actions → General → Workflow permissions) — same as `refresh.yml` already needs.
+
+The workflow uses prompt caching, so cost per run is dominated by output tokens
+(~$0.30–$0.60 with Sonnet 4.6 for a full report including 8 web searches).
 
 ### What the refresh updates
 
@@ -79,11 +100,16 @@ Actions tab.
 │   ├── 2026-05-10-weekly.json       dashboard payload
 │   ├── 2026-05-06-midweek.md
 │   └── 2026-05-06-midweek.json
+├── cron_tracking/
+│   ├── 18fb2115/last_run.md         Sunday-cron state file (read by author.yml)
+│   └── 92ba41d1/last_run.md         Wednesday-cron state file (read by author.yml)
+├── author_report.py                 Claude API orchestrator → writes new <date>-<type>.{md,json}
 ├── build_manifest.py                rebuilds manifest from reports/*.json
 ├── refresh_dashboard.py             yfinance fetcher → writes prices into latest report
-├── requirements.txt                 Python deps (just yfinance)
+├── requirements.txt                 Python deps (yfinance, anthropic)
 ├── .gitignore
 └── .github/workflows/
+    ├── author.yml                   scheduled report authoring (Claude API)
     ├── refresh.yml                  scheduled price refresh
     └── rebuild-manifest.yml         runs on push to reports/**
 ```
@@ -98,6 +124,27 @@ python3 refresh_dashboard.py --dry-run
 python3 -m http.server 8000
 # → http://localhost:8000
 ```
+
+### Testing the authoring pipeline locally
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+# Dry-run (does not write files; checks the API call + schema validation)
+python3 author_report.py --type midweek --dry-run
+
+# Real run for a specific date (overwrites existing reports/<slug>.{md,json} only
+# if they don't already exist — delete them first if you want to regenerate)
+python3 author_report.py --type weekly --date 2026-05-17
+```
+
+Local runs commit nothing; you push manually if you want the dashboard to pick them up.
+
+### Disabling / rolling back author.yml
+
+If the API-driven authoring misbehaves, the existing manual flow still works:
+
+1. Comment out the `schedule:` block in `.github/workflows/author.yml` (keep `workflow_dispatch` for emergency manual runs), or delete the file.
+2. Hand-author `reports/<date>-<type>.{md,json}` as before and push — `rebuild-manifest.yml` + `refresh.yml` continue to work unchanged.
 
 ## GitHub Pages setup (one-time)
 

@@ -1,0 +1,105 @@
+name: Market Pulse — author new report
+
+# Runs ~30 min before refresh.yml so the new report exists by the time the
+# price refresh fires. When this commits, rebuild-manifest.yml auto-fires on the
+# push to reports/**, then refresh.yml fires on its own cron and tops up prices.
+#
+#   - Sunday    19:30 UTC  (cron 18fb2115, weekly)   -> refresh.yml @ 20:00 UTC
+#   - Wednesday 05:30 UTC  (cron 92ba41d1, midweek)  -> refresh.yml @ 06:00 UTC
+#
+# GitHub Actions cron is best-effort and routinely lags 30 min – 2 h under
+# load. If author.yml ends up firing AFTER refresh.yml due to that lag, the
+# refresh just runs on the prior report; the next refresh tick will pick up
+# the new one.
+on:
+  schedule:
+    - cron: "30 19 * * 0"
+    - cron: "30 5 * * 3"
+  workflow_dispatch:
+    inputs:
+      run_type:
+        description: "Force run type (otherwise derived from weekday)"
+        type: choice
+        options: ["", "weekly", "midweek"]
+        default: ""
+      dry_run:
+        description: "Skip writing files"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-pulse-author
+  cancel-in-progress: false
+
+jobs:
+  author:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Author new report
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ -n "${{ inputs.run_type }}" ]; then ARGS+=(--type "${{ inputs.run_type }}"); fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS+=(--dry-run); fi
+          python author_report.py "${ARGS[@]}"
+
+      - name: Rebuild manifest
+        if: inputs.dry_run != true
+        run: python build_manifest.py
+
+      - name: Check for changes
+        id: diff
+        if: inputs.dry_run != true
+        run: |
+          if git diff --quiet --exit-code -- reports/ cron_tracking/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No new report committed."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --stat -- reports/ cron_tracking/
+          fi
+
+      - name: Commit and push
+        if: steps.diff.outputs.changed == 'true' && inputs.dry_run != true
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          case "${{ github.event.schedule }}" in
+            "30 19 * * 0") label="Sunday weekly report" ;;
+            "30 5 * * 3")  label="Wednesday mid-week report" ;;
+            *)             label="Manual report" ;;
+          esac
+          ts=$(date -u +"%Y-%m-%d %H:%M UTC")
+          git add reports/ cron_tracking/
+          git commit -m "Auto-author: ${label} — ${ts}" \
+                     -m "Generated via Claude API (sonnet-4-6). refresh.yml will top up prices on the next cron tick."
+          git push
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ "${{ steps.diff.outputs.changed }}" = "true" ]; then
+            echo "### New report authored" >> "$GITHUB_STEP_SUMMARY"
+            git log -1 --pretty=format:"- %s%n- %h%n- %ad" --date=iso >> "$GITHUB_STEP_SUMMARY" || true
+          else
+            echo "### No new report this run" >> "$GITHUB_STEP_SUMMARY"
+          fi
