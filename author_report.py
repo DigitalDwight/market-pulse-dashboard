@@ -147,7 +147,7 @@ US30, NAS100, GER40, AUDUSD, GBPCAD, XAGUSD, XAUUSD
 # Process
 
 1. Read the previous tracking file in the user message. It contains the biases set last time -- those are the things you will scorecard against.
-2. Use web_search (up to 8 queries) to research what actually happened in markets since that previous run. Verify the directional outcome for each instrument so the scorecard is honest.
+2. Use web_search (up to 5 queries) to research what actually happened in markets since that previous run. Verify the directional outcome for each instrument so the scorecard is honest. Spend your queries on the highest-value targets: the macro prints, the central bank speakers, the geopolitical headlines, the conviction-trade instruments.
 3. Form fresh biases for the next 3-5 trading days for all 7 instruments.
 4. Pick the top 3 conviction trades for the period.
 5. Call the publish_report tool exactly once with the markdown, jsonPayload, and trackingMd fields fully populated.
@@ -261,7 +261,7 @@ def call_claude_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[
     web_search_tool = {
         "type": "web_search_20260209",
         "name": "web_search",
-        "max_uses": 8,
+        "max_uses": 5,
     }
     # Streaming because Sonnet 4.6 reports can produce > 16K output tokens.
     with client.messages.stream(

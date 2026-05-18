@@ -41,7 +41,7 @@ concurrency:
 jobs:
   author:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
 
     steps:
       - name: Check out repo
