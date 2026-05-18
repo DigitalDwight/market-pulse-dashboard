@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-05-17T20:43:58Z",
-  "count": 2,
+  "generatedAt": "2026-05-18T10:16:15Z",
+  "count": 3,
   "reports": [
+    {
+      "slug": "2026-05-17-weekly",
+      "type": "Weekly",
+      "date": "2026-05-17",
+      "displayDate": "Sunday 17 May 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-05-17-weekly.md",
+      "lastUpdated": "2026-05-18T10:16:15Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "Moody's strips US of last Aaa rating (downgrades to Aa1) as April CPI +3.8% YoY cements Fed hold. NAS100 hit year high 29,678 on Trump-Xi Beijing summit before Friday reversal. Silver crashed 14% from 88.88 peak. NVDA earnings Thu May 22 is the pivotal forward catalyst.",
+      "jsonFile": "2026-05-17-weekly.json"
+    },
     {
       "slug": "2026-05-10-weekly",
       "type": "Weekly",
@@ -9,7 +21,7 @@
       "displayDate": "Sunday 10 May 2026",
       "title": "MARKET PULSE — Weekly Trading Report",
       "markdownFile": "2026-05-10-weekly.md",
-      "lastUpdated": "2026-05-13T08:38:20Z",
+      "lastUpdated": "2026-05-17T20:44:04Z",
       "marketSentiment": "NEUTRAL_BULLISH",
       "macroTheme": "US equities consolidate near highs as gold deflates further on Iran ceasefire; Fed hold extends into June with stagflation-lite risks intact. RBA delivered 3rd hike, NFP +168K modestly hot.",
       "jsonFile": "2026-05-10-weekly.json"
