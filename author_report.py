@@ -266,8 +266,14 @@ def call_claude_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[
     # Streaming because Sonnet 4.6 reports can produce > 16K output tokens.
     with client.messages.stream(
         model=MODEL,
-        max_tokens=32000,
+        max_tokens=64000,
         thinking={"type": "adaptive"},
+        # effort=medium bounds thinking depth -- the report has a fixed structure,
+        # so deep reasoning is wasted budget that crowds out the final tool call.
+        # (default is high; the previous run blew through 32K output without ever
+        # reaching publish_report because thinking + dynamic-filter code execution
+        # consumed it all.)
+        output_config={"effort": "medium"},
         system=[
             {
                 "type": "text",
