@@ -35,7 +35,10 @@ permissions:
   contents: write
 
 concurrency:
-  group: market-pulse-author
+  # Shared with refresh.yml so author and refresh serialize against each other.
+  # Without this, refresh.yml can push between author.yml's commit and push and
+  # reject author's push with "fetch first" (non-fast-forward).
+  group: market-pulse
   cancel-in-progress: false
 
 jobs:
