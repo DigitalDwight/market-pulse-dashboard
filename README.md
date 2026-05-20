@@ -25,6 +25,8 @@ dashboard:
 
 A deep link like `#/2026-05-06-midweek` loads that report directly when shared.
 
+The topbar also has a **"Force refresh ↗"** button that opens GitHub Actions in a new tab — use it to manually trigger `author.yml` if a scheduled Wed/Sun cron was missed. To backfill a specific date, fill in the `date` (YYYY-MM-DD) and `run_type` (weekly|midweek) inputs on the workflow-dispatch form. Requires GitHub sign-in with repo write access (it relies on GitHub's auth rather than embedding a token in the page).
+
 ## How reports stay current
 
 Three GitHub Actions keep everything in sync — no local machine required.

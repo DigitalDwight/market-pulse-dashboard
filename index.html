@@ -203,6 +203,10 @@ footer a{margin:0 8px}
     <button class="btn" id="downloadCurrentBtn" onclick="downloadCurrent()">Download .md</button>
     <button class="btn" id="viewReportBtn" onclick="openCurrentReport()">View Report</button>
     <button class="btn" onclick="window.print()">Print</button>
+    <a class="btn" id="forceRefreshBtn"
+       href="https://github.com/DigitalDwight/market-pulse-dashboard/actions/workflows/author.yml"
+       target="_blank" rel="noopener noreferrer"
+       title="Opens GitHub Actions in a new tab. Click 'Run workflow' there to author a new report — useful if the scheduled Wed 06:00 / Sun 20:00 GMT cron was missed. To backfill a specific date, fill in the 'date' input (YYYY-MM-DD) and 'run_type' (weekly|midweek). Requires GitHub sign-in with repo write access.">Force refresh &#8599;</a>
     <button class="btn primary" id="backToLatestBtn" onclick="loadReportBySlug(null)" style="display:none">Back to Latest</button>
   </div>
 </header>
