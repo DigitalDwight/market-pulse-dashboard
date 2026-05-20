@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-05-20T08:58:06Z",
-  "count": 3,
+  "generatedAt": "2026-05-20T10:15:33Z",
+  "count": 4,
   "reports": [
+    {
+      "slug": "2026-05-20-midweek",
+      "type": "Mid-Week",
+      "date": "2026-05-20",
+      "displayDate": "Wednesday 20 May 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-05-20-midweek.md",
+      "lastUpdated": "2026-05-20T10:15:33Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "Moody's strips US Aaa sovereign rating (Aa1, May 16); hot CPI April +3.8% cements Fed hold through Warsh transition; NAS100 ATH 29,678 reversed by fiscal shock; GER40 outperforms on USD credibility risk. NVDA Q1 earnings tonight are the binary back-half catalyst.",
+      "jsonFile": "2026-05-20-midweek.json"
+    },
     {
       "slug": "2026-05-17-weekly",
       "type": "Weekly",
@@ -9,7 +21,7 @@
       "displayDate": "Sunday 17 May 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-05-17-weekly.md",
-      "lastUpdated": "2026-05-18T10:16:15Z",
+      "lastUpdated": "2026-05-20T08:58:09Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "Moody's strips US of last Aaa rating (downgrades to Aa1) as April CPI +3.8% YoY cements Fed hold. NAS100 hit year high 29,678 on Trump-Xi Beijing summit before Friday reversal. Silver crashed 14% from 88.88 peak. NVDA earnings Thu May 22 is the pivotal forward catalyst.",
       "jsonFile": "2026-05-17-weekly.json"
