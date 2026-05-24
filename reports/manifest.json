@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-05-24T09:06:30Z",
-  "count": 3,
+  "generatedAt": "2026-05-24T09:30:49Z",
+  "count": 4,
   "reports": [
+    {
+      "slug": "2026-05-20-midweek",
+      "type": "Mid-Week",
+      "date": "2026-05-20",
+      "displayDate": "Wednesday 20 May 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-05-20-midweek.md",
+      "lastUpdated": "2026-05-24T09:30:49Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "Moody's strips US Aaa to Aa1; NVDA Q1 FY2027 record $81.6B revenue +85% YoY; US30 new year high 50,830; UK CPI 2.8% soft; gold correction extends below 4,550.",
+      "jsonFile": "2026-05-20-midweek.json"
+    },
     {
       "slug": "2026-05-17-weekly",
       "type": "Weekly",
