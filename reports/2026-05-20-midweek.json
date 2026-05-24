@@ -5,7 +5,7 @@
   "displayDate": "Wednesday 20 May 2026",
   "title": "MARKET PULSE -- Mid-Week Trading Report",
   "markdownFile": "2026-05-20-midweek.md",
-  "lastUpdated": "2026-05-24T09:30:49Z",
+  "lastUpdated": "2026-05-24T20:52:01Z",
   "marketSentiment": "NEUTRAL_BULLISH",
   "macroTheme": "Moody's strips US Aaa to Aa1; NVDA Q1 FY2027 record $81.6B revenue +85% YoY; US30 new year high 50,830; UK CPI 2.8% soft; gold correction extends below 4,550.",
   "macroOverview": "Moody's stripped the US of its final Aaa sovereign rating (downgraded to Aa1) on Friday 16 May, triggering a two-session equity drawdown before rapid absorption. NVDA Q1 FY2027 earnings (after close May 20) were the dominant catalyst: record revenue $81.6B (+85% YoY), Data Center $75.2B (+92%), $80B buyback, dividend raised from $0.01 to $0.25 quarterly. US30 set a new year high of 50,830 intraday on May 22. NAS100 approached the 29,679 year high. GER40 staged a +3.77% four-session reversal. UK CPI April printed +2.8% YoY (softest since March 2025), advancing BoE pivot odds. GBPCAD counter-intuitively recovered as oil weakness pressured CAD. Gold tested 4,465 intraday before settling at 4,523 -- the correction from the 5,602 ATH continues. PMI Flash on Friday May 23 is the next major multi-instrument catalyst.",
@@ -541,11 +541,11 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.712962,
+      "price": 0.715871,
       "previousClose": 0.71541,
-      "change": -0.002448,
-      "changePercent": -0.3422,
-      "dayHigh": 0.712962,
+      "change": 0.000461,
+      "changePercent": 0.0644,
+      "dayHigh": 0.716897,
       "dayLow": 0.712962,
       "yearHigh": 0.727738,
       "yearLow": 0.63735,
@@ -562,7 +562,7 @@
         0.71066,
         0.715001,
         0.71483,
-        0.712962
+        0.715871
       ],
       "ohlc": [
         {
@@ -672,9 +672,9 @@
         {
           "date": "2026-05-24",
           "open": 0.7129616141319275,
-          "high": 0.7129616141319275,
+          "high": 0.7168973088264465,
           "low": 0.7129616141319275,
-          "close": 0.7129616141319275,
+          "close": 0.7158707976341248,
           "volume": 0
         }
       ],
@@ -717,12 +717,12 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.85591,
+      "price": 1.85457,
       "previousClose": 1.85034,
-      "change": 0.00557,
-      "changePercent": 0.301,
-      "dayHigh": 1.85591,
-      "dayLow": 1.85591,
+      "change": 0.00423,
+      "changePercent": 0.2286,
+      "dayHigh": 1.85632,
+      "dayLow": 1.85457,
       "yearHigh": 1.89147,
       "yearLow": 1.8018,
       "signal": "NEUTRAL",
@@ -738,7 +738,7 @@
         1.84106,
         1.84679,
         1.850066,
-        1.85591
+        1.85457
       ],
       "ohlc": [
         {
@@ -848,9 +848,9 @@
         {
           "date": "2026-05-24",
           "open": 1.8559099435806274,
-          "high": 1.8559099435806274,
-          "low": 1.8559099435806274,
-          "close": 1.8559099435806274,
+          "high": 1.8563200235366821,
+          "low": 1.8545700311660767,
+          "close": 1.8545700311660767,
           "volume": 0
         }
       ],
