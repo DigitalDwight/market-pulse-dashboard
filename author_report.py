@@ -108,11 +108,47 @@ def fetch_all_quotes() -> tuple[dict[str, dict[str, Any]], list[str]]:
     return quotes, failures
 
 
-def load_prior_tracking(run_type: str) -> str:
-    path = TRACKING_DIR / CRON_IDS[run_type] / "last_run.md"
-    if path.exists():
-        return path.read_text(encoding="utf-8")
-    return "(no prior tracking file)"
+def _cron_id_for_report_type(type_str: str) -> str:
+    """Map a manifest report's 'type' string to the cron_id whose tracking file holds it."""
+    t = (type_str or "").lower()
+    if "mid" in t:
+        return CRON_IDS["midweek"]
+    return CRON_IDS["weekly"]
+
+
+def load_prior_tracking(current_slug: str, current_date: datetime) -> tuple[str, str, str]:
+    """
+    Return (prior_slug, prior_display_date, tracking_md) for the most recent
+    report strictly older than the one being authored.
+
+    Reads manifest.json (newest-first) and picks the first entry whose slug
+    differs from current_slug AND whose date < current_date. This means a
+    Wednesday run scorecards against the prior Sunday (if there is one), not
+    the prior Wednesday -- matching how a trader actually consumes the report
+    cadence.
+
+    Falls back to the matching-type tracking file if the manifest is missing
+    or empty (first-ever run).
+    """
+    manifest_path = REPORTS_DIR / "manifest.json"
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        current_date_str = current_date.strftime("%Y-%m-%d")
+        for entry in manifest.get("reports", []):
+            entry_slug = entry.get("slug", "")
+            entry_date = entry.get("date", "")
+            if entry_slug == current_slug:
+                continue
+            if entry_date >= current_date_str:
+                # Lexical compare works because dates are ISO YYYY-MM-DD.
+                continue
+            cron_id = _cron_id_for_report_type(entry.get("type", ""))
+            path = TRACKING_DIR / cron_id / "last_run.md"
+            if path.exists():
+                return entry_slug, entry.get("displayDate", entry_slug), path.read_text(encoding="utf-8")
+    # Fallback: same-type tracking file (original behaviour). Used on the very
+    # first run when manifest is empty.
+    return "(no prior report in manifest)", "(unknown)", "(no prior tracking file)"
 
 
 def load_examples() -> tuple[str, str]:
@@ -178,6 +214,8 @@ def build_user_prompt(
     run_type: str,
     today: datetime,
     slug: str,
+    prior_slug: str,
+    prior_display_date: str,
     prior_tracking: str,
     prefetched: dict[str, dict[str, Any]],
     failures: list[str],
@@ -209,13 +247,15 @@ Use these prices verbatim for the volatile JSON fields. Use them as the ground t
 {prices_block}
 ```
 
-# Previous tracking file (your notes from the prior run -- scorecard against these biases)
+# Previous report: {prior_slug} ({prior_display_date})
+
+Your scorecard MUST evaluate the biases set in THIS report (the most recent prior publication). The tracking note below is what that previous run wrote for you; the "Biases Set This Run" table inside it is what you must scorecard against -- not biases from any earlier report. In the scorecard markdown table and the jsonPayload.scorecard array, reference "{prior_display_date}" as the prior-bias date.
 
 ```markdown
 {prior_tracking}
 ```
 
-Now run web_search (target the last 7 days of macro, central bank, and instrument-specific news), then call publish_report with the full markdown narrative, the structured jsonPayload, and the trackingMd content that future runs will read.
+Now run web_search (target news between {prior_display_date} and {display_date} -- macro prints, central bank speakers, geopolitical headlines, conviction-trade instruments), then call publish_report with the full markdown narrative, the structured jsonPayload, and the trackingMd content that future runs will read.
 """
 
 
@@ -401,9 +441,14 @@ def main() -> int:
         print("ERROR: every yfinance fetch failed -- aborting.", file=sys.stderr)
         return 2
 
-    prior_tracking = load_prior_tracking(run_type)
+    prior_slug, prior_display_date, prior_tracking = load_prior_tracking(slug, today)
+    print(f"Scorecarding against prior report: {prior_slug} ({prior_display_date})", file=sys.stderr)
     system_prompt = build_system_prompt()
-    user_prompt = build_user_prompt(run_type, today, slug, prior_tracking, quotes, failures)
+    user_prompt = build_user_prompt(
+        run_type, today, slug,
+        prior_slug, prior_display_date, prior_tracking,
+        quotes, failures,
+    )
 
     print(f"Calling Claude API ({MODEL})...", file=sys.stderr)
     result = call_claude_api(api_key, system_prompt, user_prompt)

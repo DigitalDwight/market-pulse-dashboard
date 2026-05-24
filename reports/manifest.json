@@ -1,19 +1,7 @@
 {
-  "generatedAt": "2026-05-20T10:15:33Z",
-  "count": 4,
+  "generatedAt": "2026-05-24T09:04:51Z",
+  "count": 3,
   "reports": [
-    {
-      "slug": "2026-05-20-midweek",
-      "type": "Mid-Week",
-      "date": "2026-05-20",
-      "displayDate": "Wednesday 20 May 2026",
-      "title": "MARKET PULSE -- Mid-Week Trading Report",
-      "markdownFile": "2026-05-20-midweek.md",
-      "lastUpdated": "2026-05-20T10:15:33Z",
-      "marketSentiment": "NEUTRAL_BEARISH",
-      "macroTheme": "Moody's strips US Aaa sovereign rating (Aa1, May 16); hot CPI April +3.8% cements Fed hold through Warsh transition; NAS100 ATH 29,678 reversed by fiscal shock; GER40 outperforms on USD credibility risk. NVDA Q1 earnings tonight are the binary back-half catalyst.",
-      "jsonFile": "2026-05-20-midweek.json"
-    },
     {
       "slug": "2026-05-17-weekly",
       "type": "Weekly",
