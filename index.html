@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
-<script src="https://unpkg.com/lightweight-charts@3.8.0/dist/lightweight-charts.standalone.production.js"></script>
+<script src="https://s3.tradingview.com/tv.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
 :root{
@@ -139,7 +139,9 @@ td.num{font-family:'JetBrains Mono',monospace;text-align:right}
 .drill-head .name{color:var(--muted);font-size:13px}
 .drill-price{display:flex;flex-direction:column;align-items:flex-end}
 .drill-price .p{font-size:30px;font-weight:700;font-family:'JetBrains Mono',monospace}
-.chart-container{width:100%;height:380px;margin:18px 0;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.chart-container{width:100%;height:520px;margin:18px 0;border:1px solid var(--border);border-radius:10px;overflow:hidden;position:relative}
+.chart-hint{font-size:11px;color:var(--muted);margin:-8px 0 12px;display:flex;align-items:center;gap:6px}
+.chart-hint::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .levels-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 @media(max-width:700px){.levels-grid{grid-template-columns:1fr}.gauges{grid-template-columns:1fr 1fr}}
 .levels-grid h4{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:600}
@@ -647,7 +649,20 @@ function loadReportBySlugFromModal(){
 // ============================================================================
 //  INSTRUMENT DRILL-DOWN (unchanged from before)
 // ============================================================================
-let activeChart = null;
+// Map our 7 instrument codes to TradingView symbols. Picks match what prop
+// traders typically watch: FOREXCOM CFDs for the equity indices (covers the
+// CFD ticker most retail accounts trade), FX for spot FX pairs, OANDA for
+// metals (free real-time on the widget).
+const TV_SYMBOLS = {
+  US30:   'FOREXCOM:US30',
+  NAS100: 'FOREXCOM:NSXUSD',
+  GER40:  'FOREXCOM:GRXEUR',
+  AUDUSD: 'FX:AUDUSD',
+  GBPCAD: 'FX:GBPCAD',
+  XAGUSD: 'OANDA:XAGUSD',
+  XAUUSD: 'OANDA:XAUUSD',
+};
+
 function openDrill(idx){
   const inst = (currentData.instruments || [])[idx];
   if (!inst) return;
@@ -668,6 +683,7 @@ function openDrill(idx){
       </div>
     </div>
     <div class="chart-container" id="chart-${inst.symbol}"></div>
+    <div class="chart-hint">Live TradingView chart. Use the toolbar to change timeframe (1m / 5m / 15m / 1h / 4h / 1D / 1W / 1M), chart type, or add indicators. Support and resistance levels from this report are listed below.</div>
     <div class="levels-grid">
       <div>
         <h4>Support Levels</h4>
@@ -685,38 +701,46 @@ function openDrill(idx){
   setTimeout(()=>renderChart(inst), 30);
 }
 function renderChart(inst){
-  const el = document.getElementById('chart-'+inst.symbol);
-  if(!el || !window.LightweightCharts) return;
-  if(activeChart){ try{activeChart.remove();}catch(e){} activeChart=null; }
-  activeChart = LightweightCharts.createChart(el, {
-    width: el.clientWidth, height: 380,
-    layout: { backgroundColor:'#10141d', textColor:'#8892a6', fontFamily:'Inter' },
-    grid: { vertLines:{color:'#1f2636'}, horzLines:{color:'#1f2636'} },
-    timeScale: { borderColor:'#1f2636' },
-    rightPriceScale: { borderColor:'#1f2636' },
+  const el = document.getElementById('chart-' + inst.symbol);
+  if(!el) return;
+  // Wipe any previous widget instance — the TradingView widget injects an
+  // iframe and we want a clean slot for each open. The library tolerates
+  // re-init; we just need the container to be empty + carry a fresh id.
+  el.innerHTML = '';
+  const containerId = 'tv_chart_' + inst.symbol + '_' + Date.now();
+  const inner = document.createElement('div');
+  inner.id = containerId;
+  inner.style.width = '100%';
+  inner.style.height = '100%';
+  el.appendChild(inner);
+  if(!window.TradingView){
+    el.innerHTML = '<div style="padding:24px;color:var(--muted);font-size:13px">TradingView script failed to load. Check your connection and reopen the panel.</div>';
+    return;
+  }
+  new TradingView.widget({
+    autosize: true,
+    symbol: TV_SYMBOLS[inst.symbol] || inst.symbol,
+    interval: 'D',              // default daily; user changes via toolbar
+    timezone: 'Europe/London',
+    theme: 'dark',
+    style: '1',                 // 1 = candles
+    locale: 'en',
+    toolbar_bg: '#10141d',
+    enable_publishing: false,
+    withdateranges: true,       // bottom date-range tabs (1D, 5D, 1M, 3M...)
+    hide_side_toolbar: false,   // keep drawing tools available
+    allow_symbol_change: false, // lock the symbol to the instrument
+    save_image: false,
+    container_id: containerId,
+    backgroundColor: 'rgba(16,20,29,1)',
+    gridColor: 'rgba(31,38,54,0.5)',
   });
-  const series = activeChart.addCandlestickSeries({
-    upColor:'#26d07c', downColor:'#ef4f5e',
-    borderUpColor:'#26d07c', borderDownColor:'#ef4f5e',
-    wickUpColor:'#26d07c', wickDownColor:'#ef4f5e',
-  });
-  const seen = new Set();
-  const candles = (inst.ohlc || []).filter(c=>{ if(seen.has(c.date)) return false; seen.add(c.date); return true; })
-    .map(c=>({ time:c.date, open:c.open, high:c.high, low:c.low, close:c.close }));
-  series.setData(candles);
-  (inst.supports || []).forEach(s=> series.createPriceLine({ price:s.price, color:'rgba(38,208,124,.6)', lineWidth:1, lineStyle:2, axisLabelVisible:true, title:s.level }));
-  (inst.resistances || []).forEach(r=> series.createPriceLine({ price:r.price, color:'rgba(239,79,94,.6)', lineWidth:1, lineStyle:2, axisLabelVisible:true, title:r.level }));
-  activeChart.timeScale().fitContent();
-  window.addEventListener('resize', resizeChart);
-}
-function resizeChart(){
-  const el = document.querySelector('.chart-container');
-  if(activeChart && el) activeChart.applyOptions({ width: el.clientWidth });
 }
 function closeDrill(){
   $('drillModal').classList.remove('open');
   document.body.style.overflow = '';
-  if(activeChart){ try{activeChart.remove();}catch(e){} activeChart=null; }
+  // No explicit teardown needed: the next openDrill() wipes #drillContent,
+  // which removes the TV widget's iframe and any associated JS state.
 }
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeDrill(); closeReport(); } });
 
