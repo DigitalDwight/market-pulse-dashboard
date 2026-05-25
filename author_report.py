@@ -262,8 +262,12 @@ Now run web_search (target news between {prior_display_date} and {display_date} 
 PUBLISH_REPORT_TOOL = {
     "name": "publish_report",
     "description": (
-        "Publish the new Market Pulse trading report. Call exactly once at the end of your turn. "
-        "All three fields are required and must be fully populated -- partial output will be rejected."
+        "Publish the new Market Pulse trading report. Call exactly ONCE at the end of your turn "
+        "with ALL THREE fields populated. None of the three may be empty, null, or omitted -- "
+        "an empty markdown, empty jsonPayload, or empty trackingMd causes the report to be "
+        "REJECTED and the entire run fails. If you find yourself low on output budget, prefer "
+        "shorter content over an empty field. Do not emit multiple publish_report calls; "
+        "compose the full report internally, then submit it once."
     ),
     "input_schema": {
         "type": "object",
@@ -330,19 +334,42 @@ def call_claude_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[
         f"  Claude usage: input={final.usage.input_tokens} "
         f"output={final.usage.output_tokens} "
         f"cache_read={final.usage.cache_read_input_tokens} "
-        f"cache_creation={final.usage.cache_creation_input_tokens}",
+        f"cache_creation={final.usage.cache_creation_input_tokens} "
+        f"stop_reason={final.stop_reason}",
         file=sys.stderr,
     )
 
-    for block in final.content:
-        if getattr(block, "type", None) == "tool_use" and block.name == "publish_report":
-            return block.input
+    publish_calls = [
+        b for b in final.content
+        if getattr(b, "type", None) == "tool_use" and b.name == "publish_report"
+    ]
+    if not publish_calls:
+        block_types = [getattr(b, "type", "?") for b in final.content]
+        raise RuntimeError(
+            f"Claude did not call publish_report. stop_reason={final.stop_reason} "
+            f"content blocks={block_types}"
+        )
 
-    block_types = [getattr(b, "type", "?") for b in final.content]
-    raise RuntimeError(
-        f"Claude did not call publish_report. stop_reason={final.stop_reason} "
-        f"content blocks={block_types}"
+    # Claude can emit multiple publish_report calls (e.g. a partial early
+    # attempt then a final one). Prefer the last one that has all required
+    # fields populated; fall back to the last call so the caller's diagnostic
+    # path can surface what's missing.
+    required = ("markdown", "jsonPayload", "trackingMd")
+    for block in reversed(publish_calls):
+        if all(block.input.get(f) for f in required):
+            if len(publish_calls) > 1:
+                print(
+                    f"  Note: Claude emitted {len(publish_calls)} publish_report calls; "
+                    f"using the last complete one.",
+                    file=sys.stderr,
+                )
+            return block.input
+    print(
+        f"  WARN: {len(publish_calls)} publish_report call(s) found, none with all "
+        f"required fields populated. Returning last call for diagnostic dump.",
+        file=sys.stderr,
     )
+    return publish_calls[-1].input
 
 
 def merge_prices_into_payload(
@@ -456,8 +483,24 @@ def main() -> int:
     markdown = result.get("markdown", "")
     payload = result.get("jsonPayload", {})
     tracking_md = result.get("trackingMd", "")
-    if not (markdown and payload and tracking_md):
-        print("ERROR: publish_report tool_use was missing one or more fields.", file=sys.stderr)
+    missing = [
+        name for name, val in [
+            ("markdown", markdown), ("jsonPayload", payload), ("trackingMd", tracking_md),
+        ] if not val
+    ]
+    if missing:
+        print(f"ERROR: publish_report tool_use missing/empty fields: {missing}", file=sys.stderr)
+        sizes = {k: (len(v) if isinstance(v, (str, list, dict)) else "n/a") for k, v in result.items()}
+        print(f"  Field sizes in returned input: {sizes}", file=sys.stderr)
+        debug_path = REPO_ROOT / f"_failed_{slug}_publish_report.json"
+        try:
+            debug_path.write_text(
+                json.dumps(result, indent=2, ensure_ascii=False, default=str),
+                encoding="utf-8",
+            )
+            print(f"  Raw publish_report input dumped to {debug_path}", file=sys.stderr)
+        except Exception as exc:
+            print(f"  Could not dump raw input: {exc}", file=sys.stderr)
         return 2
 
     merge_prices_into_payload(payload, quotes)
