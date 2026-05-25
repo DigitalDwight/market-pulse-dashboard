@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-05-24T20:51:57Z",
-  "count": 4,
+  "generatedAt": "2026-05-25T08:37:26Z",
+  "count": 5,
   "reports": [
+    {
+      "slug": "2026-05-24-weekly",
+      "type": "Weekly",
+      "date": "2026-05-24",
+      "displayDate": "Sunday 24 May 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-05-24-weekly.md",
+      "lastUpdated": "2026-05-25T08:37:26Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "NVDA blowout earnings ($81.6B +85% YoY) and US Manufacturing PMI 55.3 (4-year high) drove global risk-on. US30 set a new year high of 50,830. GER40 surged +5% despite Eurozone PMI crashing to 47.5 (29-month low). Gold extends Iran-war ATH correction. FOMC Minutes (Tue May 27) is the dominant near-term catalyst.",
+      "jsonFile": "2026-05-24-weekly.json"
+    },
     {
       "slug": "2026-05-20-midweek",
       "type": "Mid-Week",
@@ -9,7 +21,7 @@
       "displayDate": "Wednesday 20 May 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-05-20-midweek.md",
-      "lastUpdated": "2026-05-24T09:30:49Z",
+      "lastUpdated": "2026-05-24T20:52:01Z",
       "marketSentiment": "NEUTRAL_BULLISH",
       "macroTheme": "Moody's strips US Aaa to Aa1; NVDA Q1 FY2027 record $81.6B revenue +85% YoY; US30 new year high 50,830; UK CPI 2.8% soft; gold correction extends below 4,550.",
       "jsonFile": "2026-05-20-midweek.json"
