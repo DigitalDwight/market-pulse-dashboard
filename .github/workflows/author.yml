@@ -102,6 +102,19 @@ jobs:
                      -m "Generated via Claude API (sonnet-4-6). refresh.yml will top up prices on the next cron tick."
           git push
 
+      - name: Post summary to ClickUp
+        if: steps.diff.outputs.changed == 'true' && inputs.dry_run != true
+        # Soft-fail: post_to_clickup.py exits 0 on missing token or API error
+        # so a chat hiccup never blocks the publish. continue-on-error is
+        # belt-and-suspenders in case the script itself crashes.
+        continue-on-error: true
+        env:
+          CLICKUP_API_TOKEN: ${{ secrets.CLICKUP_API_TOKEN }}
+        run: |
+          slug=$(python -c "import json; print(json.load(open('reports/manifest.json'))['reports'][0]['slug'])")
+          echo "Posting $slug summary to ClickUp..."
+          python post_to_clickup.py "$slug"
+
       - name: Summary
         if: always()
         run: |

@@ -60,6 +60,25 @@ auto-fires on the `reports/**` push.
 The workflow uses prompt caching, so cost per run is dominated by output tokens
 (~$0.30–$0.60 with Sonnet 4.6 for a full report including 8 web searches).
 
+### Optional: ClickUp posting
+
+After each successful author run, the workflow also posts a concise summary
+(sentiment, macro theme, top 3 trades, scorecard) to a ClickUp chat channel
+via `post_to_clickup.py`. To enable:
+
+1. Generate a personal API token at <https://app.clickup.com/settings/apps>
+2. Add it as a repo secret named `CLICKUP_API_TOKEN`
+
+Defaults target workspace `9005093620`, channel `8cbxmqm-64592` (the
+"Analysis" channel — same one in the original Market Pulse spec).
+Override via `CLICKUP_WORKSPACE_ID`, `CLICKUP_CHANNEL_ID`, or
+`DASHBOARD_URL` env vars in the workflow step if you ever move them.
+
+If `CLICKUP_API_TOKEN` isn't set, or the ClickUp API errors, the step
+soft-fails (exits 0). The report is already published to the dashboard
+regardless — ClickUp is just a side-channel notification, never blocks
+the publish pipeline.
+
 ### What the refresh updates
 
 Volatile fields refreshed every cron run on the **latest** report:
