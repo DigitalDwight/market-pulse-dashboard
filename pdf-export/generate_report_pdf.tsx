@@ -495,126 +495,121 @@ const TopTrades: React.FC = () => (
   </View>
 );
 
-// Half-A4 instrument tear sheet, sized to fit 2 per A4.
-// Total budget per card ~340pt:
-//   Header (~38pt) + body (S/R + chart, 88pt) + metrics strip (24pt)
-//   + analysis (~120pt for ~6 lines at 8pt × 1.45) + margins (~70pt buffer).
-const InstrumentCard: React.FC<{ inst: any; isFirst: boolean }> = ({ inst, isFirst }) => {
+// Full A4 tear sheet — one instrument per page.
+// Layout: header, full-width 14-day candle chart, metrics strip, S/R side-by-side,
+// analysis text. Generous spacing throughout; the chart is the visual centerpiece.
+const InstrumentPage: React.FC<{ inst: any; pageIndex: number; totalPages: number }> = ({ inst, pageIndex, totalPages }) => {
   const chg = inst.changePercent ?? 0;
   const chgCol = chg > 0 ? C.bull : chg < 0 ? C.bear : C.neutral;
   const sigCol = signalColor(inst.signal);
   const sigBg = sigCol === C.bull ? C.bullBg : sigCol === C.bear ? C.bearBg : C.neutralBg;
+  // A4 width 595pt − 36pt × 2 padding = 523pt available.
+  const chartW = 523;
+  const chartH = 200;
   return (
-    <View
-      id={`inst-${inst.symbol}`}
-      style={{
-        marginTop: isFirst ? 0 : 10,
-        paddingTop: isFirst ? 0 : 10,
-        borderTop: isFirst ? "none" : `0.5pt solid ${C.border}`,
-      }}
-      wrap={false}
-    >
-      {/* Header row */}
-      <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 6 }}>
-        <View style={{ flex: 1, paddingRight: 12 }}>
-          <View style={{ flexDirection: "row", alignItems: "baseline", gap: 8 }}>
-            <Text style={{ fontSize: 15, fontWeight: 700 }}>{inst.symbol}</Text>
-            <Text style={{ fontSize: 8.5, color: C.textMuted }}>{inst.name}</Text>
-          </View>
+    <Page size="A4" style={styles.page} id={`inst-${inst.symbol}`}>
+      <Chrome />
+      <Text style={[styles.sectionHead, { marginBottom: 14 }]}>
+        INSTRUMENT ANALYSIS  ·  {pageIndex + 1} OF {totalPages}
+      </Text>
+
+      {/* Header: symbol/name left, price/change/signal right with explicit
+          width on the right column to prevent any overlap. */}
+      <View style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 14 }}>
+        <View style={{ flex: 1, paddingRight: 16 }}>
+          <Text style={{ fontSize: 28, fontWeight: 700, lineHeight: 1.1 }}>{inst.symbol}</Text>
+          <Text style={{ fontSize: 11, color: C.textMuted, marginTop: 4 }}>{inst.name}</Text>
         </View>
-        <View style={{ flexDirection: "row", alignItems: "baseline", gap: 8 }}>
-          <Text style={[styles.mono, { fontSize: 14, fontWeight: 700 }]}>{fmtPrice(inst.price, inst.symbol)}</Text>
-          <Text style={[styles.mono, { fontSize: 8.5, color: chgCol, fontWeight: 700 }]}>
+        <View style={{ width: 200, alignItems: "flex-end" }}>
+          <Text style={[styles.mono, {
+            fontSize: 26, fontWeight: 700, lineHeight: 1.15, marginBottom: 6,
+          }]}>{fmtPrice(inst.price, inst.symbol)}</Text>
+          <Text style={[styles.mono, {
+            fontSize: 11, color: chgCol, fontWeight: 700, lineHeight: 1.3, marginBottom: 8,
+          }]}>
             {sign(inst.change)}{fmtPrice(inst.change, inst.symbol)}  ·  {sign(chg)}{fmtPct(chg)}%
           </Text>
           <Text style={[styles.signalChip, {
             color: sigCol, backgroundColor: sigBg,
-            paddingVertical: 2, paddingHorizontal: 7, fontSize: 7.5,
+            paddingVertical: 4, paddingHorizontal: 10, fontSize: 9,
           }]}>
-            {shortSignal(inst.signal)} {sign(inst.signalStrength)}{inst.signalStrength}
+            {shortSignal(inst.signal)}  ·  {sign(inst.signalStrength)}{inst.signalStrength}
           </Text>
         </View>
       </View>
 
-      {/* Body: S/R columns (left) + Candle chart (right) */}
-      <View style={{ flexDirection: "row", gap: 8, marginBottom: 5 }}>
-        <View style={{ flex: 1, flexDirection: "row", gap: 6 }}>
-          <View style={{ flex: 1, backgroundColor: C.panel, padding: 5, borderRadius: 3 }}>
-            <Text style={{ fontSize: 6.5, color: C.textMuted, letterSpacing: 1, fontWeight: 700, marginBottom: 2 }}>SUPPORTS</Text>
-            {(inst.supports || []).map((s: any, i: number) => (
-              <View key={i} style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "baseline", paddingVertical: 0.5 }}>
-                <Text style={{ fontSize: 7.5, color: C.text, fontWeight: 700, width: 14 }}>{s.level}</Text>
-                <Text style={[styles.mono, { fontSize: 7.5, color: C.bull, fontWeight: 700 }]}>{fmtPrice(s.price, inst.symbol)}</Text>
-              </View>
-            ))}
-          </View>
-          <View style={{ flex: 1, backgroundColor: C.panel, padding: 5, borderRadius: 3 }}>
-            <Text style={{ fontSize: 6.5, color: C.textMuted, letterSpacing: 1, fontWeight: 700, marginBottom: 2 }}>RESISTANCES</Text>
-            {(inst.resistances || []).map((r: any, i: number) => (
-              <View key={i} style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "baseline", paddingVertical: 0.5 }}>
-                <Text style={{ fontSize: 7.5, color: C.text, fontWeight: 700, width: 14 }}>{r.level}</Text>
-                <Text style={[styles.mono, { fontSize: 7.5, color: C.bear, fontWeight: 700 }]}>{fmtPrice(r.price, inst.symbol)}</Text>
-              </View>
-            ))}
-          </View>
-        </View>
-        <View>
-          <CandleChart ohlc={inst.ohlc} width={220} height={75} />
-        </View>
+      {/* Full-width candle chart — the visual centerpiece */}
+      <View style={{ marginBottom: 14 }}>
+        <Text style={{ fontSize: 8, color: C.textMuted, letterSpacing: 1, fontWeight: 700, marginBottom: 5 }}>
+          14-DAY PRICE ACTION
+        </Text>
+        <CandleChart ohlc={inst.ohlc} width={chartW} height={chartH} />
       </View>
 
-      {/* Mini metrics strip — 1 line */}
+      {/* Day/52w/prev/event-impact strip */}
       <View style={{
-        flexDirection: "row", paddingVertical: 3, marginBottom: 5,
-        borderTop: `0.4pt solid ${C.border}`, borderBottom: `0.4pt solid ${C.border}`,
-        gap: 18,
+        flexDirection: "row", marginBottom: 14,
+        borderTop: `0.5pt solid ${C.border}`, borderBottom: `0.5pt solid ${C.border}`,
+        paddingVertical: 8,
       }}>
-        <Text style={{ fontSize: 7, color: C.textMuted }}>
-          Day  <Text style={[styles.mono, { color: C.text, fontWeight: 600 }]}>
-            {fmtPrice(inst.dayLow, inst.symbol)}–{fmtPrice(inst.dayHigh, inst.symbol)}
+        <View style={{ flex: 1 }}>
+          <Text style={{ fontSize: 7.5, color: C.textMuted, letterSpacing: 1, fontWeight: 700 }}>DAY RANGE</Text>
+          <Text style={[styles.mono, { fontSize: 11, fontWeight: 600, marginTop: 2 }]}>
+            {fmtPrice(inst.dayLow, inst.symbol)} – {fmtPrice(inst.dayHigh, inst.symbol)}
           </Text>
-        </Text>
-        <Text style={{ fontSize: 7, color: C.textMuted }}>
-          52W  <Text style={[styles.mono, { color: C.text, fontWeight: 600 }]}>
-            {fmtPrice(inst.yearLow, inst.symbol)}–{fmtPrice(inst.yearHigh, inst.symbol)}
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={{ fontSize: 7.5, color: C.textMuted, letterSpacing: 1, fontWeight: 700 }}>52-WEEK RANGE</Text>
+          <Text style={[styles.mono, { fontSize: 11, fontWeight: 600, marginTop: 2 }]}>
+            {fmtPrice(inst.yearLow, inst.symbol)} – {fmtPrice(inst.yearHigh, inst.symbol)}
           </Text>
-        </Text>
-        <Text style={{ fontSize: 7, color: C.textMuted }}>
-          Prev  <Text style={[styles.mono, { color: C.text, fontWeight: 600 }]}>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={{ fontSize: 7.5, color: C.textMuted, letterSpacing: 1, fontWeight: 700 }}>PREVIOUS CLOSE</Text>
+          <Text style={[styles.mono, { fontSize: 11, fontWeight: 600, marginTop: 2 }]}>
             {fmtPrice(inst.previousClose, inst.symbol)}
           </Text>
-        </Text>
-        <Text style={{ fontSize: 7, color: C.textMuted }}>
-          Evt impact  <Text style={[styles.mono, { color: C.text, fontWeight: 600 }]}>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={{ fontSize: 7.5, color: C.textMuted, letterSpacing: 1, fontWeight: 700 }}>EVENT IMPACT</Text>
+          <Text style={[styles.mono, { fontSize: 11, fontWeight: 600, marginTop: 2 }]}>
             {inst.eventImpactProbability ?? "—"}%
           </Text>
-        </Text>
+        </View>
+      </View>
+
+      {/* Supports / Resistances side-by-side */}
+      <View style={{ flexDirection: "row", gap: 14, marginBottom: 14 }}>
+        <View style={{ flex: 1, backgroundColor: C.panel, padding: 10, borderRadius: 5 }}>
+          <Text style={{ fontSize: 8, color: C.textMuted, letterSpacing: 1, fontWeight: 700, marginBottom: 6 }}>SUPPORTS</Text>
+          {(inst.supports || []).map((s: any, i: number) => (
+            <View key={i} style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "baseline", paddingVertical: 2 }}>
+              <Text style={{ fontSize: 8.5, color: C.text, fontWeight: 700, width: 20 }}>{s.level}</Text>
+              <Text style={{ fontSize: 8.5, color: C.textMuted, flex: 1, paddingRight: 6 }}>{s.description}</Text>
+              <Text style={[styles.mono, { fontSize: 9.5, color: C.bull, fontWeight: 700 }]}>{fmtPrice(s.price, inst.symbol)}</Text>
+            </View>
+          ))}
+        </View>
+        <View style={{ flex: 1, backgroundColor: C.panel, padding: 10, borderRadius: 5 }}>
+          <Text style={{ fontSize: 8, color: C.textMuted, letterSpacing: 1, fontWeight: 700, marginBottom: 6 }}>RESISTANCES</Text>
+          {(inst.resistances || []).map((r: any, i: number) => (
+            <View key={i} style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "baseline", paddingVertical: 2 }}>
+              <Text style={{ fontSize: 8.5, color: C.text, fontWeight: 700, width: 20 }}>{r.level}</Text>
+              <Text style={{ fontSize: 8.5, color: C.textMuted, flex: 1, paddingRight: 6 }}>{r.description}</Text>
+              <Text style={[styles.mono, { fontSize: 9.5, color: C.bear, fontWeight: 700 }]}>{fmtPrice(r.price, inst.symbol)}</Text>
+            </View>
+          ))}
+        </View>
       </View>
 
       {/* Analysis text */}
-      <Text style={{ fontSize: 8, color: C.text, lineHeight: 1.45 }}>{inst.analysis}</Text>
-    </View>
+      <View>
+        <Text style={{ fontSize: 8, color: C.textMuted, letterSpacing: 1, fontWeight: 700, marginBottom: 5 }}>ANALYSIS</Text>
+        <Text style={{ fontSize: 9.5, color: C.text, lineHeight: 1.55 }}>{inst.analysis}</Text>
+      </View>
+    </Page>
   );
 };
-
-// Page that holds up to 2 instrument cards.
-const InstrumentSpread: React.FC<{ insts: any[]; pageIndex: number; totalPages: number }> = ({ insts, pageIndex, totalPages }) => (
-  <Page size="A4" style={styles.page}>
-    <Chrome />
-    {pageIndex === 0 ? (
-      <Text style={[styles.sectionHead, { marginBottom: 12 }]}>
-        INSTRUMENT ANALYSIS  ·  PAGE {pageIndex + 1} OF {totalPages}
-      </Text>
-    ) : (
-      <Text style={[styles.sectionHead, { marginBottom: 12 }]}>
-        INSTRUMENT ANALYSIS (CONT.)  ·  PAGE {pageIndex + 1} OF {totalPages}
-      </Text>
-    )}
-    {insts.map((inst, i) => (
-      <InstrumentCard inst={inst} isFirst={i === 0} key={inst.symbol} />
-    ))}
-  </Page>
-);
 
 const UpcomingEvents: React.FC = () => (
   <View style={styles.section} id="events">
@@ -646,21 +641,13 @@ const UpcomingEvents: React.FC = () => (
 //    2: Contents
 //    3: Live Data + Scorecard
 //    4: Top Conviction Trades
-//    5..(4+M): Instrument spreads (2 per page, M = ceil(N/2))
-//    (5+M): Upcoming Events + Risk Scenarios
-//  For N=7 instruments: M=4, total = 9 pages.
+//    5..(4+N): One page per instrument
+//    (5+N): Upcoming Events + Risk Scenarios
+//  For N=7 instruments: total = 12 pages.
 // ---------------------------------------------------------------------------
 
-const INSTRUMENTS_PER_PAGE = 2;
-
-function chunk<T>(arr: T[], size: number): T[][] {
-  const out: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
-}
-
-const instrumentSpreads = chunk((report.instruments || []), INSTRUMENTS_PER_PAGE);
-const TAIL_PAGE = 5 + instrumentSpreads.length;
+const instruments: any[] = report.instruments || [];
+const TAIL_PAGE = 5 + instruments.length;
 
 type TocItem = { id: string; label: string; page: number; indent?: boolean };
 
@@ -670,18 +657,14 @@ function buildToc(): TocItem[] {
     { id: "scorecard", label: "Scorecard vs Previous",  page: 3 },
     { id: "trades",    label: "Top Conviction Trades",  page: 4 },
   ];
-  instrumentSpreads.forEach((spread, spreadIdx) => {
-    const page = 5 + spreadIdx;
-    spread.forEach((inst: any, instIdx: number) => {
-      const isFirstInstrumentOverall = spreadIdx === 0 && instIdx === 0;
-      items.push({
-        id: `inst-${inst.symbol}`,
-        label: isFirstInstrumentOverall
-          ? `Instrument Analysis  ·  ${inst.symbol}`
-          : `${inst.symbol}` + (inst.name ? `  ·  ${inst.name}` : ""),
-        page,
-        indent: !isFirstInstrumentOverall,
-      });
+  instruments.forEach((inst: any, i: number) => {
+    items.push({
+      id: `inst-${inst.symbol}`,
+      label: i === 0
+        ? `Instrument Analysis  ·  ${inst.symbol}`
+        : `${inst.symbol}` + (inst.name ? `  ·  ${inst.name}` : ""),
+      page: 5 + i,
+      indent: i > 0,
     });
   });
   items.push({ id: "events",    label: "Upcoming Events",   page: TAIL_PAGE });
@@ -786,13 +769,13 @@ const MarketPulsePdf: React.FC<{ qrPng: Buffer; generatedAt: string; reportUrl: 
       <TopTrades />
     </Page>
 
-    {/* 5..(4+M). 2 instruments per page */}
-    {instrumentSpreads.map((spread, idx) => (
-      <InstrumentSpread
-        insts={spread}
+    {/* 5..(4+N). One page per instrument */}
+    {instruments.map((inst, idx) => (
+      <InstrumentPage
+        inst={inst}
         pageIndex={idx}
-        totalPages={instrumentSpreads.length}
-        key={`spread-${idx}`}
+        totalPages={instruments.length}
+        key={inst.symbol}
       />
     ))}
 
