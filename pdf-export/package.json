@@ -1,0 +1,19 @@
+{
+  "name": "market-pulse-pdf-export",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsx generate_report_pdf.tsx"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^4.1.6",
+    "@types/qrcode": "^1.5.6",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "tsx": "^4.19.2"
+  }
+}

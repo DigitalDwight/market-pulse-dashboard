@@ -56,8 +56,18 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Install dependencies
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: pdf-export/package-lock.json
+
+      - name: Install Python dependencies
         run: pip install -r requirements.txt
+
+      - name: Install PDF export dependencies
+        run: cd pdf-export && npm ci --silent --no-fund --no-audit
 
       - name: Author new report
         env:
@@ -73,6 +83,19 @@ jobs:
       - name: Rebuild manifest
         if: inputs.dry_run != true
         run: python build_manifest.py
+
+      - name: Generate PDF
+        # Soft-fail: a PDF generation failure must not block the publish path.
+        # The .md/.json are already on disk; if the PDF fails we still want
+        # the report committed and the ClickUp summary posted.
+        if: inputs.dry_run != true
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          slug=$(python -c "import json; print(json.load(open('reports/manifest.json'))['reports'][0]['slug'])")
+          echo "Generating PDF for $slug..."
+          cd pdf-export
+          npx tsx generate_report_pdf.tsx "$slug"
 
       - name: Check for changes
         id: diff

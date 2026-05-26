@@ -33,7 +33,7 @@ Three GitHub Actions keep everything in sync — no local machine required.
 
 | Workflow | Trigger | What it does |
 |----------|---------|--------------|
-| **author.yml** | `cron: 30 19 * * 0` (Sun) + `cron: 30 5 * * 3` (Wed) + manual | Reads `cron_tracking/<id>/last_run.md`, pre-fetches yfinance prices, calls Claude (Sonnet 4.6 + web search) via `author_report.py` to produce a new `<date>-<weekly\|midweek>.{md,json}`, updates the tracking file, commits, pushes |
+| **author.yml** | `cron: 30 19 * * 0` (Sun) + `cron: 30 5 * * 3` (Wed) + manual | Reads `cron_tracking/<id>/last_run.md`, pre-fetches yfinance prices, calls Claude (Sonnet 4.6 + web search) via `author_report.py` to produce a new `<date>-<weekly\|midweek>.{md,json}`, generates the matching PDF via `pdf-export/generate_report_pdf.tsx`, updates the tracking file, commits, pushes, then posts a summary (with PDF download link) to ClickUp |
 | **refresh.yml** | `cron: 0 20 * * 0` (Sun) + `cron: 0 6 * * 3` (Wed) + manual | Rebuilds manifest, pulls live yfinance prices, writes volatile fields into the latest report's `.json`, commits, pushes |
 | **rebuild-manifest.yml** | Push to `reports/**` | Regenerates `reports/manifest.json` so newly-added reports appear immediately in the dashboard's History |
 
@@ -127,6 +127,11 @@ Actions tab.
 ├── author_report.py                 Claude API orchestrator → writes new <date>-<type>.{md,json}
 ├── build_manifest.py                rebuilds manifest from reports/*.json
 ├── refresh_dashboard.py             yfinance fetcher → writes prices into latest report
+├── post_to_clickup.py               posts the report summary to the Analysis ClickUp channel
+├── pdf-export/                      React-PDF tear-sheet generator (see pdf-export/README.md)
+│   ├── generate_report_pdf.tsx
+│   ├── fonts/                       Inter + JetBrains Mono (local TTFs)
+│   └── package.json                 Pinned deps: @react-pdf/renderer, qrcode, tsx
 ├── requirements.txt                 Python deps (yfinance, anthropic)
 ├── .gitignore
 └── .github/workflows/

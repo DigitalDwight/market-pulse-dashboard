@@ -36,6 +36,9 @@ REPORTS_DIR = REPO_ROOT / "reports"
 DEFAULT_WORKSPACE = "9005093620"
 DEFAULT_CHANNEL = "8cbxmqm-64592"
 DEFAULT_DASHBOARD = "https://digitaldwight.github.io/market-pulse-dashboard/"
+# Direct download URL pattern for files in the main branch. Used to link the
+# generated PDF in the ClickUp summary so a click pulls the file.
+DEFAULT_RAW_PDF_BASE = "https://raw.githubusercontent.com/DigitalDwight/market-pulse-dashboard/main/reports"
 
 # Display form for the JSON's underscore sentiment values.
 SENTIMENT_DISPLAY = {
@@ -47,7 +50,7 @@ SENTIMENT_DISPLAY = {
 }
 
 
-def build_summary(report: dict, dashboard_url: str) -> str:
+def build_summary(report: dict, dashboard_url: str, pdf_url: str | None) -> str:
     type_label = report.get("type", "")
     title_prefix = f"MARKET PULSE — {type_label} Trading Report"
     display_date = report.get("displayDate", report.get("date", ""))
@@ -70,6 +73,10 @@ def build_summary(report: dict, dashboard_url: str) -> str:
 
     report_url = f"{dashboard_url.rstrip('/')}/#/{slug}"
 
+    links = [f"Live dashboard: {report_url}"]
+    if pdf_url:
+        links.append(f"PDF: {pdf_url}")
+
     return "\n".join([
         f"**{title_prefix}**",
         f"{display_date}  |  Sentiment: **{sentiment}**",
@@ -82,7 +89,7 @@ def build_summary(report: dict, dashboard_url: str) -> str:
         "",
         f"**Scorecard:** {scorecard_chips}",
         "",
-        f"Full report: {report_url}",
+        *links,
     ])
 
 
@@ -141,9 +148,14 @@ def main() -> int:
     workspace_id = os.environ.get("CLICKUP_WORKSPACE_ID", DEFAULT_WORKSPACE)
     channel_id = os.environ.get("CLICKUP_CHANNEL_ID", DEFAULT_CHANNEL)
     dashboard_url = os.environ.get("DASHBOARD_URL", DEFAULT_DASHBOARD)
+    raw_pdf_base = os.environ.get("PDF_RAW_BASE", DEFAULT_RAW_PDF_BASE)
+
+    # Include the PDF download link if the PDF was generated alongside the JSON.
+    pdf_path = report_path.with_suffix(".pdf")
+    pdf_url = f"{raw_pdf_base.rstrip('/')}/{slug}.pdf" if pdf_path.exists() else None
 
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    content = build_summary(report, dashboard_url)
+    content = build_summary(report, dashboard_url, pdf_url)
 
     print(
         f"Posting {slug} summary ({len(content)} chars) to ClickUp "

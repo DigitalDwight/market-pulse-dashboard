@@ -3,3 +3,8 @@ __pycache__/
 .venv/
 venv/
 .DS_Store
+
+# PDF export tooling -- source files committed, build artefacts not.
+pdf-export/node_modules/
+pdf-export/preview/
+_failed_*.json
