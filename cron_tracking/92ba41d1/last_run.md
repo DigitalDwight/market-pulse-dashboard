@@ -1,82 +1,84 @@
-# Last Run: Wednesday 20 May 2026 (Mid-Week Update -- Run #1 of Wednesday cron)
-# Next Expected Run: Sunday 24 May 2026 at 20:00 GMT (Weekly Report)
+
+# Last Run: Wednesday 27 May 2026 (Mid-Week Report)
+# Next Expected Run: Sunday 31 May 2026 at 20:00 GMT (Weekly Report)
 
 ## Report Reference
-File: 2026-05-20-midweek.md
-Theme: Moody's US Aaa to Aa1 absorbed in two sessions. NVDA Q1 FY2027 blowout ($81.6B revenue +85% YoY, Data Center $75.2B +92%, $80B buyback, dividend 25x lift). US30 new year high 50,830. GER40 +3.77% reversal. UK CPI April 2.8% (soft, BoE pivot odds advance). XAUUSD flipped to BEARISH. Silver stabilized 74-77. AUDUSD broke below 0.7100 intraday.
+File: 2026-05-27-midweek.md
+Theme: NAS100 crosses 30,000 for first time (ATH 30,044) on Micron +18% AI rally and Goldman $800B AI forecast. FOMC minutes pending at 18:00 GMT today (hawkish committee split pre-signaled). GER40 extreme PMI-vs-price disconnect deepens. US-Iran ceasefire talks advanced; gold/silver Monday spike faded. PCE Friday May 30 is next major catalyst.
 
 ## Biases Set This Run
 
 | Instrument | Bias | Price | Key Support | Key Resistance |
 |---|---|---|---|---|
-| US30 | BULLISH | 50,580 | 50,063 / 49,697 | 50,830 year high / 51,000 / 51,500 |
-| NAS100 | BULLISH | 29,482 | 29,297 / 29,040 / 28,717 | 29,664 / 29,679 year high / 30,200 |
-| GER40 | NEUTRAL-BULLISH | 24,889 | 24,607 / 24,350 | 24,944 / 25,153 / 25,507 year high |
-| AUDUSD | NEUTRAL-BEARISH | 0.71296 | 0.7088 / 0.7080 | 0.7171 / 0.7219 |
-| GBPCAD | NEUTRAL | 1.85591 | 1.8411 / 1.8302 | 1.8575 / 1.8611 |
-| XAGUSD | NEUTRAL-BEARISH | 76.199 | 74.83 / 73.79 | 78.05 / 80.61 |
-| XAUUSD | BEARISH | 4,523.2 | 4,465 / 4,400 | 4,547 / 4,600 / 4,741 |
+| US30 | NEUTRAL | 50,461 | 50,285 / 50,063 / 49,697 | 50,785 / 50,830 year high / 51,000 |
+| NAS100 | BULLISH | 30,001 | 29,664 (broken prior ATH now support) / 29,357 / 29,040 | 30,044 ATH / 30,200 / 30,500 |
+| GER40 | NEUTRAL-BEARISH | 25,332 | 25,184 / 24,889 / 24,607 | 25,367 / 25,438 / 25,508 year high |
+| AUDUSD | NEUTRAL | 0.7144 | 0.7117 / 0.7088 / 0.7080 | 0.7181 / 0.7219 / 0.7277 |
+| GBPCAD | NEUTRAL-BEARISH | 1.85883 | 1.8544 / 1.8488 / 1.8411 | 1.8597 / 1.8648 / 1.8912 |
+| XAGUSD | NEUTRAL-BEARISH | 75.795 | 74.83 / 73.79 / 72.50 | 77.50 / 78.05 / 80.61 |
+| XAUUSD | BEARISH | 4,526.60 | 4,500 / 4,465 / 4,400 | 4,561 / 4,583 / 4,635 |
 
-## Sunday 17 May Scorecard (evaluated this run)
+## Sunday 24 May Scorecard (evaluated this run)
 
-- US30 NEUTRAL-BEARISH: WRONG (+2.13% to new year high 50,830 intraday)
-- NAS100 NEUTRAL-BULLISH: CORRECT (+1.22%, post-NVDA blowout recovery toward year high)
-- GER40 NEUTRAL-BEARISH: WRONG (+3.77%, four-session reversal broke 24,226 and 24,492 resistance)
-- AUDUSD NEUTRAL-BULLISH: WRONG (-0.40%, broke below 0.7100 floor intraday May 20)
-- GBPCAD NEUTRAL-BEARISH: WRONG (+1.05%, oil pullback weakened CAD more than soft CPI weakened GBP)
-- XAGUSD NEUTRAL-BEARISH: PARTIALLY (dipped to 73.79 May 19 then recovered to 76.20, flat net)
-- XAUUSD NEUTRAL: CORRECT (-0.49%, consistent with neutral call; May 20 low 4,465 held stop 4,460)
+- US30 BULLISH: PARTIALLY (-0.23%; year high 50,830 set pre-Sunday May 22; Memorial Day gap; held 50,000)
+- NAS100 BULLISH: CORRECT (+1.76%; new ATH 30,044; Micron +18% AI catalyst; 30,000 crossed)
+- GER40 NEUTRAL-BEARISH: WRONG (+1.31%; holiday gap-up to 25,389 on Monday; year high 25,438 nearly hit)
+- AUDUSD NEUTRAL: CORRECT (-0.28%; ranged 0.7080-0.7181; structural floor intact; no trend)
+- GBPCAD NEUTRAL-BEARISH: PARTIALLY (-0.23% from 1.8631; tested 1.8648 resistance then faded; slow drift)
+- XAGUSD NEUTRAL-BEARISH: PARTIALLY (-0.53% net; Monday spike to 77.50 on US-Iran talks then faded)
+- XAUUSD BEARISH: PARTIALLY (+0.07% essentially flat from 4,523; touched 4,500 May 26; today's high 4,561 tagged SHORT zone)
 
-Running record since inception: 15 CORRECT / 9 PARTIALLY / 5 WRONG
+Running record: 21 CORRECT / 15 PARTIALLY / 7 WRONG (was 19/11/6; this period: 2C/4P/1W)
 
-## Conviction Trades Status (from Sunday 17 May)
+## Conviction Trades Status (from Sunday 24 May)
 
-- Trade 1 NAS100 LONG 28,700-28,900 / stop 28,500: OPEN, approximately +700 pts unrealized from ~28,700 entry. Trailing stop raised to 29,000. Continue holding.
-- Trade 2 GBPCAD SHORT near 1.8430 / stop 1.8480: STOPPED OUT. UK CPI soft thesis correct but oil pullback overwhelmed -- pair recovered to 1.8559.
-- Trade 3 XAUUSD LONG stop 4,460: May 20 low 4,465 narrowly held. RECOMMEND CLOSE -- bias flipped to BEARISH this run. Replace with new SHORT (Trade 2 below).
+- Trade 1 NAS100 LONG 29,100-29,250 / target 29,900 / stop 28,950: TARGET HIT. Price reached 30,001. Approximately +650-900 pts gain. CLOSED.
+- Trade 2 XAUUSD SHORT 4,530-4,560 / target 4,400 / stop 4,610: OPEN. Today's high 4,561 tagged entry zone. May 26 low 4,500 shows 30+ pts unrealized gain. Continue carry.
+- Trade 3 GER40 SHORT 25,300-25,400 / target 24,889 / stop 25,530: OPEN. Entry filled May 25. May 26 dip to 25,184 (brief profit). Currently 25,332. Continue at 50% size.
 
 ## Conviction Trades This Run
 
-- Trade 1 NAS100 LONG 29,200-29,350 / target 30,200 / stop 29,000
-- Trade 2 XAUUSD SHORT 4,540-4,560 / target 4,400 / stop 4,610
-- Trade 3 GER40 LONG 24,700-24,900 / target 25,507 / stop 24,400 (CONDITIONAL: exit if Eurozone PMI Flash May 23 prints below 49.0)
+- Trade 1 NAS100 LONG 29,700-29,850 / target 30,500 / stop 29,450
+- Trade 2 XAUUSD SHORT 4,530-4,560 / target 4,400 / stop 4,610 (carry)
+- Trade 3 GER40 SHORT 25,300-25,430 / target 24,889 / stop 25,530 (carry, 50% size)
 
-## Key Events to Track for Sunday 24 May Run
+## Key Events to Track for Sunday 31 May Run
 
-1. Did Eurozone PMI Flash (Fri May 23) print above or below 49.5? Did GER40 Trade 3 hold or exit?
-2. Did UK PMI Flash (Fri May 23) support or undermine GBPCAD and BoE expectations?
-3. Did US PMI Flash (Fri May 23) confirm economic resilience or warn of slowdown?
-4. Did NAS100 break above the 29,679 year high on a session close? Current 29,482 -- only 197 points away.
-5. Did US30 extend above 50,830 year high or reverse from the intraday peak?
-6. Did XAUUSD SHORT entry 4,540-4,560 get filled? Did gold break below 4,465 toward 4,400 target?
-7. Did AUDUSD hold above 0.7080 extreme floor or break lower toward 0.7050?
-8. Did GBPCAD hold above 1.8411 support or retrace toward 1.8302 (especially if oil stabilized)?
-9. Was XAGUSD able to reclaim 78.05 resistance or did it fail and retest 73.79 lows?
-10. Any Fed speakers pre-FOMC Minutes (May 27)? Hawkish/dovish tone and USD reaction.
-11. Any Middle East or Iran ceasefire developments? Key for gold safe-haven repricing.
+1. FOMC Minutes reaction (today 18:00 GMT): Did NAS100 hold 29,664 support post-minutes? Did gold break below 4,465 or hold 4,500? Did USD surge on hawkish tone?
+2. US PCE April (Fri May 30 12:30 GMT): Core deflator -- hot above 4.7% = USD bid, gold negative, NAS100 negative. This is the dominant USD event of the week.
+3. US GDP Q1 final revision (Thu May 28): Any downward revision = modest USD negative; upward = confirms Manufacturing PMI 55.3 strength.
+4. Did NAS100 hold above 29,664 (broken prior ATH now support)? If yes, fresh ATH attempt at 30,200+. If no, stop Trade 1 at 29,450 and reassess.
+5. Did XAUUSD SHORT (Trade 2) break below 4,465 toward 4,400 target? Or was there a recovery above 4,610 (stop out)?
+6. Did GER40 SHORT (Trade 3) fill target 24,889 or hit stop 25,530? Note year high 25,508 proximity.
+7. Did US-Iran ceasefire talks formally progress? Any Hormuz reopening announcement = gold flash spike risk for SHORT trade.
+8. AUDUSD: Did the pair hold above 0.7080 structural floor? Any pre-RBA positioning moves?
+9. GBPCAD: Any BoC pre-meeting communications signaling cut vs hold?
+10. XAGUSD: Did silver break above 78.05 resistance or retest 73.79 floor?
 
-## Forward Catalysts (critical for Sunday 24 May report)
+## Forward Catalysts (critical for Sunday 31 May report)
 
-- PMI Flash Eurozone/UK/US (Fri May 23): Multi-instrument catalyst. Eurozone below 49.0 = GER40 Trade 3 exits; above 51.0 = accelerates target. US above 52.0 = equities bullish, USD positive.
-- FOMC Minutes (Tue May 27): Hawkish hold language = USD positive, gold negative; any discussion of cuts = NAS100 upside.
-- BoC Rate Decision (Thu Jun 4): Dovish surprise = GBPCAD rally catalyst; hawkish hold = GBPCAD pressure.
-- ECB Rate Decision (Wed Jun 11): LIVE for hike given EZ CPI 3.0%; any pre-meeting ECB speaker hawkish signal is a direct risk to GER40 NEUTRAL-BULLISH bias.
-- US NFP (Fri Jun 5): Next major labor market read -- context for Fed trajectory.
+- US PCE April (Fri 30 May 12:30 GMT): DOMINANT USD event. Core deflator vs consensus.
+- RBA Rate Decision (Wed 3 Jun 04:30 GMT): Fourth +25bp hike to 4.60% consensus. Hold = AUDUSD -1-2%.
+- BoC Rate Decision (Thu 4 Jun 13:45 GMT): GBPCAD binary -- dovish cut = GBPCAD rally; hawkish hold = CAD bid.
+- US NFP May (Fri 5 Jun 12:30 GMT): Labor market context for Fed June 16-17 meeting.
+- ECB Rate Decision (Wed 11 Jun 12:15 GMT): LIVE for hike. Eurozone CPI 3.0% vs PMI 47.5 = stagflation scenario. Definitive GER40 risk event.
+- FOMC Meeting Jun 16-17: Will committee vote to remove easing bias formally?
 
 ## Pipeline Status
 
-- Report: WRITTEN (2026-05-20-midweek.md)
-- Slug: 2026-05-20-midweek
+- Report: WRITTEN (2026-05-27-midweek.md)
+- Slug: 2026-05-27-midweek
 - Type: Mid-Week
 
 ## Notes for Sunday Agent
 
-- NVDA earnings arrived Wed May 20 after close (one session earlier than the prior tracking file's Thu May 22 expectation). The full reaction is visible in NAS100 May 21-22 data. NVDA Q1 FY2027: $81.6B revenue +85% YoY, Data Center $75.2B +92%, $80B buyback, dividend raised from $0.01 to $0.25 quarterly. This resolves the major NAS100 catalyst -- no comparable single event in the immediate forward calendar.
-- XAUUSD bias flipped from NEUTRAL to BEARISH. The 4,741 bullish trigger breach (May 12 high 4,765) was a confirmed false breakout. New SHORT trade: entry 4,540-4,560, target 4,400, stop 4,610. Close prior LONG if not already done.
-- GER40 Trade 3 is conditional on PMI Flash result. Sunday agent must check if Eurozone PMI Flash printed above or below 49.0 and whether the trade was entered/exited accordingly. Current price 24,889. Year high 25,507 is the target.
-- AUDUSD broke below 0.7100 intraday on May 20 (low 0.7088) -- a structural warning signal. Despite global equities at year highs, AUD cannot track risk-on due to USD fiscal premium from Moody's. NEUTRAL-BEARISH bias is appropriate.
-- Moody's US Aa1 downgrade is now largely priced as a background factor (absorbed within two sessions). Watch for secondary effects: treasury auction demand, credit spread widening, or any political response to the downgrade in the week ahead.
-- NAS100 Sunday 17 May LONG trade remains open at ~+700 pts unrealized. Trailing stop at 29,000 is the current recommendation. Sunday agent should evaluate whether to close this or continue into the new week.
-- Running record after this week: 15 CORRECT / 9 PARTIALLY / 5 WRONG. This was the worst single-period run since inception (4 WRONG: US30, GER40, AUDUSD, GBPCAD). The dominant driver was the Moody's shock being absorbed faster than expected and the NVDA catalyst overwhelming instrument-specific bearish theses.
-- Real-scale reminder: NAS100 operational range approximately 27,000-30,000; GER40 approximately 23,000-25,500; XAGUSD approximately 72-90; XAUUSD approximately 4,350-5,600. Use live OHLC data as ground truth, not tracking file price levels from the fictional example era.
-- UK CPI April 2026: 2.8% YoY (ONS release). Below 3.0% consensus. Lowest since March 2025. Services CPI +4.5% (slight uptick, watch for stickiness). This is the confirmed data point -- no need to re-search.
+- FOMC minutes (18:00 GMT today) are the pivotal event of this report period. The Sunday report must open by assessing the reaction: did NAS100 hold the 29,664 support (broken prior ATH) or break lower? Did gold break the 4,500 level decisively? Three FOMC members opposed the easing bias; a hawkish surprise removing the easing bias entirely would be USD-positive and metals-negative.
+- NAS100 ATH milestone: 30,044 set May 26. The psychological 30,000 level is now support territory. First-ever close above 30,000. The AI narrative (Micron +18%, Goldman $800B, Semiconductor ETF +80% YTD) is the dominant driver. Trade 1 target was 30,500 with entry on FOMC pullback to 29,700-29,850.
+- GER40 extreme disconnect: PMI 47.5 (29-month low) with price within 176 pts of all-time high. Trade 3 SHORT at 25,300-25,430 is live. The Monday holiday gap-up (24,888 to 25,389) illustrates the fragility of the setup -- price can spike violently on thin liquidity. Maintain strict 50% sizing. If GER40 closes above 25,530 (stop), exit and do not re-enter until post-ECB.
+- XAUUSD SHORT: Today's high 4,561 precisely tagged the 4,530-4,560 entry zone. Stop 4,610. The key question for Sunday: did PCE print hot on Friday May 30? Hot PCE = XAUUSD accelerates toward 4,400 target. Miss = gold bounces from 4,500 support and may test 4,583-4,635.
+- AUDUSD is NEUTRAL heading into RBA June 3. The structural floor at 0.7080 (tested May 19-20) has held. A FOMC hawkish surprise could retest this level. Do not hold directional AUDUSD positions through the RBA decision; set up fresh post-event trade based on outcome.
+- GBPCAD NEUTRAL-BEARISH: The 1.8648 resistance was tested and rejected Monday. BoC June 4 is the binary. Prior to that, the pair should range 1.8411-1.8648. Sell short-term bounces to 1.8610-1.8648 with tight stops.
+- XAGUSD: Has crashed -17% from May 13 high 88.888 to May 19 low 73.79. The correction is extreme and short-covering risk is elevated below 75. Do not add new silver shorts below 74.90. The 73.79 floor is the key support; a break below 73.79 would open 72.50.
+- Key data: Eurozone PMI 47.5 composite (29-month low, confirmed S&P Global May 23 2026). UK PMI 48.5 (13-month low). US Manufacturing PMI 55.3 (4-year high). Micron +18% on AI catalyst May 26. Goldman AI spend 2026 forecast raised to 7.8% business investment / $800B total. US/UK markets closed May 26 (Memorial Day / Spring Bank Holiday). GER40 traded May 25 (Monday European) on holiday-thin liquidity.
+- Running record: 21 CORRECT / 15 PARTIALLY / 7 WRONG since inception.
+- Real-scale reference: NAS100 range 28,440-30,044; GER40 range 23,797-25,438; XAGUSD range 73.79-88.89; XAUUSD range 4,465-4,765; US30 range 49,235-50,830.
