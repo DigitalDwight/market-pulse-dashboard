@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-05-27T09:36:19Z",
-  "count": 6,
+  "generatedAt": "2026-05-31T20:55:36Z",
+  "count": 7,
   "reports": [
+    {
+      "slug": "2026-05-31-weekly",
+      "type": "Weekly",
+      "date": "2026-05-31",
+      "displayDate": "Sunday 31 May 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-05-31-weekly.md",
+      "lastUpdated": "2026-05-31T20:55:36Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "PCE April 3.80% confirms higher-for-longer Fed stance. FOMC minutes hawkish (Hammack/Kashkari/Logan bloc). NAS100 new ATH 30,470 on AI momentum. US30 new year high 51,094. Gold volatile: 4,363 low then 4,593 recovery on Iran ceasefire extension. RBA, BoC, NFP triple event week ahead.",
+      "jsonFile": "2026-05-31-weekly.json"
+    },
     {
       "slug": "2026-05-27-midweek",
       "type": "Mid-Week",
@@ -9,7 +21,7 @@
       "displayDate": "Wednesday 27 May 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-05-27-midweek.md",
-      "lastUpdated": "2026-05-27T09:07:53Z",
+      "lastUpdated": "2026-05-27T09:36:23Z",
       "marketSentiment": "NEUTRAL_BULLISH",
       "macroTheme": "NAS100 crosses 30,000 for the first time on Micron +18% AI rally and Goldman $800B AI forecast. FOMC minutes due 18:00 GMT today -- hawkish committee split (3 members opposed easing bias) is pre-digested; markets positioned at ATH. GER40 extreme fundamental disconnect vs PMI 47.5. Gold/silver Monday spike on US-Iran talks faded. PCE Friday May 30 is the next major USD catalyst.",
       "jsonFile": "2026-05-27-midweek.json"
