@@ -5,7 +5,7 @@
   "displayDate": "Wednesday 03 June 2026",
   "title": "MARKET PULSE -- Mid-Week Trading Report",
   "markdownFile": "2026-06-03-midweek.md",
-  "lastUpdated": "2026-06-03T10:38:03Z",
+  "lastUpdated": "2026-06-03T10:48:49Z",
   "marketSentiment": "NEUTRAL_BULLISH",
   "macroTheme": "US30 and NAS100 set new year highs (51,369 and 30,670) as earnings goldilocks extends despite PCE 3.80%. Gold falls to 4,490 on real-yield headwind. GER40 hits target 24,889 ahead of ECB June 11 live hike. NFP Friday June 6 and BoC June 10 are the week's dominant binary catalysts.",
   "macroOverview": "US equity indices push all-time highs on resilient earnings momentum and the Fed-hold goldilocks backdrop. NAS100 has added +7.1% from the May 19 base. Gold continues its correction from the 5,586 Iran-war ATH, now at 4,490, pressured by PCE 3.80% and FOMC hawkish minutes. GER40 achieved its near-term target of 24,889 (intraday low 24,832 today) as Eurozone PMI 47.5 (29-month low) and ECB June 11 live-hike risk maintain regional underperformance. Correction to prior tracking note: next RBA meeting is June 15-16 (rate 4.35%, hold consensus); next BoC decision is June 10 (rate 2.25%, 35-40% cut probability). US ADP May pending today at approximately 12:15 GMT; US NFP May is Friday June 6 -- the dominant market-moving event of the week.",
@@ -349,10 +349,10 @@
     {
       "symbol": "GER40",
       "name": "DAX Performance Index",
-      "price": 24902.259766,
+      "price": 24907.849609,
       "previousClose": 25117.089844,
-      "change": -214.830078,
-      "changePercent": -0.8553,
+      "change": -209.240234,
+      "changePercent": -0.8331,
       "dayHigh": 24973.150391,
       "dayLow": 24832.410156,
       "yearHigh": 25507.789062,
@@ -370,7 +370,7 @@
         25104.699219,
         25003.039062,
         25124.169922,
-        24902.259766
+        24907.849609
       ],
       "ohlc": [
         {
@@ -482,7 +482,7 @@
           "open": 24912.310546875,
           "high": 24973.150390625,
           "low": 24832.41015625,
-          "close": 24902.259765625,
+          "close": 24907.849609375,
           "volume": 0
         }
       ],
@@ -525,10 +525,10 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.717103,
+      "price": 0.717,
       "previousClose": 0.718081,
-      "change": -0.000978,
-      "changePercent": -0.1362,
+      "change": -0.001081,
+      "changePercent": -0.1506,
       "dayHigh": 0.718339,
       "dayLow": 0.715666,
       "yearHigh": 0.727738,
@@ -546,7 +546,7 @@
         0.71642,
         0.71805,
         0.71643,
-        0.717103
+        0.717
       ],
       "ohlc": [
         {
@@ -658,7 +658,7 @@
           "open": 0.7182360291481018,
           "high": 0.718339204788208,
           "low": 0.7156659364700317,
-          "close": 0.7171028852462769,
+          "close": 0.7170000672340393,
           "volume": 0
         }
       ],
@@ -701,10 +701,10 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.86251,
+      "price": 1.86243,
       "previousClose": 1.86269,
-      "change": -0.00018,
-      "changePercent": -0.0097,
+      "change": -0.00026,
+      "changePercent": -0.014,
       "dayHigh": 1.86453,
       "dayLow": 1.86169,
       "yearHigh": 1.89147,
@@ -722,7 +722,7 @@
         1.85294,
         1.85576,
         1.86274,
-        1.86251
+        1.86243
       ],
       "ohlc": [
         {
@@ -834,7 +834,7 @@
           "open": 1.8620699644088745,
           "high": 1.8645299673080444,
           "low": 1.8616900444030762,
-          "close": 1.8625099658966064,
+          "close": 1.8624299764633179,
           "volume": 0
         }
       ],
@@ -877,10 +877,10 @@
     {
       "symbol": "XAGUSD",
       "name": "Silver Spot",
-      "price": 74.75,
+      "price": 74.68,
       "previousClose": 75.425003,
-      "change": -0.675003,
-      "changePercent": -0.8949,
+      "change": -0.745003,
+      "changePercent": -0.9877,
       "dayHigh": 75.625,
       "dayLow": 74.105003,
       "yearHigh": 121.300003,
@@ -898,7 +898,7 @@
         75.615997,
         75.007004,
         75.310997,
-        74.75
+        74.68
       ],
       "ohlc": [
         {
@@ -1010,8 +1010,8 @@
           "open": 75.49500274658203,
           "high": 75.625,
           "low": 74.1050033569336,
-          "close": 74.75,
-          "volume": 9421
+          "close": 74.68000030517578,
+          "volume": 9692
         }
       ],
       "supports": [
@@ -1053,10 +1053,10 @@
     {
       "symbol": "XAUUSD",
       "name": "Gold Spot",
-      "price": 4489.899902,
+      "price": 4488.299805,
       "previousClose": 4512.0,
-      "change": -22.100098,
-      "changePercent": -0.4898,
+      "change": -23.700195,
+      "changePercent": -0.5253,
       "dayHigh": 4525.100098,
       "dayLow": 4467.200195,
       "yearHigh": 5586.200195,
@@ -1074,7 +1074,7 @@
         4560.5,
         4475.200195,
         4489.100098,
-        4489.899902
+        4488.299805
       ],
       "ohlc": [
         {
@@ -1186,8 +1186,8 @@
           "open": 4520.0,
           "high": 4525.10009765625,
           "low": 4467.2001953125,
-          "close": 4489.89990234375,
-          "volume": 49911
+          "close": 4488.2998046875,
+          "volume": 51548
         }
       ],
       "supports": [
