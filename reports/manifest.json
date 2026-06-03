@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-05-31T20:55:36Z",
-  "count": 7,
+  "generatedAt": "2026-06-03T10:38:03Z",
+  "count": 8,
   "reports": [
+    {
+      "slug": "2026-06-03-midweek",
+      "type": "Mid-Week",
+      "date": "2026-06-03",
+      "displayDate": "Wednesday 03 June 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-06-03-midweek.md",
+      "lastUpdated": "2026-06-03T10:38:03Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "US30 and NAS100 set new year highs (51,369 and 30,670) as earnings goldilocks extends despite PCE 3.80%. Gold falls to 4,490 on real-yield headwind. GER40 hits target 24,889 ahead of ECB June 11 live hike. NFP Friday June 6 and BoC June 10 are the week's dominant binary catalysts.",
+      "jsonFile": "2026-06-03-midweek.json"
+    },
     {
       "slug": "2026-05-31-weekly",
       "type": "Weekly",
