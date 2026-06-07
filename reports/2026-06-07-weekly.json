@@ -5,7 +5,7 @@
   "displayDate": "Sunday 07 June 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-06-07-weekly.md",
-  "lastUpdated": "2026-06-07T21:03:41Z",
+  "lastUpdated": "2026-06-07T21:07:28Z",
   "marketSentiment": "NEUTRAL_BEARISH",
   "macroTheme": "NFP May +172K (consensus 85K) delivered a seismic USD shock on June 6. NAS100 crashed -4.77% from ATH 30,762 to 28,957. Gold broke below 4,400 (low 4,336). US30 hit new ATH 51,660 before reversing. BoC June 10 and ECB June 11 are binary catalysts for the week ahead.",
   "macroOverview": "Hot NFP reshaped the market landscape in a single session. NAS100 lost its entire ATH-to-close rally of +6.2% in one day as the Fed higher-for-longer narrative was reinforced. US30 was more resilient given its blue-chip composition. Silver crashed -8.6% on the week. AUDUSD broke below 0.7100. The GER40 short trade (entry 25,000, June 4) is open and +241 points in profit. Three binary central bank events follow: BoC June 10 (2.25%, 35-40% cut probability), ECB June 11 (2.00%, 35% hike probability), FOMC June 16-17 (hawkish hold near-certain). RBA June 15-16 (4.35%, hold consensus) is the AUD catalyst. US CPI May (June 9) is the first test.",
@@ -541,10 +541,10 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.702741,
+      "price": 0.702889,
       "previousClose": 0.713623,
-      "change": -0.010882,
-      "changePercent": -1.5249,
+      "change": -0.010734,
+      "changePercent": -1.5042,
       "dayHigh": 0.70497,
       "dayLow": 0.702149,
       "yearHigh": 0.727738,
@@ -562,7 +562,7 @@
         0.717412,
         0.71345,
         0.713216,
-        0.702741
+        0.702889
       ],
       "ohlc": [
         {
@@ -674,7 +674,7 @@
           "open": 0.7049700617790222,
           "high": 0.7049700617790222,
           "low": 0.7021485567092896,
-          "close": 0.7027407288551331,
+          "close": 0.7028888463973999,
           "volume": 0
         }
       ],
@@ -717,10 +717,10 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.85546,
+      "price": 1.85612,
       "previousClose": 1.86684,
-      "change": -0.01138,
-      "changePercent": -0.6096,
+      "change": -0.01072,
+      "changePercent": -0.5742,
       "dayHigh": 1.85902,
       "dayLow": 1.8549,
       "yearHigh": 1.89147,
@@ -738,7 +738,7 @@
         1.86218,
         1.86503,
         1.86672,
-        1.85546
+        1.85612
       ],
       "ohlc": [
         {
@@ -850,7 +850,7 @@
           "open": 1.858680009841919,
           "high": 1.8590199947357178,
           "low": 1.8549000024795532,
-          "close": 1.8554600477218628,
+          "close": 1.856119990348816,
           "volume": 0
         }
       ],
