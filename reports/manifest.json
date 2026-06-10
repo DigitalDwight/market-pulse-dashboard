@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-07T21:07:23Z",
+  "generatedAt": "2026-06-10T09:44:59Z",
   "count": 9,
   "reports": [
     {
@@ -9,7 +9,7 @@
       "displayDate": "Sunday 07 June 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-06-07-weekly.md",
-      "lastUpdated": "2026-06-07T21:03:41Z",
+      "lastUpdated": "2026-06-07T21:07:28Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "NFP May +172K (consensus 85K) delivered a seismic USD shock on June 6. NAS100 crashed -4.77% from ATH 30,762 to 28,957. Gold broke below 4,400 (low 4,336). US30 hit new ATH 51,660 before reversing. BoC June 10 and ECB June 11 are binary catalysts for the week ahead.",
       "jsonFile": "2026-06-07-weekly.json"
