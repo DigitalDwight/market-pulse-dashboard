@@ -44,7 +44,10 @@ concurrency:
 jobs:
   author:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    # 60 min headroom so a stream-error retry has room to complete a fresh
+    # Claude call (typical call 15-25 min; if one fails at the 19-min mark
+    # like 10 Jun did, 30 min ceiling left no budget for the retry).
+    timeout-minutes: 60
 
     steps:
       - name: Check out repo
