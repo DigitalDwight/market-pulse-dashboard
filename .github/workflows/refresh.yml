@@ -84,13 +84,30 @@ jobs:
           git add reports/
           git commit -m "Auto-update: ${label} — ${ts}" \
                      -m "Live yfinance prices for the 7 Market Pulse instruments."
-          # Rebase-then-push with retry to handle a concurrent push to main.
+          # Rebase-then-push with retry. The only realistic conflict on
+          # auto-refresh commits is reports/manifest.json (auto-generated);
+          # regenerate it from the merged reports/ state instead of trying
+          # to merge. Any other conflict is real and we abort.
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            if ! git rebase origin/main; then
-              echo "Rebase conflicts on attempt $attempt -- aborting." >&2
-              git rebase --abort
-              exit 1
+            if git rebase origin/main; then
+              :  # clean rebase
+            else
+              conflicted=$(git diff --name-only --diff-filter=U | sort -u | tr '\n' ' ' | sed 's/ *$//')
+              if [ "$conflicted" = "reports/manifest.json" ]; then
+                echo "Manifest-only conflict on attempt $attempt -- regenerating." >&2
+                python build_manifest.py
+                git add reports/manifest.json
+                if ! git -c core.editor=true rebase --continue; then
+                  echo "rebase --continue failed unexpectedly." >&2
+                  git rebase --abort || true
+                  exit 1
+                fi
+              else
+                echo "Non-manifest conflicts ($conflicted) on attempt $attempt -- aborting." >&2
+                git rebase --abort
+                exit 1
+              fi
             fi
             if git push origin HEAD:main; then
               echo "Pushed on attempt $attempt."

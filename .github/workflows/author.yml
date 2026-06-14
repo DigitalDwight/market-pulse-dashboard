@@ -125,15 +125,33 @@ jobs:
           git commit -m "Auto-author: ${label} — ${ts}" \
                      -m "Generated via Claude API (sonnet-4-6). refresh.yml will top up prices on the next cron tick."
           # Rebase-then-push with retry: handles the case where someone pushed
-          # to main while this workflow was running (a human push, refresh.yml
-          # slipping past concurrency, etc.). The author commit touches only
-          # reports/ + cron_tracking/, so rebase conflicts are very unlikely.
+          # to main while this workflow was running. The author commit touches
+          # reports/ + cron_tracking/. The only realistic conflict is on
+          # reports/manifest.json -- it's a generated file, so we regenerate
+          # it from the merged reports/ state instead of trying to merge.
+          # Any other conflict is real and we abort.
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            if ! git rebase origin/main; then
-              echo "Rebase conflicts on attempt $attempt -- aborting." >&2
-              git rebase --abort
-              exit 1
+            if git rebase origin/main; then
+              :  # clean rebase
+            else
+              conflicted=$(git diff --name-only --diff-filter=U | sort -u | tr '\n' ' ')
+              # Trim trailing space for clean comparison.
+              conflicted=$(echo "$conflicted" | sed 's/ *$//')
+              if [ "$conflicted" = "reports/manifest.json" ]; then
+                echo "Manifest-only conflict on attempt $attempt -- regenerating." >&2
+                python build_manifest.py
+                git add reports/manifest.json
+                if ! git -c core.editor=true rebase --continue; then
+                  echo "rebase --continue failed unexpectedly." >&2
+                  git rebase --abort || true
+                  exit 1
+                fi
+              else
+                echo "Non-manifest conflicts ($conflicted) on attempt $attempt -- aborting." >&2
+                git rebase --abort
+                exit 1
+              fi
             fi
             if git push origin HEAD:main; then
               echo "Pushed on attempt $attempt."
