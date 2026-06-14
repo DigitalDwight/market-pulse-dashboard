@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-06-14T21:13:47Z",
-  "count": 9,
+  "generatedAt": "2026-06-14T21:55:21Z",
+  "count": 10,
   "reports": [
+    {
+      "slug": "2026-06-14-weekly",
+      "type": "Weekly",
+      "date": "2026-06-14",
+      "displayDate": "Sunday 14 June 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-06-14-weekly.md",
+      "lastUpdated": "2026-06-14T21:55:21Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "US CPI May 4.2% YoY (highest since Apr 2023) triggers mid-week risk-off flush. ECB hawkish hold Jun 11 (hike discussed at length, GDP lowered). BoC holds 2.25% with Canada in technical recession. Gold breaks below 4,100, low 4,031. FOMC Jun 17 tightening-bias shift is the dominant next-week catalyst.",
+      "jsonFile": "2026-06-14-weekly.json"
+    },
     {
       "slug": "2026-06-07-weekly",
       "type": "Weekly",
@@ -9,7 +21,7 @@
       "displayDate": "Sunday 07 June 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-06-07-weekly.md",
-      "lastUpdated": "2026-06-10T09:45:03Z",
+      "lastUpdated": "2026-06-14T21:13:50Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "NFP May +172K (consensus 85K) delivered a seismic USD shock on June 6. NAS100 crashed -4.77% from ATH 30,762 to 28,957. Gold broke below 4,400 (low 4,336). US30 hit new ATH 51,660 before reversing. BoC June 10 and ECB June 11 are binary catalysts for the week ahead.",
       "jsonFile": "2026-06-07-weekly.json"
