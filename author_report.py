@@ -25,6 +25,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -300,6 +301,31 @@ PUBLISH_REPORT_TOOL = {
 }
 
 
+# Transient streaming errors we retry the whole API call on. The Anthropic
+# SDK's built-in retry doesn't help mid-stream -- once the stream has started
+# emitting tokens, a dropped connection means the partial response is lost.
+# Wed 10 Jun 2026 (run 27265537419) died with httpcore.RemoteProtocolError
+# 3.5 min into a normal-length call -- that's the failure mode this guards.
+_RETRYABLE_EXC_NAMES = frozenset({
+    "RemoteProtocolError",   # httpcore / httpx -- peer closed connection
+    "ReadError",             # httpx / httpcore
+    "ConnectError",          # httpx / httpcore
+    "ReadTimeout",           # httpx
+    "ConnectTimeout",        # httpx
+    "WriteTimeout",          # httpx
+    "WriteError",            # httpx
+    "PoolTimeout",           # httpx
+    "ProtocolError",         # h11 lower-level
+})
+MAX_API_ATTEMPTS = 3
+
+
+def _is_retryable_stream_error(exc: BaseException) -> bool:
+    if isinstance(exc, (anthropic.APIConnectionError, anthropic.InternalServerError)):
+        return True
+    return type(exc).__name__ in _RETRYABLE_EXC_NAMES
+
+
 def call_claude_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[str, Any]:
     client = anthropic.Anthropic(api_key=api_key)
     web_search_tool = {
@@ -307,16 +333,12 @@ def call_claude_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[
         "name": "web_search",
         "max_uses": 5,
     }
-    # Streaming because Sonnet 4.6 reports can produce > 16K output tokens.
-    with client.messages.stream(
+    stream_kwargs = dict(
         model=MODEL,
         max_tokens=64000,
         thinking={"type": "adaptive"},
         # effort=medium bounds thinking depth -- the report has a fixed structure,
         # so deep reasoning is wasted budget that crowds out the final tool call.
-        # (default is high; the previous run blew through 32K output without ever
-        # reaching publish_report because thinking + dynamic-filter code execution
-        # consumed it all.)
         output_config={"effort": "medium"},
         system=[
             {
@@ -327,8 +349,33 @@ def call_claude_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[
         ],
         tools=[web_search_tool, PUBLISH_REPORT_TOOL],
         messages=[{"role": "user", "content": user_prompt}],
-    ) as stream:
-        final = stream.get_final_message()
+    )
+    # Streaming because Sonnet 4.6 reports can produce > 16K output tokens.
+    final = None
+    for attempt in range(1, MAX_API_ATTEMPTS + 1):
+        try:
+            with client.messages.stream(**stream_kwargs) as stream:
+                final = stream.get_final_message()
+            break
+        except Exception as exc:
+            if not _is_retryable_stream_error(exc):
+                raise
+            if attempt == MAX_API_ATTEMPTS:
+                print(
+                    f"  Stream error on attempt {attempt}/{MAX_API_ATTEMPTS} "
+                    f"({type(exc).__name__}: {exc}) -- no retries left.",
+                    file=sys.stderr,
+                )
+                raise
+            wait_s = 30 * attempt  # 30s, 60s
+            print(
+                f"  Stream error on attempt {attempt}/{MAX_API_ATTEMPTS} "
+                f"({type(exc).__name__}: {exc}). Retrying in {wait_s}s...",
+                file=sys.stderr,
+            )
+            time.sleep(wait_s)
+
+    assert final is not None  # loop either succeeded or re-raised
 
     print(
         f"  Claude usage: input={final.usage.input_tokens} "
