@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-14T21:55:21Z",
-  "count": 10,
+  "generatedAt": "2026-06-14T23:12:53Z",
+  "count": 11,
   "reports": [
     {
       "slug": "2026-06-14-weekly",
@@ -13,6 +13,18 @@
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "US CPI May 4.2% YoY (highest since Apr 2023) triggers mid-week risk-off flush. ECB hawkish hold Jun 11 (hike discussed at length, GDP lowered). BoC holds 2.25% with Canada in technical recession. Gold breaks below 4,100, low 4,031. FOMC Jun 17 tightening-bias shift is the dominant next-week catalyst.",
       "jsonFile": "2026-06-14-weekly.json"
+    },
+    {
+      "slug": "2026-06-10-midweek",
+      "type": "Mid-Week",
+      "date": "2026-06-10",
+      "displayDate": "Wednesday 10 June 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-06-10-midweek.md",
+      "lastUpdated": "2026-06-14T23:12:52Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "US CPI May 4.2% YoY (highest since Apr 2023) triggers multi-asset flush; NAS100 and GER40 conviction shorts hit targets; gold crashes through 4,300 and 4,100; BoC flags technical recession. FOMC June 17 is the dominant forward binary.",
+      "jsonFile": "2026-06-10-midweek.json"
     },
     {
       "slug": "2026-06-07-weekly",
