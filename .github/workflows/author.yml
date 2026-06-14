@@ -112,6 +112,7 @@ jobs:
       - name: Commit and push
         if: steps.diff.outputs.changed == 'true' && inputs.dry_run != true
         run: |
+          set -euo pipefail
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           case "${{ github.event.schedule }}" in
@@ -123,7 +124,26 @@ jobs:
           git add reports/ cron_tracking/
           git commit -m "Auto-author: ${label} — ${ts}" \
                      -m "Generated via Claude API (sonnet-4-6). refresh.yml will top up prices on the next cron tick."
-          git push
+          # Rebase-then-push with retry: handles the case where someone pushed
+          # to main while this workflow was running (a human push, refresh.yml
+          # slipping past concurrency, etc.). The author commit touches only
+          # reports/ + cron_tracking/, so rebase conflicts are very unlikely.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              echo "Rebase conflicts on attempt $attempt -- aborting." >&2
+              git rebase --abort
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            sleep $((attempt * 5))
+            echo "Push rejected on attempt $attempt, retrying..." >&2
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1
 
       - name: Post summary to ClickUp
         if: steps.diff.outputs.changed == 'true' && inputs.dry_run != true

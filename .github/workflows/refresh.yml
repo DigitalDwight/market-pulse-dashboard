@@ -70,6 +70,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          set -euo pipefail
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [ "${{ github.event.schedule }}" = "0 20 * * 0" ]; then
@@ -83,7 +84,23 @@ jobs:
           git add reports/
           git commit -m "Auto-update: ${label} — ${ts}" \
                      -m "Live yfinance prices for the 7 Market Pulse instruments."
-          git push
+          # Rebase-then-push with retry to handle a concurrent push to main.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if ! git rebase origin/main; then
+              echo "Rebase conflicts on attempt $attempt -- aborting." >&2
+              git rebase --abort
+              exit 1
+            fi
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            sleep $((attempt * 5))
+            echo "Push rejected on attempt $attempt, retrying..." >&2
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1
 
       - name: Summary
         run: |
