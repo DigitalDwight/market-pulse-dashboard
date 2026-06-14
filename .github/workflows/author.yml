@@ -184,7 +184,12 @@ jobs:
         env:
           CLICKUP_API_TOKEN: ${{ secrets.CLICKUP_API_TOKEN }}
         run: |
-          slug=$(python -c "import json; print(json.load(open('reports/manifest.json'))['reports'][0]['slug'])")
+          set -euo pipefail
+          if [ ! -f _LAST_SLUG ]; then
+            echo "_LAST_SLUG missing -- author step didn't write a report. Skipping ClickUp post." >&2
+            exit 0
+          fi
+          slug=$(cat _LAST_SLUG)
           echo "Posting $slug summary to ClickUp..."
           python post_to_clickup.py "$slug"
 
