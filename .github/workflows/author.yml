@@ -95,7 +95,16 @@ jobs:
         continue-on-error: true
         run: |
           set -euo pipefail
-          slug=$(python -c "import json; print(json.load(open('reports/manifest.json'))['reports'][0]['slug'])")
+          if [ ! -f _LAST_SLUG ]; then
+            echo "_LAST_SLUG not written by author step -- skipping PDF generation." >&2
+            exit 0
+          fi
+          slug=$(cat _LAST_SLUG)
+          # Sanity check: must look like YYYY-MM-DD-{weekly,midweek}.
+          if ! echo "$slug" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}-(weekly|midweek)$'; then
+            echo "Unexpected slug format in _LAST_SLUG: $slug" >&2
+            exit 1
+          fi
           echo "Generating PDF for $slug..."
           cd pdf-export
           npx tsx generate_report_pdf.tsx "$slug"

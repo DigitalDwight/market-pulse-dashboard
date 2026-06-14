@@ -8,3 +8,9 @@ venv/
 pdf-export/node_modules/
 pdf-export/preview/
 _failed_*.json
+
+# Workflow marker: author_report.py writes the slug of the just-authored
+# report here so the Generate PDF step can read it without depending on
+# manifest sort order (which would pick the wrong slug for backfill runs
+# of older dates).
+_LAST_SLUG

@@ -586,6 +586,12 @@ def main() -> int:
     tracking_path.parent.mkdir(parents=True, exist_ok=True)
     tracking_path.write_text(tracking_md.rstrip() + "\n", encoding="utf-8")
 
+    # Emit the slug to a known file so the workflow's downstream PDF step
+    # can pick up the right report. Reading manifest.reports[0].slug doesn't
+    # work for backfills -- a backfill of an older date sorts behind newer
+    # already-published reports in the manifest. (.gitignored.)
+    (REPO_ROOT / "_LAST_SLUG").write_text(slug, encoding="utf-8")
+
     print(f"Wrote {out_md_path}", file=sys.stderr)
     print(f"Wrote {out_json_path}", file=sys.stderr)
     print(f"Updated {tracking_path}", file=sys.stderr)
