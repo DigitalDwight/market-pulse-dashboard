@@ -1,81 +1,87 @@
-# Last Run: Wednesday 10 June 2026 (Mid-Week Report)
-# Next Expected Run: Sunday 14 June 2026 at 20:00 GMT (Weekly Report)
+
+# Last Run: Wednesday 17 June 2026 (Mid-Week Report)
+# Next Expected Run: Sunday 21 June 2026 at 20:00 BST (Weekly Report)
 
 ## Report Reference
-File: 2026-06-10-midweek.md
-Slug: 2026-06-10-midweek
-Theme: US CPI May 4.2% YoY (highest since Apr 2023) triggered multi-asset flush. NAS100 short Trade 3 (target 28,500) and GER40 short Trade 2 (target 24,400) both closed full profit. XAUUSD short Trade 1 entry zone 4,430-4,460 never triggered -- entry reset to 4,280-4,310. Gold capitulation low 4,031 (Jun 11). BoC held at 2.25% with explicit technical recession language. ECB Jun 11 hawkish hold -- July meeting live for +25bp hike. FOMC June 17 is the dominant forward catalyst.
+File: 2026-06-17-midweek.md
+Slug: 2026-06-17-midweek
+Theme: Warsh first FOMC at 18:00 GMT today -- hawkish hold expected with dot plot shift and easing bias removal. RBA paused unanimously Jun 16 at 4.35%. US30 ATH 52,190. NAS100 distribution candle below broken support 30,001. Gold pre-FOMC bounce +7.7% from 4,031 exhausted at 4,369.
 
 ## Biases Set This Run
 
-| Instrument | Bias | Price (Jun 10 close) | Key Support | Key Resistance |
+| Instrument | Bias | Price | Key Support | Key Resistance |
 |---|---|---|---|---|
-| US30 | NEUTRAL | 49,919 | 50,849 / 50,687 / 49,909 | 51,409 / 51,561 / 51,660 ATH |
-| NAS100 | NEUTRAL-BEARISH | 28,508 | 29,221 / 28,929 / 28,463 | 29,733 / 30,001 / 30,762 ATH |
-| GER40 | NEUTRAL-BEARISH | 24,195 | 24,209 / 24,044 / 23,864 | 24,753 / 24,973 / 25,204 |
-| AUDUSD | NEUTRAL-BEARISH | 0.7023 | 0.7021 / 0.6994 / 0.6980 | 0.7100 / 0.7134 / 0.7181 |
-| GBPCAD | NEUTRAL-BULLISH | 1.8653 | 1.8721 / 1.8627 / 1.8583 | 1.8768 / 1.8840 / 1.8915 |
-| XAGUSD | NEUTRAL-BEARISH | 64.60 | 65.96 / 65.09 / 63.88 | 68.81 / 69.10 / 73.48 |
-| XAUUSD | BEARISH | 4,108 | 4,191 / 4,108 / 4,031 | 4,260 / 4,300 / 4,340 |
+| US30 | NEUTRAL | 51,999 | 51,671 / 51,202 / 50,848 | 52,190 ATH |
+| NAS100 | NEUTRAL-BEARISH | 29,968 | 29,446 / 29,221 / 28,929 | 30,001 / 30,285 / 30,543 |
+| GER40 | NEUTRAL-BEARISH | 24,911 | 24,635 / 24,422 / 24,209 | 24,973 / 25,085 / 25,110 |
+| AUDUSD | NEUTRAL-BEARISH | 0.7062 | 0.7021 / 0.6994 / 0.6980 | 0.7089 / 0.7100 / 0.7134 |
+| GBPCAD | NEUTRAL-BULLISH | 1.8784 | 1.8753 / 1.8721 / 1.8627 | 1.8801 / 1.8840 / 1.8915 |
+| XAGUSD | NEUTRAL-BEARISH | 69.96 | 68.43 / 67.86 / 65.09 | 70.62 / 73.48 / 75.62 |
+| XAUUSD | BEARISH | 4,348 | 4,300 / 4,215 / 4,108 | 4,369 / 4,450 / 4,560 |
 
-## Wednesday 10 June Scorecard (vs Sunday 07 June Biases)
+## Wednesday 17 June Scorecard (vs Sunday 14 June biases)
 
-- US30 NEUTRAL: WRONG (-1.86%; CPI 4.2% breached 50,000 floor intraday low 49,909; closed 49,919)
-- NAS100 NEUTRAL-BEARISH: CORRECT (-1.55%; Trade 3 target 28,500 hit Jun 10)
-- GER40 NEUTRAL-BEARISH: CORRECT (-2.28%; Trade 2 target 24,400 hit Jun 9)
-- AUDUSD NEUTRAL-BEARISH: CORRECT (-1.53%; intraday 0.6999 tested below 0.7000)
-- GBPCAD NEUTRAL: CORRECT (-0.08%; range held perfectly through BoC hold)
-- XAGUSD NEUTRAL-BEARISH: CORRECT (-6.30%; major extension; intraday low 63.74)
-- XAUUSD BEARISH: CORRECT (-5.28%; broke 4,300 and 4,100; Trade 1 entry never triggered)
+| Instrument | Sunday Bias | Verdict |
+|---|---|---|
+| US30 | NEUTRAL | PARTIALLY |
+| NAS100 | NEUTRAL-BEARISH | PARTIALLY |
+| GER40 | NEUTRAL-BEARISH | WRONG |
+| AUDUSD | NEUTRAL-BEARISH | CORRECT |
+| GBPCAD | NEUTRAL-BULLISH | CORRECT |
+| XAGUSD | NEUTRAL-BEARISH | WRONG |
+| XAUUSD | BEARISH | WRONG |
 
-Running record: 34 CORRECT / 21 PARTIALLY / 9 WRONG (64 total calls since inception)
+Running record: 39 CORRECT / 26 PARTIALLY / 13 WRONG (78 total calls since inception)
 
-## Conviction Trades Status (from this run)
+## Conviction Trades Status (from Wednesday 17 June report)
 
-- Trade 1 XAUUSD SHORT 4,280-4,310 / target 4,031 / stop 4,350: Current live price 4,303 is at lower bound of entry zone. Check whether trade filled Jun 11-12. If gold is above 4,350 at Sunday open, entry zone was missed -- reset entry to 4,320-4,360 and adjust stop to 4,400.
-- Trade 2 NAS100 SHORT 29,600-29,800 / target 28,750 / stop 30,150: Current live price 29,636 is at lower bound. May already be active. If NAS100 opens above 30,001 Monday, do not enter -- wait for fade back into zone. FOMC Jun 17 is the primary catalyst.
-- Trade 3 AUDUSD SHORT 0.7040-0.7065 / target 0.6980 / stop 0.7120: Current live price 0.7079 is above entry zone. Needs pullback to 0.7040-0.7065. Conditional: exit entire trade if RBA hikes June 16. If RBA holds, entry may fill on post-RBA drift lower.
+- Trade 1 XAUUSD SHORT 4,350-4,380 / target 4,150 / stop 4,430: NEW. Gold at 4,348 just below entry zone lower bound. FOMC today 18:00 GMT is the trigger event. If hawkish: fill on any bounce to 4,350-4,380 and ride to 4,150. If FOMC neutral and gold gaps to 4,450+, do not chase -- abort setup.
+- Trade 2 NAS100 SHORT 30,050-30,200 / target 29,221 / stop 30,450: NEW. Sell retest of broken support 30,001 as resistance. If FOMC hawkish and NAS100 gaps below 29,446, reset entry lower for any bounce. Do not chase a gap down.
+- Trade 3 GBPCAD LONG 1.8750-1.8780 / target 1.8915 / stop 1.8700: ACTIVE near entry zone (current 1.8784). UK CPI Thursday at 06:00 GMT is the next catalyst. Hot CPI = hold toward 1.8840-1.8915. Cold CPI = exit at stop 1.8700.
 
-## Key Events to Track for Sunday 14 June Run
+## Key Events to Track for Sunday 21 June Run
 
-1. FOMC June 17 18:00 GMT: DOMINANT CATALYST. Sunday report (20:00 GMT Jun 14) publishes approximately 70 hours BEFORE the decision. Set up both scenarios clearly. Tightening signal (50%): gold -3-5% toward 4,031/3,900, NAS100 -3-4%, USD +1-2%, AUDUSD -1-1.5%. No-change language (25%): relief rally NAS100 +2-3%, gold +2-3%, AUDUSD bounce.
-2. RBA June 16 04:30 GMT: Sunday agent WILL know the outcome before publishing. Hold with neutral language: maintain NEUTRAL-BEARISH AUDUSD, Trade 3 intact. Hold with dovish signal: upgrade to BEARISH AUDUSD. Hike: exit Trade 3 short, flip AUDUSD to NEUTRAL-BULLISH.
-3. US Retail Sales May (June 16 12:30 GMT): Hot = USD bid, validates bear thesis on AUDUSD. Cold = soft-landing narrative risk; NAS100 bounce.
-4. Did XAUUSD Trade 1 (4,280-4,310) fill? Check if gold traded in zone Jun 11-12. If entry filled and gold now below 4,108, trade in profit. If gold gapped above 4,340, stop was hit -- reset entry zone lower.
-5. Did NAS100 Trade 2 (29,600-29,800) fill? Check if NAS100 pulled back to zone after Jun 12 close. If filled and price now below 29,221, trailing stop may apply.
-6. UK CPI May (June 18 06:00 GMT): Sunday report publishes before this. Set up GBPCAD scenarios. Hot (+2.5% YoY or above) = GBP spike toward 1.8840-1.8915. Cold = GBPCAD back to 1.8627.
-7. GBPCAD: Broken resistance 1.8702 (Jun 12) is now structural support. Sunday agent treats 1.8627-1.8721 as buy-dip zone going forward.
-8. AUDUSD: Did it close below 0.7000 for two consecutive days? Jun 11 close 0.6994. If Jun 12-13 also below 0.7000, extend Trade 3 target to 0.6900.
+1. FOMC June 17 18:00 GMT: CRITICAL. Did Warsh remove easing bias? What did the dot plot show? Sunday agent will know the full outcome and must update ALL 7 biases based on actual statement/dot plot. Scenario A (hawkish, 55%): USD +0.5-1%, NAS100 -1.5-2.5%, Gold -2-3%, AUDUSD -0.5-0.8%, US30 -0.5-1%. Scenario B (neutral, 30%): NAS100 +2-3%, Gold +1-2%, AUDUSD +0.3-0.5%.
+2. UK CPI May June 18 06:00 GMT: Sunday agent will know outcome. Hot = GBPCAD above 1.8840, Trade 3 running toward 1.8915. Cold = Trade 3 stopped at 1.8700, reassess GBPCAD to NEUTRAL.
+3. US Retail Sales May June 17 12:30 GMT: Sunday agent will know the print. Hot = validates hawkish FOMC backdrop. Cold = soft-landing narrative revives; check NAS100 reaction.
+4. Did XAUUSD fill entry zone 4,350-4,380? Gold at 4,348 just below entry at time of report. Check if post-FOMC moved into or through entry zone.
+5. Did NAS100 touch 30,050-30,200 entry zone? FOMC hawkish = NAS100 likely gaps down below 29,446, skipping entry zone; reset for any bounce.
+6. ECB Sintra Forum starts Jun 24. Preview GER40 and EUR pairs in Sunday report. Any ECB speakers signaling July hike probability are critical.
+7. GBPCAD Trade 3 outcome post-UK CPI and FOMC.
 
-## Forward Binary Events (critical for Sunday 14 June report)
+## Forward Binary Events (critical for Sunday 21 June report)
 
-- FOMC June 17 18:00 GMT: Hold at 3.50-3.75% consensus. Tightening bias shift probability ~50%. Sunday report publishes BEFORE decision -- set both scenarios in detail.
-- RBA June 16 04:30 GMT: Hold 4.35% consensus. Hike probability ~10%. Sunday agent knows outcome before publishing -- update AUDUSD bias accordingly.
-- UK CPI May June 18 06:00 GMT: Sunday report publishes before this. Set GBPCAD scenarios for both outcomes.
-- ECB Sintra Forum late June: Forward guidance risk for GER40. July hike signal from Lagarde at Sintra = GER40 toward 23,864.
+- FOMC June 17 18:00 GMT: Sunday agent WILL KNOW outcome. Update all biases comprehensively. This is the single most important macro event since the Iran ceasefire period.
+- UK CPI May June 18 06:00 GMT: Sunday agent WILL KNOW outcome. Update GBPCAD bias and Trade 3 status.
+- US Retail Sales May June 17 12:30 GMT: Sunday agent WILL KNOW. Update USD backdrop.
+- ECB Sintra June 24-25: Preview in Sunday report as the next major EUR/GER40 catalyst after FOMC.
 
 ## Active Open Trades Heading Into Sunday
 
-1. XAUUSD SHORT 4,280-4,310 / target 4,031 / stop 4,350: Gold at 4,303 (current). Check if entry filled Jun 11-12. FOMC Jun 17 tightening signal is the primary catalyst; if signal materializes, extend target to 3,900.
-2. NAS100 SHORT 29,600-29,800 / target 28,750 / stop 30,150: NAS100 at 29,636 (current). May have filled. FOMC is the key catalyst. If NAS100 is above 30,001 heading into Sunday, do not chase; wait for post-FOMC direction.
-3. AUDUSD SHORT 0.7040-0.7065 / target 0.6980 / stop 0.7120: AUDUSD at 0.7079 (current). Above entry zone. If RBA held (verify before publishing), AUD may drift toward entry. If RBA hiked, exit setup entirely.
+1. XAUUSD SHORT 4,350-4,380 / target 4,150 / stop 4,430: Check post-FOMC gold price. FOMC hawkish = gold likely below 4,300 by Sunday (entry may have filled and be in profit). FOMC neutral = gold above 4,400 (stop hit, trade aborted). Report actual status.
+2. NAS100 SHORT 30,050-30,200 / target 29,221 / stop 30,450: Check post-FOMC NAS100 price. FOMC hawkish = NAS100 may have gapped to 29,221 or below without filling entry zone (reset lower). FOMC neutral = NAS100 above 30,285 (entry not filled, reassess).
+3. GBPCAD LONG 1.8750-1.8780 / target 1.8915 / stop 1.8700: Check UK CPI outcome. If hot CPI + bullish structure intact: running toward 1.8840-1.8915. If cold CPI: stopped at 1.8700.
 
 ## Pipeline Status
 
-- Report: WRITTEN (2026-06-10-midweek.md)
-- Slug: 2026-06-10-midweek
+- Report: WRITTEN (2026-06-17-midweek.md)
+- Slug: 2026-06-17-midweek
 - Type: Mid-Week
 - Market Sentiment: NEUTRAL_BEARISH
 
-## Notes for Sunday Agent
+## Notes for Sunday 21 June Agent
 
-- CRITICAL: FOMC June 17 18:00 GMT is the single most important event for the next 7 days. Sunday report (20:00 GMT Jun 14) publishes approximately 70 hours BEFORE the FOMC decision. Set both scenarios clearly. Scenario A (tightening bias shift, 50%): gold -3-5% toward 3,900, NAS100 -3-4%, USD +1-2%, AUDUSD -1-1.5%. Scenario B (no-change language, 25%): relief rally NAS100 +2-3%, gold +2-3%, AUDUSD bounce.
-- CRITICAL: RBA outcome is KNOWN to Sunday agent. Update AUDUSD bias based on actual RBA statement. Hold with neutral language: NEUTRAL-BEARISH. Hold with dovish signal: BEARISH. Hike: flip NEUTRAL-BULLISH, exit Trade 3 short entirely.
-- Gold context: ATH 5,586 (Iran-war peak). Jun 10 close 4,108. Jun 11 low 4,031. Current 4,303. Correction -23.0% from ATH. Broken supports 4,300 and 4,100 are now double resistance. The 4,031 intraday low is the near-term binary -- daily close below opens 3,900 (round number) then 3,750 (structural).
-- NAS100 structure: ATH 30,762 (Jun 3). NFP crash to 28,957 (Jun 5). Trade 3 target hit 28,463 (Jun 10). Dead-cat to 29,636 (current). Broken supports 29,234 and 30,001 are resistance. FOMC hawkish = next leg to 28,929 and 28,463. FOMC neutral = squeeze toward 30,001.
-- GBPCAD structural change: 1.8702 level broke Jun 12 -- treat this as a structural shift. Buy-dip zone is 1.8627-1.8721 going forward. UK CPI May (Jun 18 06:00 GMT) is the key next catalyst -- set up both scenarios.
-- AUDUSD sub-0.7000: Jun 11 close 0.6994 is a structural warning. If FOMC hawkish and RBA holds, sustained close below 0.7000 is high probability. Key support 0.6980 (Jun 11 low). Two consecutive closes below 0.7000 = extend target to 0.6900.
-- BoC technical recession language June 10: Structurally CAD-bearish. This is a material fundamental shift. GBPCAD and commodity CAD pairs now favor CAD weakness on any BoC softness going forward.
-- ECB June 11 hawkish hold: Lagarde flagged July meeting as live for +25bp hike. GER40 structural ceiling is now 24,973 (broken support). ECB Sintra late June is the next GER40 catalyst.
-- Macro anchors for Sunday agent: US CPI May 4.2% YoY (BLS Jun 10), NFP May +172K (BLS Jun 6), BoC rate 2.25% (Jun 10 hold with technical recession language), ECB rate 2.00% (Jun 11 hold, Jul hike live), RBA rate 4.35% (decision Jun 16 -- know before publishing), BoE rate 3.75%, FOMC rate 3.50-3.75% (decision Jun 17 18:00 GMT -- publish before).
-- Running record: 34 CORRECT / 21 PARTIALLY / 9 WRONG (64 total calls since inception). Sunday agent will evaluate this report's 7 biases and update to 71 total.
+- CRITICAL: The FOMC decision (Jun 17 18:00 GMT) and UK CPI (Jun 18 06:00 GMT) are BOTH known to the Sunday agent. These are the two biggest macro events of the week. Update all 7 biases comprehensively using actual outcomes.
+- FOMC Scenario A (hawkish 55%): Warsh removed easing bias; dot plot shows 2026 hike. Gold expected below 4,300 (4,108-4,150 target zone). NAS100 expected below 29,221. AUDUSD expected near 0.6994-0.6980. US30 modest pullback to 51,671-51,202. Flip NAS100 to BEARISH if below 29,221 and close XAUUSD short with profit. AUDUSD stays NEUTRAL-BEARISH.
+- FOMC Scenario B (neutral 30%): No language change. NAS100 likely above 30,285. Gold likely above 4,400. Flip NAS100 to NEUTRAL. Flip XAUUSD to NEUTRAL-BEARISH. Review whether easing bias remaining intact warrants AUDUSD NEUTRAL upgrade.
+- Gold context: ATH 5,586 (Iran-war peak). Current 4,348. Correction -22.2%. Cycle low 4,031 (Jun 11). FOMC hawkish = 4,031 retested; break below opens 3,900 and 3,750. Year low 3,253. 4,300 is the binary: above = recovery attempt; below = continued bear trend.
+- NAS100 structure: ATH 30,762 (Jun 3). Distribution candle Jun 16 below 30,001. Current 29,968. FOMC hawkish targets: 29,446 (S1), 29,221 (S2), 28,929 (S3). If 28,929 breaks, 28,000-27,500 area is next. FOMC neutral: squeeze toward 30,285-30,543.
+- US30: New ATH 52,190. Value/industrial vs NAS100 divergence is significant. US30 is less rate-sensitive. Even with hawkish FOMC, US30 may hold 51,671 floor on dips. Watch for sector rotation narrative to continue.
+- GER40: Broken prior-support 24,973 confirmed as resistance (two failed closes). ECB Sintra Jun 24-25 is the next major catalyst -- preview in Sunday report. ECB July 24 meeting live for hike. EZ PMI in contraction (49.2). Bearish bias appropriate.
+- AUDUSD: RBA paused unanimously Jun 16 at 4.35%. First pause after Feb/Mar/May hikes. Next meeting Aug 10-11. Year low 0.63735. If FOMC hawkish and USD surges, 0.6980 floor is the next test; break below opens 0.6900-0.6850. Trade 3 short 0.7090-0.7110 may need resetting lower post-FOMC.
+- GBPCAD: UK CPI May Thursday (Jun 18) outcome is known to Sunday agent. Update Trade 3 status. If hot CPI and above 1.8801: running to 1.8840-1.8915. If stopped at 1.8700: reassess to NEUTRAL. BoC dovish backdrop (Canada recession) and BoE hawkish continue to support structural bullish bias.
+- Silver: Gold/silver ratio ~62x at time of report. Silver historically cheap. But near-term follow gold lead entirely. FOMC hawkish = silver back to 67-68. FOMC neutral = silver extends to 73-75.
+- ECB Sintra Forum Jun 24-25: Sunday report should preview this. ECB hawkish speakers at Sintra = GER40 headwind, EUR strength, DAX sell.
+- US Retail Sales May (Jun 17 12:30 GMT): Sunday agent will know result. Hot = validates higher-for-longer backdrop, USD-positive. Cold = soft-landing narrative creep, potential US30 support.
+- Kevin Warsh became Fed Chair May 22, 2026 (Senate confirmed 54-45). This is his first FOMC meeting. His communication style and tone at the press conference (18:30 GMT Jun 17) may reset market expectations for the entire 2H 2026 rate path. Sunday agent should report the actual statement language and dot plot specifics.
+- Running record: 39 CORRECT / 26 PARTIALLY / 13 WRONG (78 total calls since inception).
