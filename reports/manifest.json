@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-06-17T10:44:37Z",
-  "count": 12,
+  "generatedAt": "2026-06-21T21:10:19Z",
+  "count": 13,
   "reports": [
+    {
+      "slug": "2026-06-21-weekly",
+      "type": "Weekly",
+      "date": "2026-06-21",
+      "displayDate": "Sunday 21 June 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-06-21-weekly.md",
+      "lastUpdated": "2026-06-21T21:10:19Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "Warsh FOMC hawkish hold Jun 17: dot plot flips with 9/18 members projecting a 2026 hike, easing bias removed. Gold almost hit 4,150 target (low 4,139). NAS100 quad-witching surge +2.48% on Jun 18 distorted the hawkish signal. UK CPI missed consensus. ECB Sintra Jun 24-25 is the next major catalyst.",
+      "jsonFile": "2026-06-21-weekly.json"
+    },
     {
       "slug": "2026-06-17-midweek",
       "type": "Mid-Week",
@@ -9,7 +21,7 @@
       "displayDate": "Wednesday 17 June 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-06-17-midweek.md",
-      "lastUpdated": "2026-06-17T10:39:47Z",
+      "lastUpdated": "2026-06-17T10:44:42Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "Warsh's first FOMC at 18:00 GMT today -- hold 97% priced, dot plot and easing bias removal are the battleground. RBA paused unanimously Jun 16 at 4.35% after 3 consecutive hikes -- AUD soft. US30 at new ATH 52,190 while NAS100 printed a distribution candle below broken support 30,001. Gold pre-FOMC short-covering bounce exhausted at 4,369. UK CPI May Thursday is the next post-FOMC catalyst.",
       "jsonFile": "2026-06-17-midweek.json"
