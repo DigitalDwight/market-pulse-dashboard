@@ -5,7 +5,7 @@
   "displayDate": "Sunday 21 June 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-06-21-weekly.md",
-  "lastUpdated": "2026-06-21T21:10:19Z",
+  "lastUpdated": "2026-06-21T21:10:59Z",
   "marketSentiment": "NEUTRAL_BEARISH",
   "macroTheme": "Warsh FOMC hawkish hold Jun 17: dot plot flips with 9/18 members projecting a 2026 hike, easing bias removed. Gold almost hit 4,150 target (low 4,139). NAS100 quad-witching surge +2.48% on Jun 18 distorted the hawkish signal. UK CPI missed consensus. ECB Sintra Jun 24-25 is the next major catalyst.",
   "macroOverview": "The FOMC on June 17 delivered a unanimous hold at 3.50-3.75% but the dot plot shifted hawkish: 9 of 18 members project at least one rate hike before end 2026. Warsh replaced easing bias language with 'The Committee will deliver price stability.' Gold and silver crashed post-announcement; XAUUSD target 4,150 was delivered (low 4,139 on Juneteenth Friday). UK CPI May came in at 2.8% headline (below 3.0% consensus), stopping out the GBPCAD long. US Retail Sales May +0.9% MoM validated the hawkish backdrop. NAS100 quad-witching expiration (rolled from Juneteenth Fri to Thu Jun 18) generated record volume and a +2.48% squeeze that stopped out the NAS100 short. US30 printed a new year-to-date ATH of 52,281 before reversing on the hawkish FOMC. ECB Sintra Forum June 24-25 is the key near-term event for GER40 and EUR pairs. US PCE May on June 26 is the dominant end-of-week catalyst.",
@@ -541,10 +541,10 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.701902,
+      "price": 0.70141,
       "previousClose": 0.701951,
-      "change": -4.9e-05,
-      "changePercent": -0.007,
+      "change": -0.000542,
+      "changePercent": -0.0772,
       "dayHigh": 0.702395,
       "dayLow": 0.701066,
       "yearHigh": 0.727738,
@@ -562,7 +562,7 @@
         0.70655,
         0.70185,
         0.70131,
-        0.701902
+        0.70141
       ],
       "ohlc": [
         {
@@ -674,7 +674,7 @@
           "open": 0.701557457447052,
           "high": 0.7023952007293701,
           "low": 0.7010656595230103,
-          "close": 0.7019021511077881,
+          "close": 0.7014098763465881,
           "volume": 0
         }
       ],
@@ -717,12 +717,12 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.86874,
+      "price": 1.86816,
       "previousClose": 1.866,
-      "change": 0.00274,
-      "changePercent": 0.1468,
+      "change": 0.00216,
+      "changePercent": 0.1158,
       "dayHigh": 1.87322,
-      "dayLow": 1.86874,
+      "dayLow": 1.8676,
       "yearHigh": 1.89147,
       "yearLow": 1.8018,
       "signal": "NEUTRAL",
@@ -738,7 +738,7 @@
         1.87841,
         1.87543,
         1.8668,
-        1.86874
+        1.86816
       ],
       "ohlc": [
         {
@@ -849,8 +849,8 @@
           "date": "2026-06-21",
           "open": 1.8728899955749512,
           "high": 1.8732199668884277,
-          "low": 1.8687399625778198,
-          "close": 1.8687399625778198,
+          "low": 1.8675999641418457,
+          "close": 1.8681600093841553,
           "volume": 0
         }
       ],
