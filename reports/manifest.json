@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-06-21T21:10:55Z",
-  "count": 13,
+  "generatedAt": "2026-06-24T08:55:49Z",
+  "count": 14,
   "reports": [
+    {
+      "slug": "2026-06-24-midweek",
+      "type": "Mid-Week",
+      "date": "2026-06-24",
+      "displayDate": "Wednesday 24 June 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-06-24-midweek.md",
+      "lastUpdated": "2026-06-24T08:55:49Z",
+      "marketSentiment": "BEARISH",
+      "macroTheme": "AI/semiconductor valuation doubts drive NAS100 -3.3% (Jun 23) as Micron earnings loom tonight. Warsh hawkish-hold dot plot anchors higher-for-longer. AUDUSD broke 0.7000, gold tests cycle low 4,031. US PCE May (Fri Jun 26) is the week's dominant binary. ECB Sintra Jun 29 -- Jul 1 is the forward catalyst for GER40.",
+      "jsonFile": "2026-06-24-midweek.json"
+    },
     {
       "slug": "2026-06-21-weekly",
       "type": "Weekly",
@@ -9,7 +21,7 @@
       "displayDate": "Sunday 21 June 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-06-21-weekly.md",
-      "lastUpdated": "2026-06-21T21:10:19Z",
+      "lastUpdated": "2026-06-21T21:10:59Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "Warsh FOMC hawkish hold Jun 17: dot plot flips with 9/18 members projecting a 2026 hike, easing bias removed. Gold almost hit 4,150 target (low 4,139). NAS100 quad-witching surge +2.48% on Jun 18 distorted the hawkish signal. UK CPI missed consensus. ECB Sintra Jun 24-25 is the next major catalyst.",
       "jsonFile": "2026-06-21-weekly.json"
