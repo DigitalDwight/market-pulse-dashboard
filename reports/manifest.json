@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-28T20:59:57Z",
+  "generatedAt": "2026-06-28T21:00:35Z",
   "count": 15,
   "reports": [
     {
@@ -21,7 +21,7 @@
       "displayDate": "Wednesday 24 June 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-06-24-midweek.md",
-      "lastUpdated": "2026-06-24T08:57:45Z",
+      "lastUpdated": "2026-06-28T21:00:34Z",
       "marketSentiment": "BEARISH",
       "macroTheme": "AI/semiconductor valuation doubts drive NAS100 -3.3% (Jun 23) as Micron earnings loom tonight. Warsh hawkish-hold dot plot anchors higher-for-longer. AUDUSD broke 0.7000, gold tests cycle low 4,031. US PCE May (Fri Jun 26) is the week's dominant binary. ECB Sintra Jun 29 -- Jul 1 is the forward catalyst for GER40.",
       "jsonFile": "2026-06-24-midweek.json"
