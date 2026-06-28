@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-06-24T08:57:42Z",
-  "count": 14,
+  "generatedAt": "2026-06-28T20:59:57Z",
+  "count": 15,
   "reports": [
+    {
+      "slug": "2026-06-28-weekly",
+      "type": "Weekly",
+      "date": "2026-06-28",
+      "displayDate": "Sunday 28 June 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-06-28-weekly.md",
+      "lastUpdated": "2026-06-28T20:59:56Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "US30 hits fresh ATH 52,655 on value rotation while NAS100 sheds 4.2% on rate-compression fears; Micron record $41.46bn Q3 beat failed to sustain tech rally. PCE May 4.1% YoY confirms Warsh hawkish-hold. Gold cycle low 4,031 broken Jun 24 (close 3,990), recovered to 4,096 on PCE relief. ECB Sintra Jun 29-Jul 1 is the dominant forward catalyst.",
+      "jsonFile": "2026-06-28-weekly.json"
+    },
     {
       "slug": "2026-06-24-midweek",
       "type": "Mid-Week",
@@ -9,7 +21,7 @@
       "displayDate": "Wednesday 24 June 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-06-24-midweek.md",
-      "lastUpdated": "2026-06-24T08:55:49Z",
+      "lastUpdated": "2026-06-24T08:57:45Z",
       "marketSentiment": "BEARISH",
       "macroTheme": "AI/semiconductor valuation doubts drive NAS100 -3.3% (Jun 23) as Micron earnings loom tonight. Warsh hawkish-hold dot plot anchors higher-for-longer. AUDUSD broke 0.7000, gold tests cycle low 4,031. US PCE May (Fri Jun 26) is the week's dominant binary. ECB Sintra Jun 29 -- Jul 1 is the forward catalyst for GER40.",
       "jsonFile": "2026-06-24-midweek.json"
