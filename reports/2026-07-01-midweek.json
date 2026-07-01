@@ -5,7 +5,7 @@
   "displayDate": "Wednesday 01 July 2026",
   "title": "MARKET PULSE -- Mid-Week Trading Report",
   "markdownFile": "2026-07-01-midweek.md",
-  "lastUpdated": "2026-07-01T09:20:36Z",
+  "lastUpdated": "2026-07-01T09:35:37Z",
   "marketSentiment": "NEUTRAL_BULLISH",
   "macroTheme": "Quarter-end rebalancing surged NAS100 +3.97% in two sessions, stopping the active short. ECB Sintra Lagarde hawkish (Jun 29) but EZ Flash CPI Jun 3.0% (prev 3.2%) cooling bid GER40 above 24,985 resistance. Gold rejected at 4,031-4,032 intraday -- confirmed resistance. NFP June Thursday Jul 2 is the primary catalyst before US markets close Fri Jul 3.",
   "macroOverview": "Quarter-end rebalancing dominated Jun 29-30, stopping the NAS100 short at 30,100 and the conditional GER40 short at 25,090. Lagarde at Sintra (Jun 29) maintained hawkish stance on ECB rates -- rejected the insurance hike narrative. Reuters sources (Jun 30) and EZ Flash CPI Jun 3.0% (prev 3.2%) have bid European equities and reconfigured the ECB peak-rate narrative to 2.25%. Gold tested and rejected 4,031 resistance on today's 4,032 high -- three consecutive daily closes below 4,031 confirm the level flip. AUDUSD coiling 0.6865-0.6921 ahead of NFP. Warsh speaks at Sintra today (afternoon, time TBC). ISM Manufacturing expected 53.9 vs 54.0 -- expansion territory. NFP June Thursday Jul 2 12:30 GMT is the dominant binary event.",
@@ -349,10 +349,10 @@
     {
       "symbol": "GER40",
       "name": "DAX Performance Index",
-      "price": 25082.400391,
+      "price": 25048.490234,
       "previousClose": 24980.050781,
-      "change": 102.349609,
-      "changePercent": 0.4097,
+      "change": 68.439453,
+      "changePercent": 0.274,
       "dayHigh": 25094.949219,
       "dayLow": 24955.609375,
       "yearHigh": 25507.789062,
@@ -370,7 +370,7 @@
         24671.220703,
         24626.890625,
         24995.810547,
-        25082.400391
+        25048.490234
       ],
       "ohlc": [
         {
@@ -482,7 +482,7 @@
           "open": 25028.9296875,
           "high": 25094.94921875,
           "low": 24955.609375,
-          "close": 25082.400390625,
+          "close": 25048.490234375,
           "volume": 0
         }
       ],
@@ -701,11 +701,11 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.88361,
+      "price": 1.88455,
       "previousClose": 1.88183,
-      "change": 0.00178,
-      "changePercent": 0.0946,
-      "dayHigh": 1.88475,
+      "change": 0.00272,
+      "changePercent": 0.1445,
+      "dayHigh": 1.88523,
       "dayLow": 1.88059,
       "yearHigh": 1.89147,
       "yearLow": 1.8018,
@@ -722,7 +722,7 @@
         1.87243,
         1.87216,
         1.88322,
-        1.88361
+        1.88455
       ],
       "ohlc": [
         {
@@ -832,9 +832,9 @@
         {
           "date": "2026-07-01",
           "open": 1.8825600147247314,
-          "high": 1.8847500085830688,
+          "high": 1.8852299451828003,
           "low": 1.8805899620056152,
-          "close": 1.8836100101470947,
+          "close": 1.8845499753952026,
           "volume": 0
         }
       ],
@@ -877,10 +877,10 @@
     {
       "symbol": "XAGUSD",
       "name": "Silver Spot",
-      "price": 58.240002,
+      "price": 58.279999,
       "previousClose": 58.25,
-      "change": -0.009998,
-      "changePercent": -0.0172,
+      "change": 0.029999,
+      "changePercent": 0.0515,
       "dayHigh": 59.34,
       "dayLow": 57.555,
       "yearHigh": 121.300003,
@@ -898,7 +898,7 @@
         59.216999,
         58.174999,
         59.477001,
-        58.240002
+        58.279999
       ],
       "ohlc": [
         {
@@ -1010,8 +1010,8 @@
           "open": 59.25,
           "high": 59.34000015258789,
           "low": 57.55500030517578,
-          "close": 58.2400016784668,
-          "volume": 10879
+          "close": 58.279998779296875,
+          "volume": 11391
         }
       ],
       "supports": [
@@ -1053,10 +1053,10 @@
     {
       "symbol": "XAUUSD",
       "name": "Gold Spot",
-      "price": 3988.5,
+      "price": 3990.5,
       "previousClose": 3992.899902,
-      "change": -4.399902,
-      "changePercent": -0.1102,
+      "change": -2.399902,
+      "changePercent": -0.0601,
       "dayHigh": 4032.0,
       "dayLow": 3973.0,
       "yearHigh": 5586.200195,
@@ -1074,7 +1074,7 @@
         4078.699951,
         4022.300049,
         4022.899902,
-        3988.5
+        3990.5
       ],
       "ohlc": [
         {
@@ -1186,8 +1186,8 @@
           "open": 4025.0,
           "high": 4032.0,
           "low": 3973.0,
-          "close": 3988.5,
-          "volume": 39658
+          "close": 3990.5,
+          "volume": 41187
         }
       ],
       "supports": [
