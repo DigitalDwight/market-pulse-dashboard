@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-06-28T21:00:35Z",
-  "count": 15,
+  "generatedAt": "2026-07-01T09:20:37Z",
+  "count": 16,
   "reports": [
+    {
+      "slug": "2026-07-01-midweek",
+      "type": "Mid-Week",
+      "date": "2026-07-01",
+      "displayDate": "Wednesday 01 July 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-07-01-midweek.md",
+      "lastUpdated": "2026-07-01T09:20:36Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "Quarter-end rebalancing surged NAS100 +3.97% in two sessions, stopping the active short. ECB Sintra Lagarde hawkish (Jun 29) but EZ Flash CPI Jun 3.0% (prev 3.2%) cooling bid GER40 above 24,985 resistance. Gold rejected at 4,031-4,032 intraday -- confirmed resistance. NFP June Thursday Jul 2 is the primary catalyst before US markets close Fri Jul 3.",
+      "jsonFile": "2026-07-01-midweek.json"
+    },
     {
       "slug": "2026-06-28-weekly",
       "type": "Weekly",

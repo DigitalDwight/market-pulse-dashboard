@@ -1,83 +1,92 @@
-# Last Run: Wednesday 24 June 2026 (Mid-Week Report)
-# Next Expected Run: Sunday 28 June 2026 at 20:00 BST (Weekly Report)
+# Last Run: Wednesday 01 July 2026 (Mid-Week Report)
+# Next Expected Run: Sunday 05 July 2026 at 20:00 GMT (Weekly Report)
 
 ## Report Reference
-File: 2026-06-24-midweek.md
-Slug: 2026-06-24-midweek
-Theme: AI/semiconductor selloff (NAS100 -3.3% Jun 23, Micron earnings tonight). Warsh hawkish-hold anchor. AUDUSD broke 0.7000. Gold testing cycle low 4,031. US PCE May Friday Jun 26. ECB Sintra Jun 29 -- Jul 1.
+File: 2026-07-01-midweek.md
+Slug: 2026-07-01-midweek
+Theme: Quarter-end rebalancing surged NAS100 +3.97% and stopped active shorts. ECB Sintra Lagarde hawkish (Jun 29) but EZ Flash CPI Jun 3.0% (prev 3.2%) cooling bid GER40 above 24,985. Gold rejected at 4,031-4,032 -- confirmed resistance. NFP June Thursday Jul 2 is the primary unresolved event. US markets closed Friday Jul 3.
 
 ## Biases Set This Run
 
-| Instrument | Bias | Price | Key Support | Key Resistance |
+| Instrument | Bias | Price at Report | Key Support | Key Resistance |
 |---|---|---|---|---|
-| US30 | NEUTRAL-BEARISH | 51,667 | 51,202 / 50,848 / 49,910 | 51,872 / 52,190 / 52,281 ATH |
-| NAS100 | BEARISH | 29,347 | 29,084 / 28,508 / 28,196 | 29,748 / 30,000 / 30,347 |
-| GER40 | BEARISH | 24,707 | 24,669 / 24,433 / 24,209 | 24,840 / 24,986 / 25,085 |
-| AUDUSD | BEARISH | 0.68975 | 0.6895 / 0.6850 / 0.6800 | 0.6924 / 0.6993 / 0.7003 |
-| GBPCAD | NEUTRAL-BEARISH | 1.87643 | 1.8717 / 1.8668 / 1.8608 | 1.8777 / 1.8801 / 1.8915 |
-| XAGUSD | BEARISH | 61.495 | 60.75 / 60.00 / 58.00 | 62.435 / 63.884 / 65.527 |
-| XAUUSD | BEARISH | 4,097 | 4,067 / 4,031 (cycle low CRITICAL) / 3,900 | 4,130 / 4,181 / 4,260 |
+| US30 | NEUTRAL-BULLISH | 52,319 | 52,033 / 51,949 / 51,492 | 52,387 / 52,655 ATH / 53,000 |
+| NAS100 | NEUTRAL-BULLISH | 30,276 | 29,767 / 29,310 / 28,991 | 30,328 / 30,762 year high / 31,000 |
+| GER40 | NEUTRAL-BULLISH | 25,082 | 24,955 / 24,762 / 24,556 | 25,094 / 25,176 / 25,507 |
+| AUDUSD | BEARISH | 0.6894 | 0.6886 / 0.6850 / 0.6800 | 0.6921 / 0.6929 / 0.6993 |
+| GBPCAD | NEUTRAL | 1.8836 | 1.8806 / 1.8793 / 1.8721 | 1.8847 / 1.8915 year high / 1.8960 |
+| XAGUSD | NEUTRAL-BEARISH | 58.24 | 57.555 / 57.25 / 56.13 | 59.34 / 60.00 / 62.02 |
+| XAUUSD | BEARISH | 3,988 | 3,973 / 3,963 (cycle low) / 3,900 | 4,031 (confirmed resistance) / 4,078 / 4,130 |
 
-## Wednesday 24 June Scorecard (vs Sunday 21 June biases)
+## Wednesday 01 July Scorecard (vs Sunday 28 June biases)
 
 | Instrument | Sunday Bias | Verdict |
 |---|---|---|
-| US30 | NEUTRAL-BEARISH | PARTIALLY |
-| NAS100 | NEUTRAL | PARTIALLY |
-| GER40 | NEUTRAL-BEARISH | CORRECT |
-| AUDUSD | BEARISH | CORRECT |
-| GBPCAD | NEUTRAL | CORRECT |
-| XAGUSD | BEARISH | CORRECT |
-| XAUUSD | BEARISH | CORRECT |
+| US30 | NEUTRAL | PARTIALLY |
+| NAS100 | NEUTRAL-BEARISH | WRONG |
+| GER40 | NEUTRAL-BEARISH | WRONG |
+| AUDUSD | BEARISH | PARTIALLY |
+| GBPCAD | NEUTRAL | PARTIALLY |
+| XAGUSD | NEUTRAL-BEARISH | CORRECT |
+| XAUUSD | NEUTRAL-BEARISH | CORRECT |
 
-Running record: 48 CORRECT / 29 PARTIALLY / 15 WRONG (92 total calls since inception)
+Running record: 54 CORRECT / 34 PARTIALLY / 18 WRONG (106 total calls since inception)
 
-## Conviction Trades Status (from Wednesday 24 June report)
+## Conviction Trades Status (from Wednesday 01 July report)
 
-- Trade 1 NAS100 SHORT 29,600-29,750 / target 28,500 / stop 30,100: NEW. Entry zone above current price (29,347). Wait for bounce to 29,600-29,750. Binary: Micron earnings tonight. Guide-down = gap lower toward 28,500 without fill; in that case reset entry to 29,000-29,200 bounce. Beat = gap up to entry zone, preferred short.
-- Trade 2 XAUUSD SHORT 4,100-4,150 / target 4,031 / stop 4,200: NEW (reset from Sunday). Entry zone live today (bounce from 4,067 to 4,097-4,132). Critical binary: cycle low 4,031. US PCE Friday Jun 26 is the accelerant.
-- Trade 3 GER40 SHORT 24,840-24,950 add / target 24,422 / stop 25,085: CONTINUATION from Sunday entry ~25,050-25,100. Existing position approximately 380 points profit. Add on bounce to 24,840-24,950. ECB Sintra Jun 29 is the catalyst.
+- Trade 1 XAUUSD SHORT 4,020-4,031 / target 3,963 then 3,900 / stop 4,060: NEW. Entry zone valid. Gold tested 4,031-4,032 resistance and rejected to 3,973 intraday. Sunday agent will know if filled and where price stands after NFP Thursday.
+- Trade 2 AUDUSD SHORT 0.6895-0.6910 (add zone) / target 0.6800 / stop 0.6945: CONTINUATION (original fill Jun 29 at 0.6904, approx 10 pips profit at report time). NFP Thursday is the binary catalyst. Sunday agent must report NFP outcome and current trade status.
+- Trade 3 NAS100 CONDITIONAL LONG 29,800-30,050 / target 30,762 / stop 29,500: CONDITIONAL on NFP below 175K. Sunday agent will know the NFP number and whether the trade was entered or whether the SHORT alternative (30,300-30,500 stop 30,800 target 29,600) was activated instead.
 
-## Key Events to Track for Sunday 28 June Run
+## Key Events to Track for Sunday 05 July Run
 
-1. Micron Technology FY2026 Q3 Earnings (tonight Jun 24 after US close): CRITICAL for NAS100. Did Micron beat or miss? What is the AI memory demand guidance? Report the result and NAS100 reaction (gap Thursday open). Adjust Trade 1 status accordingly.
-2. US PCE May (Friday Jun 26): CRITICAL for gold, AUDUSD, NAS100, USD. Above 4.5% = Warsh hike path validated; gold breaks 4,031; AUDUSD toward 0.6850; NAS100 further selling. Below 4.0% = dead-cat bounce across risk assets and gold. Report the actual number and market reaction.
-3. XAUUSD cycle low 4,031: Did gold break below 4,031 on a daily close? If yes, this is a significant structural event -- next level 3,900. If gold bounced from 4,031-4,067 zone, is Trade 2 filled at 4,100-4,150?
-4. AUDUSD: Did it reach 0.6850 target? If AUDUSD broke below 0.6850, update target to 0.6800. Broken 0.7000 remains resistance. Report PCE reaction.
-5. NAS100 post-Micron direction: Was 29,600-29,750 entry zone reached? Report Trade 1 fill status. If Micron missed badly and NAS100 gapped to 28,500 area, note target reached and consider whether to extend short.
-6. GER40: Did Trade 3 add at 24,840-24,950 trigger? Current price 24,707 -- did price bounce toward add zone or continue falling toward target 24,422? Report trade status.
-7. ECB Sintra Forum Day 1 (Monday Jun 29): Sunday report will preview this. Lagarde opening address. If Sunday report is written before markets open Monday, preview the Sintra setup. Note ECB date correction was made in this report.
-8. US GDP Q1 Final (Thu Jun 25): Generally a non-event but note if revised significantly.
-9. Any Warsh or other Fed speakers between Jun 24-28. Do they reinforce or soften the hawkish dot plot message?
+1. NFP JUNE (Thursday Jul 2, 12:30 GMT): THE PRIMARY EVENT. Report the exact number: headline jobs, unemployment rate, average hourly earnings MoM. Was it above 200K (hot), 150-185K (inline), or below 140K (soft)? This determines whether Trade 2 (AUD short) and Trade 1 (gold short) accelerated or reversed. Did Trade 3 NAS100 conditional long activate? Report NAS100, AUDUSD, XAUUSD, US30 post-NFP closes on Thursday July 2.
+2. WARSH AT SINTRA (Wednesday Jul 1, afternoon): Did Warsh speak? What was the exact message on the US rate path? Did he signal September as a live meeting for a hike? Report the market reaction in NAS100 and gold on Wednesday afternoon. This is critical for understanding NFP setup and H2 2026 Fed path.
+3. US ISM MANUFACTURING JUNE (Wednesday Jul 1, 14:00 GMT): Report the actual number vs expected 53.9. Above 54.0 = expansion accelerating = USD-positive = gold/silver bearish. Below 50 = contraction = risk-off signal.
+4. US ADP EMPLOYMENT (Wednesday Jul 1, 12:15 GMT): Report the number as a guide to NFP direction. ADP vs NFP divergence note if significant.
+5. XAUUSD: Did gold break below the cycle low 3,963 (Jun 24 intraday low) post-NFP? If so, new target is 3,900. If gold closed above 4,031 on any day, that changes the BEARISH bias -- reassess.
+6. NAS100: Did the year high 30,762 get tested or exceeded? Was the conditional long entered (NFP soft) or the conditional short activated (NFP hot)? Report the exact close on Thursday Jul 2.
+7. AUDUSD: Did the pair break below 0.6865 (bottom of the coil range)? Did 0.6850 target get reached? Was the stop 0.6945 hit on a soft NFP?
+8. GBPCAD: Did 1.8915 year high get tested on Thursday? Any BoC communications ahead of Jul 15?
+9. GER40: Did the price hold above 24,955 (today's low / support after the breakout)? Did 25,176 (Jun 22 high / R2) get tested?
+10. XAGUSD: Did silver break below 57.25 cycle low post-NFP? Report silver direction on Thursday.
+11. US markets CLOSED Friday July 3. Sunday report covers the full week recap and establishes H2 2026 biases with Q3 in view.
 
-## Forward Binary Events (critical for Sunday 28 June report)
+## Forward Binary Events (critical for Sunday 05 July report)
 
-- Micron Q3 Earnings (Jun 24 after close): Sunday agent WILL KNOW result and NAS100 gap-open Thursday.
-- US PCE May (Jun 26): Sunday agent WILL KNOW result. Primary macro event of the week.
-- ECB Sintra Day 1 (Jun 29 Mon): Sunday report will preview; Monday will be live. Set GER40 bias conditional on Sintra outcome.
-- XAUUSD 4,031 cycle low: Binary. Break opens 3,900. Hold enables dead-cat bounce. Sunday agent will know if it was breached.
+- NFP June (Jul 2 Thu): Sunday agent WILL KNOW the exact number and market reaction. This is the dominant event.
+- Warsh Sintra (Jul 1 Wed afternoon): Sunday agent WILL KNOW the exact content and market reaction.
+- ISM Manufacturing Jun (Jul 1 Wed): Sunday agent WILL KNOW the number.
+- ADP Jun (Jul 1 Wed): Sunday agent WILL KNOW the number.
+- ECB July hike probability: After Sintra and NFP, assess market ECB pricing for Jul 24.
 
 ## Active Open Trades Heading Into Sunday
 
-1. NAS100 SHORT 29,600-29,750 / target 28,500 / stop 30,100: NEW. Not yet filled (price 29,347, below entry zone). Fill requires bounce to 29,600-29,750. If Micron missed badly and NAS100 fell through 28,500 without filling, reset entry to 29,000-29,200 on any bounce.
-2. XAUUSD SHORT 4,100-4,150 / target 4,031 / stop 4,200: NEW reset. Entry zone was partially live today (bounce to 4,097-4,132). Report fill status for Sunday. If PCE drove gold through 4,031, update target to 3,900 and trail stop.
-3. GER40 SHORT existing from ~25,050-25,100 / add 24,840-24,950 / target 24,422 / stop 25,085: ACTIVE since Jun 22. Approximately 380 points profit on original entry. Add zone not yet triggered (current 24,707 below add zone). If GER40 bounced to 24,840-24,950 then fell again, report add status.
+1. XAUUSD SHORT entry 4,020-4,031 / stop 4,060 / target 3,963 then 3,900: NEW from Wednesday. Status after NFP Thursday unknown at time of writing. High conviction.
+2. AUDUSD SHORT original fill 0.6904 (Jun 29) + add 0.6895-0.6910 / stop 0.6945 / target 0.6800: OPEN (10 pips profit at Wednesday 09:00 GMT). NFP Thursday determines outcome.
+3. NAS100 CONDITIONAL: If NFP soft (<175K) -- LONG 29,800-30,050 / stop 29,500 / target 30,762 (entered if condition met). If NFP hot (>200K) -- SHORT 30,300-30,500 / stop 30,800 / target 29,600 (alternative). Sunday agent must confirm which scenario played out and report the trade status.
+
+## Closed Trades This Run
+
+1. NAS100 SHORT 29,600-29,750 (Jun 25 original fill): STOPPED OUT June 30 at 30,100. Loss approximately 350-500 pts. Paper profit of 480-630 pts at Sunday's close evaporated on quarter-end surge.
+2. GER40 SHORT 24,800-24,920 (entry Jun 30 at 24,815 after Lagarde hawkish condition met): STOPPED OUT July 1 at 25,090 (intraday high 25,094). Loss approximately 275 pts.
 
 ## Pipeline Status
 
-- Report: WRITTEN (2026-06-24-midweek.md)
-- Slug: 2026-06-24-midweek
+- Report: WRITTEN (2026-07-01-midweek.md)
+- Slug: 2026-07-01-midweek
 - Type: Mid-Week
-- Market Sentiment: BEARISH
+- Market Sentiment: NEUTRAL_BULLISH
 
-## Notes for Sunday 28 June Agent
+## Notes for Sunday 05 July Agent
 
-- CRITICAL CORRECTION: ECB Sintra Forum 2026 is June 29 -- July 1, NOT June 24-25 as the previous Sunday tracking note stated. The Wednesday agent has corrected this. Sunday agent should incorporate the actual Sintra schedule: Lagarde opening dinner speech Sunday evening Jun 29 (if applicable), main panels Mon-Tue Jun 30 - Jul 1.
-- FOMC context: Warsh hawkish hold Jun 17. 9/18 dots project hike. "The Committee will deliver price stability." This is the macro anchor for all biases. Do not soften USD-positive or equity-negative biases without a clear dovish catalyst.
-- XAUUSD: Cycle low 4,031 (Jun 11) is the critical binary for gold. Sunday agent must report whether it was broken on a daily close. Break = next target 3,900. Hold = dead-cat bounce territory but bias remains BEARISH.
-- NAS100: Micron earnings are the immediate catalyst. Sunday agent will know the result and the full week's NAS100 direction. The fundamental bear case (Warsh, multiple compression) is unchanged regardless of Micron's beat/miss -- it only affects the timing.
-- AUDUSD: 0.7000 is broken. The question for Sunday is whether 0.6850 was reached. If AUDUSD accelerated through 0.6850 on hot PCE, new target is 0.6800.
-- GER40: The short trade from ~25,100 is active. Sunday agent will know if 24,422 target was hit. If not, the Sintra setup (Jun 29) is the next leg. If Sintra hawkish, target extends to 24,209 and 24,000.
-- GBPCAD: Bias shifted to NEUTRAL-BEARISH this run. UK PMI miss (services 48.7) is the driver. BoC July meeting is the next CAD catalyst. Sunday agent should note any BoC communications.
-- Silver: Primary driver is gold. 60.00 is the immediate target. If gold breaks 4,031 on PCE, silver tests 60.00 and potentially 58.00. Gold/silver ratio expanding.
-- Running record: 48 CORRECT / 29 PARTIALLY / 15 WRONG (92 total calls since inception).
+- NFP IS THE ONLY THING THAT MATTERS for this report cycle. Every bias and trade from Wednesday hinges on the NFP outcome. Do not write the Sunday report without searching for the exact NFP number, UR, and wages.
+- US markets were CLOSED Friday July 3 (Independence Day observed). Sunday prices will be Monday-open influenced. Only Thursday Jul 2 closes are available post-NFP.
+- GER40 has broken above 24,985 resistance on the EZ CPI cooling narrative. The Sunday report should reassess whether this breakout holds and what the ECB Jul 24 meeting probability of hike has become (market currently pricing 2.25% as peak rate).
+- XAUUSD key levels: 4,031 is confirmed resistance (rejected today at 4,032). Cycle low is 3,963 (Jun 24 intraday). 3,900 is the next psychological target. If gold broke below 3,963 post-NFP on Thursday, immediately flag 3,900 as the primary target. If gold closed above 4,031 on any day, the BEARISH bias needs reassessment.
+- AUDUSD: If the pair closed below 0.6850 on Thursday, new target is 0.6800. If it spiked above 0.6945 (stop), the trade is closed and AUD may be reassessed to NEUTRAL on soft NFP.
+- NAS100 year high is 30,762. If the conditional long was entered and the year high is tested or exceeded, that is a major market development for H2 2026 narrative -- flag it prominently.
+- Warsh Sintra speech content from Wednesday afternoon is critical context for the Sunday report's H2 Fed outlook section.
+- Running record: 54 CORRECT / 34 PARTIALLY / 18 WRONG (106 total calls). Next run adds 7 calls (one per instrument).
+- ECB Jul 24 is the next major scheduled event for European instruments. Build the H2 2026 calendar prominently in the Sunday report.
+- GBPCAD approaching year high 1.8915. If it broke above 1.8915 on Thu, flag the year-high breakout and assess BoC Jul 15 implications.
