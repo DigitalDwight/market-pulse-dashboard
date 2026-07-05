@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-07-01T09:35:33Z",
-  "count": 16,
+  "generatedAt": "2026-07-05T20:51:50Z",
+  "count": 17,
   "reports": [
+    {
+      "slug": "2026-07-05-weekly",
+      "type": "Weekly",
+      "date": "2026-07-05",
+      "displayDate": "Sunday 05 July 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-07-05-weekly.md",
+      "lastUpdated": "2026-07-05T20:51:50Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "NFP June +57K devastates the soft-landing narrative -- US30 ATH on rate-cut rotation while NAS100 prints a bearish reversal on growth-scare. Gold breaks above all identified resistance levels (4,031/4,078/4,130), full BEARISH-to-BULLISH reversal. Warsh at Sintra: inflation too high, no July guidance. GER40 new year high.",
+      "jsonFile": "2026-07-05-weekly.json"
+    },
     {
       "slug": "2026-07-01-midweek",
       "type": "Mid-Week",
@@ -9,7 +21,7 @@
       "displayDate": "Wednesday 01 July 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-07-01-midweek.md",
-      "lastUpdated": "2026-07-01T09:20:36Z",
+      "lastUpdated": "2026-07-01T09:35:37Z",
       "marketSentiment": "NEUTRAL_BULLISH",
       "macroTheme": "Quarter-end rebalancing surged NAS100 +3.97% in two sessions, stopping the active short. ECB Sintra Lagarde hawkish (Jun 29) but EZ Flash CPI Jun 3.0% (prev 3.2%) cooling bid GER40 above 24,985 resistance. Gold rejected at 4,031-4,032 intraday -- confirmed resistance. NFP June Thursday Jul 2 is the primary catalyst before US markets close Fri Jul 3.",
       "jsonFile": "2026-07-01-midweek.json"
