@@ -5,7 +5,7 @@
   "displayDate": "Wednesday 08 July 2026",
   "title": "MARKET PULSE -- Mid-Week Trading Report",
   "markdownFile": "2026-07-08-midweek.md",
-  "lastUpdated": "2026-07-08T06:35:12Z",
+  "lastUpdated": "2026-07-08T06:50:07Z",
   "marketSentiment": "NEUTRAL",
   "macroTheme": "Iranian Hormuz incident reignites geopolitical premium; FOMC minutes drop tonight pre-CPI. NFP +57K growth scare drives Dow to ATH while NAS100 rotates lower. Gold at critical entry zone 4,100-4,135. GER40 year-high rejection on Tuesday. CPI Friday is the dominant binary.",
   "macroOverview": "Iranian Revolutionary Guard fired on two commercial vessels near the Strait of Hormuz on July 7, spiking crude oil and triggering a sharp cross-asset rotation: US30 hit year high 53,289 (defensive/energy composition) while NAS100 sold to 28,974 day low and GER40 reversed from year high 25,900 to close -1.37%. GBPCAD hit year high 1.9040 then reversed on CAD strength from oil. Gold is holding above critical 4,078 support at the 4,100-4,135 entry zone. FOMC minutes from June 16-17 meeting release tonight at 19:00 GMT. US CPI June on Friday July 10 is the dominant catalyst of the week; consensus near 3.1% YoY.",
@@ -1029,11 +1029,11 @@
     {
       "symbol": "XAUUSD",
       "name": "Gold Spot",
-      "price": 4135.600098,
-      "previousClose": 4139.700195,
-      "change": -4.100098,
-      "changePercent": -0.099,
-      "dayHigh": 4144.600098,
+      "price": 4137.399902,
+      "previousClose": 4138.5,
+      "change": -1.100098,
+      "changePercent": -0.0266,
+      "dayHigh": 4144.700195,
       "dayLow": 4104.0,
       "yearHigh": 5586.200195,
       "yearLow": 3263.899902,
@@ -1050,7 +1050,7 @@
         4112.700195,
         4155.100098,
         4145.299805,
-        4135.600098
+        4137.399902
       ],
       "ohlc": [
         {
@@ -1152,10 +1152,10 @@
         {
           "date": "2026-07-08",
           "open": 4106.5,
-          "high": 4144.60009765625,
+          "high": 4144.7001953125,
           "low": 4104.0,
-          "close": 4135.60009765625,
-          "volume": 25872
+          "close": 4137.39990234375,
+          "volume": 27225
         }
       ],
       "supports": [
