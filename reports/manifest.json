@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-07-05T20:54:25Z",
-  "count": 17,
+  "generatedAt": "2026-07-08T06:35:13Z",
+  "count": 18,
   "reports": [
+    {
+      "slug": "2026-07-08-midweek",
+      "type": "Mid-Week",
+      "date": "2026-07-08",
+      "displayDate": "Wednesday 08 July 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-07-08-midweek.md",
+      "lastUpdated": "2026-07-08T06:35:12Z",
+      "marketSentiment": "NEUTRAL",
+      "macroTheme": "Iranian Hormuz incident reignites geopolitical premium; FOMC minutes drop tonight pre-CPI. NFP +57K growth scare drives Dow to ATH while NAS100 rotates lower. Gold at critical entry zone 4,100-4,135. GER40 year-high rejection on Tuesday. CPI Friday is the dominant binary.",
+      "jsonFile": "2026-07-08-midweek.json"
+    },
     {
       "slug": "2026-07-05-weekly",
       "type": "Weekly",
