@@ -5,7 +5,7 @@
   "displayDate": "Sunday 12 July 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-07-12-weekly.md",
-  "lastUpdated": "2026-07-12T20:13:53Z",
+  "lastUpdated": "2026-07-12T20:16:54Z",
   "marketSentiment": "NEUTRAL",
   "macroTheme": "FOMC June minutes confirmed a 9-8 split committee (nine lean hold/hike, eight lean September cut); Iran airstrikes resumed July 9 erasing the ceasefire; US30 ATH 53,289 set July 7; gold stopped out at 4,053 then recovered on Iran escalation. June CPI due July 14 is the dominant week-ahead catalyst.",
   "macroOverview": "FOMC June minutes (released July 8, 19:00 GMT) confirmed the Federal Reserve is split 9-8 on the next policy move, with nine members open to a hold or hike and eight favouring a September cut. Gold initially sold to 4,053, stopping out the Wednesday conviction long trade at the 4,055 stop. Iran airstrikes resumed July 9, repricing the Hormuz risk premium and recovering gold to 4,130. US30 hit a new all-time high at 53,289 on July 7 then sold back to 52,637. NAS100 had the most dramatic move: 28,814 low (July 8) to 29,825 close (July 10) on the absence of CPI and the less-hawkish-than-feared FOMC split. PBoC added 14.93 tonnes of gold in June -- the largest single month since October 2023, extending twenty consecutive months of buying. June CPI was NOT released on July 10 as the prior tracking note anticipated; it is scheduled for July 14. Q2 bank earnings begin Monday July 13. All three Wednesday conviction trades either stopped out or were not filled.",
@@ -541,10 +541,10 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.695169,
+      "price": 0.694975,
       "previousClose": 0.694348,
-      "change": 0.000821,
-      "changePercent": 0.1182,
+      "change": 0.000627,
+      "changePercent": 0.0903,
       "dayHigh": 0.695846,
       "dayLow": 0.6943,
       "yearHigh": 0.727738,
@@ -562,7 +562,7 @@
         0.69226,
         0.69363,
         0.69444,
-        0.695169
+        0.694975
       ],
       "ohlc": [
         {
@@ -674,7 +674,7 @@
           "open": 0.6955069899559021,
           "high": 0.6958457827568054,
           "low": 0.6942998170852661,
-          "close": 0.6951685547828674,
+          "close": 0.6949753165245056,
           "volume": 0
         }
       ],
@@ -717,12 +717,12 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.8957,
+      "price": 1.89568,
       "previousClose": 1.89999,
-      "change": -0.00429,
-      "changePercent": -0.2258,
+      "change": -0.00431,
+      "changePercent": -0.2268,
       "dayHigh": 1.89865,
-      "dayLow": 1.8957,
+      "dayLow": 1.89561,
       "yearHigh": 1.90406,
       "yearLow": 1.8018,
       "signal": "NEUTRAL",
@@ -738,7 +738,7 @@
         1.89555,
         1.89688,
         1.90009,
-        1.8957
+        1.89568
       ],
       "ohlc": [
         {
@@ -849,8 +849,8 @@
           "date": "2026-07-12",
           "open": 1.897779941558838,
           "high": 1.898650050163269,
-          "low": 1.8956999778747559,
-          "close": 1.8956999778747559,
+          "low": 1.895609974861145,
+          "close": 1.8956799507141113,
           "volume": 0
         }
       ],
