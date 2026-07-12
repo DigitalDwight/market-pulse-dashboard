@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-07-08T06:50:05Z",
-  "count": 18,
+  "generatedAt": "2026-07-12T20:13:53Z",
+  "count": 19,
   "reports": [
+    {
+      "slug": "2026-07-12-weekly",
+      "type": "Weekly",
+      "date": "2026-07-12",
+      "displayDate": "Sunday 12 July 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-07-12-weekly.md",
+      "lastUpdated": "2026-07-12T20:13:53Z",
+      "marketSentiment": "NEUTRAL",
+      "macroTheme": "FOMC June minutes confirmed a 9-8 split committee (nine lean hold/hike, eight lean September cut); Iran airstrikes resumed July 9 erasing the ceasefire; US30 ATH 53,289 set July 7; gold stopped out at 4,053 then recovered on Iran escalation. June CPI due July 14 is the dominant week-ahead catalyst.",
+      "jsonFile": "2026-07-12-weekly.json"
+    },
     {
       "slug": "2026-07-08-midweek",
       "type": "Mid-Week",
@@ -9,7 +21,7 @@
       "displayDate": "Wednesday 08 July 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-07-08-midweek.md",
-      "lastUpdated": "2026-07-08T06:35:12Z",
+      "lastUpdated": "2026-07-08T06:50:07Z",
       "marketSentiment": "NEUTRAL",
       "macroTheme": "Iranian Hormuz incident reignites geopolitical premium; FOMC minutes drop tonight pre-CPI. NFP +57K growth scare drives Dow to ATH while NAS100 rotates lower. Gold at critical entry zone 4,100-4,135. GER40 year-high rejection on Tuesday. CPI Friday is the dominant binary.",
       "jsonFile": "2026-07-08-midweek.json"

@@ -1,0 +1,1390 @@
+{
+  "slug": "2026-07-12-weekly",
+  "type": "Weekly",
+  "date": "2026-07-12",
+  "displayDate": "Sunday 12 July 2026",
+  "title": "MARKET PULSE -- Weekly Trading Report",
+  "markdownFile": "2026-07-12-weekly.md",
+  "lastUpdated": "2026-07-12T20:13:53Z",
+  "marketSentiment": "NEUTRAL",
+  "macroTheme": "FOMC June minutes confirmed a 9-8 split committee (nine lean hold/hike, eight lean September cut); Iran airstrikes resumed July 9 erasing the ceasefire; US30 ATH 53,289 set July 7; gold stopped out at 4,053 then recovered on Iran escalation. June CPI due July 14 is the dominant week-ahead catalyst.",
+  "macroOverview": "FOMC June minutes (released July 8, 19:00 GMT) confirmed the Federal Reserve is split 9-8 on the next policy move, with nine members open to a hold or hike and eight favouring a September cut. Gold initially sold to 4,053, stopping out the Wednesday conviction long trade at the 4,055 stop. Iran airstrikes resumed July 9, repricing the Hormuz risk premium and recovering gold to 4,130. US30 hit a new all-time high at 53,289 on July 7 then sold back to 52,637. NAS100 had the most dramatic move: 28,814 low (July 8) to 29,825 close (July 10) on the absence of CPI and the less-hawkish-than-feared FOMC split. PBoC added 14.93 tonnes of gold in June -- the largest single month since October 2023, extending twenty consecutive months of buying. June CPI was NOT released on July 10 as the prior tracking note anticipated; it is scheduled for July 14. Q2 bank earnings begin Monday July 13. All three Wednesday conviction trades either stopped out or were not filled.",
+  "instruments": [
+    {
+      "symbol": "US30",
+      "name": "Dow Jones Industrial Average",
+      "price": 52637.011719,
+      "previousClose": 52487.41,
+      "change": 149.601719,
+      "changePercent": 0.285,
+      "dayHigh": 52709.75,
+      "dayLow": 52266.808594,
+      "yearHigh": 53289.300781,
+      "yearLow": 43340.679688,
+      "signal": "NEUTRAL_BULLISH",
+      "signalStrength": 30,
+      "eventImpactProbability": 85,
+      "sparkline": [
+        51876.109375,
+        52182.738281,
+        52319.199219,
+        52305.238281,
+        52900.070312,
+        53055.910156,
+        52925.148438,
+        52348.390625,
+        52487.410156,
+        52637.011719
+      ],
+      "ohlc": [
+        {
+          "date": "2026-06-22",
+          "open": 51555.19140625,
+          "high": 51887.8515625,
+          "low": 51555.19140625,
+          "close": 51712.7109375,
+          "volume": 529120000
+        },
+        {
+          "date": "2026-06-23",
+          "open": 51735.640625,
+          "high": 51872.55859375,
+          "low": 51301.76953125,
+          "close": 51666.83984375,
+          "volume": 548870000
+        },
+        {
+          "date": "2026-06-24",
+          "open": 51660.75,
+          "high": 52248.69140625,
+          "low": 51617.73046875,
+          "close": 51848.8984375,
+          "volume": 560270000
+        },
+        {
+          "date": "2026-06-25",
+          "open": 52009.01953125,
+          "high": 52655.66015625,
+          "low": 51857.78125,
+          "close": 51920.62109375,
+          "volume": 639230000
+        },
+        {
+          "date": "2026-06-26",
+          "open": 51803.76953125,
+          "high": 52130.0703125,
+          "low": 51614.73828125,
+          "close": 51876.109375,
+          "volume": 1297680000
+        },
+        {
+          "date": "2026-06-29",
+          "open": 51995.140625,
+          "high": 52311.62890625,
+          "low": 51949.5390625,
+          "close": 52182.73828125,
+          "volume": 580440000
+        },
+        {
+          "date": "2026-06-30",
+          "open": 52168.1796875,
+          "high": 52387.44921875,
+          "low": 52033.12890625,
+          "close": 52319.19921875,
+          "volume": 622980000
+        },
+        {
+          "date": "2026-07-01",
+          "open": 52231.1796875,
+          "high": 52742.66015625,
+          "low": 52026.640625,
+          "close": 52305.23828125,
+          "volume": 622970000
+        },
+        {
+          "date": "2026-07-02",
+          "open": 52395.21875,
+          "high": 52903.8515625,
+          "low": 52395.21875,
+          "close": 52900.0703125,
+          "volume": 548820000
+        },
+        {
+          "date": "2026-07-06",
+          "open": 52828.44921875,
+          "high": 53060.1015625,
+          "low": 52648.69140625,
+          "close": 53055.91015625,
+          "volume": 467390000
+        },
+        {
+          "date": "2026-07-07",
+          "open": 53104.05859375,
+          "high": 53289.30078125,
+          "low": 52774.171875,
+          "close": 52925.1484375,
+          "volume": 442010000
+        },
+        {
+          "date": "2026-07-08",
+          "open": 52758.46875,
+          "high": 52758.46875,
+          "low": 52069.87109375,
+          "close": 52348.390625,
+          "volume": 454130000
+        },
+        {
+          "date": "2026-07-09",
+          "open": 52249.44140625,
+          "high": 52574.890625,
+          "low": 52249.44140625,
+          "close": 52487.41015625,
+          "volume": 456760000
+        },
+        {
+          "date": "2026-07-10",
+          "open": 52622.921875,
+          "high": 52709.75,
+          "low": 52266.80859375,
+          "close": 52637.01171875,
+          "volume": 408090000
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 52249,
+          "description": "July 9 intraday low -- first defensive floor"
+        },
+        {
+          "level": "S2",
+          "price": 52069,
+          "description": "July 8 week low -- critical pivot; intraday break recovered"
+        },
+        {
+          "level": "S3",
+          "price": 51949,
+          "description": "June 29 intraday low -- prior week base"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 52903,
+          "description": "July 2 closing high -- near-term ceiling"
+        },
+        {
+          "level": "R2",
+          "price": 53060,
+          "description": "July 6 close"
+        },
+        {
+          "level": "R3",
+          "price": 53289,
+          "description": "All-time high July 7 -- year high"
+        }
+      ],
+      "analysis": "Price action: US30 set new ATH 53,289 on July 7, then FOMC-minutes selloff July 8 drove price to intraday low 52,069 (breaking support 52,395), recovered to close 52,637 by Friday. Post-ATH consolidation healthy. Fundamentals: FOMC 9-8 split confirmed; Q2 bank earnings (JPM, WFC, C) Monday July 13 are the immediate catalyst via Dow's financial weighting; energy and defence composition benefits from Hormuz premium. Outlook: 5-day NEUTRAL-BULLISH. Buy 52,200-52,400 stop 51,900 target 53,500. Conditional on June CPI July 14 not exceeding 4.8% YoY."
+    },
+    {
+      "symbol": "NAS100",
+      "name": "Nasdaq 100",
+      "price": 29825.109375,
+      "previousClose": 29727.098,
+      "change": 98.011375,
+      "changePercent": 0.3297,
+      "dayHigh": 29856.939453,
+      "dayLow": 29484.490234,
+      "yearHigh": 30762.199219,
+      "yearLow": 22669.369141,
+      "signal": "NEUTRAL",
+      "signalStrength": 15,
+      "eventImpactProbability": 80,
+      "sparkline": [
+        29118.240234,
+        29774.75,
+        30276.349609,
+        29809.130859,
+        29329.210938,
+        29697.869141,
+        29173.019531,
+        29252.560547,
+        29727.099609,
+        29825.109375
+      ],
+      "ohlc": [
+        {
+          "date": "2026-06-22",
+          "open": 30529.990234375,
+          "high": 30642.5703125,
+          "low": 30194.25,
+          "close": 30347.080078125,
+          "volume": 12844290000
+        },
+        {
+          "date": "2026-06-23",
+          "open": 29369.25,
+          "high": 29748.720703125,
+          "low": 29276.98046875,
+          "close": 29347.26953125,
+          "volume": 14631520000
+        },
+        {
+          "date": "2026-06-24",
+          "open": 29328.400390625,
+          "high": 29592.900390625,
+          "low": 28963.099609375,
+          "close": 29220.060546875,
+          "volume": 14936190000
+        },
+        {
+          "date": "2026-06-25",
+          "open": 29843.890625,
+          "high": 29843.890625,
+          "low": 29000.55078125,
+          "close": 29440.3203125,
+          "volume": 9870860000
+        },
+        {
+          "date": "2026-06-26",
+          "open": 29040.119140625,
+          "high": 29413.80078125,
+          "low": 28890.740234375,
+          "close": 29118.240234375,
+          "volume": 16594580000
+        },
+        {
+          "date": "2026-06-29",
+          "open": 29310.259765625,
+          "high": 29792.630859375,
+          "low": 28991.51953125,
+          "close": 29774.75,
+          "volume": 9776230000
+        },
+        {
+          "date": "2026-06-30",
+          "open": 29792.9296875,
+          "high": 30328.7890625,
+          "low": 29767.759765625,
+          "close": 30276.349609375,
+          "volume": 9809990000
+        },
+        {
+          "date": "2026-07-01",
+          "open": 29914.279296875,
+          "high": 30084.779296875,
+          "low": 29787.41015625,
+          "close": 29809.130859375,
+          "volume": 9094410000
+        },
+        {
+          "date": "2026-07-02",
+          "open": 29778.69921875,
+          "high": 30044.5,
+          "low": 29087.330078125,
+          "close": 29329.2109375,
+          "volume": 9529580000
+        },
+        {
+          "date": "2026-07-06",
+          "open": 29575.5703125,
+          "high": 29847.740234375,
+          "low": 29553.619140625,
+          "close": 29697.869140625,
+          "volume": 7827050000
+        },
+        {
+          "date": "2026-07-07",
+          "open": 29362.19921875,
+          "high": 29426.44921875,
+          "low": 28974.470703125,
+          "close": 29173.01953125,
+          "volume": 8244680000
+        },
+        {
+          "date": "2026-07-08",
+          "open": 29030.330078125,
+          "high": 29280.580078125,
+          "low": 28814.5703125,
+          "close": 29252.560546875,
+          "volume": 7935740000
+        },
+        {
+          "date": "2026-07-09",
+          "open": 29486.609375,
+          "high": 29773.740234375,
+          "low": 29398.470703125,
+          "close": 29727.099609375,
+          "volume": 7312220000
+        },
+        {
+          "date": "2026-07-10",
+          "open": 29618.33984375,
+          "high": 29856.939453125,
+          "low": 29484.490234375,
+          "close": 29825.109375,
+          "volume": 7094480000
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 29484,
+          "description": "July 10 day low -- immediate floor"
+        },
+        {
+          "level": "S2",
+          "price": 29252,
+          "description": "July 8 close -- recovery launch point"
+        },
+        {
+          "level": "S3",
+          "price": 28974,
+          "description": "July 7 intraday low -- structural floor; must hold on CPI-driven pullback"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 29857,
+          "description": "July 10 day high -- near-term ceiling"
+        },
+        {
+          "level": "R2",
+          "price": 30044,
+          "description": "July 2 session high"
+        },
+        {
+          "level": "R3",
+          "price": 30277,
+          "description": "June 30 high -- prior cycle high zone"
+        }
+      ],
+      "analysis": "Price action: Extreme whipsaw -- dropped to 28,814 July 8 (breaking 28,974 structural floor), reversed violently to 29,825 by Friday close (+3.5% in two sessions). FOMC 9-8 split perceived as less hawkish than feared; CPI absence on Friday removed selling pressure. Fundamentals: June CPI July 14 is the binary trigger -- soft targets 30,277+; hot retests 28,974. AI capex narrative intact. Outlook: 5-day NEUTRAL. Range trade 29,252-29,857. Do not chase above 29,857 or 30,000 ahead of CPI."
+    },
+    {
+      "symbol": "GER40",
+      "name": "DAX Performance Index",
+      "price": 25067.089844,
+      "previousClose": 25118.27,
+      "change": -51.180156,
+      "changePercent": -0.2038,
+      "dayHigh": 25195.830078,
+      "dayLow": 24937.519531,
+      "yearHigh": 25900.099609,
+      "yearLow": 21863.810547,
+      "signal": "NEUTRAL_BEARISH",
+      "signalStrength": -40,
+      "eventImpactProbability": 70,
+      "sparkline": [
+        24626.890625,
+        24995.810547,
+        25040.279297,
+        25580.880859,
+        25779.310547,
+        25817.890625,
+        25465.25,
+        24897.449219,
+        25118.269531,
+        25067.089844
+      ],
+      "ohlc": [
+        {
+          "date": "2026-06-23",
+          "open": 24835.560546875,
+          "high": 24988.7109375,
+          "low": 24728.5703125,
+          "close": 24893.580078125,
+          "volume": 63415400
+        },
+        {
+          "date": "2026-06-24",
+          "open": 24790.69921875,
+          "high": 24800.66015625,
+          "low": 24593.48046875,
+          "close": 24740.359375,
+          "volume": 61210500
+        },
+        {
+          "date": "2026-06-25",
+          "open": 24810.0,
+          "high": 25088.279296875,
+          "low": 24761.720703125,
+          "close": 24994.830078125,
+          "volume": 71276400
+        },
+        {
+          "date": "2026-06-26",
+          "open": 24848.509765625,
+          "high": 24869.630859375,
+          "low": 24547.69921875,
+          "close": 24671.220703125,
+          "volume": 61917200
+        },
+        {
+          "date": "2026-06-29",
+          "open": 24724.33984375,
+          "high": 24762.240234375,
+          "low": 24556.779296875,
+          "close": 24626.890625,
+          "volume": 56335000
+        },
+        {
+          "date": "2026-06-30",
+          "open": 24815.220703125,
+          "high": 25024.26953125,
+          "low": 24794.83984375,
+          "close": 24995.810546875,
+          "volume": 75930500
+        },
+        {
+          "date": "2026-07-01",
+          "open": 25028.9296875,
+          "high": 25095.66015625,
+          "low": 24887.0,
+          "close": 25040.279296875,
+          "volume": 56044400
+        },
+        {
+          "date": "2026-07-02",
+          "open": 25025.130859375,
+          "high": 25655.8203125,
+          "low": 24994.640625,
+          "close": 25580.880859375,
+          "volume": 75071900
+        },
+        {
+          "date": "2026-07-03",
+          "open": 25763.970703125,
+          "high": 25826.779296875,
+          "low": 25611.689453125,
+          "close": 25779.310546875,
+          "volume": 49882400
+        },
+        {
+          "date": "2026-07-06",
+          "open": 25811.900390625,
+          "high": 25900.099609375,
+          "low": 25698.560546875,
+          "close": 25817.890625,
+          "volume": 42803800
+        },
+        {
+          "date": "2026-07-07",
+          "open": 25770.44921875,
+          "high": 25811.970703125,
+          "low": 25465.119140625,
+          "close": 25465.25,
+          "volume": 54584900
+        },
+        {
+          "date": "2026-07-08",
+          "open": 25274.939453125,
+          "high": 25280.16015625,
+          "low": 24830.169921875,
+          "close": 24897.44921875,
+          "volume": 65668500
+        },
+        {
+          "date": "2026-07-09",
+          "open": 25097.48046875,
+          "high": 25127.759765625,
+          "low": 24867.3203125,
+          "close": 25118.26953125,
+          "volume": 48782700
+        },
+        {
+          "date": "2026-07-10",
+          "open": 25081.189453125,
+          "high": 25195.830078125,
+          "low": 24937.51953125,
+          "close": 25067.08984375,
+          "volume": 48006700
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 24937,
+          "description": "July 10 intraday low -- immediate floor"
+        },
+        {
+          "level": "S2",
+          "price": 24830,
+          "description": "July 8 low -- critical structural support"
+        },
+        {
+          "level": "S3",
+          "price": 24626,
+          "description": "June 29 close -- prior week base"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 25195,
+          "description": "July 10 high -- sell zone base"
+        },
+        {
+          "level": "R2",
+          "price": 25280,
+          "description": "July 8 session high -- sell zone top"
+        },
+        {
+          "level": "R3",
+          "price": 25465,
+          "description": "July 7 close -- broken support now resistance"
+        }
+      ],
+      "analysis": "Price action: Year high 25,900 set July 6, immediately rejected; sold to 24,830 July 8 (breaking 25,040 support); partial recovery to 25,067. Broken support 25,465 (July 7 close) now confirmed as resistance after two failed reclaim attempts. Fundamentals: Iran oil shock = margin compression for German industrials and auto sector; ECB July 24 next catalyst; Eurozone stagflation risk elevated. Outlook: 5-day NEUTRAL-BEARISH. Sell 25,195-25,280 stop 25,470 target 24,626. Below 24,830 opens 24,593."
+    },
+    {
+      "symbol": "AUDUSD",
+      "name": "Australian Dollar vs US Dollar",
+      "price": 0.695169,
+      "previousClose": 0.694348,
+      "change": 0.000821,
+      "changePercent": 0.1182,
+      "dayHigh": 0.695846,
+      "dayLow": 0.6943,
+      "yearHigh": 0.727738,
+      "yearLow": 0.6415,
+      "signal": "NEUTRAL",
+      "signalStrength": 0,
+      "eventImpactProbability": 75,
+      "sparkline": [
+        0.68824,
+        0.6913,
+        0.68921,
+        0.6916,
+        0.6937,
+        0.69553,
+        0.69226,
+        0.69363,
+        0.69444,
+        0.695169
+      ],
+      "ohlc": [
+        {
+          "date": "2026-06-24",
+          "open": 0.6918002367019653,
+          "high": 0.6923999190330505,
+          "low": 0.6884899735450745,
+          "close": 0.6915600895881653,
+          "volume": 0
+        },
+        {
+          "date": "2026-06-25",
+          "open": 0.6895999908447266,
+          "high": 0.692110002040863,
+          "low": 0.6887498497962952,
+          "close": 0.6900001764297485,
+          "volume": 0
+        },
+        {
+          "date": "2026-06-26",
+          "open": 0.6902301907539368,
+          "high": 0.6917002201080322,
+          "low": 0.6876302361488342,
+          "close": 0.6900501847267151,
+          "volume": 0
+        },
+        {
+          "date": "2026-06-29",
+          "open": 0.6893699169158936,
+          "high": 0.6904498934745789,
+          "low": 0.6878198981285095,
+          "close": 0.6896218657493591,
+          "volume": 0
+        },
+        {
+          "date": "2026-06-30",
+          "open": 0.6879698634147644,
+          "high": 0.6929382681846619,
+          "low": 0.68656986951828,
+          "close": 0.6882398128509521,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-01",
+          "open": 0.6911901235580444,
+          "high": 0.6915399432182312,
+          "low": 0.6883923411369324,
+          "close": 0.6912999749183655,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-02",
+          "open": 0.6891499161720276,
+          "high": 0.6945998072624207,
+          "low": 0.6885402202606201,
+          "close": 0.6892097592353821,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-03",
+          "open": 0.6917800903320312,
+          "high": 0.6949898600578308,
+          "low": 0.691109836101532,
+          "close": 0.6916002035140991,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-06",
+          "open": 0.6934000253677368,
+          "high": 0.6945998072624207,
+          "low": 0.692270040512085,
+          "close": 0.6937001347541809,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-07",
+          "open": 0.6954901218414307,
+          "high": 0.6960880160331726,
+          "low": 0.6934202313423157,
+          "close": 0.6955297589302063,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-08",
+          "open": 0.6921598315238953,
+          "high": 0.6947001218795776,
+          "low": 0.6907298564910889,
+          "close": 0.6922600269317627,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-09",
+          "open": 0.693669855594635,
+          "high": 0.6946398019790649,
+          "low": 0.692599892616272,
+          "close": 0.6936299204826355,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-10",
+          "open": 0.6944401264190674,
+          "high": 0.6971001625061035,
+          "low": 0.6934999823570251,
+          "close": 0.6944401264190674,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-12",
+          "open": 0.6955069899559021,
+          "high": 0.6958457827568054,
+          "low": 0.6942998170852661,
+          "close": 0.6951685547828674,
+          "volume": 0
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 0.6923,
+          "description": "July 8 close -- week base"
+        },
+        {
+          "level": "S2",
+          "price": 0.6885,
+          "description": "Prior support zone"
+        },
+        {
+          "level": "S3",
+          "price": 0.6866,
+          "description": "June 30 intraday low -- structural floor"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 0.6971,
+          "description": "July 10 high -- near-term ceiling"
+        },
+        {
+          "level": "R2",
+          "price": 0.6993,
+          "description": "Prior resistance ceiling"
+        },
+        {
+          "level": "R3",
+          "price": 0.7,
+          "description": "Psychological round number"
+        }
+      ],
+      "analysis": "Price action: Tightest range instrument this week -- 0.6907-0.6971 (64 pips). June 30 low 0.6866 remains the structural floor. Closed Friday 0.6944, live Sunday 0.6952. Fundamentals: No RBA catalyst until August; pure USD-direction trade via June CPI July 14. Soft CPI = 0.6993-0.7000 target. Hot CPI = 0.6866 retested. Iron ore elevated; LNG exports benefit from high oil. Outlook: 5-day NEUTRAL. Range 0.6885-0.6993 until CPI trigger."
+    },
+    {
+      "symbol": "GBPCAD",
+      "name": "British Pound vs Canadian Dollar",
+      "price": 1.8957,
+      "previousClose": 1.89999,
+      "change": -0.00429,
+      "changePercent": -0.2258,
+      "dayHigh": 1.89865,
+      "dayLow": 1.8957,
+      "yearHigh": 1.90406,
+      "yearLow": 1.8018,
+      "signal": "NEUTRAL",
+      "signalStrength": -5,
+      "eventImpactProbability": 80,
+      "sparkline": [
+        1.88322,
+        1.88224,
+        1.88741,
+        1.89248,
+        1.89631,
+        1.90277,
+        1.89555,
+        1.89688,
+        1.90009,
+        1.8957
+      ],
+      "ohlc": [
+        {
+          "date": "2026-06-24",
+          "open": 1.8753999471664429,
+          "high": 1.877560019493103,
+          "low": 1.8708200454711914,
+          "close": 1.8753399848937988,
+          "volume": 0
+        },
+        {
+          "date": "2026-06-25",
+          "open": 1.8731399774551392,
+          "high": 1.877500057220459,
+          "low": 1.8725999593734741,
+          "close": 1.8735899925231934,
+          "volume": 0
+        },
+        {
+          "date": "2026-06-26",
+          "open": 1.8721799850463867,
+          "high": 1.8757699728012085,
+          "low": 1.871999979019165,
+          "close": 1.8724299669265747,
+          "volume": 0
+        },
+        {
+          "date": "2026-06-29",
+          "open": 1.872189998626709,
+          "high": 1.8832299709320068,
+          "low": 1.872189998626709,
+          "close": 1.8721599578857422,
+          "volume": 0
+        },
+        {
+          "date": "2026-06-30",
+          "open": 1.8832900524139404,
+          "high": 1.8846900463104248,
+          "low": 1.8792999982833862,
+          "close": 1.8832199573516846,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-01",
+          "open": 1.882290005683899,
+          "high": 1.8872499465942383,
+          "low": 1.8807200193405151,
+          "close": 1.8822400569915771,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-02",
+          "open": 1.8880200386047363,
+          "high": 1.8965699672698975,
+          "low": 1.8871999979019165,
+          "close": 1.887410044670105,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-03",
+          "open": 1.8926899433135986,
+          "high": 1.8972500562667847,
+          "low": 1.8924000263214111,
+          "close": 1.8924800157546997,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-06",
+          "open": 1.8964500427246094,
+          "high": 1.9006400108337402,
+          "low": 1.8945300579071045,
+          "close": 1.8963099718093872,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-07",
+          "open": 1.903090000152588,
+          "high": 1.9040600061416626,
+          "low": 1.8971999883651733,
+          "close": 1.9027700424194336,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-08",
+          "open": 1.8949300050735474,
+          "high": 1.8964099884033203,
+          "low": 1.8876999616622925,
+          "close": 1.895550012588501,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-09",
+          "open": 1.8972899913787842,
+          "high": 1.903249979019165,
+          "low": 1.896299958229065,
+          "close": 1.896880030632019,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-10",
+          "open": 1.8996599912643433,
+          "high": 1.9032700061798096,
+          "low": 1.8965500593185425,
+          "close": 1.900089979171753,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-12",
+          "open": 1.897779941558838,
+          "high": 1.898650050163269,
+          "low": 1.8956999778747559,
+          "close": 1.8956999778747559,
+          "volume": 0
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 1.8874,
+          "description": "July 8 low -- this week base"
+        },
+        {
+          "level": "S2",
+          "price": 1.8807,
+          "description": "July 1 intraday low"
+        },
+        {
+          "level": "S3",
+          "price": 1.8721,
+          "description": "June 29 close -- key structural support"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 1.9001,
+          "description": "July 10 close"
+        },
+        {
+          "level": "R2",
+          "price": 1.9032,
+          "description": "July 9-10 intraday high"
+        },
+        {
+          "level": "R3",
+          "price": 1.904,
+          "description": "Year high July 7 -- firm ceiling"
+        }
+      ],
+      "analysis": "Price action: Year high 1.9040 set July 7, immediately rejected; week range 1.8874-1.9032; Friday close 1.9001, live Sunday 1.8957. Pair compressing below year high. Fundamentals: BoE hold 3.75% intact; BoC July 15 is binary event -- cut (approximately 60% priced) drives pair above 1.9040 year high; hold driven by oil above $100 (Hormuz) keeps CAD bid and pair fades to 1.8721. Outlook: 5-day NEUTRAL. CONDITIONAL BEARISH on BoC hold target 1.8721 stop 1.9070. CONDITIONAL BULLISH on BoC cut target 1.9100 stop 1.8900."
+    },
+    {
+      "symbol": "XAGUSD",
+      "name": "Silver Spot",
+      "price": 60.165001,
+      "previousClose": 60.775002,
+      "change": -0.610001,
+      "changePercent": -1.0037,
+      "dayHigh": 61.195,
+      "dayLow": 59.244999,
+      "yearHigh": 121.300003,
+      "yearLow": 36.345001,
+      "signal": "NEUTRAL_BEARISH",
+      "signalStrength": -30,
+      "eventImpactProbability": 65,
+      "sparkline": [
+        59.216999,
+        58.174999,
+        59.477001,
+        60.084999,
+        60.643002,
+        61.919998,
+        60.931,
+        58.164001,
+        60.377998,
+        60.165001
+      ],
+      "ohlc": [
+        {
+          "date": "2026-06-22",
+          "open": 65.5270004272461,
+          "high": 65.5270004272461,
+          "low": 65.5270004272461,
+          "close": 65.5270004272461,
+          "volume": 16
+        },
+        {
+          "date": "2026-06-23",
+          "open": 61.95000076293945,
+          "high": 62.02000045776367,
+          "low": 61.95000076293945,
+          "close": 62.02000045776367,
+          "volume": 56
+        },
+        {
+          "date": "2026-06-24",
+          "open": 59.38999938964844,
+          "high": 59.51499938964844,
+          "low": 57.25,
+          "close": 58.051998138427734,
+          "volume": 79
+        },
+        {
+          "date": "2026-06-25",
+          "open": 58.3849983215332,
+          "high": 58.3849983215332,
+          "low": 58.347999572753906,
+          "close": 58.347999572753906,
+          "volume": 148
+        },
+        {
+          "date": "2026-06-26",
+          "open": 59.189998626708984,
+          "high": 59.21699905395508,
+          "low": 59.189998626708984,
+          "close": 59.21699905395508,
+          "volume": 25322
+        },
+        {
+          "date": "2026-06-29",
+          "open": 58.68000030517578,
+          "high": 59.125,
+          "low": 57.540000915527344,
+          "close": 58.17499923706055,
+          "volume": 3617
+        },
+        {
+          "date": "2026-06-30",
+          "open": 58.34000015258789,
+          "high": 60.400001525878906,
+          "low": 57.03499984741211,
+          "close": 59.47700119018555,
+          "volume": 1886
+        },
+        {
+          "date": "2026-07-01",
+          "open": 58.8650016784668,
+          "high": 60.41999816894531,
+          "low": 57.32500076293945,
+          "close": 60.084999084472656,
+          "volume": 367
+        },
+        {
+          "date": "2026-07-02",
+          "open": 59.470001220703125,
+          "high": 61.595001220703125,
+          "low": 59.46500015258789,
+          "close": 60.643001556396484,
+          "volume": 197
+        },
+        {
+          "date": "2026-07-06",
+          "open": 62.619998931884766,
+          "high": 62.619998931884766,
+          "low": 61.6349983215332,
+          "close": 61.91999816894531,
+          "volume": 69
+        },
+        {
+          "date": "2026-07-07",
+          "open": 61.20500183105469,
+          "high": 61.369998931884766,
+          "low": 60.20500183105469,
+          "close": 60.930999755859375,
+          "volume": 124
+        },
+        {
+          "date": "2026-07-08",
+          "open": 60.904998779296875,
+          "high": 60.904998779296875,
+          "low": 57.7599983215332,
+          "close": 58.16400146484375,
+          "volume": 326
+        },
+        {
+          "date": "2026-07-09",
+          "open": 59.220001220703125,
+          "high": 60.5,
+          "low": 58.900001525878906,
+          "close": 60.37799835205078,
+          "volume": 192
+        },
+        {
+          "date": "2026-07-10",
+          "open": 60.415000915527344,
+          "high": 61.19499969482422,
+          "low": 59.244998931884766,
+          "close": 60.165000915527344,
+          "volume": 23550
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 59.245,
+          "description": "July 10 intraday low -- first floor"
+        },
+        {
+          "level": "S2",
+          "price": 58.164,
+          "description": "July 8 close -- critical support"
+        },
+        {
+          "level": "S3",
+          "price": 57.54,
+          "description": "June 29 session low -- structural base"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 61.195,
+          "description": "July 10 high"
+        },
+        {
+          "level": "R2",
+          "price": 61.92,
+          "description": "July 6 close"
+        },
+        {
+          "level": "R3",
+          "price": 62.62,
+          "description": "Prior cycle high -- overhead cap"
+        }
+      ],
+      "analysis": "Price action: Most volatile instrument on a session basis. FOMC-minutes selloff July 8 was severe -- intraday low 57.760, close 58.164 (nearly $3 decline). Iran escalation July 9 recovered to 60.378. Friday close 60.165. 2-week range 57.25-65.53. Fundamentals: High-beta to gold; industrial demand floor (solar, EVs, semis) prevents deeper collapse; gold/silver ratio elevated (silver historically cheap). Outlook: 5-day NEUTRAL-BEARISH. Below 59.245 targets 58.164 stop 59.900. Recovery above 61.195 shifts to NEUTRAL target 61.920. CPI July 14 is directional trigger."
+    },
+    {
+      "symbol": "XAUUSD",
+      "name": "Gold Spot",
+      "price": 4113.700195,
+      "previousClose": 4129.5,
+      "change": -15.799805,
+      "changePercent": -0.3826,
+      "dayHigh": 4144.600098,
+      "dayLow": 4081.699951,
+      "yearHigh": 5586.200195,
+      "yearLow": 3263.899902,
+      "signal": "NEUTRAL_BULLISH",
+      "signalStrength": 35,
+      "eventImpactProbability": 80,
+      "sparkline": [
+        4078.699951,
+        4022.300049,
+        4022.899902,
+        4068.300049,
+        4112.700195,
+        4155.100098,
+        4145.299805,
+        4070.899902,
+        4130.600098,
+        4113.700195
+      ],
+      "ohlc": [
+        {
+          "date": "2026-06-22",
+          "open": 4138.7998046875,
+          "high": 4216.39990234375,
+          "low": 4134.7998046875,
+          "close": 4181.89990234375,
+          "volume": 1197
+        },
+        {
+          "date": "2026-06-23",
+          "open": 4127.10009765625,
+          "high": 4135.2001953125,
+          "low": 4118.5,
+          "close": 4129.89990234375,
+          "volume": 252
+        },
+        {
+          "date": "2026-06-24",
+          "open": 4104.39990234375,
+          "high": 4104.7001953125,
+          "low": 3963.300048828125,
+          "close": 3990.300048828125,
+          "volume": 353
+        },
+        {
+          "date": "2026-06-25",
+          "open": 3988.39990234375,
+          "high": 4030.5,
+          "low": 3986.699951171875,
+          "close": 4030.5,
+          "volume": 2724
+        },
+        {
+          "date": "2026-06-26",
+          "open": 4078.699951171875,
+          "high": 4078.699951171875,
+          "low": 4078.699951171875,
+          "close": 4078.699951171875,
+          "volume": 1431
+        },
+        {
+          "date": "2026-06-29",
+          "open": 4057.5,
+          "high": 4070.0,
+          "low": 4003.199951171875,
+          "close": 4022.300048828125,
+          "volume": 785
+        },
+        {
+          "date": "2026-06-30",
+          "open": 4002.60009765625,
+          "high": 4049.699951171875,
+          "low": 3962.5,
+          "close": 4022.89990234375,
+          "volume": 1108
+        },
+        {
+          "date": "2026-07-01",
+          "open": 4013.10009765625,
+          "high": 4100.0,
+          "low": 3963.0,
+          "close": 4068.300048828125,
+          "volume": 770
+        },
+        {
+          "date": "2026-07-02",
+          "open": 4067.5,
+          "high": 4140.10009765625,
+          "low": 4062.0,
+          "close": 4112.7001953125,
+          "volume": 228
+        },
+        {
+          "date": "2026-07-06",
+          "open": 4175.39990234375,
+          "high": 4199.7001953125,
+          "low": 4134.2001953125,
+          "close": 4155.10009765625,
+          "volume": 1024
+        },
+        {
+          "date": "2026-07-07",
+          "open": 4126.5,
+          "high": 4167.2001953125,
+          "low": 4107.2001953125,
+          "close": 4145.2998046875,
+          "volume": 53
+        },
+        {
+          "date": "2026-07-08",
+          "open": 4116.2998046875,
+          "high": 4120.2998046875,
+          "low": 4053.0,
+          "close": 4070.89990234375,
+          "volume": 292
+        },
+        {
+          "date": "2026-07-09",
+          "open": 4066.39990234375,
+          "high": 4130.60009765625,
+          "low": 4064.199951171875,
+          "close": 4130.60009765625,
+          "volume": 13
+        },
+        {
+          "date": "2026-07-10",
+          "open": 4135.39990234375,
+          "high": 4144.60009765625,
+          "low": 4081.699951171875,
+          "close": 4113.7001953125,
+          "volume": 91801
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 4081.7,
+          "description": "July 10 intraday low -- immediate pivot"
+        },
+        {
+          "level": "S2",
+          "price": 4053.0,
+          "description": "July 8 low -- former stop level, now critical floor"
+        },
+        {
+          "level": "S3",
+          "price": 4022.3,
+          "description": "June 29-30 close -- structural base"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 4144.6,
+          "description": "July 10 high"
+        },
+        {
+          "level": "R2",
+          "price": 4155.1,
+          "description": "July 6 close"
+        },
+        {
+          "level": "R3",
+          "price": 4199.7,
+          "description": "July 6 high -- near-term ceiling"
+        }
+      ],
+      "analysis": "Price action: FOMC-minutes selloff hit 4,053 (stopping out Wednesday long at 4,055 stop); Iran escalation July 9 recovered to 4,130; closed Friday 4,113. PBoC added 14.93 tonnes in June (20 consecutive months). Bank of America cut 2026 gold average forecast to $4,360 July 8. Fundamentals: Iran geopolitical premium returned; FOMC 9-8 split creates uncertainty = gold-positive medium term; PBoC physical demand floor is policy-independent. Outlook: 5-day NEUTRAL-BULLISH. Buy 4,080-4,100 stop 4,040 target 4,199 then 4,280. Condition: 4,081 must hold. Hot CPI July 14 invalidates -- exit below 4,040."
+    }
+  ],
+  "scorecard": [
+    {
+      "instrument": "US30",
+      "previousBias": "NEUTRAL_BULLISH",
+      "result": "Broke 52,395 support intraday (low 52,069 Jul 8), recovered to 52,637 by Friday; closed -0.54% below Wednesday bias price",
+      "verdict": "PARTIALLY"
+    },
+    {
+      "instrument": "NAS100",
+      "previousBias": "NEUTRAL_BEARISH",
+      "result": "Initially dropped to 28,814 (Jul 8), then reversed violently to 29,825 (+2.24% above bias price) by Friday close",
+      "verdict": "WRONG"
+    },
+    {
+      "instrument": "GER40",
+      "previousBias": "NEUTRAL_BEARISH",
+      "result": "Collapsed from 25,465 to 24,830 (Jul 8 low), broke 25,040 support; partial recovery; closed 25,067 (-1.56% from bias)",
+      "verdict": "CORRECT"
+    },
+    {
+      "instrument": "AUDUSD",
+      "previousBias": "NEUTRAL",
+      "result": "Range trade 0.6907-0.6971 all week; closed 0.6952 (+0.12% from bias); no breakout above 0.6993 or below 0.6885",
+      "verdict": "CORRECT"
+    },
+    {
+      "instrument": "GBPCAD",
+      "previousBias": "NEUTRAL_BEARISH",
+      "result": "Rallied to 1.9032 before fading; no breakdown below 1.8874; ended essentially flat at 1.8957 vs 1.8947 bias price",
+      "verdict": "PARTIALLY"
+    },
+    {
+      "instrument": "XAGUSD",
+      "previousBias": "NEUTRAL",
+      "result": "Collapsed to 57.76 intraday (Jul 8) then recovered to 60.165; extreme volatility missed by neutral call; ended -1.38% below bias price",
+      "verdict": "PARTIALLY"
+    },
+    {
+      "instrument": "XAUUSD",
+      "previousBias": "BULLISH",
+      "result": "Stop 4,055 hit Jul 8 (low 4,053); trade stopped out; recovered on Iran escalation but closed 4,113 below entry; bias not realised",
+      "verdict": "WRONG"
+    }
+  ],
+  "upcomingEvents": [
+    {
+      "date": "2026-07-13",
+      "time": "Pre-market ET",
+      "event": "JPMorgan, Wells Fargo, Citigroup Q2 Earnings",
+      "impact": "Very High"
+    },
+    {
+      "date": "2026-07-14",
+      "time": "13:30 GMT",
+      "event": "US CPI June",
+      "impact": "Very High"
+    },
+    {
+      "date": "2026-07-15",
+      "time": "13:45 GMT",
+      "event": "Bank of Canada Rate Decision",
+      "impact": "High"
+    },
+    {
+      "date": "2026-07-16",
+      "time": "12:30 GMT",
+      "event": "US Jobless Claims (weekly)",
+      "impact": "Medium"
+    },
+    {
+      "date": "2026-07-17",
+      "time": "12:30 GMT",
+      "event": "US Retail Sales June",
+      "impact": "High"
+    },
+    {
+      "date": "2026-07-17",
+      "time": "14:00 GMT",
+      "event": "Michigan Consumer Sentiment July prelim",
+      "impact": "Medium"
+    },
+    {
+      "date": "2026-07-24",
+      "time": "12:15 GMT",
+      "event": "ECB Rate Decision",
+      "impact": "High"
+    }
+  ],
+  "topTrades": [
+    {
+      "rank": 1,
+      "instrument": "XAUUSD",
+      "direction": "LONG",
+      "entry": "4,080-4,100",
+      "target": "4,199 / 4,280",
+      "stop": "4,040",
+      "rationale": "Iran airstrikes resumed July 9 -- geopolitical premium is structural. PBoC added 14.93 tonnes in June (20th consecutive month of buying), establishing a physical demand floor independent of Fed policy. Gold recovered from FOMC-minutes low of 4,053 to 4,113, demonstrating resilience. BofA capitulation cut to $4,360 historically marks tradeable lows. R/R: entry 4,090 avg, stop 4,040 (50pt risk), target 4,199 (109pt gain) = 1:2.2; extended to 4,280 = 1:3.8. Invalidated by hot CPI July 14 or close below 4,040."
+    },
+    {
+      "rank": 2,
+      "instrument": "US30",
+      "direction": "LONG",
+      "entry": "52,200-52,400",
+      "target": "53,500",
+      "stop": "51,900",
+      "rationale": "New ATH 53,289 set July 7; post-ATH consolidation at 52,637 is healthy. Q2 bank earnings (JPM, WFC, C) Monday July 13 provide immediate catalyst via Dow's financial sector weighting. Energy and defence composition structurally positive in Hormuz environment. Conditional: do not enter or exit if June CPI prints above 4.8% YoY. R/R: entry 52,300 avg, stop 51,900 (400pt risk), target 53,500 (1,200pt gain) = 1:3.0."
+    },
+    {
+      "rank": 3,
+      "instrument": "GER40",
+      "direction": "SHORT",
+      "entry": "25,195-25,280",
+      "target": "24,626",
+      "stop": "25,470",
+      "rationale": "Year high rejection at 25,900 confirmed July 6. Broken support 25,465 (July 7 close) now firm resistance -- two failed reclaim attempts confirm. Iran oil shock = direct margin headwind for German industrials and auto sector. ECB July 24 adds potential downside catalyst. Revised entry zone from prior 25,580-25,660 to reflect current price structure. R/R: entry 25,240 avg, stop 25,470 (230pt risk), target 24,626 (614pt gain) = 1:2.7. Below 24,830 upgrades target to 24,593."
+    }
+  ],
+  "riskScenarios": [
+    {
+      "name": "Hot June CPI (>4.5% YoY) July 14",
+      "probability": "35%",
+      "impact": "USD surges; gold tests 4,053 critical floor; NAS100 breaks 29,252 and retests structural floor 28,974; US30 dips to 52,069; AUDUSD tests 0.6866; silver retests 57.760. Single most important event for all 7 instruments."
+    },
+    {
+      "name": "Iran Strait of Hormuz Closure",
+      "probability": "10-15%",
+      "impact": "Oil +15-25%, gold +3-5%, silver +5-8%, equities -3-5%. Active tail risk -- airstrikes resumed July 9. Commercial vessel incidents or state closure announcement would trigger violent cross-asset moves."
+    },
+    {
+      "name": "Soft June CPI Surprise (<3.8% YoY) July 14",
+      "probability": "25%",
+      "impact": "Gold to 4,199+ targeting 4,280; NAS100 to 30,044 and 30,277; US30 to new ATH above 53,289; AUDUSD to 0.6993-0.7000; silver to 61.920+. Fed September cut probability surges. Risk-on squeeze across basket."
+    },
+    {
+      "name": "Bank Earnings Miss / Credit Warning July 13",
+      "probability": "20%",
+      "impact": "JPM or WFC flags consumer credit deterioration post-NFP +57K shock. US30 -1 to -2%, NAS100 -1 to -1.5%. Reprices soft-landing narrative with hard balance-sheet data. Significant for Dow given financial weighting."
+    },
+    {
+      "name": "BoC Surprise Hold July 15",
+      "probability": "30%",
+      "impact": "GBPCAD falls through 1.8874 toward 1.8721. CAD bids aggressively. Oil above $100 from Hormuz premium makes a dovish BoC cut difficult to justify -- hold probability elevated by energy price level."
+    }
+  ]
+}
