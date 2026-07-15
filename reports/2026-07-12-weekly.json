@@ -5,7 +5,7 @@
   "displayDate": "Sunday 12 July 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-07-12-weekly.md",
-  "lastUpdated": "2026-07-12T20:16:54Z",
+  "lastUpdated": "2026-07-15T06:44:51Z",
   "marketSentiment": "NEUTRAL",
   "macroTheme": "FOMC June minutes confirmed a 9-8 split committee (nine lean hold/hike, eight lean September cut); Iran airstrikes resumed July 9 erasing the ceasefire; US30 ATH 53,289 set July 7; gold stopped out at 4,053 then recovered on Iran escalation. June CPI due July 14 is the dominant week-ahead catalyst.",
   "macroOverview": "FOMC June minutes (released July 8, 19:00 GMT) confirmed the Federal Reserve is split 9-8 on the next policy move, with nine members open to a hold or hike and eight favouring a September cut. Gold initially sold to 4,053, stopping out the Wednesday conviction long trade at the 4,055 stop. Iran airstrikes resumed July 9, repricing the Hormuz risk premium and recovering gold to 4,130. US30 hit a new all-time high at 53,289 on July 7 then sold back to 52,637. NAS100 had the most dramatic move: 28,814 low (July 8) to 29,825 close (July 10) on the absence of CPI and the less-hawkish-than-feared FOMC split. PBoC added 14.93 tonnes of gold in June -- the largest single month since October 2023, extending twenty consecutive months of buying. June CPI was NOT released on July 10 as the prior tracking note anticipated; it is scheduled for July 14. Q2 bank earnings begin Monday July 13. All three Wednesday conviction trades either stopped out or were not filled.",
@@ -13,19 +13,18 @@
     {
       "symbol": "US30",
       "name": "Dow Jones Industrial Average",
-      "price": 52637.011719,
-      "previousClose": 52487.41,
-      "change": 149.601719,
-      "changePercent": 0.285,
-      "dayHigh": 52709.75,
-      "dayLow": 52266.808594,
+      "price": 52508.27,
+      "previousClose": 52498.64,
+      "change": 9.63,
+      "changePercent": 0.0183,
+      "dayHigh": 52695.058594,
+      "dayLow": 52046.359375,
       "yearHigh": 53289.300781,
       "yearLow": 43340.679688,
       "signal": "NEUTRAL_BULLISH",
       "signalStrength": 30,
       "eventImpactProbability": 85,
       "sparkline": [
-        51876.109375,
         52182.738281,
         52319.199219,
         52305.238281,
@@ -34,33 +33,10 @@
         52925.148438,
         52348.390625,
         52487.410156,
-        52637.011719
+        52637.011719,
+        52498.640625
       ],
       "ohlc": [
-        {
-          "date": "2026-06-22",
-          "open": 51555.19140625,
-          "high": 51887.8515625,
-          "low": 51555.19140625,
-          "close": 51712.7109375,
-          "volume": 529120000
-        },
-        {
-          "date": "2026-06-23",
-          "open": 51735.640625,
-          "high": 51872.55859375,
-          "low": 51301.76953125,
-          "close": 51666.83984375,
-          "volume": 548870000
-        },
-        {
-          "date": "2026-06-24",
-          "open": 51660.75,
-          "high": 52248.69140625,
-          "low": 51617.73046875,
-          "close": 51848.8984375,
-          "volume": 560270000
-        },
         {
           "date": "2026-06-25",
           "open": 52009.01953125,
@@ -148,6 +124,14 @@
           "low": 52266.80859375,
           "close": 52637.01171875,
           "volume": 408090000
+        },
+        {
+          "date": "2026-07-13",
+          "open": 52676.53125,
+          "high": 52846.51171875,
+          "low": 52351.12109375,
+          "close": 52498.640625,
+          "volume": 399240000
         }
       ],
       "supports": [
@@ -189,19 +173,18 @@
     {
       "symbol": "NAS100",
       "name": "Nasdaq 100",
-      "price": 29825.109375,
-      "previousClose": 29727.098,
-      "change": 98.011375,
-      "changePercent": 0.3297,
-      "dayHigh": 29856.939453,
-      "dayLow": 29484.490234,
+      "price": 29586.287,
+      "previousClose": 29264.104,
+      "change": 322.183,
+      "changePercent": 1.1009,
+      "dayHigh": 29693.773438,
+      "dayLow": 29368.871094,
       "yearHigh": 30762.199219,
       "yearLow": 22669.369141,
       "signal": "NEUTRAL",
       "signalStrength": 15,
       "eventImpactProbability": 80,
       "sparkline": [
-        29118.240234,
         29774.75,
         30276.349609,
         29809.130859,
@@ -210,33 +193,10 @@
         29173.019531,
         29252.560547,
         29727.099609,
-        29825.109375
+        29825.109375,
+        29264.099609
       ],
       "ohlc": [
-        {
-          "date": "2026-06-22",
-          "open": 30529.990234375,
-          "high": 30642.5703125,
-          "low": 30194.25,
-          "close": 30347.080078125,
-          "volume": 12844290000
-        },
-        {
-          "date": "2026-06-23",
-          "open": 29369.25,
-          "high": 29748.720703125,
-          "low": 29276.98046875,
-          "close": 29347.26953125,
-          "volume": 14631520000
-        },
-        {
-          "date": "2026-06-24",
-          "open": 29328.400390625,
-          "high": 29592.900390625,
-          "low": 28963.099609375,
-          "close": 29220.060546875,
-          "volume": 14936190000
-        },
         {
           "date": "2026-06-25",
           "open": 29843.890625,
@@ -324,6 +284,14 @@
           "low": 29484.490234375,
           "close": 29825.109375,
           "volume": 7094480000
+        },
+        {
+          "date": "2026-07-13",
+          "open": 29471.01953125,
+          "high": 29541.0,
+          "low": 29189.2109375,
+          "close": 29264.099609375,
+          "volume": 7231310000
         }
       ],
       "supports": [
@@ -365,19 +333,18 @@
     {
       "symbol": "GER40",
       "name": "DAX Performance Index",
-      "price": 25067.089844,
-      "previousClose": 25118.27,
-      "change": -51.180156,
-      "changePercent": -0.2038,
-      "dayHigh": 25195.830078,
-      "dayLow": 24937.519531,
+      "price": 25147.03,
+      "previousClose": 25114.25,
+      "change": 32.78,
+      "changePercent": 0.1305,
+      "dayHigh": 25204.679688,
+      "dayLow": 24869.25,
       "yearHigh": 25900.099609,
       "yearLow": 21863.810547,
       "signal": "NEUTRAL_BEARISH",
       "signalStrength": -40,
       "eventImpactProbability": 70,
       "sparkline": [
-        24626.890625,
         24995.810547,
         25040.279297,
         25580.880859,
@@ -386,25 +353,10 @@
         25465.25,
         24897.449219,
         25118.269531,
-        25067.089844
+        25067.089844,
+        25114.25
       ],
       "ohlc": [
-        {
-          "date": "2026-06-23",
-          "open": 24835.560546875,
-          "high": 24988.7109375,
-          "low": 24728.5703125,
-          "close": 24893.580078125,
-          "volume": 63415400
-        },
-        {
-          "date": "2026-06-24",
-          "open": 24790.69921875,
-          "high": 24800.66015625,
-          "low": 24593.48046875,
-          "close": 24740.359375,
-          "volume": 61210500
-        },
         {
           "date": "2026-06-25",
           "open": 24810.0,
@@ -500,6 +452,14 @@
           "low": 24937.51953125,
           "close": 25067.08984375,
           "volume": 48006700
+        },
+        {
+          "date": "2026-07-13",
+          "open": 24963.80078125,
+          "high": 25154.580078125,
+          "low": 24963.80078125,
+          "close": 25114.25,
+          "volume": 39531800
         }
       ],
       "supports": [
@@ -541,20 +501,18 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.694975,
-      "previousClose": 0.694348,
-      "change": 0.000627,
-      "changePercent": 0.0903,
-      "dayHigh": 0.695846,
-      "dayLow": 0.6943,
+      "price": 0.698861,
+      "previousClose": 0.697545,
+      "change": 0.001316,
+      "changePercent": 0.1887,
+      "dayHigh": 0.699496,
+      "dayLow": 0.697496,
       "yearHigh": 0.727738,
       "yearLow": 0.6415,
       "signal": "NEUTRAL",
       "signalStrength": 0,
       "eventImpactProbability": 75,
       "sparkline": [
-        0.68824,
-        0.6913,
         0.68921,
         0.6916,
         0.6937,
@@ -562,25 +520,11 @@
         0.69226,
         0.69363,
         0.69444,
-        0.694975
+        0.69422,
+        0.691821,
+        0.698861
       ],
       "ohlc": [
-        {
-          "date": "2026-06-24",
-          "open": 0.6918002367019653,
-          "high": 0.6923999190330505,
-          "low": 0.6884899735450745,
-          "close": 0.6915600895881653,
-          "volume": 0
-        },
-        {
-          "date": "2026-06-25",
-          "open": 0.6895999908447266,
-          "high": 0.692110002040863,
-          "low": 0.6887498497962952,
-          "close": 0.6900001764297485,
-          "volume": 0
-        },
         {
           "date": "2026-06-26",
           "open": 0.6902301907539368,
@@ -670,11 +614,27 @@
           "volume": 0
         },
         {
-          "date": "2026-07-12",
-          "open": 0.6955069899559021,
-          "high": 0.6958457827568054,
-          "low": 0.6942998170852661,
-          "close": 0.6949753165245056,
+          "date": "2026-07-13",
+          "open": 0.6944000720977783,
+          "high": 0.6949700117111206,
+          "low": 0.6924402117729187,
+          "close": 0.6942197680473328,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-14",
+          "open": 0.6920999884605408,
+          "high": 0.6992200016975403,
+          "low": 0.6913697719573975,
+          "close": 0.6918213367462158,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-15",
+          "open": 0.6974959969520569,
+          "high": 0.6994963884353638,
+          "low": 0.6974959969520569,
+          "close": 0.6988608837127686,
           "volume": 0
         }
       ],
@@ -717,20 +677,18 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.89568,
-      "previousClose": 1.89999,
-      "change": -0.00431,
-      "changePercent": -0.2268,
-      "dayHigh": 1.89865,
-      "dayLow": 1.89561,
+      "price": 1.8854,
+      "previousClose": 1.88255,
+      "change": 0.00285,
+      "changePercent": 0.1514,
+      "dayHigh": 1.88575,
+      "dayLow": 1.88079,
       "yearHigh": 1.90406,
       "yearLow": 1.8018,
       "signal": "NEUTRAL",
       "signalStrength": -5,
       "eventImpactProbability": 80,
       "sparkline": [
-        1.88322,
-        1.88224,
         1.88741,
         1.89248,
         1.89631,
@@ -738,25 +696,11 @@
         1.89555,
         1.89688,
         1.90009,
-        1.89568
+        1.8957,
+        1.88866,
+        1.8854
       ],
       "ohlc": [
-        {
-          "date": "2026-06-24",
-          "open": 1.8753999471664429,
-          "high": 1.877560019493103,
-          "low": 1.8708200454711914,
-          "close": 1.8753399848937988,
-          "volume": 0
-        },
-        {
-          "date": "2026-06-25",
-          "open": 1.8731399774551392,
-          "high": 1.877500057220459,
-          "low": 1.8725999593734741,
-          "close": 1.8735899925231934,
-          "volume": 0
-        },
         {
           "date": "2026-06-26",
           "open": 1.8721799850463867,
@@ -846,11 +790,27 @@
           "volume": 0
         },
         {
-          "date": "2026-07-12",
-          "open": 1.897779941558838,
-          "high": 1.898650050163269,
-          "low": 1.895609974861145,
-          "close": 1.8956799507141113,
+          "date": "2026-07-13",
+          "open": 1.8959800004959106,
+          "high": 1.8963099718093872,
+          "low": 1.8903499841690063,
+          "close": 1.8956999778747559,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-14",
+          "open": 1.8888499736785889,
+          "high": 1.8906199932098389,
+          "low": 1.881700038909912,
+          "close": 1.888659954071045,
+          "volume": 0
+        },
+        {
+          "date": "2026-07-15",
+          "open": 1.8822300434112549,
+          "high": 1.8857500553131104,
+          "low": 1.8807899951934814,
+          "close": 1.8854000568389893,
           "volume": 0
         }
       ],
@@ -893,54 +853,30 @@
     {
       "symbol": "XAGUSD",
       "name": "Silver Spot",
-      "price": 60.165001,
-      "previousClose": 60.775002,
-      "change": -0.610001,
-      "changePercent": -1.0037,
-      "dayHigh": 61.195,
-      "dayLow": 59.244999,
+      "price": 58.48,
+      "previousClose": 58.740002,
+      "change": -0.260002,
+      "changePercent": -0.4426,
+      "dayHigh": 59.404999,
+      "dayLow": 58.349998,
       "yearHigh": 121.300003,
       "yearLow": 36.345001,
       "signal": "NEUTRAL_BEARISH",
       "signalStrength": -30,
       "eventImpactProbability": 65,
       "sparkline": [
-        59.216999,
-        58.174999,
-        59.477001,
         60.084999,
         60.643002,
         61.919998,
         60.931,
         58.164001,
         60.377998,
-        60.165001
+        59.808998,
+        57.633999,
+        58.771999,
+        58.48
       ],
       "ohlc": [
-        {
-          "date": "2026-06-22",
-          "open": 65.5270004272461,
-          "high": 65.5270004272461,
-          "low": 65.5270004272461,
-          "close": 65.5270004272461,
-          "volume": 16
-        },
-        {
-          "date": "2026-06-23",
-          "open": 61.95000076293945,
-          "high": 62.02000045776367,
-          "low": 61.95000076293945,
-          "close": 62.02000045776367,
-          "volume": 56
-        },
-        {
-          "date": "2026-06-24",
-          "open": 59.38999938964844,
-          "high": 59.51499938964844,
-          "low": 57.25,
-          "close": 58.051998138427734,
-          "volume": 79
-        },
         {
           "date": "2026-06-25",
           "open": 58.3849983215332,
@@ -1023,11 +959,35 @@
         },
         {
           "date": "2026-07-10",
-          "open": 60.415000915527344,
-          "high": 61.19499969482422,
-          "low": 59.244998931884766,
-          "close": 60.165000915527344,
-          "volume": 23550
+          "open": 59.97999954223633,
+          "high": 60.345001220703125,
+          "low": 59.720001220703125,
+          "close": 59.808998107910156,
+          "volume": 73
+        },
+        {
+          "date": "2026-07-13",
+          "open": 58.935001373291016,
+          "high": 59.04499816894531,
+          "low": 57.5099983215332,
+          "close": 57.63399887084961,
+          "volume": 589
+        },
+        {
+          "date": "2026-07-14",
+          "open": 57.650001525878906,
+          "high": 59.60499954223633,
+          "low": 57.51499938964844,
+          "close": 58.77199935913086,
+          "volume": 589
+        },
+        {
+          "date": "2026-07-15",
+          "open": 59.04499816894531,
+          "high": 59.404998779296875,
+          "low": 58.349998474121094,
+          "close": 58.47999954223633,
+          "volume": 4710
         }
       ],
       "supports": [
@@ -1069,54 +1029,30 @@
     {
       "symbol": "XAUUSD",
       "name": "Gold Spot",
-      "price": 4113.700195,
-      "previousClose": 4129.5,
-      "change": -15.799805,
-      "changePercent": -0.3826,
-      "dayHigh": 4144.600098,
-      "dayLow": 4081.699951,
+      "price": 4033.899902,
+      "previousClose": 4037.899902,
+      "change": -4.0,
+      "changePercent": -0.0991,
+      "dayHigh": 4068.600098,
+      "dayLow": 4027.100098,
       "yearHigh": 5586.200195,
       "yearLow": 3263.899902,
       "signal": "NEUTRAL_BULLISH",
       "signalStrength": 35,
       "eventImpactProbability": 80,
       "sparkline": [
-        4078.699951,
-        4022.300049,
-        4022.899902,
         4068.300049,
         4112.700195,
         4155.100098,
         4145.299805,
         4070.899902,
         4130.600098,
-        4113.700195
+        4104.100098,
+        3997.0,
+        4061.100098,
+        4033.899902
       ],
       "ohlc": [
-        {
-          "date": "2026-06-22",
-          "open": 4138.7998046875,
-          "high": 4216.39990234375,
-          "low": 4134.7998046875,
-          "close": 4181.89990234375,
-          "volume": 1197
-        },
-        {
-          "date": "2026-06-23",
-          "open": 4127.10009765625,
-          "high": 4135.2001953125,
-          "low": 4118.5,
-          "close": 4129.89990234375,
-          "volume": 252
-        },
-        {
-          "date": "2026-06-24",
-          "open": 4104.39990234375,
-          "high": 4104.7001953125,
-          "low": 3963.300048828125,
-          "close": 3990.300048828125,
-          "volume": 353
-        },
         {
           "date": "2026-06-25",
           "open": 3988.39990234375,
@@ -1199,11 +1135,35 @@
         },
         {
           "date": "2026-07-10",
-          "open": 4135.39990234375,
-          "high": 4144.60009765625,
-          "low": 4081.699951171875,
-          "close": 4113.7001953125,
-          "volume": 91801
+          "open": 4122.2998046875,
+          "high": 4125.7998046875,
+          "low": 4090.60009765625,
+          "close": 4104.10009765625,
+          "volume": 389
+        },
+        {
+          "date": "2026-07-13",
+          "open": 4081.0,
+          "high": 4081.0,
+          "low": 3985.89990234375,
+          "close": 3997.0,
+          "volume": 679
+        },
+        {
+          "date": "2026-07-14",
+          "open": 3995.699951171875,
+          "high": 4091.199951171875,
+          "low": 3986.5,
+          "close": 4061.10009765625,
+          "volume": 679
+        },
+        {
+          "date": "2026-07-15",
+          "open": 4059.800048828125,
+          "high": 4068.60009765625,
+          "low": 4027.10009765625,
+          "close": 4033.89990234375,
+          "volume": 23750
         }
       ],
       "supports": [
