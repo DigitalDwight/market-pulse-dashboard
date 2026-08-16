@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T06:28:26Z",
+  "generatedAt": "2026-08-16T20:03:54Z",
   "count": 19,
   "reports": [
     {
@@ -9,7 +9,7 @@
       "displayDate": "Sunday 12 July 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-07-12-weekly.md",
-      "lastUpdated": "2026-08-09T20:07:51Z",
+      "lastUpdated": "2026-08-12T06:28:30Z",
       "marketSentiment": "NEUTRAL",
       "macroTheme": "FOMC June minutes confirmed a 9-8 split committee (nine lean hold/hike, eight lean September cut); Iran airstrikes resumed July 9 erasing the ceasefire; US30 ATH 53,289 set July 7; gold stopped out at 4,053 then recovered on Iran escalation. June CPI due July 14 is the dominant week-ahead catalyst.",
       "jsonFile": "2026-07-12-weekly.json"
