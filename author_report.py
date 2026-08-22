@@ -111,6 +111,38 @@ MAX_OUTPUT_TOKENS = int(os.environ.get("MARKET_PULSE_MAX_TOKENS", "48000"))
 # model confabulates economic prints and central-bank headlines, and the
 # scorecard becomes fiction. Set MARKET_PULSE_WEB_SEARCH=0 only for offline
 # schema testing, never for a published run.
+# Provider routing. `deepseek/deepseek-v4-pro` is an alias OpenRouter fans out
+# across 17 providers that are NOT equivalent, so leaving routing to chance is a
+# quality lottery on a report someone trades off:
+#
+#   - Quantization ranges fp8 to fp4. fp4 (Ionstream, AtlasCloud, BaseTen) is a
+#     harder compression that measurably degrades reasoning. Several providers
+#     report "unknown", which is no better than fp4 for our purposes.
+#   - Output ceilings range 16,384 (DeepInfra) to 1,048,576. A full report is
+#     ~19k output tokens, so DeepInfra would truncate mid-publish_report and
+#     surface as an unparseable-JSON error rather than as a routing problem.
+#   - Output price ranges $0.83/M to $3.83/M for nominally the same model.
+#
+# quantizations pins fp8 and excludes fp4/unknown. require_parameters drops any
+# provider that cannot serve this exact request, which is what keeps DeepInfra's
+# 16k ceiling and the providers without tool-calling out of the pool. sort=price
+# then takes the cheapest of what survives.
+#
+# Measured effect: without require_parameters this lands on StreamLake ($0.83/M
+# out) but that provider does not support forced tool calls; with it, routing
+# settles on Parasail (fp8, $1.74/M in, $3.48/M out), about $0.12/run and ~$13/yr
+# at twice a week. Worth it: a bad bias costs more than a year of inference.
+#
+# DeepSeek's own first-party endpoint is not reachable here. It is exposed only
+# on the dated deepseek-v4-pro-0813 model and is blocked by the account data
+# policy, which is correct to leave in place since first-party DeepSeek retains
+# prompt data.
+PROVIDER_PREFS = {
+    "quantizations": ["fp8"],
+    "require_parameters": True,
+    "sort": "price",
+}
+
 WEB_SEARCH_ENABLED = os.environ.get("MARKET_PULSE_WEB_SEARCH", "1") != "0"
 WEB_SEARCH_MAX_RESULTS = int(os.environ.get("MARKET_PULSE_WEB_RESULTS", "5"))
 
@@ -452,12 +484,11 @@ def call_llm_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[str
             "X-Title": "Market Pulse Dashboard",
         },
     )
+    extra_body: dict[str, Any] = {"provider": PROVIDER_PREFS}
     if WEB_SEARCH_ENABLED:
         # OpenRouter runs these searches server-side and prepends the results to
         # the prompt. Replaces Anthropic's web_search server tool.
-        request_kwargs["extra_body"] = {
-            "plugins": [{"id": "web", "max_results": WEB_SEARCH_MAX_RESULTS}]
-        }
+        extra_body["plugins"] = [{"id": "web", "max_results": WEB_SEARCH_MAX_RESULTS}]
     else:
         print(
             "  WARNING: web grounding DISABLED (MARKET_PULSE_WEB_SEARCH=0). "
@@ -465,6 +496,7 @@ def call_llm_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[str
             "testing only, do not publish this.",
             file=sys.stderr,
         )
+    request_kwargs["extra_body"] = extra_body
 
     tool_args = ""
     content_text = ""
