@@ -1,65 +1,50 @@
-# Last Run: Sunday 12 July 2026 (Weekly Report)
-# Next Expected Run: RE-BASELINE RUN (see gap notice below)
+# Last Run: Saturday 22 August 2026 (Weekly Report)
+# Next Expected Run: Wednesday 26 August 2026 (06:00 GMT)
 
-## GAP NOTICE: READ THIS BEFORE ANYTHING ELSE
+## RE-BASELINE COMPLETE
 
-There is a six-week hole in this pipeline. The last published report is
-2026-07-12-weekly. Every scheduled author run from 15 July 2026 onward failed
-with an Anthropic API 400 "credit balance is too low", twelve consecutive
-failures, until the provider was swapped to OpenRouter on 22 August 2026.
+This run completed the re-baseline after the 6-week pipeline outage from 15 July to 22 August 2026. All scorecard entries marked NOT GRADED with reason "re-baseline after 6-week pipeline outage." Running record remains frozen at 61 CORRECT / 40 PARTIALLY / 26 WRONG (127 total calls since inception).
 
-`refresh.yml` never failed, because it only pulls yfinance prices and needs no
-API key. So the dashboard kept topping up live prices on the 12 July report.
-Anyone reading it between 15 July and 22 August saw six-week-old biases, key
-levels and conviction trades presented alongside current prices.
+## Biases Set This Run (for next 3-5 trading days)
 
-## Instructions for the re-baseline run
+| Instrument | Bias | Price at Report | Signal Strength | Event Risk |
+|---|---|---|---|---|
+| US30 | NEUTRAL-BULLISH | 53,277.01 | +25 | 70% |
+| NAS100 | NEUTRAL-BEARISH | 29,308.86 | -40 | 75% |
+| GER40 | NEUTRAL | 26,136.56 | 0 | 60% |
+| AUDUSD | NEUTRAL-BULLISH | 0.7175 | +50 | 80% |
+| GBPCAD | NEUTRAL | 1.8777 | -5 | 55% |
+| XAGUSD | BULLISH | 69.466 | +65 | 70% |
+| XAUUSD | BULLISH | 4,624.10 | +75 | 85% |
 
-1. **Do not produce a scorecard against the biases below.** They were set for a
-   three-to-five day horizon on 12 July. Grading them against a date six weeks
-   later measures nothing. Every scorecard entry for this run takes the verdict
-   `NOT GRADED` with the reason `re-baseline after 6-week pipeline outage`.
+**Running record:** 61 CORRECT / 40 PARTIALLY / 26 WRONG (127 total) -- FROZEN per re-baseline.
 
-2. **Do not advance the running record.** It stands at 61 CORRECT / 40
-   PARTIALLY / 26 WRONG across 127 calls since inception, and it must be carried
-   into your trackingMd unchanged. Adding seven ungraded calls to it would
-   corrupt a record built over 127 real ones.
+## Conviction Trades Set This Run
 
-3. **Treat the 12 July levels below as historical reference only.** Silver at
-   60.165 and gold at 4,113.70 are six weeks stale. Support and resistance from
-   that report should be assumed broken or irrelevant unless your search results
-   confirm the level still matters. Do not carry any of these numbers into the
-   new report as current structure.
+1. **XAUUSD LONG** 4,580-4,600 / target 4,700 / stop 4,550 -- Gold +5.56% week on fiscal sustainability angst, geopolitical premium.
+2. **NAS100 SHORT** 29,500-29,600 / target 28,800 / stop 29,800 -- Tech -2.17% week, higher yields pressure long-duration growth assets.
+3. **AUDUSD LONG** 0.7150-0.7160 / target 0.7220 / stop 0.7120 -- USD weakness, commodity tailwinds.
 
-4. **The three 12 July conviction trades are closed and unresolved.** XAUUSD
-   long 4,080-4,100, US30 long 52,200-52,400, and GER40 short 25,195-25,280 were
-   all left WAITING at publication and were never followed up. Record them as
-   abandoned, not as wins or losses, and open three fresh trades.
+## Key Events to Track for Next Run (Wednesday 26 Aug)
 
-5. **Establish current market state from your search results, not from this
-   file.** The forward events listed in the 12 July report, June CPI on 14 July,
-   the BoC decision on 15 July, the ECB on 24 July, have all long since
-   resolved. Do not present any of them as upcoming.
+- **Wed 26 Aug 12:30 GMT:** US Core PCE Price Index (Jul) -- critical for Fed policy. Expectation 0.2% m/m leaving 3.3% y/y.
+- **Thu 27 Aug 14:00 GMT:** Jackson Hole Symposium begins
+- **Sat 29 Aug 14:00 GMT:** Jackson Hole concludes with Fed Chair Warsh speech
+- **Sep 15-16:** Fed Meeting with updated projections
 
-## Biases set on 12 July 2026 (HISTORICAL, DO NOT SCORECARD)
+## Market State Notes for Next Agent
 
-| Instrument | Bias | Price at Report |
-|---|---|---|
-| US30 | NEUTRAL-BULLISH | 52,637 |
-| NAS100 | NEUTRAL | 29,825 |
-| GER40 | NEUTRAL-BEARISH | 25,067 |
-| AUDUSD | NEUTRAL | 0.6952 |
-| GBPCAD | NEUTRAL | 1.8957 |
-| XAGUSD | NEUTRAL-BEARISH | 60.165 |
-| XAUUSD | NEUTRAL-BULLISH | 4,113.70 |
-
-Running record carried forward unchanged: 61 CORRECT / 40 PARTIALLY / 26 WRONG
-(127 total calls since inception).
+- **Macro theme:** Rising long-term bond yields driven by fiscal concerns and higher oil prices pressured equities, especially tech. Commodities strong (oil +5.62%, gold +5.56%, silver +7.49%).
+- **Equities:** US stocks ended lower for week (DJIA -0.92%, Nasdaq -2.17%) but pared losses Friday on Treasury buyback support.
+- **Currencies:** USD dropped on fiscal worries; AUD benefited from commodity tailwinds.
+- **Precious metals:** Fiscal sustainability angst driving gold rally; silver outperforming gold.
+- **Forward risks:** Core PCE print Wed 26 Aug critical; Jackson Hole speeches Thu-Sat; Strait of Hormuz tensions.
 
 ## Pipeline Status
 
-- Report: 2026-07-12-weekly.md (last successful author run)
-- Outage: 15 July 2026 to 22 August 2026, twelve failed author runs
-- Cause: Anthropic API credit exhausted; refresh.yml unaffected and kept running
-- Fix: provider swapped to OpenRouter on 22 August 2026
-- This run: RE-BASELINE. No scorecard, running record frozen, fresh biases.
+- **Last successful author run:** 22 August 2026 (this report)
+- **Outage resolved:** Provider swapped to OpenRouter on 22 Aug after 12 failed Anthropic API runs.
+- **Next scheduled:** Wednesday 26 August 2026 at 06:00 GMT.
+- **Refresh.yml:** Continuously running, pulling yfinance prices unaffected by outage.
+
+**Instructions for next agent (Wed 26 Aug run):** Scorecard against the biases above (set 22 Aug). Update running record if appropriate (still frozen currently). Track the three conviction trades. Incorporate Jackson Hole developments.

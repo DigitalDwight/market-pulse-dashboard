@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-08-19T06:08:31Z",
-  "count": 19,
+  "generatedAt": "2026-08-22T18:04:15Z",
+  "count": 20,
   "reports": [
+    {
+      "slug": "2026-08-22-weekly",
+      "type": "Weekly",
+      "date": "2026-08-22",
+      "displayDate": "Saturday 22 August 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-08-22-weekly.md",
+      "lastUpdated": "2026-08-22T18:04:15Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "Markets faced volatile trading as rising long-term bond yields driven by fiscal concerns and higher oil prices pressured investor sentiment. U.S. stocks ended lower despite a late-week rebound, with tech names suffering a global slide. Commodities advanced strongly led by crude oil (+5.62% week) amid Strait of Hormuz tensions, while gold (+5.56%) benefited from fiscal sustainability angst.",
+      "jsonFile": "2026-08-22-weekly.json"
+    },
     {
       "slug": "2026-07-12-weekly",
       "type": "Weekly",
@@ -9,7 +21,7 @@
       "displayDate": "Sunday 12 July 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-07-12-weekly.md",
-      "lastUpdated": "2026-08-16T20:03:59Z",
+      "lastUpdated": "2026-08-19T06:08:35Z",
       "marketSentiment": "NEUTRAL",
       "macroTheme": "FOMC June minutes confirmed a 9-8 split committee (nine lean hold/hike, eight lean September cut); Iran airstrikes resumed July 9 erasing the ceasefire; US30 ATH 53,289 set July 7; gold stopped out at 4,053 then recovered on Iran escalation. June CPI due July 14 is the dominant week-ahead catalyst.",
       "jsonFile": "2026-07-12-weekly.json"
