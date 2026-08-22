@@ -34,6 +34,15 @@ on:
 permissions:
   contents: write
 
+# Model is set here rather than in author_report.py so it can be swapped
+# without a code change, and so the author step and the commit message that
+# records which model wrote the report cannot drift apart.
+#   deepseek/deepseek-v3.2      default  ~$0.02/run,  65k output ceiling
+#   deepseek/deepseek-v4-flash  cheaper  ~$0.005/run, 384k output ceiling
+#   deepseek/deepseek-v4-pro    stronger ~$0.09/run,  393k output ceiling
+env:
+  MARKET_PULSE_MODEL: deepseek/deepseek-v3.2
+
 concurrency:
   # Shared with refresh.yml so author and refresh serialize against each other.
   # Without this, refresh.yml can push between author.yml's commit and push and
@@ -45,7 +54,7 @@ jobs:
   author:
     runs-on: ubuntu-latest
     # 60 min headroom so a stream-error retry has room to complete a fresh
-    # Claude call (typical call 15-25 min; if one fails at the 19-min mark
+    # model call (typical call 15-25 min; if one fails at the 19-min mark
     # like 10 Jun did, 30 min ceiling left no budget for the retry).
     timeout-minutes: 60
 
@@ -74,7 +83,7 @@ jobs:
 
       - name: Author new report
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: |
           set -euo pipefail
           ARGS=()
@@ -135,7 +144,7 @@ jobs:
           ts=$(date -u +"%Y-%m-%d %H:%M UTC")
           git add reports/ cron_tracking/
           git commit -m "Auto-author: ${label} — ${ts}" \
-                     -m "Generated via Claude API (sonnet-4-6). refresh.yml will top up prices on the next cron tick."
+                     -m "Generated via OpenRouter (${MARKET_PULSE_MODEL:-deepseek/deepseek-v3.2}). refresh.yml will top up prices on the next cron tick."
           # Rebase-then-push with retry: handles the case where someone pushed
           # to main while this workflow was running. The author commit touches
           # reports/ + cron_tracking/. The only realistic conflict is on

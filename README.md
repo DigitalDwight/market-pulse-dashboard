@@ -33,7 +33,7 @@ Three GitHub Actions keep everything in sync — no local machine required.
 
 | Workflow | Trigger | What it does |
 |----------|---------|--------------|
-| **author.yml** | `cron: 30 19 * * 0` (Sun) + `cron: 30 5 * * 3` (Wed) + manual | Reads `cron_tracking/<id>/last_run.md`, pre-fetches yfinance prices, calls Claude (Sonnet 4.6 + web search) via `author_report.py` to produce a new `<date>-<weekly\|midweek>.{md,json}`, generates the matching PDF via `pdf-export/generate_report_pdf.tsx`, updates the tracking file, commits, pushes, then posts a summary (with PDF download link) to ClickUp |
+| **author.yml** | `cron: 30 19 * * 0` (Sun) + `cron: 30 5 * * 3` (Wed) + manual | Reads `cron_tracking/<id>/last_run.md`, pre-fetches yfinance prices, calls DeepSeek via OpenRouter (with the web plugin for grounding) through `author_report.py` to produce a new `<date>-<weekly\|midweek>.{md,json}`, generates the matching PDF via `pdf-export/generate_report_pdf.tsx`, updates the tracking file, commits, pushes, then posts a summary (with PDF download link) to ClickUp |
 | **refresh.yml** | `cron: 0 20 * * 0` (Sun) + `cron: 0 6 * * 3` (Wed) + manual | Rebuilds manifest, pulls live yfinance prices, writes volatile fields into the latest report's `.json`, commits, pushes |
 | **rebuild-manifest.yml** | Push to `reports/**` | Regenerates `reports/manifest.json` so newly-added reports appear immediately in the dashboard's History |
 
@@ -49,16 +49,51 @@ auto-fires on the `reports/**` push.
 
 ### One-time setup for author.yml
 
-`author.yml` calls the Anthropic API. You need to add the API key as a secret:
+`author.yml` calls **OpenRouter**. You need to add the API key as a secret:
 
-1. Generate a key at https://console.anthropic.com/settings/keys
+1. Generate a key at https://openrouter.ai/keys (and make sure the account has
+   credit — an empty balance is what silently killed the previous provider).
 2. In this repo: **Settings → Secrets and variables → Actions → New repository secret**
-   - Name: `ANTHROPIC_API_KEY`
+   - Name: `OPENROUTER_API_KEY`
    - Value: the key
 3. Workflow permissions must be set to **Read and write** (Settings → Actions → General → Workflow permissions) — same as `refresh.yml` already needs.
 
-The workflow uses prompt caching, so cost per run is dominated by output tokens
-(~$0.30–$0.60 with Sonnet 4.6 for a full report including 8 web searches).
+#### Choosing the model
+
+Set in `author.yml`'s workflow-level `env:` block as `MARKET_PULSE_MODEL`. A full
+report set (markdown + jsonPayload + trackingMd) is roughly **24k output tokens**,
+so any model you pick must have an output ceiling comfortably above that.
+
+| Model | Output ceiling | ~Cost/run | Notes |
+|---|---|---|---|
+| `deepseek/deepseek-v3.2` | 65,536 | ~$0.02 | **Default.** Proven, ample headroom |
+| `deepseek/deepseek-v4-flash` | 384,000 | ~$0.005 | Cheapest |
+| `deepseek/deepseek-v4-pro` | 393,216 | ~$0.09 | Strongest, if report quality disappoints |
+
+At twice a week the default runs **under $2/year**, plus roughly $0.02/run for the
+web-search plugin. The previous Anthropic wiring cost ~$0.30–$0.60/run.
+
+#### Environment overrides
+
+| Var | Default | Purpose |
+|---|---|---|
+| `MARKET_PULSE_MODEL` | `deepseek/deepseek-v3.2` | Which OpenRouter model authors the report |
+| `MARKET_PULSE_MAX_TOKENS` | `48000` | Output cap. Raise if a run dies with "hit the output cap" |
+| `MARKET_PULSE_WEB_SEARCH` | `1` | Set `0` to disable grounding — **schema testing only** |
+| `MARKET_PULSE_WEB_RESULTS` | `5` | Search results injected per run |
+
+> **Do not publish an ungrounded run.** With `MARKET_PULSE_WEB_SEARCH=0` the model
+> has no way to verify what markets actually did, so it will invent economic
+> prints and central-bank headlines and the scorecard becomes fiction.
+
+#### How grounding works now
+
+Anthropic's `web_search` server tool has no OpenRouter equivalent. Instead
+OpenRouter's **web plugin** runs the searches server-side and injects the results
+into the prompt *before* the model sees it — the model no longer calls a search
+tool itself. The prompt in `author_report.py` reflects that; if you ever swap
+provider again, that wording has to move with it or the model will hunt for a
+tool that isn't there.
 
 ### Optional: ClickUp posting
 
@@ -124,7 +159,7 @@ Actions tab.
 ├── cron_tracking/
 │   ├── 18fb2115/last_run.md         Sunday-cron state file (read by author.yml)
 │   └── 92ba41d1/last_run.md         Wednesday-cron state file (read by author.yml)
-├── author_report.py                 Claude API orchestrator → writes new <date>-<type>.{md,json}
+├── author_report.py                 OpenRouter orchestrator → writes new <date>-<type>.{md,json}
 ├── build_manifest.py                rebuilds manifest from reports/*.json
 ├── refresh_dashboard.py             yfinance fetcher → writes prices into latest report
 ├── post_to_clickup.py               posts the report summary to the Analysis ClickUp channel
@@ -132,7 +167,7 @@ Actions tab.
 │   ├── generate_report_pdf.tsx
 │   ├── fonts/                       Inter + JetBrains Mono (local TTFs)
 │   └── package.json                 Pinned deps: @react-pdf/renderer, qrcode, tsx
-├── requirements.txt                 Python deps (yfinance, anthropic)
+├── requirements.txt                 Python deps (yfinance, openai)
 ├── .gitignore
 └── .github/workflows/
     ├── author.yml                   scheduled report authoring (Claude API)
@@ -154,7 +189,7 @@ python3 -m http.server 8000
 ### Testing the authoring pipeline locally
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...
+export OPENROUTER_API_KEY=sk-or-v1-...
 # Dry-run (does not write files; checks the API call + schema validation)
 python3 author_report.py --type midweek --dry-run
 
@@ -193,6 +228,22 @@ If the API-driven authoring misbehaves, the existing manual flow still works:
   error in the report file.
 - **Action fails with "permission denied" on push** — set Workflow
   permissions to "Read and write" (see above).
+- **author.yml fails in ~30s with a 400 about credit balance** — the provider
+  account is out of money. This is the failure that ran from 2026-08-05 to
+  2026-08-16 unnoticed: `author.yml` died every Wed/Sun while `refresh.yml`
+  kept succeeding, so the dashboard went on showing fresh *prices* attached to
+  a five-week-old *report* and looked healthy from the outside. Top up at
+  <https://openrouter.ai/credits>. A billing 400 is deliberately **not**
+  retried — it can never succeed, and retrying just burns the 60-minute budget.
+  Worth watching for: nothing currently alerts on a failed author run.
+- **Run dies with "Model hit the output cap"** — the report outgrew
+  `MARKET_PULSE_MAX_TOKENS` (default 48000). Raise it, or move
+  `MARKET_PULSE_MODEL` to a model with a larger output ceiling (see the table
+  above). Do not raise it past the chosen model's ceiling.
+- **"Model did not call publish_report"** — the model answered in prose. The
+  script first tries to recover a JSON payload from the message body; if that
+  also fails, the run aborts without writing. Usually means the model is too
+  weak for the structured task — try `deepseek/deepseek-v4-pro`.
 - **XAGUSD price is stale** — yfinance occasionally can't resolve `SI=F`.
   The script preserves the stale value rather than wiping it. Re-trigger
   the refresh workflow if you want a retry.

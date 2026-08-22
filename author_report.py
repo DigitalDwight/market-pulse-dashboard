@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Market Pulse -- author a new trading report via Claude API.
+Market Pulse -- author a new trading report via OpenRouter (DeepSeek).
 
 Reads cron_tracking/<cron_id>/last_run.md for prior-run context, pre-fetches
-yfinance prices for the 7 tracked instruments, calls Claude (web_search +
-publish_report tool) to author the analytical content, then writes:
+yfinance prices for the 7 tracked instruments, calls the model (OpenRouter web
+plugin + publish_report tool) to author the analytical content, then writes:
     reports/<slug>.md
     reports/<slug>.json
     cron_tracking/<cron_id>/last_run.md  (updated)
@@ -31,9 +31,9 @@ from pathlib import Path
 from typing import Any
 
 try:
-    import anthropic
+    import openai
 except ImportError:
-    print("anthropic not installed. Run: pip install -r requirements.txt", file=sys.stderr)
+    print("openai not installed. Run: pip install -r requirements.txt", file=sys.stderr)
     sys.exit(1)
 
 from refresh_dashboard import INSTRUMENTS, fetch_quote
@@ -48,7 +48,7 @@ CRON_IDS = {
     "midweek": "92ba41d1",  # Wednesday 06:00 UTC
 }
 
-# Full instrument names live here, not in the LLM output — Claude only has to
+# Full instrument names live here, not in the LLM output — the model only has to
 # produce the analytical fields; we set name + price fields ourselves.
 INSTRUMENT_NAMES = {
     "US30":   "Dow Jones Industrial Average",
@@ -74,7 +74,41 @@ VOLATILE_FIELDS = (
 )
 
 EXAMPLE_SLUG = "2026-05-10-weekly"
-MODEL = "claude-sonnet-4-6"
+
+# --- Provider: OpenRouter (OpenAI-compatible) -------------------------------
+# Swapped off the Anthropic API on 2026-08-16. The Anthropic key ran out of
+# credit and every author run had been failing 400 "credit balance is too low"
+# since 2026-08-05, so the dashboard sat on the 12 Jul report for five weeks
+# while refresh.yml kept topping up prices on it.
+#
+# OpenRouter is OpenAI-wire-compatible, so this is a plain base_url + key swap
+# rather than a rewrite. DeepSeek v3.2 costs ~$0.02/run against ~$0.30-0.60 on
+# Sonnet, and its 65,536-token output ceiling clears the ~24k tokens a full
+# report set (markdown + jsonPayload + trackingMd) actually needs.
+#
+# Override MARKET_PULSE_MODEL to trade cost for quality without touching code:
+#   deepseek/deepseek-v4-flash  cheaper  (~$0.005/run, 384k out)
+#   deepseek/deepseek-v4-pro    stronger (~$0.09/run,  393k out)
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+MODEL = os.environ.get("MARKET_PULSE_MODEL", "deepseek/deepseek-v3.2")
+
+# Max output tokens to request. A full report set measures ~24k tokens; 48k
+# leaves headroom without exceeding v3.2's 65,536 ceiling. Lower it if you
+# switch to a model with a smaller cap.
+MAX_OUTPUT_TOKENS = int(os.environ.get("MARKET_PULSE_MAX_TOKENS", "48000"))
+
+# OpenRouter's web plugin (Exa-backed) runs the searches server-side and injects
+# the results into the prompt BEFORE the model sees it. This replaces
+# Anthropic's web_search_20260209 server tool, which has no OpenRouter
+# equivalent. The model does not call a search tool itself -- it just receives
+# grounded results, which is why the prompt below describes search that way.
+#
+# Grounding is deliberately mandatory for a *trading* report: without it the
+# model confabulates economic prints and central-bank headlines, and the
+# scorecard becomes fiction. Set MARKET_PULSE_WEB_SEARCH=0 only for offline
+# schema testing, never for a published run.
+WEB_SEARCH_ENABLED = os.environ.get("MARKET_PULSE_WEB_SEARCH", "1") != "0"
+WEB_SEARCH_MAX_RESULTS = int(os.environ.get("MARKET_PULSE_WEB_RESULTS", "5"))
 
 
 def determine_run_type(now: datetime, override: str | None) -> str:
@@ -172,19 +206,19 @@ US30, NAS100, GER40, AUDUSD, GBPCAD, XAGUSD, XAUUSD
 # CRITICAL RULES -- non-negotiable
 
 1. NO emoji anywhere -- markdown, JSON, or tracking note.
-2. Use verbatim words "CORRECT", "PARTIALLY", "WRONG" in scorecards. Never "right" / "incorrect" / "wrong-ish".
+2. Use verbatim words "CORRECT", "PARTIALLY", "WRONG" in scorecards. Never "right" / "incorrect" / "wrong-ish". The single exception is "NOT GRADED", which is used only when the prior tracking file explicitly instructs a re-baseline because the pipeline missed runs. Never reach for it to avoid a hard judgement call.
 3. Conviction trades MUST include Entry, Target, Stop, and Rationale.
 4. State broken support / broken resistance explicitly (e.g. "broken support 4,635 now firm as resistance").
 5. Conditional biases must state the condition explicitly (e.g. "BULLISH conditional on RBA delivering hike").
 6. Signal field uses underscore form in JSON: BULLISH, BEARISH, NEUTRAL, NEUTRAL_BULLISH, NEUTRAL_BEARISH. In the markdown narrative the hyphen form (NEUTRAL-BULLISH) is fine.
 7. signalStrength: integer in [-100, 100]. eventImpactProbability: integer in [0, 100].
-8. Use web_search to ground the report in current macro reality: economic prints in the last 7 days, central bank speakers, geopolitical developments, earnings, commodity moves, ETF flows. Do not invent data; if you cannot verify a number, omit it.
+8. Ground the report in current macro reality using ONLY the web search results supplied to you and the live price block: economic prints in the last 7 days, central bank speakers, geopolitical developments, earnings, commodity moves, ETF flows. Do not invent data. If you cannot verify a number from the supplied sources, omit it rather than estimating it.
 9. All price levels in the narrative must match the live data block in the user message.
 
 # Process
 
 1. Read the previous tracking file in the user message. It contains the biases set last time -- those are the things you will scorecard against.
-2. Use web_search (up to 5 queries) to research what actually happened in markets since that previous run. Verify the directional outcome for each instrument so the scorecard is honest. Spend your queries on the highest-value targets: the macro prints, the central bank speakers, the geopolitical headlines, the conviction-trade instruments.
+2. Read the web search results supplied with this request. They are retrieved for you automatically -- there is no search tool for you to call, so do not attempt one and do not ask for more results. Use them to establish what actually happened in markets since the previous run, and verify the directional outcome for each instrument so the scorecard is honest. Where the results do not cover an instrument, say the outcome could not be verified rather than guessing it.
 3. Form fresh biases for the next 3-5 trading days for all 7 instruments.
 4. Pick the top 3 conviction trades for the period.
 5. Call the publish_report tool exactly once with the markdown, jsonPayload, and trackingMd fields fully populated.
@@ -256,11 +290,15 @@ Your scorecard MUST evaluate the biases set in THIS report (the most recent prio
 {prior_tracking}
 ```
 
-Now run web_search (target news between {prior_display_date} and {display_date} -- macro prints, central bank speakers, geopolitical headlines, conviction-trade instruments), then call publish_report with the full markdown narrative, the structured jsonPayload, and the trackingMd content that future runs will read.
+Web search results covering the period between {prior_display_date} and {display_date} (macro prints, central bank speakers, geopolitical headlines, conviction-trade instruments) have been retrieved and supplied with this request. Read them, then call publish_report with the full markdown narrative, the structured jsonPayload, and the trackingMd content that future runs will read.
 """
 
 
+# OpenAI/OpenRouter function-calling form: the schema nests under
+# function.parameters, where the Anthropic form used a top-level input_schema.
 PUBLISH_REPORT_TOOL = {
+  "type": "function",
+  "function": {
     "name": "publish_report",
     "description": (
         "Publish the new Market Pulse trading report. Call exactly ONCE at the end of your turn "
@@ -270,7 +308,7 @@ PUBLISH_REPORT_TOOL = {
         "shorter content over an empty field. Do not emit multiple publish_report calls; "
         "compose the full report internally, then submit it once."
     ),
-    "input_schema": {
+    "parameters": {
         "type": "object",
         "properties": {
             "markdown": {
@@ -298,14 +336,18 @@ PUBLISH_REPORT_TOOL = {
         },
         "required": ["markdown", "jsonPayload", "trackingMd"],
     },
+  },
 }
 
 
-# Transient streaming errors we retry the whole API call on. The Anthropic
-# SDK's built-in retry doesn't help mid-stream -- once the stream has started
-# emitting tokens, a dropped connection means the partial response is lost.
+# Transient streaming errors we retry the whole API call on. The SDK's built-in
+# retry doesn't help mid-stream -- once the stream has started emitting tokens,
+# a dropped connection means the partial response is lost.
 # Wed 10 Jun 2026 (run 27265537419) died with httpcore.RemoteProtocolError
 # 3.5 min into a normal-length call -- that's the failure mode this guards.
+# Kept on the OpenRouter swap: it's an httpx-level failure mode, not an
+# Anthropic-specific one, and OpenRouter proxies to upstream providers so a
+# mid-stream drop is if anything more likely, not less.
 _RETRYABLE_EXC_NAMES = frozenset({
     "RemoteProtocolError",   # httpcore / httpx -- peer closed connection
     "ReadError",             # httpx / httpcore
@@ -321,41 +363,135 @@ MAX_API_ATTEMPTS = 3
 
 
 def _is_retryable_stream_error(exc: BaseException) -> bool:
-    if isinstance(exc, (anthropic.APIConnectionError, anthropic.InternalServerError)):
+    # openai.APIConnectionError covers timeouts and connection resets;
+    # InternalServerError covers upstream 5xx. RateLimitError is added because
+    # OpenRouter shares upstream provider capacity, so a 429 here is a transient
+    # queueing signal rather than a hard quota wall the way it was on Anthropic.
+    if isinstance(
+        exc,
+        (openai.APIConnectionError, openai.InternalServerError, openai.RateLimitError),
+    ):
         return True
     return type(exc).__name__ in _RETRYABLE_EXC_NAMES
 
 
-def call_claude_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[str, Any]:
-    client = anthropic.Anthropic(api_key=api_key)
-    web_search_tool = {
-        "type": "web_search_20260209",
-        "name": "web_search",
-        "max_uses": 5,
-    }
-    stream_kwargs = dict(
-        model=MODEL,
-        max_tokens=64000,
-        thinking={"type": "adaptive"},
-        # effort=medium bounds thinking depth -- the report has a fixed structure,
-        # so deep reasoning is wasted budget that crowds out the final tool call.
-        output_config={"effort": "medium"},
-        system=[
-            {
-                "type": "text",
-                "text": system_prompt,
-                "cache_control": {"type": "ephemeral"},
-            }
-        ],
-        tools=[web_search_tool, PUBLISH_REPORT_TOOL],
-        messages=[{"role": "user", "content": user_prompt}],
+def _extract_json_object(text: str) -> dict[str, Any] | None:
+    """
+    Best-effort recovery of a JSON object from free-form model content.
+
+    Open-weight models occasionally answer in prose with a fenced JSON block
+    instead of emitting a tool call. Rather than fail the whole run on that, we
+    try to recover the payload. Scans for the outermost balanced {...} while
+    respecting string literals and escapes, so a brace inside the report
+    narrative doesn't truncate the match the way a naive regex would.
+    """
+    start = text.find("{")
+    if start == -1:
+        return None
+    depth = 0
+    in_string = False
+    escaped = False
+    for i in range(start, len(text)):
+        ch = text[i]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == '"':
+                in_string = False
+            continue
+        if ch == '"':
+            in_string = True
+        elif ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                try:
+                    parsed = json.loads(text[start : i + 1])
+                except json.JSONDecodeError:
+                    return None
+                return parsed if isinstance(parsed, dict) else None
+    return None
+
+
+def call_llm_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[str, Any]:
+    client = openai.OpenAI(
+        base_url=OPENROUTER_BASE_URL,
+        api_key=api_key,
+        # A full report is a long generation. The SDK default (10 min) is not
+        # enough headroom on a slow upstream provider; the workflow allows 60.
+        timeout=1800.0,
+        max_retries=0,  # we own the retry loop below
     )
-    # Streaming because Sonnet 4.6 reports can produce > 16K output tokens.
-    final = None
+
+    request_kwargs: dict[str, Any] = dict(
+        model=MODEL,
+        max_tokens=MAX_OUTPUT_TOKENS,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ],
+        tools=[PUBLISH_REPORT_TOOL],
+        # Force the tool rather than merely offering it. DeepSeek is more prone
+        # than Sonnet was to answering in prose when a tool is optional, and a
+        # prose answer means no publishable payload.
+        tool_choice={"type": "function", "function": {"name": "publish_report"}},
+        # Streaming is required, not stylistic: a ~24k-token generation held on
+        # a non-streaming connection gets dropped by intermediaries well before
+        # it completes.
+        stream=True,
+        stream_options={"include_usage": True},
+        extra_headers={
+            "HTTP-Referer": "https://digitaldwight.github.io/market-pulse-dashboard/",
+            "X-Title": "Market Pulse Dashboard",
+        },
+    )
+    if WEB_SEARCH_ENABLED:
+        # OpenRouter runs these searches server-side and prepends the results to
+        # the prompt. Replaces Anthropic's web_search server tool.
+        request_kwargs["extra_body"] = {
+            "plugins": [{"id": "web", "max_results": WEB_SEARCH_MAX_RESULTS}]
+        }
+    else:
+        print(
+            "  WARNING: web grounding DISABLED (MARKET_PULSE_WEB_SEARCH=0). "
+            "The report will not be grounded in real market events -- schema "
+            "testing only, do not publish this.",
+            file=sys.stderr,
+        )
+
+    tool_args = ""
+    content_text = ""
+    finish_reason = None
+    usage = None
+
     for attempt in range(1, MAX_API_ATTEMPTS + 1):
+        tool_args, content_text, finish_reason, usage = "", "", None, None
         try:
-            with client.messages.stream(**stream_kwargs) as stream:
-                final = stream.get_final_message()
+            stream = client.chat.completions.create(**request_kwargs)
+            for chunk in stream:
+                if getattr(chunk, "usage", None):
+                    usage = chunk.usage
+                if not chunk.choices:
+                    continue
+                choice = chunk.choices[0]
+                if choice.finish_reason:
+                    finish_reason = choice.finish_reason
+                delta = choice.delta
+                if delta is None:
+                    continue
+                if delta.content:
+                    content_text += delta.content
+                # Tool-call arguments arrive as a stream of string fragments
+                # that must be concatenated in order before parsing. We pin to
+                # the publish_report call and ignore any other index, since
+                # tool_choice forces exactly one.
+                for tc in (delta.tool_calls or []):
+                    fn = getattr(tc, "function", None)
+                    if fn is not None and fn.arguments:
+                        tool_args += fn.arguments
             break
         except Exception as exc:
             if not _is_retryable_stream_error(exc):
@@ -375,48 +511,62 @@ def call_claude_api(api_key: str, system_prompt: str, user_prompt: str) -> dict[
             )
             time.sleep(wait_s)
 
-    assert final is not None  # loop either succeeded or re-raised
+    if usage is not None:
+        print(
+            f"  {MODEL} usage: input={getattr(usage, 'prompt_tokens', '?')} "
+            f"output={getattr(usage, 'completion_tokens', '?')} "
+            f"finish_reason={finish_reason}",
+            file=sys.stderr,
+        )
+    else:
+        print(f"  {MODEL} finish_reason={finish_reason} (no usage reported)", file=sys.stderr)
 
-    print(
-        f"  Claude usage: input={final.usage.input_tokens} "
-        f"output={final.usage.output_tokens} "
-        f"cache_read={final.usage.cache_read_input_tokens} "
-        f"cache_creation={final.usage.cache_creation_input_tokens} "
-        f"stop_reason={final.stop_reason}",
-        file=sys.stderr,
-    )
-
-    publish_calls = [
-        b for b in final.content
-        if getattr(b, "type", None) == "tool_use" and b.name == "publish_report"
-    ]
-    if not publish_calls:
-        block_types = [getattr(b, "type", "?") for b in final.content]
+    # A length-capped generation yields truncated, unparseable tool arguments.
+    # Say so explicitly -- otherwise it surfaces as a confusing JSON error.
+    if finish_reason == "length":
         raise RuntimeError(
-            f"Claude did not call publish_report. stop_reason={final.stop_reason} "
-            f"content blocks={block_types}"
+            f"Model hit the output cap (max_tokens={MAX_OUTPUT_TOKENS}) before finishing "
+            f"publish_report. Raise MARKET_PULSE_MAX_TOKENS, or switch "
+            f"MARKET_PULSE_MODEL to one with a larger output ceiling."
         )
 
-    # Claude can emit multiple publish_report calls (e.g. a partial early
-    # attempt then a final one). Prefer the last one that has all required
-    # fields populated; fall back to the last call so the caller's diagnostic
-    # path can surface what's missing.
-    required = ("markdown", "jsonPayload", "trackingMd")
-    for block in reversed(publish_calls):
-        if all(block.input.get(f) for f in required):
-            if len(publish_calls) > 1:
-                print(
-                    f"  Note: Claude emitted {len(publish_calls)} publish_report calls; "
-                    f"using the last complete one.",
-                    file=sys.stderr,
-                )
-            return block.input
-    print(
-        f"  WARN: {len(publish_calls)} publish_report call(s) found, none with all "
-        f"required fields populated. Returning last call for diagnostic dump.",
-        file=sys.stderr,
+    if tool_args:
+        try:
+            parsed = json.loads(tool_args)
+        except json.JSONDecodeError as exc:
+            debug_path = REPO_ROOT / "_failed_tool_args.json"
+            try:
+                debug_path.write_text(tool_args, encoding="utf-8")
+                hint = f" Raw arguments dumped to {debug_path}."
+            except Exception:
+                hint = ""
+            raise RuntimeError(
+                f"publish_report arguments were not valid JSON ({exc}). "
+                f"Received {len(tool_args)} chars, finish_reason={finish_reason}.{hint}"
+            ) from exc
+        if isinstance(parsed, dict):
+            return parsed
+        raise RuntimeError(
+            f"publish_report arguments parsed to {type(parsed).__name__}, expected object."
+        )
+
+    # Fallback: no tool call, but the model may have emitted the payload as
+    # prose/fenced JSON. Recover it rather than throwing the whole run away.
+    if content_text:
+        recovered = _extract_json_object(content_text)
+        if recovered is not None:
+            print(
+                "  Note: model returned content instead of a tool call; "
+                "recovered the JSON payload from the message body.",
+                file=sys.stderr,
+            )
+            return recovered
+
+    raise RuntimeError(
+        f"Model did not call publish_report and no JSON payload could be recovered "
+        f"from its message. finish_reason={finish_reason}, "
+        f"content length={len(content_text)}"
     )
-    return publish_calls[-1].input
 
 
 def merge_prices_into_payload(
@@ -478,9 +628,13 @@ def main() -> int:
     ap.add_argument("--skip-yfinance", action="store_true", help="Skip yfinance fetch (testing only).")
     args = ap.parse_args()
 
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
-        print("ERROR: ANTHROPIC_API_KEY not set.", file=sys.stderr)
+        print(
+            "ERROR: OPENROUTER_API_KEY not set. Create a key at "
+            "https://openrouter.ai/keys and add it as a repo secret.",
+            file=sys.stderr,
+        )
         return 1
 
     now = datetime.now(timezone.utc)
@@ -524,8 +678,9 @@ def main() -> int:
         quotes, failures,
     )
 
-    print(f"Calling Claude API ({MODEL})...", file=sys.stderr)
-    result = call_claude_api(api_key, system_prompt, user_prompt)
+    grounding = f"web grounding on, {WEB_SEARCH_MAX_RESULTS} results" if WEB_SEARCH_ENABLED else "web grounding OFF"
+    print(f"Calling OpenRouter ({MODEL}; {grounding})...", file=sys.stderr)
+    result = call_llm_api(api_key, system_prompt, user_prompt)
 
     markdown = result.get("markdown", "")
     payload = result.get("jsonPayload", {})

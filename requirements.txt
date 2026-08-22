@@ -1,2 +1,2 @@
 yfinance>=0.2.65
-anthropic>=0.92.0
+openai>=1.40.0

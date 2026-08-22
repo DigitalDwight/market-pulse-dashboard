@@ -91,6 +91,10 @@ td.num{font-family:'JetBrains Mono',monospace;text-align:right}
 .v-CORRECT{background:rgba(38,208,124,.15);color:var(--bull)}
 .v-PARTIALLY{background:rgba(246,193,69,.15);color:var(--neutral)}
 .v-WRONG{background:rgba(239,79,94,.15);color:var(--bear)}
+/* Used only on a re-baseline run, when a pipeline outage means the prior
+   biases cannot be fairly graded. Deliberately grey: it is an absence of a
+   verdict, not a neutral one. */
+.v-NOT_GRADED{background:rgba(148,163,184,.15);color:var(--muted)}
 .v-SUPPORT_BROKEN{background:rgba(239,79,94,.25);color:var(--bear);border:1px solid var(--bear)}
 .v-TARGET_HIT{background:rgba(38,208,124,.25);color:var(--bull);border:1px solid var(--bull)}
 .impact{font-weight:600;padding:2px 8px;border-radius:6px;font-size:11px;display:inline-block}
