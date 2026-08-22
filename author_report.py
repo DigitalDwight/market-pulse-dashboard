@@ -82,19 +82,23 @@ EXAMPLE_SLUG = "2026-05-10-weekly"
 # while refresh.yml kept topping up prices on it.
 #
 # OpenRouter is OpenAI-wire-compatible, so this is a plain base_url + key swap
-# rather than a rewrite. DeepSeek v3.2 costs ~$0.02/run against ~$0.30-0.60 on
-# Sonnet, and its 65,536-token output ceiling clears the ~24k tokens a full
-# report set (markdown + jsonPayload + trackingMd) actually needs.
+# rather than a rewrite, and it costs a fraction of the ~$0.30-0.60/run the
+# Anthropic wiring did.
 #
-# Override MARKET_PULSE_MODEL to trade cost for quality without touching code:
-#   deepseek/deepseek-v4-flash  cheaper  (~$0.005/run, 384k out)
-#   deepseek/deepseek-v4-pro    stronger (~$0.09/run,  393k out)
+# Costs are measured against the 22 Aug 2026 run (33,114 in / 18,966 out) at
+# OpenRouter's live rates. Ceilings come from the models API.
+#   deepseek/deepseek-v4-pro    default  (~$0.029/run, 384k out)
+#   deepseek/deepseek-v3.2      cheaper  (~$0.016/run, 164k out)
+#   deepseek/deepseek-v4-flash  cheapest (~$0.004/run, 384k out)
+#
+# v4-pro is the default deliberately. This is a trading report, so a reasoning
+# error costs far more than the 1.3 cents per run it adds over v3.2.
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
-MODEL = os.environ.get("MARKET_PULSE_MODEL", "deepseek/deepseek-v3.2")
+MODEL = os.environ.get("MARKET_PULSE_MODEL", "deepseek/deepseek-v4-pro")
 
-# Max output tokens to request. A full report set measures ~24k tokens; 48k
-# leaves headroom without exceeding v3.2's 65,536 ceiling. Lower it if you
-# switch to a model with a smaller cap.
+# Max output tokens to request. A full report set measures ~19-24k tokens; 48k
+# leaves headroom well inside v4-pro's 384k ceiling. Lower it only if you switch
+# to a model with a smaller cap.
 MAX_OUTPUT_TOKENS = int(os.environ.get("MARKET_PULSE_MAX_TOKENS", "48000"))
 
 # OpenRouter's web plugin (Exa-backed) runs the searches server-side and injects

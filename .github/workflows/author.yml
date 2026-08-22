@@ -37,11 +37,18 @@ permissions:
 # Model is set here rather than in author_report.py so it can be swapped
 # without a code change, and so the author step and the commit message that
 # records which model wrote the report cannot drift apart.
-#   deepseek/deepseek-v3.2      default  ~$0.02/run,  65k output ceiling
-#   deepseek/deepseek-v4-flash  cheaper  ~$0.005/run, 384k output ceiling
-#   deepseek/deepseek-v4-pro    stronger ~$0.09/run,  393k output ceiling
+# Costs below are measured, not quoted: they price the 22 Aug 2026 run
+# (33,114 input / 18,966 output tokens) against OpenRouter's live per-token
+# rates. Output ceilings come from the models API, not the marketing page.
+#   deepseek/deepseek-v4-pro    default  ~$0.029/run, 384k output ceiling
+#   deepseek/deepseek-v3.2      cheaper  ~$0.016/run, 164k output ceiling
+#   deepseek/deepseek-v4-flash  cheapest ~$0.004/run, 384k output ceiling
+#
+# v4-pro is the default because this is a trading report and a reasoning error
+# is far more expensive than the 1.3 cents per run it costs over v3.2. At twice
+# a week the whole thing runs about $3/year.
 env:
-  MARKET_PULSE_MODEL: deepseek/deepseek-v3.2
+  MARKET_PULSE_MODEL: deepseek/deepseek-v4-pro
 
 concurrency:
   # Shared with refresh.yml so author and refresh serialize against each other.
