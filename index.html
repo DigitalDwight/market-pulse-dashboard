@@ -95,6 +95,37 @@ td.num{font-family:'JetBrains Mono',monospace;text-align:right}
    biases cannot be fairly graded. Deliberately grey: it is an absence of a
    verdict, not a neutral one. */
 .v-NOT_GRADED{background:rgba(148,163,184,.15);color:var(--muted)}
+
+/* ---- Track Record -------------------------------------------------------- */
+.section-note{color:var(--dim);font-weight:400;text-transform:none;letter-spacing:0;font-size:12px}
+.acc-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px}
+.acc-tile{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.acc-tile .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.acc-tile .value{font-size:24px;font-weight:700;margin-top:4px}
+.acc-tile .sub{font-size:11px;color:var(--dim);margin-top:2px}
+.acc-formula{font-size:11px;color:var(--dim);margin:10px 0 18px}
+.acc-sub{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:22px 0 10px}
+/* Stacked verdict bar. Widths are set inline from the data. */
+.acc-bar{display:flex;height:100%;width:100%;border-radius:3px;overflow:hidden;background:rgba(148,163,184,.12)}
+.acc-bar span{display:block;height:100%}
+.acc-bar .c{background:var(--bull)}
+.acc-bar .p{background:var(--neutral)}
+.acc-bar .w{background:var(--bear)}
+.acc-timeline{display:flex;align-items:flex-end;gap:4px;height:90px;padding:4px 0}
+.acc-col{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;height:100%;cursor:default}
+.acc-col .bar{width:100%;border-radius:3px 3px 0 0;overflow:hidden;display:flex;flex-direction:column-reverse}
+.acc-col .bar span{display:block;width:100%}
+.acc-legend{display:flex;gap:16px;font-size:11px;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+.acc-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:middle}
+/* A miss: the model called it and the market went the other way. */
+.miss{border:1px solid var(--border);border-left:3px solid var(--bear);border-radius:8px;padding:12px 14px;margin-bottom:10px;background:var(--panel)}
+.miss-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.miss-inst{font-weight:700;font-size:14px}
+.miss-move{font-weight:700;color:var(--bear);font-size:14px}
+.miss-meta{font-size:11px;color:var(--dim);margin-left:auto}
+.miss-bias{font-size:11px;color:var(--muted)}
+.miss-result{font-size:13px;color:var(--text);line-height:1.6}
+.acc-empty{color:var(--muted);font-size:13px}
 .v-SUPPORT_BROKEN{background:rgba(239,79,94,.25);color:var(--bear);border:1px solid var(--bear)}
 .v-TARGET_HIT{background:rgba(38,208,124,.25);color:var(--bull);border:1px solid var(--bull)}
 .impact{font-weight:600;padding:2px 8px;border-radius:6px;font-size:11px;display:inline-block}
@@ -274,6 +305,11 @@ footer a{margin:0 8px}
     <div class="scenarios" id="scenariosGrid"></div>
   </section>
 
+  <section class="section" id="accuracySection">
+    <h2 class="section-title">Track Record <span class="section-note">all reports since inception, not the report loaded above</span></h2>
+    <div id="accuracyBody"><div class="skeleton">Loading track record&hellip;</div></div>
+  </section>
+
   <section class="section no-print" id="historySection">
     <h2 class="section-title">Report History <span style="color:var(--dim);font-weight:400;text-transform:none;letter-spacing:0">— click a report to load it onto the dashboard</span></h2>
     <div class="history-grid" id="historyGrid"><div class="skeleton">Loading report history&hellip;</div></div>
@@ -340,6 +376,7 @@ let manifest = null;
 let currentData = null;
 let currentSlug = null;     // null  = viewing latest
 let modalSlug = null;       // slug currently open in the report modal
+let accuracy = null;        // reports/accuracy.json, cross-report track record
 
 // ============================================================================
 //  HELPERS
@@ -553,6 +590,142 @@ function highlightActiveHistory(){
   document.querySelectorAll('.history-card').forEach(c => {
     c.classList.toggle('active', c.dataset.slug === targetSlug);
   });
+}
+
+// ============================================================================
+//  TRACK RECORD
+//
+//  Reads reports/accuracy.json, which build_manifest.py regenerates on every
+//  push to reports/**. Deliberately independent of the report loaded above:
+//  time-travelling the dashboard to an old report must not rewrite the record.
+// ============================================================================
+function renderAccuracy(){
+  const el = $('accuracyBody');
+  if (!accuracy || !accuracy.totals || !accuracy.totals.graded) {
+    el.innerHTML = '<div class="acc-empty">No graded calls yet. The record starts once a report has been scorecarded against a previous one.</div>';
+    return;
+  }
+  const t = accuracy.totals;
+  const pct = (n) => t.graded ? (100 * n / t.graded).toFixed(0) : 0;
+
+  const tiles = `
+    <div class="acc-tiles">
+      <div class="acc-tile">
+        <div class="label">Hit rate</div>
+        <div class="value">${t.hitRate}%</div>
+        <div class="sub">${t.graded} graded calls</div>
+      </div>
+      <div class="acc-tile">
+        <div class="label">Outright correct</div>
+        <div class="value" style="color:var(--bull)">${t.CORRECT}</div>
+        <div class="sub">${pct(t.CORRECT)}% of calls</div>
+      </div>
+      <div class="acc-tile">
+        <div class="label">Partially</div>
+        <div class="value" style="color:var(--neutral)">${t.PARTIALLY}</div>
+        <div class="sub">${pct(t.PARTIALLY)}% of calls</div>
+      </div>
+      <div class="acc-tile">
+        <div class="label">Wrong</div>
+        <div class="value" style="color:var(--bear)">${t.WRONG}</div>
+        <div class="sub">${pct(t.WRONG)}% of calls</div>
+      </div>
+      <div class="acc-tile">
+        <div class="label">Reports</div>
+        <div class="value">${accuracy.reportCount}</div>
+        <div class="sub">${t['NOT GRADED'] ? t['NOT GRADED'] + ' calls not graded' : 'all runs graded'}</div>
+      </div>
+    </div>
+    <div class="acc-formula">Hit rate = ${accuracy.hitRateFormula}</div>`;
+
+  // One full-height column per report, stacked by verdict share, oldest left.
+  // Equal heights on purpose: every report grades the same seven instruments,
+  // so height would encode nothing and the green share is the signal.
+  const cols = (accuracy.byReport || []).map(r => {
+    const g = r.graded || 0;
+    if (!g) {
+      return `<div class="acc-col" title="${r.displayDate || r.date} — not graded"><div class="bar" style="height:100%"><span style="height:100%;background:rgba(148,163,184,.18)"></span></div></div>`;
+    }
+    const h = (n) => (100 * n / g).toFixed(1) + '%';
+    return `<div class="acc-col" title="${r.displayDate || r.date} — ${r.CORRECT}C / ${r.PARTIALLY}P / ${r.WRONG}W, hit rate ${r.hitRate}%">
+        <div class="bar" style="height:100%">
+          <span class="w" style="height:${h(r.WRONG)};background:var(--bear)"></span>
+          <span class="p" style="height:${h(r.PARTIALLY)};background:var(--neutral)"></span>
+          <span class="c" style="height:${h(r.CORRECT)};background:var(--bull)"></span>
+        </div>
+      </div>`;
+  }).join('');
+
+  const timeline = `
+    <div class="acc-sub">Accuracy by report (oldest left)</div>
+    <div class="acc-timeline">${cols}</div>
+    <div class="acc-legend">
+      <span><i style="background:var(--bull)"></i>Correct</span>
+      <span><i style="background:var(--neutral)"></i>Partially</span>
+      <span><i style="background:var(--bear)"></i>Wrong</span>
+      <span><i style="background:rgba(148,163,184,.18)"></i>Not graded</span>
+      <span style="color:var(--dim)">Hover a column for that report's split.</span>
+    </div>`;
+
+  const rows = Object.entries(accuracy.byInstrument || {})
+    .sort((a, b) => (b[1].hitRate ?? -1) - (a[1].hitRate ?? -1))
+    .map(([name, v]) => {
+      const g = v.graded || 0;
+      const h = (n) => g ? (100 * n / g).toFixed(1) + '%' : '0%';
+      return `<tr>
+        <td><strong>${name}</strong></td>
+        <td>${v.hitRate === null ? '--' : v.hitRate + '%'}</td>
+        <td>${v.CORRECT}</td><td>${v.PARTIALLY}</td><td>${v.WRONG}</td>
+        <td style="min-width:140px"><div class="acc-bar" style="height:8px">
+          <span class="c" style="width:${h(v.CORRECT)}"></span>
+          <span class="p" style="width:${h(v.PARTIALLY)}"></span>
+          <span class="w" style="width:${h(v.WRONG)}"></span>
+        </div></td>
+      </tr>`;
+    }).join('');
+
+  const byInstrument = `
+    <div class="acc-sub">By instrument</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Instrument</th><th>Hit rate</th><th>Correct</th><th>Partially</th><th>Wrong</th><th>Split</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>`;
+
+  // Misses ranked by how far price went against the call. Unsized misses sort
+  // last, so an unquantified one never outranks a measured one.
+  const misses = accuracy.misses || [];
+  const shown = misses.slice(0, 12);
+  const missCards = shown.map(m => `
+    <div class="miss">
+      <div class="miss-head">
+        <span class="miss-inst">${m.instrument}</span>
+        <span class="miss-bias">called ${String(m.previousBias || '--').replace(/_/g, '-')}</span>
+        ${m.movePct === null || m.movePct === undefined ? '' : `<span class="miss-move">${m.movePct > 0 ? '+' : ''}${m.movePct}%</span>`}
+        <span class="miss-meta">${m.displayDate || m.date}</span>
+      </div>
+      <div class="miss-result">${m.result || 'No detail recorded.'}</div>
+    </div>`).join('');
+
+  const missSection = `
+    <div class="acc-sub">Biggest misses — what went the other way</div>
+    <div class="acc-formula">Ranked by the largest percentage move quoted in the report's own result note. ${shown.length} of ${misses.length} shown.</div>
+    ${missCards || '<div class="acc-empty">No misses recorded.</div>'}`;
+
+  el.innerHTML = tiles + timeline + byInstrument + missSection;
+}
+
+async function loadAccuracy(){
+  try {
+    const res = await fetch('reports/accuracy.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    accuracy = await res.json();
+  } catch (err) {
+    console.warn('Could not load reports/accuracy.json:', err);
+    accuracy = null;
+    $('accuracyBody').innerHTML = '<div class="acc-empty">Could not load the track record. It is rebuilt by the Action on the next push to <code>reports/</code>.</div>';
+    return;
+  }
+  renderAccuracy();
 }
 
 // ============================================================================
@@ -789,6 +962,7 @@ async function init(){
   // Render fallback first so the page isn't blank during fetch
   renderAll(FALLBACK_MARKET_DATA);
   await loadManifest();
+  loadAccuracy();  // not awaited: the track record must never delay the report
   if (manifest.reports && manifest.reports.length) {
     await loadReportBySlug(null);  // latest
   }
