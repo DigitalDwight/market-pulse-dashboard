@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-08-22T18:42:40Z",
-  "count": 20,
+  "generatedAt": "2026-08-23T19:45:01Z",
+  "count": 21,
   "reports": [
+    {
+      "slug": "2026-08-23-weekly",
+      "type": "Weekly",
+      "date": "2026-08-23",
+      "displayDate": "Sunday 23 August 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-08-23-weekly.md",
+      "lastUpdated": "2026-08-23T19:45:01Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "Rising long-dated Treasury yields (30Y at 2007 highs) triggered a sharp rotation out of long-duration growth assets, driving NAS100 -2.61% on the week. Gold +5.56% and silver +7.49% surged on fiscal sustainability angst, Fed credibility concerns, and Strait of Hormuz geopolitical premium. Treasury buyback expansion offered only fleeting relief. Jackson Hole (Aug 27–29) and Core PCE (Aug 26) loom as dominant catalysts.",
+      "jsonFile": "2026-08-23-weekly.json"
+    },
     {
       "slug": "2026-08-22-weekly",
       "type": "Weekly",
