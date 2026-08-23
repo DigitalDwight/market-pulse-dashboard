@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Track Record | Market Pulse</title>
+<meta name="description" content="How accurate Market Pulse has been: hit rate by week and by instrument, and the calls the market went hardest against." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/app.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="pulse"></span>
+    <h1>MARKET PULSE</h1>
+    <span class="mono" style="color:var(--muted);font-size:11px;letter-spacing:.5px">TRACK RECORD</span>
+  </div>
+  <div class="meta no-print">
+    <span id="generatedLabel">--</span>
+    <a class="btn primary" href="index.html">&#8592; Dashboard</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <section class="section" id="accuracySection">
+    <h2 class="section-title">Track Record <span class="section-note">every graded call since inception</span></h2>
+    <div id="accuracyBody"><div class="skeleton">Loading track record&hellip;</div></div>
+  </section>
+
+</div>
+
+<footer>
+  <div>Market Pulse &mdash; Automated trading intelligence for prop firm day traders.</div>
+  <div class="links">
+    <a href="index.html">Dashboard</a>
+    <span style="color:var(--dim)">|</span>
+    <a href="https://engvision.co/dashboard" target="_blank">engvision.co/dashboard</a>
+    <span style="color:var(--dim)">|</span>
+    <a href="https://github.com/DigitalDwight/market-pulse-dashboard" target="_blank">Source</a>
+  </div>
+</footer>
+
+<script>
+// ============================================================================
+//  Market Pulse — Track Record
+//
+//  A standalone page. Its only input is reports/accuracy.json, so it shares no
+//  state with the dashboard and cannot be thrown off by which report is loaded
+//  there. assets/app.css is shared; nothing else is.
+// ============================================================================
+let accuracy = null;
+
+const $ = (id)=>document.getElementById(id);
+
+// ============================================================================
+//  TRACK RECORD
+//
+//  Reads reports/accuracy.json, which build_manifest.py regenerates on every
+//  push to reports/**. That file is the whole input to this page: it aggregates
+//  every report's scorecard, so the record never depends on which report the
+//  dashboard happens to have loaded.
+// ============================================================================
+function renderAccuracy(){
+  const el = $('accuracyBody');
+  if (!accuracy || !accuracy.totals || !accuracy.totals.graded) {
+    el.innerHTML = '<div class="acc-empty">No graded calls yet. The record starts once a report has been scorecarded against a previous one.</div>';
+    return;
+  }
+  const t = accuracy.totals;
+  const pct = (n) => t.graded ? (100 * n / t.graded).toFixed(0) : 0;
+
+  const tiles = `
+    <div class="acc-tiles">
+      <div class="acc-tile">
+        <div class="label">Hit rate</div>
+        <div class="value">${t.hitRate}%</div>
+        <div class="sub">${t.graded} graded calls</div>
+      </div>
+      <div class="acc-tile">
+        <div class="label">Outright correct</div>
+        <div class="value" style="color:var(--bull)">${t.CORRECT}</div>
+        <div class="sub">${pct(t.CORRECT)}% of calls</div>
+      </div>
+      <div class="acc-tile">
+        <div class="label">Partially</div>
+        <div class="value" style="color:var(--neutral)">${t.PARTIALLY}</div>
+        <div class="sub">${pct(t.PARTIALLY)}% of calls</div>
+      </div>
+      <div class="acc-tile">
+        <div class="label">Wrong</div>
+        <div class="value" style="color:var(--bear)">${t.WRONG}</div>
+        <div class="sub">${pct(t.WRONG)}% of calls</div>
+      </div>
+      <div class="acc-tile">
+        <div class="label">Reports</div>
+        <div class="value">${accuracy.reportCount}</div>
+        <div class="sub">${t['NOT GRADED'] ? t['NOT GRADED'] + ' calls not graded' : 'all runs graded'}</div>
+      </div>
+    </div>
+    <div class="acc-formula">Hit rate = ${accuracy.hitRateFormula}</div>`;
+
+  // One full-height column per report, stacked by verdict share, oldest left.
+  // Equal heights on purpose: every report grades the same seven instruments,
+  // so height would encode nothing and the green share is the signal.
+  const cols = (accuracy.byReport || []).map(r => {
+    const g = r.graded || 0;
+    if (!g) {
+      return `<div class="acc-col" title="${r.displayDate || r.date} — not graded"><div class="bar" style="height:100%"><span style="height:100%;background:rgba(148,163,184,.18)"></span></div></div>`;
+    }
+    const h = (n) => (100 * n / g).toFixed(1) + '%';
+    return `<div class="acc-col" title="${r.displayDate || r.date} — ${r.CORRECT}C / ${r.PARTIALLY}P / ${r.WRONG}W, hit rate ${r.hitRate}%">
+        <div class="bar" style="height:100%">
+          <span class="w" style="height:${h(r.WRONG)};background:var(--bear)"></span>
+          <span class="p" style="height:${h(r.PARTIALLY)};background:var(--neutral)"></span>
+          <span class="c" style="height:${h(r.CORRECT)};background:var(--bull)"></span>
+        </div>
+      </div>`;
+  }).join('');
+
+  const timeline = `
+    <div class="acc-sub">Accuracy by report (oldest left)</div>
+    <div class="acc-timeline">${cols}</div>
+    <div class="acc-legend">
+      <span><i style="background:var(--bull)"></i>Correct</span>
+      <span><i style="background:var(--neutral)"></i>Partially</span>
+      <span><i style="background:var(--bear)"></i>Wrong</span>
+      <span><i style="background:rgba(148,163,184,.18)"></i>Not graded</span>
+      <span style="color:var(--dim)">Hover a column for that report's split.</span>
+    </div>`;
+
+  const rows = Object.entries(accuracy.byInstrument || {})
+    .sort((a, b) => (b[1].hitRate ?? -1) - (a[1].hitRate ?? -1))
+    .map(([name, v]) => {
+      const g = v.graded || 0;
+      const h = (n) => g ? (100 * n / g).toFixed(1) + '%' : '0%';
+      return `<tr>
+        <td><strong>${name}</strong></td>
+        <td>${v.hitRate === null ? '--' : v.hitRate + '%'}</td>
+        <td>${v.CORRECT}</td><td>${v.PARTIALLY}</td><td>${v.WRONG}</td>
+        <td style="min-width:140px"><div class="acc-bar" style="height:8px">
+          <span class="c" style="width:${h(v.CORRECT)}"></span>
+          <span class="p" style="width:${h(v.PARTIALLY)}"></span>
+          <span class="w" style="width:${h(v.WRONG)}"></span>
+        </div></td>
+      </tr>`;
+    }).join('');
+
+  const byInstrument = `
+    <div class="acc-sub">By instrument</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Instrument</th><th>Hit rate</th><th>Correct</th><th>Partially</th><th>Wrong</th><th>Split</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>`;
+
+  // Misses ranked by how far price went against the call. Unsized misses sort
+  // last, so an unquantified one never outranks a measured one.
+  const misses = accuracy.misses || [];
+  const shown = misses.slice(0, 12);
+  const missCards = shown.map(m => `
+    <div class="miss">
+      <div class="miss-head">
+        <span class="miss-inst">${m.instrument}</span>
+        <span class="miss-bias">called ${String(m.previousBias || '--').replace(/_/g, '-')}</span>
+        ${m.movePct === null || m.movePct === undefined ? '' : `<span class="miss-move">${m.movePct > 0 ? '+' : ''}${m.movePct}%</span>`}
+        <span class="miss-meta">${m.displayDate || m.date}</span>
+      </div>
+      <div class="miss-result">${m.result || 'No detail recorded.'}</div>
+    </div>`).join('');
+
+  const missSection = `
+    <div class="acc-sub">Biggest misses — what went the other way</div>
+    <div class="acc-formula">Ranked by the largest percentage move quoted in the report's own result note. ${shown.length} of ${misses.length} shown.</div>
+    ${missCards || '<div class="acc-empty">No misses recorded.</div>'}`;
+
+  el.innerHTML = tiles + timeline + byInstrument + missSection;
+}
+
+async function loadAccuracy(){
+  try {
+    const res = await fetch('reports/accuracy.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    accuracy = await res.json();
+  } catch (err) {
+    console.warn('Could not load reports/accuracy.json:', err);
+    accuracy = null;
+    $('accuracyBody').innerHTML = '<div class="acc-empty">Could not load the track record. It is rebuilt by the Action on the next push to <code>reports/</code>.</div>';
+    return;
+  }
+  renderAccuracy();
+}
+
+// ============================================================================
+//  INIT
+// ============================================================================
+(async function init(){
+  await loadAccuracy();
+  const label = $('generatedLabel');
+  if (accuracy && accuracy.generatedAt) {
+    label.innerHTML = `${accuracy.reportCount} reports &middot; rebuilt <strong>${accuracy.generatedAt.replace('T',' ').replace('Z',' UTC')}</strong>`;
+  } else {
+    label.textContent = 'record unavailable';
+  }
+})();
+</script>
+
+</body>
+</html>

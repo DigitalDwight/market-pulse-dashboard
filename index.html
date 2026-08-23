@@ -10,220 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
 <script src="https://s3.tradingview.com/tv.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<style>
-:root{
-  --bg:#0a0d14; --panel:#10141d; --panel-2:#161b27; --border:#1f2636;
-  --text:#e6ebf2; --muted:#8892a6; --dim:#5b6478;
-  --bull:#26d07c; --bear:#ef4f5e; --neutral:#f6c145; --accent:#7aa2ff;
-  --shadow:0 4px 24px rgba(0,0,0,.35);
-  --radius:14px;
-}
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-decoration:none}
-button{font-family:inherit;cursor:pointer}
-.mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
-.container{max-width:1320px;margin:0 auto;padding:24px}
-header.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:16px 24px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#0d1119, #0a0d14)}
-header.topbar .brand{display:flex;align-items:center;gap:12px}
-header.topbar .pulse{width:10px;height:10px;border-radius:50%;background:var(--bull);box-shadow:0 0 0 0 rgba(38,208,124,.7);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(38,208,124,.6)}70%{box-shadow:0 0 0 12px rgba(38,208,124,0)}100%{box-shadow:0 0 0 0 rgba(38,208,124,0)}}
-header.topbar h1{font-size:18px;margin:0;letter-spacing:.3px;font-weight:700}
-header.topbar .meta{display:flex;gap:14px;align-items:center;color:var(--muted);font-size:12px;flex-wrap:wrap}
-header.topbar .meta strong{color:var(--text);font-weight:600}
-.btn{background:var(--panel-2);color:var(--text);border:1px solid var(--border);padding:8px 14px;border-radius:8px;font-size:12px;font-weight:500;transition:all .15s;text-decoration:none;display:inline-block}
-.btn:hover{border-color:#2a3344;background:#1c2333}
-.btn[disabled]{opacity:.5;cursor:not-allowed}
-.btn.primary{background:var(--accent);color:#0a0d14;border-color:var(--accent);font-weight:600}
-.btn.primary:hover{filter:brightness(1.1)}
-.btn.sm{padding:6px 10px;font-size:11px}
-
-.viewing-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:99px;border:1px solid var(--border);background:var(--panel-2);font-size:11px;letter-spacing:.4px}
-.viewing-badge.live{border-color:rgba(38,208,124,.4);background:rgba(38,208,124,.08);color:var(--bull)}
-.viewing-badge.historical{border-color:rgba(246,193,69,.4);background:rgba(246,193,69,.08);color:var(--neutral)}
-.viewing-badge .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
-
-.hero{display:grid;grid-template-columns:2fr 1fr;gap:20px;margin:24px 0}
-@media (max-width: 900px){.hero{grid-template-columns:1fr}}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
-.card h2{margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:.5px;color:var(--muted);text-transform:uppercase}
-.theme-card .theme{font-size:18px;line-height:1.55;color:var(--text);font-weight:500}
-.sentiment-wrap{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
-.sentiment-badge{padding:8px 18px;border-radius:99px;font-size:13px;font-weight:600;letter-spacing:.5px;border:1px solid;display:inline-block}
-.sentiment-BULLISH{color:var(--bull);border-color:var(--bull);background:rgba(38,208,124,.08)}
-.sentiment-NEUTRAL_BULLISH{color:#84d6a8;border-color:#84d6a8;background:rgba(132,214,168,.08)}
-.sentiment-NEUTRAL{color:var(--neutral);border-color:var(--neutral);background:rgba(246,193,69,.08)}
-.sentiment-NEUTRAL_BEARISH{color:#f29488;border-color:#f29488;background:rgba(242,148,136,.08)}
-.sentiment-BEARISH{color:var(--bear);border-color:var(--bear);background:rgba(239,79,94,.08)}
-
-.grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
-.inst-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:14px;transition:transform .15s,border-color .15s;cursor:pointer}
-.inst-card:hover{transform:translateY(-2px);border-color:#2a3344}
-.inst-head{display:flex;justify-content:space-between;align-items:flex-start}
-.inst-head .sym{font-size:18px;font-weight:700;letter-spacing:.4px}
-.inst-head .name{font-size:11px;color:var(--muted);margin-top:2px}
-.inst-price{font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace}
-.inst-change{font-size:13px;font-weight:600;font-family:'JetBrains Mono',monospace}
-.up{color:var(--bull)} .down{color:var(--bear)} .flat{color:var(--muted)}
-.inst-row{display:flex;justify-content:space-between;align-items:center;font-size:12px}
-.inst-row .lbl{color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-size:10px}
-.spark{width:100%;height:56px}
-.gauges{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.gauge{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--panel-2)}
-.gauge .g-label{font-size:9px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
-.gauge .g-value{font-size:18px;font-weight:700;font-family:'JetBrains Mono',monospace}
-.signal-pill{padding:4px 10px;border-radius:99px;font-size:10px;font-weight:600;letter-spacing:.5px}
-.signal-BULLISH{background:rgba(38,208,124,.15);color:var(--bull)}
-.signal-NEUTRAL_BULLISH{background:rgba(132,214,168,.15);color:#84d6a8}
-.signal-NEUTRAL{background:rgba(246,193,69,.15);color:var(--neutral)}
-.signal-NEUTRAL_BEARISH{background:rgba(242,148,136,.15);color:#f29488}
-.signal-BEARISH{background:rgba(239,79,94,.15);color:var(--bear)}
-
-.section{margin:36px 0}
-.section h2.section-title{font-size:13px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:0 0 14px;font-weight:600}
-.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);background:var(--panel)}
-table{border-collapse:collapse;width:100%;font-size:13px}
-th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--border)}
-th{color:var(--muted);font-weight:600;font-size:11px;letter-spacing:.5px;text-transform:uppercase;background:var(--panel-2)}
-tr:last-child td{border-bottom:none}
-td.num{font-family:'JetBrains Mono',monospace;text-align:right}
-.verdict{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;display:inline-block}
-.v-CORRECT{background:rgba(38,208,124,.15);color:var(--bull)}
-.v-PARTIALLY{background:rgba(246,193,69,.15);color:var(--neutral)}
-.v-WRONG{background:rgba(239,79,94,.15);color:var(--bear)}
-/* Used only on a re-baseline run, when a pipeline outage means the prior
-   biases cannot be fairly graded. Deliberately grey: it is an absence of a
-   verdict, not a neutral one. */
-.v-NOT_GRADED{background:rgba(148,163,184,.15);color:var(--muted)}
-
-/* ---- Track Record -------------------------------------------------------- */
-.section-note{color:var(--dim);font-weight:400;text-transform:none;letter-spacing:0;font-size:12px}
-.acc-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:8px}
-.acc-tile{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
-.acc-tile .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.acc-tile .value{font-size:24px;font-weight:700;margin-top:4px}
-.acc-tile .sub{font-size:11px;color:var(--dim);margin-top:2px}
-.acc-formula{font-size:11px;color:var(--dim);margin:10px 0 18px}
-.acc-sub{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin:22px 0 10px}
-/* Stacked verdict bar. Widths are set inline from the data. */
-.acc-bar{display:flex;height:100%;width:100%;border-radius:3px;overflow:hidden;background:rgba(148,163,184,.12)}
-.acc-bar span{display:block;height:100%}
-.acc-bar .c{background:var(--bull)}
-.acc-bar .p{background:var(--neutral)}
-.acc-bar .w{background:var(--bear)}
-.acc-timeline{display:flex;align-items:flex-end;gap:4px;height:90px;padding:4px 0}
-.acc-col{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:flex-end;height:100%;cursor:default}
-.acc-col .bar{width:100%;border-radius:3px 3px 0 0;overflow:hidden;display:flex;flex-direction:column-reverse}
-.acc-col .bar span{display:block;width:100%}
-.acc-legend{display:flex;gap:16px;font-size:11px;color:var(--muted);margin-top:10px;flex-wrap:wrap}
-.acc-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:middle}
-/* A miss: the model called it and the market went the other way. */
-.miss{border:1px solid var(--border);border-left:3px solid var(--bear);border-radius:8px;padding:12px 14px;margin-bottom:10px;background:var(--panel)}
-.miss-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
-.miss-inst{font-weight:700;font-size:14px}
-.miss-move{font-weight:700;color:var(--bear);font-size:14px}
-.miss-meta{font-size:11px;color:var(--dim);margin-left:auto}
-.miss-bias{font-size:11px;color:var(--muted)}
-.miss-result{font-size:13px;color:var(--text);line-height:1.6}
-.acc-empty{color:var(--muted);font-size:13px}
-.v-SUPPORT_BROKEN{background:rgba(239,79,94,.25);color:var(--bear);border:1px solid var(--bear)}
-.v-TARGET_HIT{background:rgba(38,208,124,.25);color:var(--bull);border:1px solid var(--bull)}
-.impact{font-weight:600;padding:2px 8px;border-radius:6px;font-size:11px;display:inline-block}
-.impact-Very-High{background:rgba(239,79,94,.2);color:var(--bear)}
-.impact-High{background:rgba(246,193,69,.2);color:var(--neutral)}
-.impact-Medium{background:rgba(122,162,255,.15);color:var(--accent)}
-.impact-Low{background:rgba(136,146,166,.15);color:var(--muted)}
-
-.trades{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px}
-.trade-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:10px;border-left:3px solid var(--accent)}
-.trade-card.LONG{border-left-color:var(--bull)}
-.trade-card.SHORT{border-left-color:var(--bear)}
-.trade-card.WAIT{border-left-color:var(--neutral)}
-.trade-rank{font-size:11px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
-.trade-title{font-size:18px;font-weight:700}
-.trade-dir-LONG{color:var(--bull)} .trade-dir-SHORT{color:var(--bear)} .trade-dir-WAIT{color:var(--neutral)}
-.trade-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
-.trade-level{background:var(--panel-2);padding:8px 10px;border-radius:8px;border:1px solid var(--border)}
-.trade-level .lbl{font-size:9px;text-transform:uppercase;color:var(--muted);letter-spacing:.5px}
-.trade-level .val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;margin-top:2px}
-.trade-rationale{font-size:12px;color:var(--muted);line-height:1.6}
-
-/* Report history */
-.history-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
-.history-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s}
-.history-card.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(122,162,255,.15)}
-.history-card:hover{border-color:#2a3344}
-.history-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.history-type{font-size:10px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--panel-2);border:1px solid var(--border);color:var(--muted)}
-.history-type.weekly{color:var(--accent);border-color:rgba(122,162,255,.4);background:rgba(122,162,255,.08)}
-.history-type.midweek{color:var(--neutral);border-color:rgba(246,193,69,.4);background:rgba(246,193,69,.08)}
-.history-date{font-weight:700;font-size:15px}
-.history-theme{font-size:12px;color:var(--muted);line-height:1.55;flex-grow:1}
-.history-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-
-/* Modal */
-#drillModal, #reportModal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:flex-start;justify-content:center;z-index:1000;overflow-y:auto;padding:40px 16px}
-#drillModal.open, #reportModal.open{display:flex}
-.drill-panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);width:100%;max-width:980px;padding:24px;position:relative;box-shadow:0 12px 60px rgba(0,0,0,.6)}
-.report-panel{max-width:880px}
-.drill-close{position:absolute;top:16px;right:20px;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;z-index:1}
-.drill-close:hover{color:var(--text)}
-.drill-head{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
-.drill-head .row{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
-.drill-head .big{font-size:28px;font-weight:700}
-.drill-head .name{color:var(--muted);font-size:13px}
-.drill-price{display:flex;flex-direction:column;align-items:flex-end}
-.drill-price .p{font-size:30px;font-weight:700;font-family:'JetBrains Mono',monospace}
-.chart-container{width:100%;height:520px;margin:18px 0;border:1px solid var(--border);border-radius:10px;overflow:hidden;position:relative}
-.chart-hint{font-size:11px;color:var(--muted);margin:-8px 0 12px;display:flex;align-items:center;gap:6px}
-.chart-hint::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent)}
-.levels-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:700px){.levels-grid{grid-template-columns:1fr}.gauges{grid-template-columns:1fr 1fr}}
-.levels-grid h4{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:600}
-.level-row{display:flex;justify-content:space-between;padding:8px 10px;background:var(--panel-2);border:1px solid var(--border);border-radius:8px;margin-bottom:6px;font-size:12px;align-items:center}
-.level-row .l-name{font-weight:600}
-.level-row .l-price{font-family:'JetBrains Mono',monospace;font-weight:600}
-.level-row .l-desc{color:var(--muted);font-size:11px;flex:1;margin:0 14px}
-.analysis{background:var(--panel-2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:16px;font-size:13px;line-height:1.7;color:#cfd6e2;white-space:pre-wrap}
-
-/* Markdown content inside report modal */
-.report-md{font-size:13px;line-height:1.7;color:#cfd6e2;max-height:70vh;overflow-y:auto;padding-right:6px}
-.report-md h1{font-size:22px;margin:0 0 8px;color:var(--text)}
-.report-md h2{font-size:16px;margin:22px 0 10px;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:6px}
-.report-md h3{font-size:14px;margin:18px 0 8px;color:var(--text)}
-.report-md h4{font-size:13px;margin:14px 0 6px;color:var(--text)}
-.report-md p{margin:8px 0}
-.report-md strong{color:var(--text)}
-.report-md hr{border:none;border-top:1px solid var(--border);margin:18px 0}
-.report-md ul, .report-md ol{padding-left:22px;margin:8px 0}
-.report-md li{margin:3px 0}
-.report-md code{background:var(--panel-2);padding:2px 6px;border-radius:4px;font-size:12px;color:#cfd6e2}
-.report-md pre{background:var(--panel-2);padding:12px;border-radius:8px;overflow-x:auto;border:1px solid var(--border)}
-.report-md table{margin:10px 0;font-size:12px}
-.report-md th, .report-md td{padding:6px 10px;border:1px solid var(--border)}
-.report-md th{background:var(--panel-2)}
-.report-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
-
-.scenarios{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.scenario{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
-.scenario h3{margin:0 0 8px;font-size:14px;font-weight:600}
-.scenario .prob{display:inline-block;background:var(--panel-2);padding:3px 8px;border-radius:6px;font-size:11px;color:var(--muted);margin-bottom:8px}
-.scenario p{margin:6px 0;font-size:12px;color:var(--muted);line-height:1.6}
-
-footer{text-align:center;padding:30px 16px;color:var(--muted);font-size:12px;border-top:1px solid var(--border);margin-top:50px}
-footer .links{margin-top:8px}
-footer a{margin:0 8px}
-@media print{
-  header.topbar .btn,#drillModal,#reportModal,.no-print{display:none !important}
-  body{background:white;color:black}
-  .card,.inst-card,.scenario,.trade-card,.table-wrap,.history-card{background:white;border-color:#ccc;box-shadow:none}
-  th{background:#eee;color:#333}
-  td,th{color:black}
-}
-.notice{padding:10px 14px;background:rgba(246,193,69,.08);border:1px solid rgba(246,193,69,.3);border-radius:8px;color:#f6c145;font-size:12px;margin:14px 0}
-.no-data{padding:18px;color:var(--muted);font-style:italic;text-align:center}
-.skeleton{padding:20px;text-align:center;color:var(--muted);font-size:13px}
-</style>
+<link rel="stylesheet" href="assets/app.css" />
 </head>
 <body>
 
@@ -237,6 +24,8 @@ footer a{margin:0 8px}
     <span id="viewingBadge" class="viewing-badge live"><span class="dot"></span><span id="viewingLabel">Latest</span></span>
     <span id="reportDateLabel">--</span>
     <span>Last update: <strong id="lastUpdatedLabel">--</strong></span>
+    <a class="btn" href="track-record.html"
+       title="How accurate these calls have been: hit rate by week and by instrument, and the moves that beat the biggest misses.">Track Record</a>
     <button class="btn" id="downloadCurrentBtn" onclick="downloadCurrent()">Download .md</button>
     <button class="btn primary" id="downloadCurrentPdfBtn" onclick="downloadCurrentPdf()"
             title="Downloads the high-quality tear-sheet PDF for the report currently shown on the dashboard. Generated automatically by the cron pipeline.">Download PDF</button>
@@ -305,11 +94,6 @@ footer a{margin:0 8px}
     <div class="scenarios" id="scenariosGrid"></div>
   </section>
 
-  <section class="section" id="accuracySection">
-    <h2 class="section-title">Track Record <span class="section-note">all reports since inception, not the report loaded above</span></h2>
-    <div id="accuracyBody"><div class="skeleton">Loading track record&hellip;</div></div>
-  </section>
-
   <section class="section no-print" id="historySection">
     <h2 class="section-title">Report History <span style="color:var(--dim);font-weight:400;text-transform:none;letter-spacing:0">— click a report to load it onto the dashboard</span></h2>
     <div class="history-grid" id="historyGrid"><div class="skeleton">Loading report history&hellip;</div></div>
@@ -376,7 +160,6 @@ let manifest = null;
 let currentData = null;
 let currentSlug = null;     // null  = viewing latest
 let modalSlug = null;       // slug currently open in the report modal
-let accuracy = null;        // reports/accuracy.json, cross-report track record
 
 // ============================================================================
 //  HELPERS
@@ -590,142 +373,6 @@ function highlightActiveHistory(){
   document.querySelectorAll('.history-card').forEach(c => {
     c.classList.toggle('active', c.dataset.slug === targetSlug);
   });
-}
-
-// ============================================================================
-//  TRACK RECORD
-//
-//  Reads reports/accuracy.json, which build_manifest.py regenerates on every
-//  push to reports/**. Deliberately independent of the report loaded above:
-//  time-travelling the dashboard to an old report must not rewrite the record.
-// ============================================================================
-function renderAccuracy(){
-  const el = $('accuracyBody');
-  if (!accuracy || !accuracy.totals || !accuracy.totals.graded) {
-    el.innerHTML = '<div class="acc-empty">No graded calls yet. The record starts once a report has been scorecarded against a previous one.</div>';
-    return;
-  }
-  const t = accuracy.totals;
-  const pct = (n) => t.graded ? (100 * n / t.graded).toFixed(0) : 0;
-
-  const tiles = `
-    <div class="acc-tiles">
-      <div class="acc-tile">
-        <div class="label">Hit rate</div>
-        <div class="value">${t.hitRate}%</div>
-        <div class="sub">${t.graded} graded calls</div>
-      </div>
-      <div class="acc-tile">
-        <div class="label">Outright correct</div>
-        <div class="value" style="color:var(--bull)">${t.CORRECT}</div>
-        <div class="sub">${pct(t.CORRECT)}% of calls</div>
-      </div>
-      <div class="acc-tile">
-        <div class="label">Partially</div>
-        <div class="value" style="color:var(--neutral)">${t.PARTIALLY}</div>
-        <div class="sub">${pct(t.PARTIALLY)}% of calls</div>
-      </div>
-      <div class="acc-tile">
-        <div class="label">Wrong</div>
-        <div class="value" style="color:var(--bear)">${t.WRONG}</div>
-        <div class="sub">${pct(t.WRONG)}% of calls</div>
-      </div>
-      <div class="acc-tile">
-        <div class="label">Reports</div>
-        <div class="value">${accuracy.reportCount}</div>
-        <div class="sub">${t['NOT GRADED'] ? t['NOT GRADED'] + ' calls not graded' : 'all runs graded'}</div>
-      </div>
-    </div>
-    <div class="acc-formula">Hit rate = ${accuracy.hitRateFormula}</div>`;
-
-  // One full-height column per report, stacked by verdict share, oldest left.
-  // Equal heights on purpose: every report grades the same seven instruments,
-  // so height would encode nothing and the green share is the signal.
-  const cols = (accuracy.byReport || []).map(r => {
-    const g = r.graded || 0;
-    if (!g) {
-      return `<div class="acc-col" title="${r.displayDate || r.date} — not graded"><div class="bar" style="height:100%"><span style="height:100%;background:rgba(148,163,184,.18)"></span></div></div>`;
-    }
-    const h = (n) => (100 * n / g).toFixed(1) + '%';
-    return `<div class="acc-col" title="${r.displayDate || r.date} — ${r.CORRECT}C / ${r.PARTIALLY}P / ${r.WRONG}W, hit rate ${r.hitRate}%">
-        <div class="bar" style="height:100%">
-          <span class="w" style="height:${h(r.WRONG)};background:var(--bear)"></span>
-          <span class="p" style="height:${h(r.PARTIALLY)};background:var(--neutral)"></span>
-          <span class="c" style="height:${h(r.CORRECT)};background:var(--bull)"></span>
-        </div>
-      </div>`;
-  }).join('');
-
-  const timeline = `
-    <div class="acc-sub">Accuracy by report (oldest left)</div>
-    <div class="acc-timeline">${cols}</div>
-    <div class="acc-legend">
-      <span><i style="background:var(--bull)"></i>Correct</span>
-      <span><i style="background:var(--neutral)"></i>Partially</span>
-      <span><i style="background:var(--bear)"></i>Wrong</span>
-      <span><i style="background:rgba(148,163,184,.18)"></i>Not graded</span>
-      <span style="color:var(--dim)">Hover a column for that report's split.</span>
-    </div>`;
-
-  const rows = Object.entries(accuracy.byInstrument || {})
-    .sort((a, b) => (b[1].hitRate ?? -1) - (a[1].hitRate ?? -1))
-    .map(([name, v]) => {
-      const g = v.graded || 0;
-      const h = (n) => g ? (100 * n / g).toFixed(1) + '%' : '0%';
-      return `<tr>
-        <td><strong>${name}</strong></td>
-        <td>${v.hitRate === null ? '--' : v.hitRate + '%'}</td>
-        <td>${v.CORRECT}</td><td>${v.PARTIALLY}</td><td>${v.WRONG}</td>
-        <td style="min-width:140px"><div class="acc-bar" style="height:8px">
-          <span class="c" style="width:${h(v.CORRECT)}"></span>
-          <span class="p" style="width:${h(v.PARTIALLY)}"></span>
-          <span class="w" style="width:${h(v.WRONG)}"></span>
-        </div></td>
-      </tr>`;
-    }).join('');
-
-  const byInstrument = `
-    <div class="acc-sub">By instrument</div>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Instrument</th><th>Hit rate</th><th>Correct</th><th>Partially</th><th>Wrong</th><th>Split</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table></div>`;
-
-  // Misses ranked by how far price went against the call. Unsized misses sort
-  // last, so an unquantified one never outranks a measured one.
-  const misses = accuracy.misses || [];
-  const shown = misses.slice(0, 12);
-  const missCards = shown.map(m => `
-    <div class="miss">
-      <div class="miss-head">
-        <span class="miss-inst">${m.instrument}</span>
-        <span class="miss-bias">called ${String(m.previousBias || '--').replace(/_/g, '-')}</span>
-        ${m.movePct === null || m.movePct === undefined ? '' : `<span class="miss-move">${m.movePct > 0 ? '+' : ''}${m.movePct}%</span>`}
-        <span class="miss-meta">${m.displayDate || m.date}</span>
-      </div>
-      <div class="miss-result">${m.result || 'No detail recorded.'}</div>
-    </div>`).join('');
-
-  const missSection = `
-    <div class="acc-sub">Biggest misses — what went the other way</div>
-    <div class="acc-formula">Ranked by the largest percentage move quoted in the report's own result note. ${shown.length} of ${misses.length} shown.</div>
-    ${missCards || '<div class="acc-empty">No misses recorded.</div>'}`;
-
-  el.innerHTML = tiles + timeline + byInstrument + missSection;
-}
-
-async function loadAccuracy(){
-  try {
-    const res = await fetch('reports/accuracy.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    accuracy = await res.json();
-  } catch (err) {
-    console.warn('Could not load reports/accuracy.json:', err);
-    accuracy = null;
-    $('accuracyBody').innerHTML = '<div class="acc-empty">Could not load the track record. It is rebuilt by the Action on the next push to <code>reports/</code>.</div>';
-    return;
-  }
-  renderAccuracy();
 }
 
 // ============================================================================
@@ -962,7 +609,6 @@ async function init(){
   // Render fallback first so the page isn't blank during fetch
   renderAll(FALLBACK_MARKET_DATA);
   await loadManifest();
-  loadAccuracy();  // not awaited: the track record must never delay the report
   if (manifest.reports && manifest.reports.length) {
     await loadReportBySlug(null);  // latest
   }

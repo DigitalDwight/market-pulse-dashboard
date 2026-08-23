@@ -149,9 +149,13 @@ Actions tab.
 
 ```
 .
-├── index.html                       single-page dashboard
+├── index.html                       the dashboard: latest report, scorecard, trades, history
+├── track-record.html                accuracy across every report; reads accuracy.json only
+├── assets/
+│   └── app.css                      shared stylesheet for both pages
 ├── reports/
 │   ├── manifest.json                index — auto-generated, sorted newest-first
+│   ├── accuracy.json                track record — auto-generated from every scorecard
 │   ├── 2026-05-10-weekly.md         full markdown report
 │   ├── 2026-05-10-weekly.json       dashboard payload
 │   ├── 2026-05-06-midweek.md
@@ -170,7 +174,7 @@ Actions tab.
 ├── requirements.txt                 Python deps (yfinance, openai)
 ├── .gitignore
 └── .github/workflows/
-    ├── author.yml                   scheduled report authoring (Claude API)
+    ├── author.yml                   scheduled report authoring (OpenRouter)
     ├── refresh.yml                  scheduled price refresh
     └── rebuild-manifest.yml         runs on push to reports/**
 ```
