@@ -5,7 +5,7 @@
   "displayDate": "Sunday 23 August 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-08-23-weekly.md",
-  "lastUpdated": "2026-08-23T19:45:01Z",
+  "lastUpdated": "2026-08-23T20:04:07Z",
   "marketSentiment": "NEUTRAL_BEARISH",
   "macroTheme": "Rising long-dated Treasury yields (30Y at 2007 highs) triggered a sharp rotation out of long-duration growth assets, driving NAS100 -2.61% on the week. Gold +5.56% and silver +7.49% surged on fiscal sustainability angst, Fed credibility concerns, and Strait of Hormuz geopolitical premium. Treasury buyback expansion offered only fleeting relief. Jackson Hole (Aug 27–29) and Core PCE (Aug 26) loom as dominant catalysts.",
   "macroOverview": "Markets digested a turbulent week as the 30-year Treasury yield pushed to its highest since 2007, forcing a violent repricing of tech valuation multiples. The Nasdaq Composite shed 2.45% through Thursday before paring losses on strong S&P Global August PMIs. Gold surged from 4,048 at the start of August to 4,680 — a 15.6% move in 13 sessions — driven by converging narratives of US fiscal sustainability fears, Fed credibility erosion, and geopolitical premium from the unresolved US-Iran standoff. WTI crude neared $90/barrel, compounding the inflation-headwind narrative. Treasury Secretary Bessent's buyback expansion from $2B to $4B was meant to calm the bond market but underscored the scale of sovereign debt concerns. Jackson Hole Symposium, headlined by Fed Chair Warsh on Saturday 29 August, will define the next leg for all risk assets.",
@@ -541,12 +541,12 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.716794,
+      "price": 0.71664,
       "previousClose": 0.711794,
-      "change": 0.005,
-      "changePercent": 0.7025,
+      "change": 0.004846,
+      "changePercent": 0.6808,
       "dayHigh": 0.717824,
-      "dayLow": 0.716743,
+      "dayLow": 0.71664,
       "yearHigh": 0.727738,
       "yearLow": 0.64216,
       "signal": "NEUTRAL_BULLISH",
@@ -562,7 +562,7 @@
         0.70815,
         0.712504,
         0.71194,
-        0.716794
+        0.71664
       ],
       "ohlc": [
         {
@@ -673,8 +673,8 @@
           "date": "2026-08-23",
           "open": 0.7174630165100098,
           "high": 0.7178235650062561,
-          "low": 0.7167431116104126,
-          "close": 0.716794490814209,
+          "low": 0.7166403532028198,
+          "close": 0.7166403532028198,
           "volume": 0
         }
       ],
