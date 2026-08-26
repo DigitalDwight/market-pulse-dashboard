@@ -5,7 +5,7 @@
   "displayDate": "Wednesday 26 August 2026",
   "title": "MARKET PULSE -- Mid-Week Trading Report",
   "markdownFile": "2026-08-26-midweek.md",
-  "lastUpdated": "2026-08-26T05:57:00Z",
+  "lastUpdated": "2026-08-26T06:09:34Z",
   "marketSentiment": "NEUTRAL_BULLISH",
   "macroTheme": "Gold extends to fresh multi-month highs ($4,731) as Treasury bond-market angst overshadows equity resilience. Treasury buyback expansion ($2B to $4B) failed to calm the long end; Bessent jawboning reversed both days. Iran sanctions escalated to 'economic warfare' phase. US30 resilient, NAS100 bleeding under 10Y at 4.696%. NVDA earnings and Core PCE converge today for maximum event risk. Jackson Hole begins Thursday with Warsh speech Saturday paramount.",
   "macroOverview": "Rising long-dated Treasury yields (10Y at 4.696%, 30Y near 2007 highs) triggered a tech sell-off while fiscal sustainability angst drove gold to multi-month highs. US30 outperformed (+0.26% Mon) as value/industrial composition insulated it from duration headwinds. NAS100 continued to struggle below broken 30,000 support. Treasury buyback expansion failed; rumours of further TGA-funded purchases circulate. Iran 'economic warfare' sanctions escalated but oil fell (Brent -2.5% to $92) as traders focused on supply realities. Merck/Moderna cancer vaccine breakthrough lifted health care. Core PCE (Wed), NVDA earnings (Wed after close), and Jackson Hole with Fed Chair Warsh (Sat) form an extraordinary 72-hour event-risk cluster.",
@@ -541,10 +541,10 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.718546,
+      "price": 0.718494,
       "previousClose": 0.716743,
-      "change": 0.001803,
-      "changePercent": 0.2515,
+      "change": 0.001751,
+      "changePercent": 0.2443,
       "dayHigh": 0.718856,
       "dayLow": 0.716281,
       "yearHigh": 0.727738,
@@ -562,7 +562,7 @@
         0.71194,
         0.71714,
         0.715482,
-        0.718546
+        0.718494
       ],
       "ohlc": [
         {
@@ -674,7 +674,7 @@
           "open": 0.716383695602417,
           "high": 0.7188555598258972,
           "low": 0.7162810564041138,
-          "close": 0.71854567527771,
+          "close": 0.7184939980506897,
           "volume": 0
         }
       ],
@@ -717,10 +717,10 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.88983,
+      "price": 1.88925,
       "previousClose": 1.88827,
-      "change": 0.00156,
-      "changePercent": 0.0826,
+      "change": 0.00098,
+      "changePercent": 0.0519,
       "dayHigh": 1.89037,
       "dayLow": 1.88642,
       "yearHigh": 1.90406,
@@ -738,7 +738,7 @@
         1.88,
         1.88294,
         1.88746,
-        1.88983
+        1.88925
       ],
       "ohlc": [
         {
@@ -850,7 +850,7 @@
           "open": 1.8869600296020508,
           "high": 1.8903700113296509,
           "low": 1.8864200115203857,
-          "close": 1.8898299932479858,
+          "close": 1.8892500400543213,
           "volume": 0
         }
       ],
@@ -893,10 +893,10 @@
     {
       "symbol": "XAGUSD",
       "name": "Silver Spot",
-      "price": 69.315002,
+      "price": 69.160004,
       "previousClose": 69.449997,
-      "change": -0.134995,
-      "changePercent": -0.1944,
+      "change": -0.289993,
+      "changePercent": -0.4176,
       "dayHigh": 69.75,
       "dayLow": 68.190002,
       "yearHigh": 121.300003,
@@ -914,7 +914,7 @@
         69.466003,
         68.541,
         68.636002,
-        69.315002
+        69.160004
       ],
       "ohlc": [
         {
@@ -1026,8 +1026,8 @@
           "open": 68.62999725341797,
           "high": 69.75,
           "low": 68.19000244140625,
-          "close": 69.31500244140625,
-          "volume": 10007
+          "close": 69.16000366210938,
+          "volume": 10630
         }
       ],
       "supports": [
@@ -1069,10 +1069,10 @@
     {
       "symbol": "XAUUSD",
       "name": "Gold Spot",
-      "price": 4702.700195,
+      "price": 4695.899902,
       "previousClose": 4705.100098,
-      "change": -2.399902,
-      "changePercent": -0.051,
+      "change": -9.200195,
+      "changePercent": -0.1955,
       "dayHigh": 4730.899902,
       "dayLow": 4686.299805,
       "yearHigh": 5586.200195,
@@ -1090,7 +1090,7 @@
         4624.100098,
         4640.799805,
         4638.100098,
-        4702.700195
+        4695.899902
       ],
       "ohlc": [
         {
@@ -1202,8 +1202,8 @@
           "open": 4715.7001953125,
           "high": 4730.89990234375,
           "low": 4686.2998046875,
-          "close": 4702.7001953125,
-          "volume": 29199
+          "close": 4695.89990234375,
+          "volume": 30511
         }
       ],
       "supports": [
