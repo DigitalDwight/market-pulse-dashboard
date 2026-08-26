@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-08-23T20:04:03Z",
-  "count": 21,
+  "generatedAt": "2026-08-26T05:57:00Z",
+  "count": 22,
   "reports": [
+    {
+      "slug": "2026-08-26-midweek",
+      "type": "Mid-Week",
+      "date": "2026-08-26",
+      "displayDate": "Wednesday 26 August 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-08-26-midweek.md",
+      "lastUpdated": "2026-08-26T05:57:00Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "Gold extends to fresh multi-month highs ($4,731) as Treasury bond-market angst overshadows equity resilience. Treasury buyback expansion ($2B to $4B) failed to calm the long end; Bessent jawboning reversed both days. Iran sanctions escalated to 'economic warfare' phase. US30 resilient, NAS100 bleeding under 10Y at 4.696%. NVDA earnings and Core PCE converge today for maximum event risk. Jackson Hole begins Thursday with Warsh speech Saturday paramount.",
+      "jsonFile": "2026-08-26-midweek.json"
+    },
     {
       "slug": "2026-08-23-weekly",
       "type": "Weekly",
@@ -9,7 +21,7 @@
       "displayDate": "Sunday 23 August 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-08-23-weekly.md",
-      "lastUpdated": "2026-08-23T19:45:01Z",
+      "lastUpdated": "2026-08-23T20:04:07Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "Rising long-dated Treasury yields (30Y at 2007 highs) triggered a sharp rotation out of long-duration growth assets, driving NAS100 -2.61% on the week. Gold +5.56% and silver +7.49% surged on fiscal sustainability angst, Fed credibility concerns, and Strait of Hormuz geopolitical premium. Treasury buyback expansion offered only fleeting relief. Jackson Hole (Aug 27–29) and Core PCE (Aug 26) loom as dominant catalysts.",
       "jsonFile": "2026-08-23-weekly.json"

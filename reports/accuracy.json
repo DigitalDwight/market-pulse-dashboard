@@ -1,79 +1,79 @@
 {
-  "generatedAt": "2026-08-23T20:04:03Z",
+  "generatedAt": "2026-08-26T05:57:00Z",
   "hitRateFormula": "(CORRECT + 0.5 x PARTIALLY) / graded calls. NOT GRADED is excluded from both sides.",
-  "reportCount": 21,
+  "reportCount": 22,
   "totals": {
-    "CORRECT": 70,
-    "PARTIALLY": 43,
+    "CORRECT": 76,
+    "PARTIALLY": 44,
     "WRONG": 27,
     "NOT GRADED": 7,
-    "graded": 140,
-    "hitRate": 65.4,
-    "correctPct": 50.0
+    "graded": 147,
+    "hitRate": 66.7,
+    "correctPct": 51.7
   },
   "byInstrument": {
     "AUDUSD": {
-      "CORRECT": 10,
+      "CORRECT": 11,
       "PARTIALLY": 7,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 20,
-      "hitRate": 67.5,
-      "correctPct": 50.0
+      "graded": 21,
+      "hitRate": 69.0,
+      "correctPct": 52.4
     },
     "GBPCAD": {
-      "CORRECT": 7,
+      "CORRECT": 8,
       "PARTIALLY": 8,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 20,
-      "hitRate": 55.0,
-      "correctPct": 35.0
+      "graded": 21,
+      "hitRate": 57.1,
+      "correctPct": 38.1
     },
     "GER40": {
-      "CORRECT": 11,
+      "CORRECT": 12,
       "PARTIALLY": 5,
       "WRONG": 4,
       "NOT GRADED": 1,
-      "graded": 20,
-      "hitRate": 67.5,
-      "correctPct": 55.0
+      "graded": 21,
+      "hitRate": 69.0,
+      "correctPct": 57.1
     },
     "NAS100": {
-      "CORRECT": 11,
+      "CORRECT": 12,
       "PARTIALLY": 4,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 20,
-      "hitRate": 65.0,
-      "correctPct": 55.0
+      "graded": 21,
+      "hitRate": 66.7,
+      "correctPct": 57.1
     },
     "US30": {
-      "CORRECT": 7,
+      "CORRECT": 8,
       "PARTIALLY": 9,
       "WRONG": 4,
       "NOT GRADED": 1,
-      "graded": 20,
-      "hitRate": 57.5,
-      "correctPct": 35.0
+      "graded": 21,
+      "hitRate": 59.5,
+      "correctPct": 38.1
     },
     "XAGUSD": {
       "CORRECT": 11,
-      "PARTIALLY": 6,
+      "PARTIALLY": 7,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 20,
-      "hitRate": 70.0,
-      "correctPct": 55.0
+      "graded": 21,
+      "hitRate": 69.0,
+      "correctPct": 52.4
     },
     "XAUUSD": {
-      "CORRECT": 13,
+      "CORRECT": 14,
       "PARTIALLY": 4,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 20,
-      "hitRate": 75.0,
-      "correctPct": 65.0
+      "graded": 21,
+      "hitRate": 76.2,
+      "correctPct": 66.7
     }
   },
   "byReport": [
@@ -349,6 +349,19 @@
       "graded": 7,
       "hitRate": 85.7,
       "correctPct": 71.4
+    },
+    {
+      "slug": "2026-08-26-midweek",
+      "date": "2026-08-26",
+      "displayDate": "Wednesday 26 August 2026",
+      "type": "Mid-Week",
+      "CORRECT": 6,
+      "PARTIALLY": 1,
+      "WRONG": 0,
+      "NOT GRADED": 0,
+      "graded": 7,
+      "hitRate": 92.9,
+      "correctPct": 85.7
     }
   ],
   "misses": [
