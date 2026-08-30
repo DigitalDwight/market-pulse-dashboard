@@ -5,7 +5,7 @@
   "displayDate": "Sunday 30 August 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-08-30-weekly.md",
-  "lastUpdated": "2026-08-30T19:41:06Z",
+  "lastUpdated": "2026-08-30T20:07:31Z",
   "marketSentiment": "NEUTRAL",
   "macroTheme": "Fed Chair Warsh's hawkish Jackson Hole debut transforms September FOMC into a live meeting; price stability declared 'predominant focus.' Gold crushed 3.7% as debasement trade unwinds. NVDA beat ($96.22B) keeps AI bid intact. Equities resilient but breadth narrow — Russell 2000 -1.5%.",
   "macroOverview": "The week ending 28 August was defined by a violent collision between the AI trade and a hawkish Fed reality check. NVDA delivered a standout quarter ($96.22B revenue, ~70% annual growth guide) that sent the stock up 8.7% and kept the Nasdaq positive. But Warsh's Jackson Hole address on Friday — declaring price stability the Fed's 'predominant focus' and keeping rate hikes on the table — shattered the precious-metals debasement trade and sent gold crashing from 4,688 to 4,495 intraday. Equities held up (Dow +0.53%, S&P +0.49%, Nasdaq +0.85%) but breadth was terrifyingly narrow with the Russell 2000 falling 1.5%. Core PCE printed 3.3% YoY — sticky above target. The week ahead is dominated by ISM PMIs, Broadcom earnings, BoC/RBNZ rate decisions, and the August employment report on Friday.",
@@ -541,12 +541,12 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.716281,
+      "price": 0.716076,
       "previousClose": 0.719787,
-      "change": -0.003506,
-      "changePercent": -0.4871,
+      "change": -0.003711,
+      "changePercent": -0.5156,
       "dayHigh": 0.716435,
-      "dayLow": 0.716178,
+      "dayLow": 0.716076,
       "yearHigh": 0.727738,
       "yearLow": 0.64216,
       "signal": "NEUTRAL",
@@ -562,7 +562,7 @@
         0.716533,
         0.71815,
         0.71951,
-        0.716281
+        0.716076
       ],
       "ohlc": [
         {
@@ -673,8 +673,8 @@
           "date": "2026-08-30",
           "open": 0.7164350152015686,
           "high": 0.7164350152015686,
-          "low": 0.7161784768104553,
-          "close": 0.7162810564041138,
+          "low": 0.7160758972167969,
+          "close": 0.7160758972167969,
           "volume": 0
         }
       ],
@@ -717,11 +717,11 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.88206,
+      "price": 1.88227,
       "previousClose": 1.88295,
-      "change": -0.00089,
-      "changePercent": -0.0473,
-      "dayHigh": 1.88226,
+      "change": -0.00068,
+      "changePercent": -0.0361,
+      "dayHigh": 1.88234,
       "dayLow": 1.88066,
       "yearHigh": 1.90406,
       "yearLow": 1.8018,
@@ -738,7 +738,7 @@
         1.88794,
         1.88618,
         1.88305,
-        1.88206
+        1.88227
       ],
       "ohlc": [
         {
@@ -848,9 +848,9 @@
         {
           "date": "2026-08-30",
           "open": 1.881790041923523,
-          "high": 1.8822599649429321,
+          "high": 1.8823399543762207,
           "low": 1.880660057067871,
-          "close": 1.8820600509643555,
+          "close": 1.8822699785232544,
           "volume": 0
         }
       ],
