@@ -1,79 +1,79 @@
 {
-  "generatedAt": "2026-08-26T06:09:30Z",
+  "generatedAt": "2026-08-30T19:41:07Z",
   "hitRateFormula": "(CORRECT + 0.5 x PARTIALLY) / graded calls. NOT GRADED is excluded from both sides.",
-  "reportCount": 22,
+  "reportCount": 23,
   "totals": {
-    "CORRECT": 76,
-    "PARTIALLY": 44,
-    "WRONG": 27,
+    "CORRECT": 78,
+    "PARTIALLY": 46,
+    "WRONG": 30,
     "NOT GRADED": 7,
-    "graded": 147,
-    "hitRate": 66.7,
-    "correctPct": 51.7
+    "graded": 154,
+    "hitRate": 65.6,
+    "correctPct": 50.6
   },
   "byInstrument": {
     "AUDUSD": {
-      "CORRECT": 11,
+      "CORRECT": 12,
       "PARTIALLY": 7,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 21,
-      "hitRate": 69.0,
-      "correctPct": 52.4
+      "graded": 22,
+      "hitRate": 70.5,
+      "correctPct": 54.5
     },
     "GBPCAD": {
       "CORRECT": 8,
-      "PARTIALLY": 8,
+      "PARTIALLY": 9,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 21,
-      "hitRate": 57.1,
-      "correctPct": 38.1
+      "graded": 22,
+      "hitRate": 56.8,
+      "correctPct": 36.4
     },
     "GER40": {
       "CORRECT": 12,
-      "PARTIALLY": 5,
+      "PARTIALLY": 6,
       "WRONG": 4,
       "NOT GRADED": 1,
-      "graded": 21,
-      "hitRate": 69.0,
-      "correctPct": 57.1
+      "graded": 22,
+      "hitRate": 68.2,
+      "correctPct": 54.5
     },
     "NAS100": {
       "CORRECT": 12,
       "PARTIALLY": 4,
-      "WRONG": 5,
+      "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 21,
-      "hitRate": 66.7,
-      "correctPct": 57.1
+      "graded": 22,
+      "hitRate": 63.6,
+      "correctPct": 54.5
     },
     "US30": {
-      "CORRECT": 8,
+      "CORRECT": 9,
       "PARTIALLY": 9,
       "WRONG": 4,
       "NOT GRADED": 1,
-      "graded": 21,
-      "hitRate": 59.5,
-      "correctPct": 38.1
+      "graded": 22,
+      "hitRate": 61.4,
+      "correctPct": 40.9
     },
     "XAGUSD": {
       "CORRECT": 11,
       "PARTIALLY": 7,
-      "WRONG": 3,
+      "WRONG": 4,
       "NOT GRADED": 1,
-      "graded": 21,
-      "hitRate": 69.0,
-      "correctPct": 52.4
+      "graded": 22,
+      "hitRate": 65.9,
+      "correctPct": 50.0
     },
     "XAUUSD": {
       "CORRECT": 14,
       "PARTIALLY": 4,
-      "WRONG": 3,
+      "WRONG": 4,
       "NOT GRADED": 1,
-      "graded": 21,
-      "hitRate": 76.2,
-      "correctPct": 66.7
+      "graded": 22,
+      "hitRate": 72.7,
+      "correctPct": 63.6
     }
   },
   "byReport": [
@@ -362,6 +362,19 @@
       "graded": 7,
       "hitRate": 92.9,
       "correctPct": 85.7
+    },
+    {
+      "slug": "2026-08-30-weekly",
+      "date": "2026-08-30",
+      "displayDate": "Sunday 30 August 2026",
+      "type": "Weekly",
+      "CORRECT": 2,
+      "PARTIALLY": 2,
+      "WRONG": 3,
+      "NOT GRADED": 0,
+      "graded": 7,
+      "hitRate": 42.9,
+      "correctPct": 28.6
     }
   ],
   "misses": [
@@ -404,6 +417,16 @@
       "previousBias": "NEUTRAL_BEARISH",
       "result": "+3.77% to 24,889; four-session reversal broke above 24,226 and 24,492 resistance",
       "movePct": 3.77
+    },
+    {
+      "slug": "2026-08-30-weekly",
+      "date": "2026-08-30",
+      "displayDate": "Sunday 30 August 2026",
+      "type": "Weekly",
+      "instrument": "XAUUSD",
+      "previousBias": "BULLISH",
+      "result": "-3.68% from 4,702.70 to 4,529.90 — debasement trade crushed, highest-conviction call wrong",
+      "movePct": -3.68
     },
     {
       "slug": "2026-07-05-weekly",
@@ -506,6 +529,16 @@
       "movePct": 2.24
     },
     {
+      "slug": "2026-08-30-weekly",
+      "date": "2026-08-30",
+      "displayDate": "Sunday 30 August 2026",
+      "type": "Weekly",
+      "instrument": "XAGUSD",
+      "previousBias": "BULLISH",
+      "result": "-2.21% from 69.315 to 67.786 — Warsh triggered vicious reversal from 72.05",
+      "movePct": -2.21
+    },
+    {
       "slug": "2026-05-20-midweek",
       "date": "2026-05-20",
       "displayDate": "Wednesday 20 May 2026",
@@ -584,6 +617,16 @@
       "previousBias": "NEUTRAL_BEARISH",
       "result": "+0.80% from 0.7107 to 0.7164; USD weakness from Moody's absorption drove AUD higher",
       "movePct": 0.8
+    },
+    {
+      "slug": "2026-08-30-weekly",
+      "date": "2026-08-30",
+      "displayDate": "Sunday 30 August 2026",
+      "type": "Weekly",
+      "instrument": "NAS100",
+      "previousBias": "NEUTRAL_BEARISH",
+      "result": "+0.77% from 29,209 to 29,433 — NVDA beat drove upside against bearish call",
+      "movePct": 0.77
     },
     {
       "slug": "2026-06-28-weekly",

@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-08-26T06:09:30Z",
-  "count": 22,
+  "generatedAt": "2026-08-30T19:41:07Z",
+  "count": 23,
   "reports": [
+    {
+      "slug": "2026-08-30-weekly",
+      "type": "Weekly",
+      "date": "2026-08-30",
+      "displayDate": "Sunday 30 August 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-08-30-weekly.md",
+      "lastUpdated": "2026-08-30T19:41:06Z",
+      "marketSentiment": "NEUTRAL",
+      "macroTheme": "Fed Chair Warsh's hawkish Jackson Hole debut transforms September FOMC into a live meeting; price stability declared 'predominant focus.' Gold crushed 3.7% as debasement trade unwinds. NVDA beat ($96.22B) keeps AI bid intact. Equities resilient but breadth narrow — Russell 2000 -1.5%.",
+      "jsonFile": "2026-08-30-weekly.json"
+    },
     {
       "slug": "2026-08-26-midweek",
       "type": "Mid-Week",
@@ -9,7 +21,7 @@
       "displayDate": "Wednesday 26 August 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-08-26-midweek.md",
-      "lastUpdated": "2026-08-26T05:57:00Z",
+      "lastUpdated": "2026-08-26T06:09:34Z",
       "marketSentiment": "NEUTRAL_BULLISH",
       "macroTheme": "Gold extends to fresh multi-month highs ($4,731) as Treasury bond-market angst overshadows equity resilience. Treasury buyback expansion ($2B to $4B) failed to calm the long end; Bessent jawboning reversed both days. Iran sanctions escalated to 'economic warfare' phase. US30 resilient, NAS100 bleeding under 10Y at 4.696%. NVDA earnings and Core PCE converge today for maximum event risk. Jackson Hole begins Thursday with Warsh speech Saturday paramount.",
       "jsonFile": "2026-08-26-midweek.json"
