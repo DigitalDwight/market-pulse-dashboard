@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-09-09T06:12:02Z",
-  "count": 23,
+  "generatedAt": "2026-09-13T19:40:09Z",
+  "count": 24,
   "reports": [
+    {
+      "slug": "2026-09-13-weekly",
+      "type": "Weekly",
+      "date": "2026-09-13",
+      "displayDate": "Sunday 13 September 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-09-13-weekly.md",
+      "lastUpdated": "2026-09-13T19:40:08Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "Markets enter the most important week of Q3: Fed poised to deliver +25bp hike to 3.75-4.00% (86% probability) following hot August CPI (3.4% YoY). Brent crude surged above $100 to $104.61 on Gulf shipping disruptions. US 10Y yields briefly touched 4.99%. ECB already delivered +25bp. The question has shifted from 'when will rates fall' to 'how much further will they rise.' Warsh press conference Wednesday is the paramount event for all instruments.",
+      "jsonFile": "2026-09-13-weekly.json"
+    },
     {
       "slug": "2026-08-30-weekly",
       "type": "Weekly",
@@ -9,7 +21,7 @@
       "displayDate": "Sunday 30 August 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-08-30-weekly.md",
-      "lastUpdated": "2026-09-06T20:07:59Z",
+      "lastUpdated": "2026-09-09T06:12:05Z",
       "marketSentiment": "NEUTRAL",
       "macroTheme": "Fed Chair Warsh's hawkish Jackson Hole debut transforms September FOMC into a live meeting; price stability declared 'predominant focus.' Gold crushed 3.7% as debasement trade unwinds. NVDA beat ($96.22B) keeps AI bid intact. Equities resilient but breadth narrow — Russell 2000 -1.5%.",
       "jsonFile": "2026-08-30-weekly.json"
