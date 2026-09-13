@@ -5,7 +5,7 @@
   "displayDate": "Sunday 13 September 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-09-13-weekly.md",
-  "lastUpdated": "2026-09-13T19:40:08Z",
+  "lastUpdated": "2026-09-13T20:08:03Z",
   "marketSentiment": "NEUTRAL_BEARISH",
   "macroTheme": "Markets enter the most important week of Q3: Fed poised to deliver +25bp hike to 3.75-4.00% (86% probability) following hot August CPI (3.4% YoY). Brent crude surged above $100 to $104.61 on Gulf shipping disruptions. US 10Y yields briefly touched 4.99%. ECB already delivered +25bp. The question has shifted from 'when will rates fall' to 'how much further will they rise.' Warsh press conference Wednesday is the paramount event for all instruments.",
   "macroOverview": "Risk-off tone dominates as oil above $100 and bond yields near 5% converge with a live Fed hike. US30 closed below critical 53,143 support. NAS100 consolidates 28,500-30,000 range. GER40 collapsed -4.7% from ATH on ECB hike and energy shock. Gold correction extends to -21.1% from Iran-war high. UK gilt crisis escalates with 30Y yields approaching 6%. BoE and BoJ also meet this week alongside the Fed. The CPI print Friday cemented the hike but equities bounced on the 'bad news is priced' dynamic.",
@@ -541,12 +541,12 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.717257,
+      "price": 0.71623,
       "previousClose": 0.716281,
-      "change": 0.000976,
-      "changePercent": 0.1363,
+      "change": -5.1e-05,
+      "changePercent": -0.0072,
       "dayHigh": 0.717257,
-      "dayLow": 0.716538,
+      "dayLow": 0.71623,
       "yearHigh": 0.727738,
       "yearLow": 0.64216,
       "signal": "NEUTRAL",
@@ -562,7 +562,7 @@
         0.72204,
         0.72209,
         0.7156,
-        0.717257
+        0.71623
       ],
       "ohlc": [
         {
@@ -673,8 +673,8 @@
           "date": "2026-09-13",
           "open": 0.7172572016716003,
           "high": 0.7172572016716003,
-          "low": 0.7165377140045166,
-          "close": 0.7172572016716003,
+          "low": 0.7162297964096069,
+          "close": 0.7162297964096069,
           "volume": 0
         }
       ],
