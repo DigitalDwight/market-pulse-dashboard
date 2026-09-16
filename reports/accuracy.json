@@ -1,79 +1,79 @@
 {
-  "generatedAt": "2026-09-13T20:08:00Z",
+  "generatedAt": "2026-09-16T05:45:32Z",
   "hitRateFormula": "(CORRECT + 0.5 x PARTIALLY) / graded calls. NOT GRADED is excluded from both sides.",
-  "reportCount": 24,
+  "reportCount": 25,
   "totals": {
-    "CORRECT": 83,
-    "PARTIALLY": 46,
-    "WRONG": 32,
+    "CORRECT": 87,
+    "PARTIALLY": 48,
+    "WRONG": 33,
     "NOT GRADED": 7,
-    "graded": 161,
-    "hitRate": 65.8,
-    "correctPct": 51.6
+    "graded": 168,
+    "hitRate": 66.1,
+    "correctPct": 51.8
   },
   "byInstrument": {
     "AUDUSD": {
       "CORRECT": 13,
-      "PARTIALLY": 7,
+      "PARTIALLY": 8,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 23,
-      "hitRate": 71.7,
-      "correctPct": 56.5
+      "graded": 24,
+      "hitRate": 70.8,
+      "correctPct": 54.2
     },
     "GBPCAD": {
       "CORRECT": 9,
       "PARTIALLY": 9,
-      "WRONG": 5,
+      "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 23,
-      "hitRate": 58.7,
-      "correctPct": 39.1
+      "graded": 24,
+      "hitRate": 56.2,
+      "correctPct": 37.5
     },
     "GER40": {
-      "CORRECT": 12,
+      "CORRECT": 13,
       "PARTIALLY": 6,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 23,
-      "hitRate": 65.2,
-      "correctPct": 52.2
+      "graded": 24,
+      "hitRate": 66.7,
+      "correctPct": 54.2
     },
     "NAS100": {
       "CORRECT": 13,
-      "PARTIALLY": 4,
+      "PARTIALLY": 5,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 23,
-      "hitRate": 65.2,
-      "correctPct": 56.5
+      "graded": 24,
+      "hitRate": 64.6,
+      "correctPct": 54.2
     },
     "US30": {
-      "CORRECT": 9,
+      "CORRECT": 10,
       "PARTIALLY": 9,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 23,
-      "hitRate": 58.7,
-      "correctPct": 39.1
+      "graded": 24,
+      "hitRate": 60.4,
+      "correctPct": 41.7
     },
     "XAGUSD": {
-      "CORRECT": 12,
+      "CORRECT": 13,
       "PARTIALLY": 7,
       "WRONG": 4,
       "NOT GRADED": 1,
-      "graded": 23,
-      "hitRate": 67.4,
-      "correctPct": 52.2
+      "graded": 24,
+      "hitRate": 68.8,
+      "correctPct": 54.2
     },
     "XAUUSD": {
-      "CORRECT": 15,
+      "CORRECT": 16,
       "PARTIALLY": 4,
       "WRONG": 4,
       "NOT GRADED": 1,
-      "graded": 23,
-      "hitRate": 73.9,
-      "correctPct": 65.2
+      "graded": 24,
+      "hitRate": 75.0,
+      "correctPct": 66.7
     }
   },
   "byReport": [
@@ -388,6 +388,19 @@
       "graded": 7,
       "hitRate": 71.4,
       "correctPct": 71.4
+    },
+    {
+      "slug": "2026-09-16-midweek",
+      "date": "2026-09-16",
+      "displayDate": "Wednesday 16 September 2026",
+      "type": "Mid-Week",
+      "CORRECT": 4,
+      "PARTIALLY": 2,
+      "WRONG": 1,
+      "NOT GRADED": 0,
+      "graded": 7,
+      "hitRate": 71.4,
+      "correctPct": 57.1
     }
   ],
   "misses": [
@@ -680,6 +693,16 @@
       "previousBias": "NEUTRAL_BULLISH",
       "result": "-0.40% to 0.71296; broke below 0.7100 floor intraday May 20 (low 0.7088)",
       "movePct": -0.4
+    },
+    {
+      "slug": "2026-09-16-midweek",
+      "date": "2026-09-16",
+      "displayDate": "Wednesday 16 September 2026",
+      "type": "Mid-Week",
+      "instrument": "GBPCAD",
+      "previousBias": "NEUTRAL-BEARISH",
+      "result": "+0.16% — rose against bearish bias",
+      "movePct": 0.16
     },
     {
       "slug": "2026-05-17-weekly",

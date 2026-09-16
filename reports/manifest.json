@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-09-13T20:08:00Z",
-  "count": 24,
+  "generatedAt": "2026-09-16T05:45:32Z",
+  "count": 25,
   "reports": [
+    {
+      "slug": "2026-09-16-midweek",
+      "type": "Mid-Week",
+      "date": "2026-09-16",
+      "displayDate": "Wednesday 16 September 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-09-16-midweek.md",
+      "lastUpdated": "2026-09-16T05:45:32Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "The most critical 48 hours of Q3: Fed expected to deliver first rate hike in over three years (+25bp to 3.75-4.00%) at 94.5% probability. US 10Y Treasury yield breached 5% for the first time since 2007. Middle East escalation (Saudi infrastructure attacks) pushed Brent to $108.75. Warsh press conference at 18:30 GMT is the binary event that will determine the trajectory of all seven instruments.",
+      "jsonFile": "2026-09-16-midweek.json"
+    },
     {
       "slug": "2026-09-13-weekly",
       "type": "Weekly",
@@ -9,7 +21,7 @@
       "displayDate": "Sunday 13 September 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-09-13-weekly.md",
-      "lastUpdated": "2026-09-13T19:40:08Z",
+      "lastUpdated": "2026-09-13T20:08:03Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "Markets enter the most important week of Q3: Fed poised to deliver +25bp hike to 3.75-4.00% (86% probability) following hot August CPI (3.4% YoY). Brent crude surged above $100 to $104.61 on Gulf shipping disruptions. US 10Y yields briefly touched 4.99%. ECB already delivered +25bp. The question has shifted from 'when will rates fall' to 'how much further will they rise.' Warsh press conference Wednesday is the paramount event for all instruments.",
       "jsonFile": "2026-09-13-weekly.json"
