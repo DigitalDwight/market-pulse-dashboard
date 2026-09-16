@@ -5,7 +5,7 @@
   "displayDate": "Wednesday 16 September 2026",
   "title": "MARKET PULSE -- Mid-Week Trading Report",
   "markdownFile": "2026-09-16-midweek.md",
-  "lastUpdated": "2026-09-16T05:45:32Z",
+  "lastUpdated": "2026-09-16T06:12:14Z",
   "marketSentiment": "NEUTRAL_BEARISH",
   "macroTheme": "The most critical 48 hours of Q3: Fed expected to deliver first rate hike in over three years (+25bp to 3.75-4.00%) at 94.5% probability. US 10Y Treasury yield breached 5% for the first time since 2007. Middle East escalation (Saudi infrastructure attacks) pushed Brent to $108.75. Warsh press conference at 18:30 GMT is the binary event that will determine the trajectory of all seven instruments.",
   "macroOverview": "Risk-off dominates the front half of the week with all three major US indices declining on surging oil, 5% Treasury yields, and AI demand doubts. Energy is the sole S&P 500 sector in the green. Gold continues its bear trend (-21.8% from ATH) with geopolitical premium fully unwound — even Saudi infrastructure attacks failed to bid the metal. The Fed decision tonight is the paramount event; the question is one-and-done versus start of a tightening campaign. BoE (Thu) and BoJ (Thu) add to the central bank gauntlet. UK gilt stress (30Y near 6%) adds a financial stability dimension to the macro picture.",
@@ -525,10 +525,10 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.713419,
+      "price": 0.713267,
       "previousClose": 0.713267,
-      "change": 0.000153,
-      "changePercent": 0.0214,
+      "change": 0.0,
+      "changePercent": 0.0,
       "dayHigh": 0.713725,
       "dayLow": 0.712301,
       "yearHigh": 0.727738,
@@ -546,7 +546,7 @@
         0.7156,
         0.7152,
         0.713781,
-        0.713419
+        0.713267
       ],
       "ohlc": [
         {
@@ -658,7 +658,7 @@
           "open": 0.7132667899131775,
           "high": 0.7137249112129211,
           "low": 0.7123014330863953,
-          "close": 0.7134194374084473,
+          "close": 0.7132667899131775,
           "volume": 0
         }
       ],
@@ -701,11 +701,11 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.87809,
+      "price": 1.87748,
       "previousClose": 1.87568,
-      "change": 0.00241,
-      "changePercent": 0.1285,
-      "dayHigh": 1.8784,
+      "change": 0.0018,
+      "changePercent": 0.096,
+      "dayHigh": 1.87898,
       "dayLow": 1.87318,
       "yearHigh": 1.90406,
       "yearLow": 1.8018,
@@ -722,7 +722,7 @@
         1.86877,
         1.87545,
         1.87643,
-        1.87809
+        1.87748
       ],
       "ohlc": [
         {
@@ -832,9 +832,9 @@
         {
           "date": "2026-09-16",
           "open": 1.8738600015640259,
-          "high": 1.8783999681472778,
+          "high": 1.878980040550232,
           "low": 1.8731800317764282,
-          "close": 1.8780900239944458,
+          "close": 1.8774800300598145,
           "volume": 0
         }
       ],
@@ -877,10 +877,10 @@
     {
       "symbol": "XAGUSD",
       "name": "Silver Spot",
-      "price": 65.205002,
-      "previousClose": 65.260002,
-      "change": -0.055,
-      "changePercent": -0.0843,
+      "price": 65.099998,
+      "previousClose": 65.110001,
+      "change": -0.010002,
+      "changePercent": -0.0154,
       "dayHigh": 65.394997,
       "dayLow": 63.939999,
       "yearHigh": 121.300003,
@@ -898,7 +898,7 @@
         64.554001,
         63.513,
         63.236,
-        65.205002
+        65.099998
       ],
       "ohlc": [
         {
@@ -1010,8 +1010,8 @@
           "open": 64.18499755859375,
           "high": 65.3949966430664,
           "low": 63.939998626708984,
-          "close": 65.20500183105469,
-          "volume": 7826
+          "close": 65.0999984741211,
+          "volume": 8368
         }
       ],
       "supports": [
@@ -1053,10 +1053,10 @@
     {
       "symbol": "XAUUSD",
       "name": "Gold Spot",
-      "price": 4368.200195,
-      "previousClose": 4379.0,
-      "change": -10.799805,
-      "changePercent": -0.2466,
+      "price": 4367.299805,
+      "previousClose": 4367.200195,
+      "change": 0.099609,
+      "changePercent": 0.0023,
       "dayHigh": 4381.899902,
       "dayLow": 4315.200195,
       "yearHigh": 5586.200195,
@@ -1074,7 +1074,7 @@
         4408.899902,
         4351.899902,
         4332.799805,
-        4368.200195
+        4367.299805
       ],
       "ohlc": [
         {
@@ -1186,8 +1186,8 @@
           "open": 4333.5,
           "high": 4381.89990234375,
           "low": 4315.2001953125,
-          "close": 4368.2001953125,
-          "volume": 44108
+          "close": 4367.2998046875,
+          "volume": 46509
         }
       ],
       "supports": [
