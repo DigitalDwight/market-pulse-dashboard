@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-09-16T06:12:09Z",
-  "count": 25,
+  "generatedAt": "2026-09-20T19:44:11Z",
+  "count": 26,
   "reports": [
+    {
+      "slug": "2026-09-20-weekly",
+      "type": "Weekly",
+      "date": "2026-09-20",
+      "displayDate": "Sunday 20 September 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-09-20-weekly.md",
+      "lastUpdated": "2026-09-20T19:44:11Z",
+      "marketSentiment": "NEUTRAL_BEARISH",
+      "macroTheme": "Fed delivered first hike since 2023 (+25bp to 3.75-4.00%) with hawkish Warsh signalling a campaign, not one-and-done. 16 of 18 officials project at least one more hike by year-end; CME FedWatch prices 55.4% probability of October follow-up. 10Y yield sustained above 5% for first time since 2007. USD surged 1.1% — biggest weekly gain in 3+ months. Dow fell for 3rd straight week while Nasdaq rallied on clarity trade. Gold and silver rallied Friday despite hawkish backdrop — the most counterintuitive move of the week.",
+      "jsonFile": "2026-09-20-weekly.json"
+    },
     {
       "slug": "2026-09-16-midweek",
       "type": "Mid-Week",
@@ -9,7 +21,7 @@
       "displayDate": "Wednesday 16 September 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-09-16-midweek.md",
-      "lastUpdated": "2026-09-16T05:45:32Z",
+      "lastUpdated": "2026-09-16T06:12:14Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "The most critical 48 hours of Q3: Fed expected to deliver first rate hike in over three years (+25bp to 3.75-4.00%) at 94.5% probability. US 10Y Treasury yield breached 5% for the first time since 2007. Middle East escalation (Saudi infrastructure attacks) pushed Brent to $108.75. Warsh press conference at 18:30 GMT is the binary event that will determine the trajectory of all seven instruments.",
       "jsonFile": "2026-09-16-midweek.json"

@@ -1,79 +1,79 @@
 {
-  "generatedAt": "2026-09-16T06:12:09Z",
+  "generatedAt": "2026-09-20T19:44:11Z",
   "hitRateFormula": "(CORRECT + 0.5 x PARTIALLY) / graded calls. NOT GRADED is excluded from both sides.",
-  "reportCount": 25,
+  "reportCount": 26,
   "totals": {
-    "CORRECT": 87,
-    "PARTIALLY": 48,
-    "WRONG": 33,
+    "CORRECT": 90,
+    "PARTIALLY": 49,
+    "WRONG": 36,
     "NOT GRADED": 7,
-    "graded": 168,
-    "hitRate": 66.1,
-    "correctPct": 51.8
+    "graded": 175,
+    "hitRate": 65.4,
+    "correctPct": 51.4
   },
   "byInstrument": {
     "AUDUSD": {
-      "CORRECT": 13,
+      "CORRECT": 14,
       "PARTIALLY": 8,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 24,
-      "hitRate": 70.8,
-      "correctPct": 54.2
+      "graded": 25,
+      "hitRate": 72.0,
+      "correctPct": 56.0
     },
     "GBPCAD": {
       "CORRECT": 9,
-      "PARTIALLY": 9,
+      "PARTIALLY": 10,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 24,
-      "hitRate": 56.2,
-      "correctPct": 37.5
+      "graded": 25,
+      "hitRate": 56.0,
+      "correctPct": 36.0
     },
     "GER40": {
-      "CORRECT": 13,
+      "CORRECT": 14,
       "PARTIALLY": 6,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 24,
-      "hitRate": 66.7,
-      "correctPct": 54.2
+      "graded": 25,
+      "hitRate": 68.0,
+      "correctPct": 56.0
     },
     "NAS100": {
       "CORRECT": 13,
       "PARTIALLY": 5,
-      "WRONG": 6,
+      "WRONG": 7,
       "NOT GRADED": 1,
-      "graded": 24,
-      "hitRate": 64.6,
-      "correctPct": 54.2
+      "graded": 25,
+      "hitRate": 62.0,
+      "correctPct": 52.0
     },
     "US30": {
-      "CORRECT": 10,
+      "CORRECT": 11,
       "PARTIALLY": 9,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 24,
-      "hitRate": 60.4,
-      "correctPct": 41.7
+      "graded": 25,
+      "hitRate": 62.0,
+      "correctPct": 44.0
     },
     "XAGUSD": {
       "CORRECT": 13,
       "PARTIALLY": 7,
-      "WRONG": 4,
+      "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 24,
-      "hitRate": 68.8,
-      "correctPct": 54.2
+      "graded": 25,
+      "hitRate": 66.0,
+      "correctPct": 52.0
     },
     "XAUUSD": {
       "CORRECT": 16,
       "PARTIALLY": 4,
-      "WRONG": 4,
+      "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 24,
-      "hitRate": 75.0,
-      "correctPct": 66.7
+      "graded": 25,
+      "hitRate": 72.0,
+      "correctPct": 64.0
     }
   },
   "byReport": [
@@ -401,6 +401,19 @@
       "graded": 7,
       "hitRate": 71.4,
       "correctPct": 57.1
+    },
+    {
+      "slug": "2026-09-20-weekly",
+      "date": "2026-09-20",
+      "displayDate": "Sunday 20 September 2026",
+      "type": "Weekly",
+      "CORRECT": 3,
+      "PARTIALLY": 1,
+      "WRONG": 3,
+      "NOT GRADED": 0,
+      "graded": 7,
+      "hitRate": 50.0,
+      "correctPct": 42.9
     }
   ],
   "misses": [
@@ -495,6 +508,16 @@
       "movePct": 3.0
     },
     {
+      "slug": "2026-09-20-weekly",
+      "date": "2026-09-20",
+      "displayDate": "Sunday 20 September 2026",
+      "type": "Weekly",
+      "instrument": "XAGUSD",
+      "previousBias": "NEUTRAL-BEARISH",
+      "result": "+2.98% from 65.205 to 67.149; Friday surge against bias",
+      "movePct": 2.98
+    },
+    {
       "slug": "2026-06-17-midweek",
       "date": "2026-06-17",
       "displayDate": "Wednesday 17 June 2026",
@@ -555,6 +578,16 @@
       "movePct": 2.48
     },
     {
+      "slug": "2026-09-20-weekly",
+      "date": "2026-09-20",
+      "displayDate": "Sunday 20 September 2026",
+      "type": "Weekly",
+      "instrument": "NAS100",
+      "previousBias": "NEUTRAL-BEARISH",
+      "result": "+2.44% from 28,938 to 29,644; post-FOMC clarity rally",
+      "movePct": 2.44
+    },
+    {
       "slug": "2026-07-12-weekly",
       "date": "2026-07-12",
       "displayDate": "Sunday 12 July 2026",
@@ -613,6 +646,16 @@
       "previousBias": "NEUTRAL_BEARISH",
       "result": "+1.31% to 25,332; holiday gap-up to 25,389 on Monday; year high 25,438 nearly hit",
       "movePct": 1.31
+    },
+    {
+      "slug": "2026-09-20-weekly",
+      "date": "2026-09-20",
+      "displayDate": "Sunday 20 September 2026",
+      "type": "Weekly",
+      "instrument": "XAUUSD",
+      "previousBias": "BEARISH",
+      "result": "+1.30% from 4,368 to 4,425; rallied through hawkish FOMC",
+      "movePct": 1.3
     },
     {
       "slug": "2026-07-05-weekly",
