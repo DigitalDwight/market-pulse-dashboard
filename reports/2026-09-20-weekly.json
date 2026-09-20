@@ -5,7 +5,7 @@
   "displayDate": "Sunday 20 September 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-09-20-weekly.md",
-  "lastUpdated": "2026-09-20T19:44:11Z",
+  "lastUpdated": "2026-09-20T20:07:54Z",
   "marketSentiment": "NEUTRAL_BEARISH",
   "macroTheme": "Fed delivered first hike since 2023 (+25bp to 3.75-4.00%) with hawkish Warsh signalling a campaign, not one-and-done. 16 of 18 officials project at least one more hike by year-end; CME FedWatch prices 55.4% probability of October follow-up. 10Y yield sustained above 5% for first time since 2007. USD surged 1.1% — biggest weekly gain in 3+ months. Dow fell for 3rd straight week while Nasdaq rallied on clarity trade. Gold and silver rallied Friday despite hawkish backdrop — the most counterintuitive move of the week.",
   "macroOverview": "The week was defined by the FOMC's first rate hike since 2023 and Chair Warsh's unequivocally hawkish press conference. The dot plot raised the median 2026 terminal rate to 4.1% with 16 of 18 officials projecting further tightening. The 10Y Treasury yield pierced 5.04% intraweek before settling at 5.006%, forcing a fundamental repricing of equity risk premiums. The USD surged 1.1% — its strongest week in more than three months. Oil remained elevated with Brent spiking above $110 on Houthi advances toward the Bab el-Mandeb before fading to $104. The Dow fell for a third consecutive week while the NAS100 rallied +0.94% as tech investors embraced 'clarity over level'. Gold and silver staged the most confounding rally: both rose Friday despite the overwhelmingly hawkish rates backdrop, suggesting either a short-squeeze or a reawakening Middle East safe-haven bid. The BoE held at 3.75% (7-2 hawkish dissent), the BoJ held at 0.50%. The week ahead carries no inflation prints — the data vacuum leaves the 5% yield and central bank momentum as the sole steering currents.",
@@ -717,12 +717,12 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.87364,
+      "price": 1.87251,
       "previousClose": 1.8686,
-      "change": 0.00504,
-      "changePercent": 0.2697,
+      "change": 0.00391,
+      "changePercent": 0.2092,
       "dayHigh": 1.87364,
-      "dayLow": 1.87364,
+      "dayLow": 1.87251,
       "yearHigh": 1.90406,
       "yearLow": 1.8018,
       "signal": "NEUTRAL",
@@ -738,7 +738,7 @@
         1.87555,
         1.87165,
         1.8682,
-        1.87364
+        1.87251
       ],
       "ohlc": [
         {
@@ -849,8 +849,8 @@
           "date": "2026-09-20",
           "open": 1.8736399412155151,
           "high": 1.8736399412155151,
-          "low": 1.8736399412155151,
-          "close": 1.8736399412155151,
+          "low": 1.8725099563598633,
+          "close": 1.8725099563598633,
           "volume": 0
         }
       ],
