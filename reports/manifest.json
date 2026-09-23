@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T20:07:52Z",
+  "generatedAt": "2026-09-23T06:12:24Z",
   "count": 26,
   "reports": [
     {
@@ -9,7 +9,7 @@
       "displayDate": "Sunday 20 September 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-09-20-weekly.md",
-      "lastUpdated": "2026-09-20T19:44:11Z",
+      "lastUpdated": "2026-09-20T20:07:54Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "Fed delivered first hike since 2023 (+25bp to 3.75-4.00%) with hawkish Warsh signalling a campaign, not one-and-done. 16 of 18 officials project at least one more hike by year-end; CME FedWatch prices 55.4% probability of October follow-up. 10Y yield sustained above 5% for first time since 2007. USD surged 1.1% — biggest weekly gain in 3+ months. Dow fell for 3rd straight week while Nasdaq rallied on clarity trade. Gold and silver rallied Friday despite hawkish backdrop — the most counterintuitive move of the week.",
       "jsonFile": "2026-09-20-weekly.json"
