@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-10-04T20:42:50Z",
-  "count": 27,
+  "generatedAt": "2026-10-07T05:49:38Z",
+  "count": 28,
   "reports": [
+    {
+      "slug": "2026-10-07-midweek",
+      "type": "Mid-Week",
+      "date": "2026-10-07",
+      "displayDate": "Wednesday 07 October 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-10-07-midweek.md",
+      "lastUpdated": "2026-10-07T05:49:38Z",
+      "marketSentiment": "BULLISH",
+      "macroTheme": "Equities extended to fresh records on dovish Fed commentary (Williams) crushing October hike odds to ~20%. NAS100 second consecutive ATH. AI nuclear-energy deals (Google/Constellation $4.3bn) catalysed broad power-generation rally. 10Y yield eased to 5.27%. Gold failed to rally on rate relief -- bearish structure persists. Iran intensified Strait of Hormuz tanker attacks, keeping Brent above $100.",
+      "jsonFile": "2026-10-07-midweek.json"
+    },
     {
       "slug": "2026-10-04-weekly",
       "type": "Weekly",

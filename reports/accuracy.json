@@ -1,79 +1,79 @@
 {
-  "generatedAt": "2026-10-04T20:42:50Z",
+  "generatedAt": "2026-10-07T05:49:38Z",
   "hitRateFormula": "(CORRECT + 0.5 x PARTIALLY) / graded calls. NOT GRADED is excluded from both sides.",
-  "reportCount": 27,
+  "reportCount": 28,
   "totals": {
-    "CORRECT": 94,
-    "PARTIALLY": 51,
-    "WRONG": 37,
+    "CORRECT": 97,
+    "PARTIALLY": 54,
+    "WRONG": 38,
     "NOT GRADED": 7,
-    "graded": 182,
-    "hitRate": 65.7,
-    "correctPct": 51.6
+    "graded": 189,
+    "hitRate": 65.6,
+    "correctPct": 51.3
   },
   "byInstrument": {
     "AUDUSD": {
       "CORRECT": 15,
-      "PARTIALLY": 8,
+      "PARTIALLY": 9,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 26,
-      "hitRate": 73.1,
-      "correctPct": 57.7
+      "graded": 27,
+      "hitRate": 72.2,
+      "correctPct": 55.6
     },
     "GBPCAD": {
       "CORRECT": 9,
-      "PARTIALLY": 11,
+      "PARTIALLY": 12,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 26,
-      "hitRate": 55.8,
-      "correctPct": 34.6
+      "graded": 27,
+      "hitRate": 55.6,
+      "correctPct": 33.3
     },
     "GER40": {
       "CORRECT": 15,
-      "PARTIALLY": 6,
+      "PARTIALLY": 7,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 26,
-      "hitRate": 69.2,
-      "correctPct": 57.7
+      "graded": 27,
+      "hitRate": 68.5,
+      "correctPct": 55.6
     },
     "NAS100": {
-      "CORRECT": 13,
+      "CORRECT": 14,
       "PARTIALLY": 5,
       "WRONG": 8,
       "NOT GRADED": 1,
-      "graded": 26,
-      "hitRate": 59.6,
-      "correctPct": 50.0
+      "graded": 27,
+      "hitRate": 61.1,
+      "correctPct": 51.9
     },
     "US30": {
-      "CORRECT": 12,
+      "CORRECT": 13,
       "PARTIALLY": 9,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 26,
-      "hitRate": 63.5,
-      "correctPct": 46.2
+      "graded": 27,
+      "hitRate": 64.8,
+      "correctPct": 48.1
     },
     "XAGUSD": {
       "CORRECT": 13,
       "PARTIALLY": 8,
-      "WRONG": 5,
+      "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 26,
-      "hitRate": 65.4,
-      "correctPct": 50.0
+      "graded": 27,
+      "hitRate": 63.0,
+      "correctPct": 48.1
     },
     "XAUUSD": {
-      "CORRECT": 17,
+      "CORRECT": 18,
       "PARTIALLY": 4,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 26,
-      "hitRate": 73.1,
-      "correctPct": 65.4
+      "graded": 27,
+      "hitRate": 74.1,
+      "correctPct": 66.7
     }
   },
   "byReport": [
@@ -427,6 +427,19 @@
       "graded": 7,
       "hitRate": 71.4,
       "correctPct": 57.1
+    },
+    {
+      "slug": "2026-10-07-midweek",
+      "date": "2026-10-07",
+      "displayDate": "Wednesday 07 October 2026",
+      "type": "Mid-Week",
+      "CORRECT": 3,
+      "PARTIALLY": 3,
+      "WRONG": 1,
+      "NOT GRADED": 0,
+      "graded": 7,
+      "hitRate": 64.3,
+      "correctPct": 42.9
     }
   ],
   "misses": [
@@ -719,6 +732,16 @@
       "previousBias": "NEUTRAL",
       "result": "BoC held (base case) but GBP broke 1.8702 resistance cleanly; +1.02% directional breakout",
       "movePct": 1.02
+    },
+    {
+      "slug": "2026-10-07-midweek",
+      "date": "2026-10-07",
+      "displayDate": "Wednesday 07 October 2026",
+      "type": "Mid-Week",
+      "instrument": "XAGUSD",
+      "previousBias": "NEUTRAL_BEARISH",
+      "result": "+0.99% rose on industrial-demand tailwind",
+      "movePct": 0.99
     },
     {
       "slug": "2026-05-24-weekly",
