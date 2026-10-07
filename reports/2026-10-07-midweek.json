@@ -5,7 +5,7 @@
   "displayDate": "Wednesday 07 October 2026",
   "title": "MARKET PULSE -- Mid-Week Trading Report",
   "markdownFile": "2026-10-07-midweek.md",
-  "lastUpdated": "2026-10-07T05:49:38Z",
+  "lastUpdated": "2026-10-07T06:11:55Z",
   "marketSentiment": "BULLISH",
   "macroTheme": "Equities extended to fresh records on dovish Fed commentary (Williams) crushing October hike odds to ~20%. NAS100 second consecutive ATH. AI nuclear-energy deals (Google/Constellation $4.3bn) catalysed broad power-generation rally. 10Y yield eased to 5.27%. Gold failed to rally on rate relief -- bearish structure persists. Iran intensified Strait of Hormuz tanker attacks, keeping Brent above $100.",
   "macroOverview": "Risk-on tone dominant with S&P 500 at first record since 13 August and NAS100 at second consecutive ATH. Nvidia approaching $6T market cap. AI capex narrative reinforced by Marvell, AMD, and SpaceX developments. NY Fed's Williams delivered dovish commentary, compressing October hike probability to ~20%. 10Y Treasury yield eased 4bp to 5.27%. Gold's failure to rally on the NFP miss and dovish Fed is the single most important bearish signal. Iran tanker attacks near Strait of Hormuz keep geopolitical risk elevated. Midweek Treasury auctions (10Y today, 30Y Thursday) and FOMC Minutes are the dominant near-term catalysts.",
@@ -717,12 +717,12 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.88456,
+      "price": 1.88368,
       "previousClose": 1.88576,
-      "change": -0.0012,
-      "changePercent": -0.0636,
+      "change": -0.00208,
+      "changePercent": -0.1103,
       "dayHigh": 1.88602,
-      "dayLow": 1.88383,
+      "dayLow": 1.8826,
       "yearHigh": 1.90406,
       "yearLow": 1.8018,
       "signal": "NEUTRAL",
@@ -738,7 +738,7 @@
         1.87648,
         1.88723,
         1.88528,
-        1.88456
+        1.88368
       ],
       "ohlc": [
         {
@@ -849,8 +849,8 @@
           "date": "2026-10-07",
           "open": 1.8847099542617798,
           "high": 1.8860199451446533,
-          "low": 1.883829951286316,
-          "close": 1.884559988975525,
+          "low": 1.882599949836731,
+          "close": 1.883679986000061,
           "volume": 0
         }
       ],
@@ -893,12 +893,12 @@
     {
       "symbol": "XAGUSD",
       "name": "Silver Spot",
-      "price": 61.014999,
+      "price": 60.860001,
       "previousClose": 61.549999,
-      "change": -0.535,
-      "changePercent": -0.8692,
+      "change": -0.689999,
+      "changePercent": -1.121,
       "dayHigh": 61.845001,
-      "dayLow": 60.959999,
+      "dayLow": 60.82,
       "yearHigh": 121.300003,
       "yearLow": 45.845001,
       "signal": "NEUTRAL",
@@ -914,7 +914,7 @@
         59.977001,
         60.868999,
         61.167999,
-        61.014999
+        60.860001
       ],
       "ohlc": [
         {
@@ -1025,9 +1025,9 @@
           "date": "2026-10-07",
           "open": 61.78499984741211,
           "high": 61.845001220703125,
-          "low": 60.959999084472656,
-          "close": 61.01499938964844,
-          "volume": 2923
+          "low": 60.81999969482422,
+          "close": 60.86000061035156,
+          "volume": 3502
         }
       ],
       "supports": [
@@ -1069,12 +1069,12 @@
     {
       "symbol": "XAUUSD",
       "name": "Gold Spot",
-      "price": 4160.399902,
+      "price": 4154.100098,
       "previousClose": 4180.700195,
-      "change": -20.300293,
-      "changePercent": -0.4856,
+      "change": -26.600098,
+      "changePercent": -0.6363,
       "dayHigh": 4197.799805,
-      "dayLow": 4157.700195,
+      "dayLow": 4153.799805,
       "yearHigh": 5586.200195,
       "yearLow": 3901.300049,
       "signal": "BEARISH",
@@ -1090,7 +1090,7 @@
         4162.299805,
         4156.799805,
         4187.100098,
-        4160.399902
+        4154.0
       ],
       "ohlc": [
         {
@@ -1201,9 +1201,9 @@
           "date": "2026-10-07",
           "open": 4195.0,
           "high": 4197.7998046875,
-          "low": 4157.7001953125,
-          "close": 4160.39990234375,
-          "volume": 20708
+          "low": 4153.7998046875,
+          "close": 4154.0,
+          "volume": 23294
         }
       ],
       "supports": [
