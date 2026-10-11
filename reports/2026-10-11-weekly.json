@@ -5,7 +5,7 @@
   "displayDate": "Sunday 11 October 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-10-11-weekly.md",
-  "lastUpdated": "2026-10-11T23:14:29Z",
+  "lastUpdated": "2026-10-11T23:24:51Z",
   "marketSentiment": "NEUTRAL_BULLISH",
   "macroTheme": "S&P 500 record close as SpaceX spectrum deal reshapes telecom; 10Y hits 5.36% then eases to 5.24%; OpenAI revenue gap roils tech Thursday; Brent above $105 on Iran strike-options; gold rallies on geopolitical bid; FOMC minutes confirm hiking bias; Q3 earnings season begins Tuesday.",
   "macroOverview": "Risk-on tone persists with S&P 500 at 7,811 just below Tuesday's record 7,818.93. Participation broadening: equal-weight S&P outperformed cap-weight (+1.6% vs +1.2%). AI nuclear-energy theme (CEG + Google, BKH deals) reinforces infrastructure capex narrative. OpenAI revenue-gap scare (-1.25% Nasdaq Thursday) was resolved Friday as Bloomberg confirmed ≥$70B annualised target. SpaceX $8B spectrum deal hammered TMUS (-13.6%), lifted tower REITs. FOMC minutes confirm most participants expect another 2026 hike. 10Y settled at 5.24% after touching 5.36% — rates headwind persists but is not accelerating. Brent above $105 on Iran strike-options keeps energy-shock inflation feed alive. Gold rallied 1.5% Friday on geopolitical bid despite Trump assurance of no pre-midterm strike. US bond market closed Monday for Columbus Day; Q3 earnings season begins Tuesday with major banks. CPI Wednesday is the dominant macro event of the cycle.",
@@ -541,11 +541,11 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.698519,
+      "price": 0.698861,
       "previousClose": 0.698763,
-      "change": -0.000244,
-      "changePercent": -0.0349,
-      "dayHigh": 0.698763,
+      "change": 9.8e-05,
+      "changePercent": 0.014,
+      "dayHigh": 0.698959,
       "dayLow": 0.697107,
       "yearHigh": 0.727738,
       "yearLow": 0.64216,
@@ -717,10 +717,10 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.88685,
+      "price": 1.88725,
       "previousClose": 1.88666,
-      "change": 0.00019,
-      "changePercent": 0.0101,
+      "change": 0.00059,
+      "changePercent": 0.0313,
       "dayHigh": 1.88912,
       "dayLow": 1.88565,
       "yearHigh": 1.90406,
@@ -893,12 +893,12 @@
     {
       "symbol": "XAGUSD",
       "name": "Silver Spot",
-      "price": 61.220001,
+      "price": 61.174999,
       "previousClose": 61.048,
-      "change": 0.172001,
-      "changePercent": 0.2817,
+      "change": 0.126999,
+      "changePercent": 0.208,
       "dayHigh": 61.345001,
-      "dayLow": 61.07,
+      "dayLow": 61.064999,
       "yearHigh": 121.300003,
       "yearLow": 45.845001,
       "signal": "NEUTRAL",
@@ -914,7 +914,7 @@
         59.898998,
         59.063999,
         60.669998,
-        61.220001
+        61.174999
       ],
       "ohlc": [
         {
@@ -1025,9 +1025,9 @@
           "date": "2026-10-11",
           "open": 61.290000915527344,
           "high": 61.345001220703125,
-          "low": 61.06999969482422,
-          "close": 61.220001220703125,
-          "volume": 1373
+          "low": 61.064998626708984,
+          "close": 61.17499923706055,
+          "volume": 1692
         }
       ],
       "supports": [
@@ -1069,12 +1069,12 @@
     {
       "symbol": "XAUUSD",
       "name": "Gold Spot",
-      "price": 4210.600098,
+      "price": 4215.100098,
       "previousClose": 4216.299805,
-      "change": -5.699707,
-      "changePercent": -0.1352,
+      "change": -1.199707,
+      "changePercent": -0.0285,
       "dayHigh": 4221.700195,
-      "dayLow": 4209.299805,
+      "dayLow": 4209.100098,
       "yearHigh": 5586.200195,
       "yearLow": 3901.300049,
       "signal": "NEUTRAL_BEARISH",
@@ -1090,7 +1090,7 @@
         4140.700195,
         4157.0,
         4216.299805,
-        4210.600098
+        4215.100098
       ],
       "ohlc": [
         {
@@ -1115,7 +1115,7 @@
           "high": 4351.60009765625,
           "low": 4289.2001953125,
           "close": 4321.2001953125,
-          "volume": 140092
+          "volume": 164814
         },
         {
           "date": "2026-09-28",
@@ -1123,7 +1123,7 @@
           "high": 4315.60009765625,
           "low": 4143.10009765625,
           "close": 4168.39990234375,
-          "volume": 140092
+          "volume": 229031
         },
         {
           "date": "2026-09-29",
@@ -1201,9 +1201,9 @@
           "date": "2026-10-11",
           "open": 4220.7998046875,
           "high": 4221.7001953125,
-          "low": 4209.2998046875,
-          "close": 4210.60009765625,
-          "volume": 2921
+          "low": 4209.10009765625,
+          "close": 4215.10009765625,
+          "volume": 3491
         }
       ],
       "supports": [
