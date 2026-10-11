@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-10-07T06:11:51Z",
-  "count": 28,
+  "generatedAt": "2026-10-11T23:14:29Z",
+  "count": 29,
   "reports": [
+    {
+      "slug": "2026-10-11-weekly",
+      "type": "Weekly",
+      "date": "2026-10-11",
+      "displayDate": "Sunday 11 October 2026",
+      "title": "MARKET PULSE -- Weekly Trading Report",
+      "markdownFile": "2026-10-11-weekly.md",
+      "lastUpdated": "2026-10-11T23:14:29Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "S&P 500 record close as SpaceX spectrum deal reshapes telecom; 10Y hits 5.36% then eases to 5.24%; OpenAI revenue gap roils tech Thursday; Brent above $105 on Iran strike-options; gold rallies on geopolitical bid; FOMC minutes confirm hiking bias; Q3 earnings season begins Tuesday.",
+      "jsonFile": "2026-10-11-weekly.json"
+    },
     {
       "slug": "2026-10-07-midweek",
       "type": "Mid-Week",
@@ -9,7 +21,7 @@
       "displayDate": "Wednesday 07 October 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-10-07-midweek.md",
-      "lastUpdated": "2026-10-07T05:49:38Z",
+      "lastUpdated": "2026-10-07T06:11:55Z",
       "marketSentiment": "BULLISH",
       "macroTheme": "Equities extended to fresh records on dovish Fed commentary (Williams) crushing October hike odds to ~20%. NAS100 second consecutive ATH. AI nuclear-energy deals (Google/Constellation $4.3bn) catalysed broad power-generation rally. 10Y yield eased to 5.27%. Gold failed to rally on rate relief -- bearish structure persists. Iran intensified Strait of Hormuz tanker attacks, keeping Brent above $100.",
       "jsonFile": "2026-10-07-midweek.json"

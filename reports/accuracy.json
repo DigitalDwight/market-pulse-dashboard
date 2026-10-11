@@ -1,79 +1,79 @@
 {
-  "generatedAt": "2026-10-07T06:11:51Z",
+  "generatedAt": "2026-10-11T23:14:29Z",
   "hitRateFormula": "(CORRECT + 0.5 x PARTIALLY) / graded calls. NOT GRADED is excluded from both sides.",
-  "reportCount": 28,
+  "reportCount": 29,
   "totals": {
-    "CORRECT": 97,
-    "PARTIALLY": 54,
-    "WRONG": 38,
+    "CORRECT": 101,
+    "PARTIALLY": 55,
+    "WRONG": 40,
     "NOT GRADED": 7,
-    "graded": 189,
+    "graded": 196,
     "hitRate": 65.6,
-    "correctPct": 51.3
+    "correctPct": 51.5
   },
   "byInstrument": {
     "AUDUSD": {
-      "CORRECT": 15,
+      "CORRECT": 16,
       "PARTIALLY": 9,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 27,
-      "hitRate": 72.2,
-      "correctPct": 55.6
+      "graded": 28,
+      "hitRate": 73.2,
+      "correctPct": 57.1
     },
     "GBPCAD": {
-      "CORRECT": 9,
+      "CORRECT": 10,
       "PARTIALLY": 12,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 27,
-      "hitRate": 55.6,
-      "correctPct": 33.3
+      "graded": 28,
+      "hitRate": 57.1,
+      "correctPct": 35.7
     },
     "GER40": {
       "CORRECT": 15,
-      "PARTIALLY": 7,
+      "PARTIALLY": 8,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 27,
-      "hitRate": 68.5,
-      "correctPct": 55.6
+      "graded": 28,
+      "hitRate": 67.9,
+      "correctPct": 53.6
     },
     "NAS100": {
       "CORRECT": 14,
       "PARTIALLY": 5,
-      "WRONG": 8,
+      "WRONG": 9,
       "NOT GRADED": 1,
-      "graded": 27,
-      "hitRate": 61.1,
-      "correctPct": 51.9
+      "graded": 28,
+      "hitRate": 58.9,
+      "correctPct": 50.0
     },
     "US30": {
-      "CORRECT": 13,
+      "CORRECT": 14,
       "PARTIALLY": 9,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 27,
-      "hitRate": 64.8,
-      "correctPct": 48.1
+      "graded": 28,
+      "hitRate": 66.1,
+      "correctPct": 50.0
     },
     "XAGUSD": {
-      "CORRECT": 13,
+      "CORRECT": 14,
       "PARTIALLY": 8,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 27,
-      "hitRate": 63.0,
-      "correctPct": 48.1
+      "graded": 28,
+      "hitRate": 64.3,
+      "correctPct": 50.0
     },
     "XAUUSD": {
       "CORRECT": 18,
       "PARTIALLY": 4,
-      "WRONG": 5,
+      "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 27,
-      "hitRate": 74.1,
-      "correctPct": 66.7
+      "graded": 28,
+      "hitRate": 71.4,
+      "correctPct": 64.3
     }
   },
   "byReport": [
@@ -440,6 +440,19 @@
       "graded": 7,
       "hitRate": 64.3,
       "correctPct": 42.9
+    },
+    {
+      "slug": "2026-10-11-weekly",
+      "date": "2026-10-11",
+      "displayDate": "Sunday 11 October 2026",
+      "type": "Weekly",
+      "CORRECT": 4,
+      "PARTIALLY": 1,
+      "WRONG": 2,
+      "NOT GRADED": 0,
+      "graded": 7,
+      "hitRate": 64.3,
+      "correctPct": 57.1
     }
   ],
   "misses": [
@@ -674,6 +687,16 @@
       "movePct": -1.84
     },
     {
+      "slug": "2026-10-11-weekly",
+      "date": "2026-10-11",
+      "displayDate": "Sunday 11 October 2026",
+      "type": "Weekly",
+      "instrument": "XAUUSD",
+      "previousBias": "BEARISH",
+      "result": "+1.21% from report, Wed low 4,091 then +1.5% Fri on Iran bid",
+      "movePct": 1.5
+    },
+    {
       "slug": "2026-05-27-midweek",
       "date": "2026-05-27",
       "displayDate": "Wednesday 27 May 2026",
@@ -702,6 +725,16 @@
       "previousBias": "NEUTRAL",
       "result": "+1.28% on week, year high 1.8915 broken, range bias missed the breakout",
       "movePct": 1.28
+    },
+    {
+      "slug": "2026-10-11-weekly",
+      "date": "2026-10-11",
+      "displayDate": "Sunday 11 October 2026",
+      "type": "Weekly",
+      "instrument": "NAS100",
+      "previousBias": "BULLISH",
+      "result": "-1.09% from report, ATH Tue then OpenAI gap -1.25% Thu",
+      "movePct": -1.25
     },
     {
       "slug": "2026-05-31-weekly",

@@ -1,0 +1,1390 @@
+{
+  "slug": "2026-10-11-weekly",
+  "type": "Weekly",
+  "date": "2026-10-11",
+  "displayDate": "Sunday 11 October 2026",
+  "title": "MARKET PULSE -- Weekly Trading Report",
+  "markdownFile": "2026-10-11-weekly.md",
+  "lastUpdated": "2026-10-11T23:14:29Z",
+  "marketSentiment": "NEUTRAL_BULLISH",
+  "macroTheme": "S&P 500 record close as SpaceX spectrum deal reshapes telecom; 10Y hits 5.36% then eases to 5.24%; OpenAI revenue gap roils tech Thursday; Brent above $105 on Iran strike-options; gold rallies on geopolitical bid; FOMC minutes confirm hiking bias; Q3 earnings season begins Tuesday.",
+  "macroOverview": "Risk-on tone persists with S&P 500 at 7,811 just below Tuesday's record 7,818.93. Participation broadening: equal-weight S&P outperformed cap-weight (+1.6% vs +1.2%). AI nuclear-energy theme (CEG + Google, BKH deals) reinforces infrastructure capex narrative. OpenAI revenue-gap scare (-1.25% Nasdaq Thursday) was resolved Friday as Bloomberg confirmed ≥$70B annualised target. SpaceX $8B spectrum deal hammered TMUS (-13.6%), lifted tower REITs. FOMC minutes confirm most participants expect another 2026 hike. 10Y settled at 5.24% after touching 5.36% — rates headwind persists but is not accelerating. Brent above $105 on Iran strike-options keeps energy-shock inflation feed alive. Gold rallied 1.5% Friday on geopolitical bid despite Trump assurance of no pre-midterm strike. US bond market closed Monday for Columbus Day; Q3 earnings season begins Tuesday with major banks. CPI Wednesday is the dominant macro event of the cycle.",
+  "instruments": [
+    {
+      "symbol": "US30",
+      "name": "Dow Jones Industrial Average",
+      "price": 51654.949219,
+      "previousClose": 51231.64,
+      "change": 423.309219,
+      "changePercent": 0.8263,
+      "dayHigh": 51765.109375,
+      "dayLow": 51258.949219,
+      "yearHigh": 54744.328125,
+      "yearLow": 45057.28125,
+      "signal": "NEUTRAL_BULLISH",
+      "signalStrength": 25,
+      "eventImpactProbability": 80,
+      "sparkline": [
+        51481.511719,
+        51349.921875,
+        50906.050781,
+        50926.558594,
+        51176.960938,
+        51267.898438,
+        51521.28125,
+        51179.871094,
+        51231.640625,
+        51654.949219
+      ],
+      "ohlc": [
+        {
+          "date": "2026-09-22",
+          "open": 52301.921875,
+          "high": 52319.01171875,
+          "low": 51726.078125,
+          "close": 51863.69140625,
+          "volume": 444770000
+        },
+        {
+          "date": "2026-09-23",
+          "open": 51771.41015625,
+          "high": 51846.80859375,
+          "low": 51477.53125,
+          "close": 51511.58984375,
+          "volume": 428070000
+        },
+        {
+          "date": "2026-09-24",
+          "open": 51415.75,
+          "high": 51485.96875,
+          "low": 51124.01953125,
+          "close": 51349.98046875,
+          "volume": 390410000
+        },
+        {
+          "date": "2026-09-25",
+          "open": 51359.69921875,
+          "high": 51874.94140625,
+          "low": 51339.23828125,
+          "close": 51828.62109375,
+          "volume": 387540000
+        },
+        {
+          "date": "2026-09-28",
+          "open": 51648.48046875,
+          "high": 51780.5,
+          "low": 51409.6484375,
+          "close": 51481.51171875,
+          "volume": 455450000
+        },
+        {
+          "date": "2026-09-29",
+          "open": 51416.9609375,
+          "high": 51505.19140625,
+          "low": 51129.1796875,
+          "close": 51349.921875,
+          "volume": 386240000
+        },
+        {
+          "date": "2026-09-30",
+          "open": 51424.83984375,
+          "high": 51473.9296875,
+          "low": 50906.05078125,
+          "close": 50906.05078125,
+          "volume": 487860000
+        },
+        {
+          "date": "2026-10-01",
+          "open": 51008.359375,
+          "high": 51179.78125,
+          "low": 50546.5390625,
+          "close": 50926.55859375,
+          "volume": 476440000
+        },
+        {
+          "date": "2026-10-02",
+          "open": 51241.1796875,
+          "high": 51382.87890625,
+          "low": 50950.609375,
+          "close": 51176.9609375,
+          "volume": 548950000
+        },
+        {
+          "date": "2026-10-05",
+          "open": 51199.25,
+          "high": 51404.859375,
+          "low": 50862.8515625,
+          "close": 51267.8984375,
+          "volume": 472440000
+        },
+        {
+          "date": "2026-10-06",
+          "open": 51444.1015625,
+          "high": 51672.25,
+          "low": 51422.8984375,
+          "close": 51521.28125,
+          "volume": 404910000
+        },
+        {
+          "date": "2026-10-07",
+          "open": 51406.44140625,
+          "high": 51406.44140625,
+          "low": 50917.421875,
+          "close": 51179.87109375,
+          "volume": 361940000
+        },
+        {
+          "date": "2026-10-08",
+          "open": 51105.0390625,
+          "high": 51245.28125,
+          "low": 50939.0,
+          "close": 51231.640625,
+          "volume": 449590000
+        },
+        {
+          "date": "2026-10-09",
+          "open": 51258.94921875,
+          "high": 51765.109375,
+          "low": 51258.94921875,
+          "close": 51654.94921875,
+          "volume": 339470000
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 51179,
+          "description": "Wednesday swing low — first defensive layer"
+        },
+        {
+          "level": "S2",
+          "price": 50906,
+          "description": "30 September low"
+        },
+        {
+          "level": "S3",
+          "price": 50547,
+          "description": "01 October low — two-week floor"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 51765,
+          "description": "Friday intraday high"
+        },
+        {
+          "level": "R2",
+          "price": 52000,
+          "description": "Psychological round number"
+        },
+        {
+          "level": "R3",
+          "price": 54744,
+          "description": "All-time high"
+        }
+      ],
+      "analysis": "US30 closed the week +0.93% at 51,655 after a +423-point Friday rally. Held above the 51,179 Wednesday swing low throughout. Equal-weight S&P outperformed cap-weight (+1.6% vs +1.2%), confirming broadening participation. FOMC minutes confirmed hiking bias. Q3 earnings season begins Tuesday. CPI Wednesday is the dominant risk. 3-day bias NEUTRAL-BULLISH: buy dips 51,200-51,400 stop 50,800 target 52,000. Conviction moderate — trend is higher but CPI is binary risk."
+    },
+    {
+      "symbol": "NAS100",
+      "name": "Nasdaq 100",
+      "price": 30883.150391,
+      "previousClose": 30725.809,
+      "change": 157.341391,
+      "changePercent": 0.5121,
+      "dayHigh": 30946.740234,
+      "dayLow": 30770.050781,
+      "yearHigh": 31361.369141,
+      "yearLow": 22841.419922,
+      "signal": "NEUTRAL_BULLISH",
+      "signalStrength": 30,
+      "eventImpactProbability": 85,
+      "sparkline": [
+        30276.810547,
+        30339.330078,
+        30408.5,
+        30501.560547,
+        30807.929688,
+        31076.439453,
+        31224.470703,
+        31160.080078,
+        30725.810547,
+        30883.150391
+      ],
+      "ohlc": [
+        {
+          "date": "2026-09-22",
+          "open": 30496.4296875,
+          "high": 30770.630859375,
+          "low": 30496.4296875,
+          "close": 30732.400390625,
+          "volume": 9334690000
+        },
+        {
+          "date": "2026-09-23",
+          "open": 30706.23046875,
+          "high": 30706.23046875,
+          "low": 30353.880859375,
+          "close": 30470.2890625,
+          "volume": 8491740000
+        },
+        {
+          "date": "2026-09-24",
+          "open": 30225.189453125,
+          "high": 30529.349609375,
+          "low": 30204.16015625,
+          "close": 30478.859375,
+          "volume": 8078820000
+        },
+        {
+          "date": "2026-09-25",
+          "open": 30517.4609375,
+          "high": 30667.560546875,
+          "low": 30413.58984375,
+          "close": 30608.130859375,
+          "volume": 7275260000
+        },
+        {
+          "date": "2026-09-28",
+          "open": 30426.630859375,
+          "high": 30480.400390625,
+          "low": 30081.060546875,
+          "close": 30276.810546875,
+          "volume": 7030730000
+        },
+        {
+          "date": "2026-09-29",
+          "open": 30412.2890625,
+          "high": 30429.970703125,
+          "low": 30235.66015625,
+          "close": 30339.330078125,
+          "volume": 7097250000
+        },
+        {
+          "date": "2026-09-30",
+          "open": 30421.6796875,
+          "high": 30630.44921875,
+          "low": 30408.5,
+          "close": 30408.5,
+          "volume": 8300260000
+        },
+        {
+          "date": "2026-10-01",
+          "open": 30533.599609375,
+          "high": 30616.240234375,
+          "low": 30274.650390625,
+          "close": 30501.560546875,
+          "volume": 7329610000
+        },
+        {
+          "date": "2026-10-02",
+          "open": 30869.140625,
+          "high": 31017.529296875,
+          "low": 30737.0703125,
+          "close": 30807.9296875,
+          "volume": 7954430000
+        },
+        {
+          "date": "2026-10-05",
+          "open": 30812.759765625,
+          "high": 31117.359375,
+          "low": 30798.419921875,
+          "close": 31076.439453125,
+          "volume": 7828480000
+        },
+        {
+          "date": "2026-10-06",
+          "open": 31255.400390625,
+          "high": 31361.369140625,
+          "low": 31208.19921875,
+          "close": 31224.470703125,
+          "volume": 8451470000
+        },
+        {
+          "date": "2026-10-07",
+          "open": 30976.25,
+          "high": 31170.119140625,
+          "low": 30904.4609375,
+          "close": 31160.080078125,
+          "volume": 7315500000
+        },
+        {
+          "date": "2026-10-08",
+          "open": 30985.23046875,
+          "high": 31125.130859375,
+          "low": 30556.400390625,
+          "close": 30725.810546875,
+          "volume": 8820120000
+        },
+        {
+          "date": "2026-10-09",
+          "open": 30900.060546875,
+          "high": 30946.740234375,
+          "low": 30770.05078125,
+          "close": 30883.150390625,
+          "volume": 6845310000
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 30556,
+          "description": "Thursday low — critical intraweek floor"
+        },
+        {
+          "level": "S2",
+          "price": 30274,
+          "description": "01 October swing low"
+        },
+        {
+          "level": "S3",
+          "price": 30082,
+          "description": "28 September low"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 31125,
+          "description": "Thursday high — first recovery test"
+        },
+        {
+          "level": "R2",
+          "price": 31361,
+          "description": "All-time high"
+        },
+        {
+          "level": "R3",
+          "price": 31500,
+          "description": "Round-number target"
+        }
+      ],
+      "analysis": "NAS100 hit ATH 31,361 Tuesday on AI nuclear-energy theme then fell -1.25% Thursday on OpenAI revenue-gap scare. Friday recovered partially to 30,883. Bloomberg confirmed OpenAI expects ≥$70B annualised by year-end, validating the dip. TSM earnings Thursday is the forward catalyst. 3-day bias NEUTRAL-BULLISH: buy dips 30,500-30,650 stop 30,200 target 31,500. CPI Wednesday is the risk; size conservatively."
+    },
+    {
+      "symbol": "GER40",
+      "name": "DAX Performance Index",
+      "price": 25087.269531,
+      "previousClose": 24806.97,
+      "change": 280.299531,
+      "changePercent": 1.1299,
+      "dayHigh": 25164.740234,
+      "dayLow": 24955.710938,
+      "yearHigh": 26618.740234,
+      "yearLow": 21863.810547,
+      "signal": "NEUTRAL_BEARISH",
+      "signalStrength": -25,
+      "eventImpactProbability": 70,
+      "sparkline": [
+        25374.419922,
+        25399.210938,
+        25199.189453,
+        24939.349609,
+        25231.199219,
+        25254.210938,
+        25449.189453,
+        25104.359375,
+        24806.970703,
+        25087.269531
+      ],
+      "ohlc": [
+        {
+          "date": "2026-09-22",
+          "open": 25592.98046875,
+          "high": 25783.16015625,
+          "low": 25423.0703125,
+          "close": 25578.849609375,
+          "volume": 48545100
+        },
+        {
+          "date": "2026-09-23",
+          "open": 25724.130859375,
+          "high": 25729.05078125,
+          "low": 25365.2109375,
+          "close": 25410.630859375,
+          "volume": 50759500
+        },
+        {
+          "date": "2026-09-24",
+          "open": 25263.109375,
+          "high": 25424.2109375,
+          "low": 25164.19921875,
+          "close": 25266.529296875,
+          "volume": 53978600
+        },
+        {
+          "date": "2026-09-25",
+          "open": 25441.7890625,
+          "high": 25529.330078125,
+          "low": 25347.30078125,
+          "close": 25408.640625,
+          "volume": 52413000
+        },
+        {
+          "date": "2026-09-28",
+          "open": 25443.98046875,
+          "high": 25575.66015625,
+          "low": 25360.3203125,
+          "close": 25374.419921875,
+          "volume": 45976300
+        },
+        {
+          "date": "2026-09-29",
+          "open": 25374.33984375,
+          "high": 25617.310546875,
+          "low": 25338.029296875,
+          "close": 25399.2109375,
+          "volume": 53368100
+        },
+        {
+          "date": "2026-09-30",
+          "open": 25490.669921875,
+          "high": 25584.5,
+          "low": 25190.330078125,
+          "close": 25199.189453125,
+          "volume": 61566500
+        },
+        {
+          "date": "2026-10-01",
+          "open": 25058.080078125,
+          "high": 25232.1796875,
+          "low": 24831.599609375,
+          "close": 24939.349609375,
+          "volume": 61171700
+        },
+        {
+          "date": "2026-10-02",
+          "open": 24995.2890625,
+          "high": 25303.599609375,
+          "low": 24970.91015625,
+          "close": 25231.19921875,
+          "volume": 56407400
+        },
+        {
+          "date": "2026-10-05",
+          "open": 25251.390625,
+          "high": 25324.69921875,
+          "low": 25143.259765625,
+          "close": 25254.2109375,
+          "volume": 43007200
+        },
+        {
+          "date": "2026-10-06",
+          "open": 25390.75,
+          "high": 25522.08984375,
+          "low": 25354.83984375,
+          "close": 25449.189453125,
+          "volume": 42539000
+        },
+        {
+          "date": "2026-10-07",
+          "open": 25280.669921875,
+          "high": 25347.08984375,
+          "low": 25038.509765625,
+          "close": 25104.359375,
+          "volume": 55061700
+        },
+        {
+          "date": "2026-10-08",
+          "open": 24884.619140625,
+          "high": 24997.259765625,
+          "low": 24792.7890625,
+          "close": 24806.970703125,
+          "volume": 49785000
+        },
+        {
+          "date": "2026-10-09",
+          "open": 24976.970703125,
+          "high": 25164.740234375,
+          "low": 24955.7109375,
+          "close": 25087.26953125,
+          "volume": 59039100
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 24807,
+          "description": "Thursday low — must hold for bounce credibility"
+        },
+        {
+          "level": "S2",
+          "price": 24832,
+          "description": "01 October low — double-bottom potential"
+        },
+        {
+          "level": "S3",
+          "price": 24500,
+          "description": "Psychological round number"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 25165,
+          "description": "Friday high — first ceiling"
+        },
+        {
+          "level": "R2",
+          "price": 25449,
+          "description": "Wednesday 07 October high"
+        },
+        {
+          "level": "R3",
+          "price": 25522,
+          "description": "06 October high — two-week range top"
+        }
+      ],
+      "analysis": "GER40 -0.58% on the week. Declined from 25,449 to 24,807 Thursday on global risk-off before bouncing to 25,087 Friday. European stagflation concerns and Brent above $100 weigh on German industrials. The 24,800 double-bottom is the line in the sand. 3-day bias NEUTRAL-BEARISH: sell rallies 25,200-25,350 stop 25,550 target 24,800. Break below 24,807 opens 24,500."
+    },
+    {
+      "symbol": "AUDUSD",
+      "name": "Australian Dollar vs US Dollar",
+      "price": 0.698519,
+      "previousClose": 0.698763,
+      "change": -0.000244,
+      "changePercent": -0.0349,
+      "dayHigh": 0.698763,
+      "dayLow": 0.697107,
+      "yearHigh": 0.727738,
+      "yearLow": 0.64216,
+      "signal": "NEUTRAL_BEARISH",
+      "signalStrength": -35,
+      "eventImpactProbability": 65,
+      "sparkline": [
+        0.70091,
+        0.70164,
+        0.6989,
+        0.69457,
+        0.69287,
+        0.69518,
+        0.69673,
+        0.69818,
+        0.6964,
+        0.6959
+      ],
+      "ohlc": [
+        {
+          "date": "2026-09-22",
+          "open": 0.7119211554527283,
+          "high": 0.7129001021385193,
+          "low": 0.7093300223350525,
+          "close": 0.7118998169898987,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-23",
+          "open": 0.7111601829528809,
+          "high": 0.7118998169898987,
+          "low": 0.7032799124717712,
+          "close": 0.7112102508544922,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-24",
+          "open": 0.7034698724746704,
+          "high": 0.7044500708580017,
+          "low": 0.7007802128791809,
+          "close": 0.7034080028533936,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-25",
+          "open": 0.7004797458648682,
+          "high": 0.7035900950431824,
+          "low": 0.7004498243331909,
+          "close": 0.700799822807312,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-28",
+          "open": 0.7009098529815674,
+          "high": 0.7030999064445496,
+          "low": 0.7008199691772461,
+          "close": 0.7009098529815674,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-29",
+          "open": 0.7014802098274231,
+          "high": 0.7029299139976501,
+          "low": 0.6973500847816467,
+          "close": 0.7016401290893555,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-30",
+          "open": 0.6987997889518738,
+          "high": 0.699440062046051,
+          "low": 0.6949598789215088,
+          "close": 0.6988999247550964,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-01",
+          "open": 0.694550096988678,
+          "high": 0.6957998275756836,
+          "low": 0.6905199885368347,
+          "close": 0.6945698857307434,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-02",
+          "open": 0.6929401755332947,
+          "high": 0.6975300312042236,
+          "low": 0.6914199590682983,
+          "close": 0.6928700804710388,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-05",
+          "open": 0.6951100826263428,
+          "high": 0.6974001526832581,
+          "low": 0.6933000087738037,
+          "close": 0.6951801776885986,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-06",
+          "open": 0.6966398358345032,
+          "high": 0.6990200877189636,
+          "low": 0.6962499022483826,
+          "close": 0.6967300772666931,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-07",
+          "open": 0.6979292631149292,
+          "high": 0.6986001133918762,
+          "low": 0.6944010853767395,
+          "close": 0.6981801986694336,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-08",
+          "open": 0.6961801052093506,
+          "high": 0.6974001526832581,
+          "low": 0.693389892578125,
+          "close": 0.6964001655578613,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-09",
+          "open": 0.6959697604179382,
+          "high": 0.6988120079040527,
+          "low": 0.695870041847229,
+          "close": 0.695900022983551,
+          "volume": 0
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 0.6946,
+          "description": "01 October low — near-term floor"
+        },
+        {
+          "level": "S2",
+          "price": 0.6905,
+          "description": "01 October intraweek low"
+        },
+        {
+          "level": "S3",
+          "price": 0.688,
+          "description": "Structural target"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 0.699,
+          "description": "06 October high — near 0.7000 rejection"
+        },
+        {
+          "level": "R2",
+          "price": 0.7,
+          "description": "Psychological — must reclaim to flip bias"
+        },
+        {
+          "level": "R3",
+          "price": 0.7034,
+          "description": "24 September breakdown level"
+        }
+      ],
+      "analysis": "AUDUSD traded below 0.7000 for the third consecutive week. Rejected at 0.6990 Tuesday. DXY firmed to 102.2. RBA-Fed rate differential narrowing in USD's favour. China stimulus disappointment adds headwind. US CPI Wednesday is the primary catalyst. 3-day bias NEUTRAL-BEARISH: sell rallies 0.6980-0.7000 stop 0.7030 target 0.6880. Close above 0.7000 flips the bias."
+    },
+    {
+      "symbol": "GBPCAD",
+      "name": "British Pound vs Canadian Dollar",
+      "price": 1.88685,
+      "previousClose": 1.88666,
+      "change": 0.00019,
+      "changePercent": 0.0101,
+      "dayHigh": 1.88912,
+      "dayLow": 1.88565,
+      "yearHigh": 1.90406,
+      "yearLow": 1.8018,
+      "signal": "NEUTRAL",
+      "signalStrength": -5,
+      "eventImpactProbability": 55,
+      "sparkline": [
+        1.87196,
+        1.87901,
+        1.87738,
+        1.88779,
+        1.87648,
+        1.88723,
+        1.88528,
+        1.88525,
+        1.88358,
+        1.88153
+      ],
+      "ohlc": [
+        {
+          "date": "2026-09-22",
+          "open": 1.875849962234497,
+          "high": 1.878000020980835,
+          "low": 1.8724100589752197,
+          "close": 1.8757400512695312,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-23",
+          "open": 1.876729965209961,
+          "high": 1.876829981803894,
+          "low": 1.8678900003433228,
+          "close": 1.8762999773025513,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-24",
+          "open": 1.8666900396347046,
+          "high": 1.8695399761199951,
+          "low": 1.8648200035095215,
+          "close": 1.866960048675537,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-25",
+          "open": 1.8684600591659546,
+          "high": 1.8748199939727783,
+          "low": 1.8683799505233765,
+          "close": 1.868530035018921,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-28",
+          "open": 1.872059941291809,
+          "high": 1.8794000148773193,
+          "low": 1.872059941291809,
+          "close": 1.8719600439071655,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-29",
+          "open": 1.8788800239562988,
+          "high": 1.8791099786758423,
+          "low": 1.8739999532699585,
+          "close": 1.8790099620819092,
+          "volume": 0
+        },
+        {
+          "date": "2026-09-30",
+          "open": 1.8772900104522705,
+          "high": 1.8859299421310425,
+          "low": 1.8767999410629272,
+          "close": 1.8773800134658813,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-01",
+          "open": 1.8877400159835815,
+          "high": 1.88919997215271,
+          "low": 1.8791999816894531,
+          "close": 1.8877899646759033,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-02",
+          "open": 1.8764400482177734,
+          "high": 1.8861500024795532,
+          "low": 1.8753000497817993,
+          "close": 1.876479983329773,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-05",
+          "open": 1.8873900175094604,
+          "high": 1.8881930112838745,
+          "low": 1.8803900480270386,
+          "close": 1.8872300386428833,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-06",
+          "open": 1.885200023651123,
+          "high": 1.8925100564956665,
+          "low": 1.8845800161361694,
+          "close": 1.8852800130844116,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-07",
+          "open": 1.8850799798965454,
+          "high": 1.8852900266647339,
+          "low": 1.8796299695968628,
+          "close": 1.8852499723434448,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-08",
+          "open": 1.88332998752594,
+          "high": 1.8840700387954712,
+          "low": 1.8798999786376953,
+          "close": 1.883579969406128,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-09",
+          "open": 1.8812999725341797,
+          "high": 1.8897500038146973,
+          "low": 1.8804099559783936,
+          "close": 1.8815300464630127,
+          "volume": 0
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 1.8753,
+          "description": "02 October low — range floor"
+        },
+        {
+          "level": "S2",
+          "price": 1.8724,
+          "description": "22 September low"
+        },
+        {
+          "level": "S3",
+          "price": 1.8648,
+          "description": "24 September low — deeper structural"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 1.8898,
+          "description": "Friday high"
+        },
+        {
+          "level": "R2",
+          "price": 1.8925,
+          "description": "06 October high — range ceiling"
+        },
+        {
+          "level": "R3",
+          "price": 1.9041,
+          "description": "All-time high"
+        }
+      ],
+      "analysis": "GBPCAD remains range-bound 1.8750-1.8925 for the third consecutive week. Brent above $100 provides structural CAD bid. BoE/BoC both on hold with no fresh catalysts this week. 3-day bias NEUTRAL: range trade 1.8750-1.8925. Buy 1.8750 stop 1.8720 target 1.8900. Sell 1.8925 stop 1.8960 target 1.8780. Conviction low — no catalyst in sight."
+    },
+    {
+      "symbol": "XAGUSD",
+      "name": "Silver Spot",
+      "price": 61.220001,
+      "previousClose": 61.048,
+      "change": 0.172001,
+      "changePercent": 0.2817,
+      "dayHigh": 61.345001,
+      "dayLow": 61.07,
+      "yearHigh": 121.300003,
+      "yearLow": 45.845001,
+      "signal": "NEUTRAL",
+      "signalStrength": 10,
+      "eventImpactProbability": 60,
+      "sparkline": [
+        60.667999,
+        60.098,
+        60.724998,
+        59.977001,
+        60.868999,
+        61.167999,
+        59.898998,
+        59.063999,
+        60.669998,
+        61.220001
+      ],
+      "ohlc": [
+        {
+          "date": "2026-09-23",
+          "open": 66.20500183105469,
+          "high": 66.22000122070312,
+          "low": 64.38200378417969,
+          "close": 64.38200378417969,
+          "volume": 216
+        },
+        {
+          "date": "2026-09-24",
+          "open": 63.400001525878906,
+          "high": 63.6349983215332,
+          "low": 63.0,
+          "close": 63.457000732421875,
+          "volume": 51
+        },
+        {
+          "date": "2026-09-25",
+          "open": 63.630001068115234,
+          "high": 64.24500274658203,
+          "low": 63.625,
+          "close": 64.24500274658203,
+          "volume": 49
+        },
+        {
+          "date": "2026-09-28",
+          "open": 61.3849983215332,
+          "high": 61.3849983215332,
+          "low": 61.220001220703125,
+          "close": 61.220001220703125,
+          "volume": 1386
+        },
+        {
+          "date": "2026-09-29",
+          "open": 60.65999984741211,
+          "high": 61.20000076293945,
+          "low": 60.494998931884766,
+          "close": 60.667999267578125,
+          "volume": 146
+        },
+        {
+          "date": "2026-09-30",
+          "open": 60.81999969482422,
+          "high": 60.81999969482422,
+          "low": 60.0,
+          "close": 60.097999572753906,
+          "volume": 349
+        },
+        {
+          "date": "2026-10-01",
+          "open": 61.04999923706055,
+          "high": 61.04999923706055,
+          "low": 60.724998474121094,
+          "close": 60.724998474121094,
+          "volume": 229
+        },
+        {
+          "date": "2026-10-02",
+          "open": 61.55500030517578,
+          "high": 61.55500030517578,
+          "low": 59.97700119018555,
+          "close": 59.97700119018555,
+          "volume": 164
+        },
+        {
+          "date": "2026-10-05",
+          "open": 61.52000045776367,
+          "high": 61.6150016784668,
+          "low": 60.86899948120117,
+          "close": 60.86899948120117,
+          "volume": 223
+        },
+        {
+          "date": "2026-10-06",
+          "open": 60.91999816894531,
+          "high": 61.375,
+          "low": 60.91999816894531,
+          "close": 61.167999267578125,
+          "volume": 33
+        },
+        {
+          "date": "2026-10-07",
+          "open": 60.880001068115234,
+          "high": 60.880001068115234,
+          "low": 59.529998779296875,
+          "close": 59.89899826049805,
+          "volume": 446
+        },
+        {
+          "date": "2026-10-08",
+          "open": 59.06399917602539,
+          "high": 59.06399917602539,
+          "low": 58.915000915527344,
+          "close": 59.06399917602539,
+          "volume": 244
+        },
+        {
+          "date": "2026-10-09",
+          "open": 60.66999816894531,
+          "high": 60.755001068115234,
+          "low": 60.66999816894531,
+          "close": 60.66999816894531,
+          "volume": 244
+        },
+        {
+          "date": "2026-10-11",
+          "open": 61.290000915527344,
+          "high": 61.345001220703125,
+          "low": 61.06999969482422,
+          "close": 61.220001220703125,
+          "volume": 1373
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 59.06,
+          "description": "08 October low — near-term floor"
+        },
+        {
+          "level": "S2",
+          "price": 58.92,
+          "description": "08 October intraweek low"
+        },
+        {
+          "level": "S3",
+          "price": 57.0,
+          "description": "Deeper structural support"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 61.35,
+          "description": "Sunday high — first ceiling"
+        },
+        {
+          "level": "R2",
+          "price": 61.62,
+          "description": "06 October high — two-week range top"
+        },
+        {
+          "level": "R3",
+          "price": 63.0,
+          "description": "Psychological round number"
+        }
+      ],
+      "analysis": "Silver -2.25% on the week in a volatile range from 58.92 to 61.62. Industrial demand (AI data centres, nuclear infrastructure) provides a structural floor that gold lacks. Friday's gold rally dragged silver back above 61. Gold/silver ratio at 68.8x. CPI Wednesday is the catalyst. 3-day bias NEUTRAL: above 61.35 buy target 63.00 stop 60.50; below 59.00 sell target 57.00 stop 59.80. Inside range, no trade."
+    },
+    {
+      "symbol": "XAUUSD",
+      "name": "Gold Spot",
+      "price": 4210.600098,
+      "previousClose": 4216.299805,
+      "change": -5.699707,
+      "changePercent": -0.1352,
+      "dayHigh": 4221.700195,
+      "dayLow": 4209.299805,
+      "yearHigh": 5586.200195,
+      "yearLow": 3901.300049,
+      "signal": "NEUTRAL_BEARISH",
+      "signalStrength": -20,
+      "eventImpactProbability": 75,
+      "sparkline": [
+        4179.700195,
+        4186.700195,
+        4202.299805,
+        4162.299805,
+        4156.799805,
+        4187.100098,
+        4140.700195,
+        4157.0,
+        4216.299805,
+        4210.600098
+      ],
+      "ohlc": [
+        {
+          "date": "2026-09-23",
+          "open": 4394.7001953125,
+          "high": 4407.5,
+          "low": 4310.7001953125,
+          "close": 4318.39990234375,
+          "volume": 143873
+        },
+        {
+          "date": "2026-09-24",
+          "open": 4324.39990234375,
+          "high": 4338.0,
+          "low": 4278.2998046875,
+          "close": 4298.0,
+          "volume": 164814
+        },
+        {
+          "date": "2026-09-25",
+          "open": 4309.5,
+          "high": 4351.60009765625,
+          "low": 4289.2001953125,
+          "close": 4321.2001953125,
+          "volume": 140092
+        },
+        {
+          "date": "2026-09-28",
+          "open": 4315.0,
+          "high": 4315.60009765625,
+          "low": 4143.10009765625,
+          "close": 4168.39990234375,
+          "volume": 140092
+        },
+        {
+          "date": "2026-09-29",
+          "open": 4150.10009765625,
+          "high": 4218.10009765625,
+          "low": 4145.2001953125,
+          "close": 4179.7001953125,
+          "volume": 149747
+        },
+        {
+          "date": "2026-09-30",
+          "open": 4216.2001953125,
+          "high": 4251.10009765625,
+          "low": 4178.2001953125,
+          "close": 4186.7001953125,
+          "volume": 156277
+        },
+        {
+          "date": "2026-10-01",
+          "open": 4190.10009765625,
+          "high": 4222.7998046875,
+          "low": 4169.39990234375,
+          "close": 4202.2998046875,
+          "volume": 130846
+        },
+        {
+          "date": "2026-10-02",
+          "open": 4204.60009765625,
+          "high": 4259.0,
+          "low": 4153.7998046875,
+          "close": 4162.2998046875,
+          "volume": 169001
+        },
+        {
+          "date": "2026-10-05",
+          "open": 4169.39990234375,
+          "high": 4198.89990234375,
+          "low": 4150.39990234375,
+          "close": 4156.7998046875,
+          "volume": 112195
+        },
+        {
+          "date": "2026-10-06",
+          "open": 4169.2001953125,
+          "high": 4212.39990234375,
+          "low": 4130.7001953125,
+          "close": 4187.10009765625,
+          "volume": 121934
+        },
+        {
+          "date": "2026-10-07",
+          "open": 4195.0,
+          "high": 4197.7998046875,
+          "low": 4091.199951171875,
+          "close": 4140.7001953125,
+          "volume": 163894
+        },
+        {
+          "date": "2026-10-08",
+          "open": 4139.89990234375,
+          "high": 4170.7001953125,
+          "low": 4128.10009765625,
+          "close": 4157.0,
+          "volume": 148432
+        },
+        {
+          "date": "2026-10-09",
+          "open": 4159.7001953125,
+          "high": 4233.7001953125,
+          "low": 4156.10009765625,
+          "close": 4216.2998046875,
+          "volume": 148432
+        },
+        {
+          "date": "2026-10-11",
+          "open": 4220.7998046875,
+          "high": 4221.7001953125,
+          "low": 4209.2998046875,
+          "close": 4210.60009765625,
+          "volume": 2921
+        }
+      ],
+      "supports": [
+        {
+          "level": "S1",
+          "price": 4143,
+          "description": "28 September low — critical structural level"
+        },
+        {
+          "level": "S2",
+          "price": 4091,
+          "description": "07 October low — lowest since Iran-war unwind"
+        },
+        {
+          "level": "S3",
+          "price": 4000,
+          "description": "Major psychological round number"
+        }
+      ],
+      "resistances": [
+        {
+          "level": "R1",
+          "price": 4234,
+          "description": "Friday high — near-term ceiling"
+        },
+        {
+          "level": "R2",
+          "price": 4259,
+          "description": "02 October high"
+        },
+        {
+          "level": "R3",
+          "price": 4300,
+          "description": "Psychological round number / 50DMA area"
+        }
+      ],
+      "analysis": "Gold +1.16% on the week. Fell to 4,091 Wednesday on rates pressure (10Y 5.36%) then rallied +1.5% Friday on Iran strike-options headline to close at 4,216. Sunday trading at 4,211. Structural bearish case intact (10Y 5.24%, FOMC hiking bias) but geopolitical tail risk can override in a single session. CPI Wednesday is the dominant catalyst. 3-day bias NEUTRAL-BEARISH: sell rallies 4,230-4,250 stop 4,290 target 4,100. Close above 4,259 flips to NEUTRAL. Do not buy weakness."
+    }
+  ],
+  "scorecard": [
+    {
+      "instrument": "US30",
+      "previousBias": "NEUTRAL-BULLISH",
+      "result": "+0.26% from report, Friday +423pt rally to 51,655",
+      "verdict": "CORRECT"
+    },
+    {
+      "instrument": "NAS100",
+      "previousBias": "BULLISH",
+      "result": "-1.09% from report, ATH Tue then OpenAI gap -1.25% Thu",
+      "verdict": "WRONG"
+    },
+    {
+      "instrument": "GER40",
+      "previousBias": "NEUTRAL",
+      "result": "-1.42% from report, broke 25,000 Thu, recovered Fri; exceeded neutral range",
+      "verdict": "PARTIALLY"
+    },
+    {
+      "instrument": "AUDUSD",
+      "previousBias": "NEUTRAL-BEARISH",
+      "result": "-0.17% from report, drifted lower, DXY firmed; direction correct",
+      "verdict": "CORRECT"
+    },
+    {
+      "instrument": "GBPCAD",
+      "previousBias": "NEUTRAL",
+      "result": "-0.16% from report, range 1.8750-1.8898, closed flat",
+      "verdict": "CORRECT"
+    },
+    {
+      "instrument": "XAGUSD",
+      "previousBias": "NEUTRAL",
+      "result": "+0.34% from report, range 59.06-61.62, net flat",
+      "verdict": "CORRECT"
+    },
+    {
+      "instrument": "XAUUSD",
+      "previousBias": "BEARISH",
+      "result": "+1.21% from report, Wed low 4,091 then +1.5% Fri on Iran bid",
+      "verdict": "WRONG"
+    }
+  ],
+  "upcomingEvents": [
+    {
+      "date": "2026-10-12",
+      "time": "All day",
+      "event": "US Bond Market Closed (Columbus Day) — equities open",
+      "impact": "Medium"
+    },
+    {
+      "date": "2026-10-13",
+      "time": "Pre-market",
+      "event": "Q3 Earnings: JPMorgan, Citigroup, Wells Fargo, UnitedHealth",
+      "impact": "Very High"
+    },
+    {
+      "date": "2026-10-14",
+      "time": "12:30 GMT",
+      "event": "US CPI September",
+      "impact": "Very High"
+    },
+    {
+      "date": "2026-10-15",
+      "time": "12:30 GMT",
+      "event": "US PPI September + Weekly Jobless Claims",
+      "impact": "High"
+    },
+    {
+      "date": "2026-10-15",
+      "time": "12:30 GMT",
+      "event": "US Retail Sales September",
+      "impact": "High"
+    },
+    {
+      "date": "2026-10-15",
+      "time": "After close",
+      "event": "Taiwan Semiconductor (TSM) Q3 Earnings",
+      "impact": "Very High"
+    },
+    {
+      "date": "2026-10-16",
+      "time": "14:00 GMT",
+      "event": "US Prelim Consumer Sentiment October",
+      "impact": "Medium"
+    }
+  ],
+  "topTrades": [
+    {
+      "rank": 1,
+      "instrument": "NAS100",
+      "direction": "LONG",
+      "entry": "30,500-30,650",
+      "target": "31,500",
+      "stop": "30,200",
+      "rationale": "OpenAI revenue gap was a valuation reporting issue — Bloomberg confirmed Friday that the company expects ≥$70B annualised by year-end. The Thursday selloff cleaned out weak longs and provides a better entry. AI nuclear-energy theme (CEG +12.3%, BKH follow-on within 24 hours) confirms infrastructure buildout is real. TSM earnings Thursday is a forward catalyst. CPI risk is symmetrical: a cool print would likely trigger a +2-3% NAS100 rally. R:R ~1:3."
+    },
+    {
+      "rank": 2,
+      "instrument": "XAUUSD",
+      "direction": "SHORT",
+      "entry": "4,230-4,250",
+      "target": "4,100",
+      "stop": "4,290",
+      "rationale": "Friday's +1.5% gold rally was purely geopolitical (Iran strike-options headline). Trump explicitly stated no strike before the November 3 midterms — this premium should partially deflate. The structural case remains bearish: 10Y at 5.24% is the highest sustained yield since 2002, FOMC confirms more hikes, and the opportunity cost of holding gold is extreme. CPI Wednesday is the catalyst: a hot print drives real yields higher and gold lower. R:R ~1:2.5."
+    },
+    {
+      "rank": 3,
+      "instrument": "US30",
+      "direction": "LONG",
+      "entry": "51,200-51,400",
+      "target": "52,000",
+      "stop": "50,800",
+      "rationale": "Equal-weight S&P 500 outperformed cap-weight (+1.6% vs +1.2%) — participation is genuinely broadening beyond mega-caps. Q3 earnings season begins Tuesday. The AI nuclear theme and SpaceX spectrum deal signal healthy M&A and capex. Price consolidating at record highs, not rolling over. CPI Wednesday is the risk; half position pre-CPI, add post-CPI if the print is benign. R:R ~1:2."
+    }
+  ],
+  "riskScenarios": [
+    {
+      "name": "Hot US CPI Print (>3.0% YoY) Wed 14 October",
+      "probability": "30%",
+      "impact": "USD +1-2%, equities -1.5 to -3%, gold -1 to -2%, NAS100 hit hardest. 10Y breaks back above 5.36% toward 5.50%. Removes any residual dovish Fed narrative entirely. Probability elevated by UMich 1-year inflation expectations at 4.7% and Brent above $100 feeding into headline CPI."
+    },
+    {
+      "name": "Iran Strike / Strait of Hormuz Disruption",
+      "probability": "10-15%",
+      "impact": "Gold +3-5%, oil +10-15%, equities -2-4%, AUDUSD -1-2%. Despite Trump's assurance that no strike occurs before midterms, the White House formally requesting strike options is a signal. Tail risk but dominant geopolitical scenario."
+    },
+    {
+      "name": "TSM Earnings Miss or Weak Guide Thu 15 October",
+      "probability": "15%",
+      "impact": "NAS100 -3 to -5% gap risk, semis -5%+. AI chip demand narrative unwinds. Would invalidate Trade 1 (NAS100 LONG) instantly. A beat with strong guide could conversely push NAS100 back toward 31,361 ATH."
+    },
+    {
+      "name": "Soft US CPI Print (≤2.7% YoY) Wed 14 October",
+      "probability": "20%",
+      "impact": "Equities +1.5 to +2.5%, gold +1-2%, USD -1%, 10Y toward 5.00%. NAS100 would be the primary beneficiary. Rate-cut hopes would resurface despite FOMC minutes. Most beneficial scenario for bullish equity trades."
+    },
+    {
+      "name": "Q3 Bank Earnings Disappoint Tue 13 October",
+      "probability": "15%",
+      "impact": "US30 -1 to -2%, financials -3%+. JPM, C, WFC set the tone for earnings season. Loan-loss provisions and net interest margin are the key metrics. A miss would challenge the broadening-participation thesis."
+    }
+  ]
+}
