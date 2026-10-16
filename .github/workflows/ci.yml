@@ -1,0 +1,49 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+
+# A new push to a pull request cancels the run still going for the previous push.
+# Pushes to main are never cancelled.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# The repo has no test suite. verify runs the two offline steps the scheduled workflows depend
+# on, so a change that breaks them fails here instead of at the next cron run. It writes
+# nothing back: the manifest and PDF it builds stay on the runner. Authoring and refresh call
+# OpenRouter, yfinance and ClickUp and stay out.
+jobs:
+  verify:
+    runs-on: ubicloud-standard-2
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: pdf-export/package-lock.json
+
+      - name: Rebuild manifest
+        run: python build_manifest.py
+
+      - name: Install PDF export dependencies
+        run: cd pdf-export && npm ci --no-fund --no-audit
+
+      - name: Render the latest report to PDF
+        run: |
+          set -euo pipefail
+          slug=$(ls reports | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}-(weekly|midweek)\.json$' | sort | tail -1)
+          slug=${slug%.json}
+          echo "Rendering $slug"
+          cd pdf-export
+          npx tsx generate_report_pdf.tsx "$slug"
