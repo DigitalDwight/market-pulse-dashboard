@@ -1,79 +1,79 @@
 {
-  "generatedAt": "2026-10-14T10:59:35Z",
+  "generatedAt": "2026-10-18T21:13:36Z",
   "hitRateFormula": "(CORRECT + 0.5 x PARTIALLY) / graded calls. NOT GRADED is excluded from both sides.",
-  "reportCount": 29,
+  "reportCount": 30,
   "totals": {
-    "CORRECT": 101,
-    "PARTIALLY": 55,
-    "WRONG": 40,
+    "CORRECT": 104,
+    "PARTIALLY": 56,
+    "WRONG": 43,
     "NOT GRADED": 7,
-    "graded": 196,
-    "hitRate": 65.6,
-    "correctPct": 51.5
+    "graded": 203,
+    "hitRate": 65.0,
+    "correctPct": 51.2
   },
   "byInstrument": {
     "AUDUSD": {
       "CORRECT": 16,
-      "PARTIALLY": 9,
+      "PARTIALLY": 10,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 28,
-      "hitRate": 73.2,
-      "correctPct": 57.1
+      "graded": 29,
+      "hitRate": 72.4,
+      "correctPct": 55.2
     },
     "GBPCAD": {
-      "CORRECT": 10,
+      "CORRECT": 11,
       "PARTIALLY": 12,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 28,
-      "hitRate": 57.1,
-      "correctPct": 35.7
+      "graded": 29,
+      "hitRate": 58.6,
+      "correctPct": 37.9
     },
     "GER40": {
       "CORRECT": 15,
       "PARTIALLY": 8,
-      "WRONG": 5,
+      "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 28,
-      "hitRate": 67.9,
-      "correctPct": 53.6
+      "graded": 29,
+      "hitRate": 65.5,
+      "correctPct": 51.7
     },
     "NAS100": {
       "CORRECT": 14,
       "PARTIALLY": 5,
-      "WRONG": 9,
+      "WRONG": 10,
       "NOT GRADED": 1,
-      "graded": 28,
-      "hitRate": 58.9,
-      "correctPct": 50.0
+      "graded": 29,
+      "hitRate": 56.9,
+      "correctPct": 48.3
     },
     "US30": {
-      "CORRECT": 14,
+      "CORRECT": 15,
       "PARTIALLY": 9,
       "WRONG": 5,
       "NOT GRADED": 1,
-      "graded": 28,
-      "hitRate": 66.1,
-      "correctPct": 50.0
+      "graded": 29,
+      "hitRate": 67.2,
+      "correctPct": 51.7
     },
     "XAGUSD": {
       "CORRECT": 14,
       "PARTIALLY": 8,
-      "WRONG": 6,
+      "WRONG": 7,
       "NOT GRADED": 1,
-      "graded": 28,
-      "hitRate": 64.3,
-      "correctPct": 50.0
+      "graded": 29,
+      "hitRate": 62.1,
+      "correctPct": 48.3
     },
     "XAUUSD": {
-      "CORRECT": 18,
+      "CORRECT": 19,
       "PARTIALLY": 4,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 28,
-      "hitRate": 71.4,
-      "correctPct": 64.3
+      "graded": 29,
+      "hitRate": 72.4,
+      "correctPct": 65.5
     }
   },
   "byReport": [
@@ -453,9 +453,32 @@
       "graded": 7,
       "hitRate": 64.3,
       "correctPct": 57.1
+    },
+    {
+      "slug": "2026-10-18-weekly",
+      "date": "2026-10-18",
+      "displayDate": "Sunday 18 October 2026",
+      "type": "Weekly",
+      "CORRECT": 3,
+      "PARTIALLY": 1,
+      "WRONG": 3,
+      "NOT GRADED": 0,
+      "graded": 7,
+      "hitRate": 50.0,
+      "correctPct": 42.9
     }
   ],
   "misses": [
+    {
+      "slug": "2026-10-18-weekly",
+      "date": "2026-10-18",
+      "displayDate": "Sunday 18 October 2026",
+      "type": "Weekly",
+      "instrument": "XAGUSD",
+      "previousBias": "NEUTRAL",
+      "result": "-5.54% to 57.305; crashed to 55.55 low — NEUTRAL missed a 6.4% directional move",
+      "movePct": 6.4
+    },
     {
       "slug": "2026-07-05-weekly",
       "date": "2026-07-05",
@@ -475,6 +498,16 @@
       "previousBias": "BULLISH",
       "result": "ATH 30,762 set Jun 3 (same day as bias); crashed -4.77% on NFP Friday to close 28,957 (-5.55% from bias price)",
       "movePct": -5.55
+    },
+    {
+      "slug": "2026-10-18-weekly",
+      "date": "2026-10-18",
+      "displayDate": "Sunday 18 October 2026",
+      "type": "Weekly",
+      "instrument": "NAS100",
+      "previousBias": "NEUTRAL_BULLISH",
+      "result": "-5.49% to 29,188; worst week since June on CPI + CoreWeave + Kospi breakers",
+      "movePct": -5.49
     },
     {
       "slug": "2026-07-01-midweek",
@@ -664,6 +697,16 @@
       "instrument": "US30",
       "previousBias": "NEUTRAL_BEARISH",
       "result": "+2.13% to new year high 50,830 intraday; broke above 50,000 and 50,200 resistance",
+      "movePct": 2.13
+    },
+    {
+      "slug": "2026-10-18-weekly",
+      "date": "2026-10-18",
+      "displayDate": "Sunday 18 October 2026",
+      "type": "Weekly",
+      "instrument": "GER40",
+      "previousBias": "NEUTRAL_BEARISH",
+      "result": "+2.13% to 25,623; European value rotation lifted DAX through resistance",
       "movePct": 2.13
     },
     {
