@@ -5,7 +5,7 @@
   "displayDate": "Sunday 18 October 2026",
   "title": "MARKET PULSE -- Weekly Trading Report",
   "markdownFile": "2026-10-18-weekly.md",
-  "lastUpdated": "2026-10-18T21:13:35Z",
+  "lastUpdated": "2026-10-18T22:11:22Z",
   "marketSentiment": "NEUTRAL",
   "macroTheme": "Nasdaq suffers worst week since June as 3.7% CPI, CoreWeave credit scare and Kospi circuit breakers trigger AI de-rating; Dow escapes with gain as rotation into defensives and energy accelerates. Hormuz attacks escalate — Brent back at $110. Gold stable at $4,165-4,181 as geopolitics offset rate headwinds. 10Y yield fell 15bp despite hot CPI — safety bid, not duration trade.",
   "macroOverview": "The week of 12-16 October 2026 was defined by a violent rotation out of AI-linked growth into defensives, energy and value. A hot 3.7% CPI print on Wednesday removed residual Fed-cut hopes and triggered the Nasdaq's worst week since June (-5.49%). Kospi circuit breakers tripped Thursday on Asian AI financing fears. CoreWeave credit scare compounded the chip rout: AMD -11%, AVGO -7.3%, NVDA -5.4%. The Dow gained 0.67% as UNH, WMT, HD and energy names carried. Brent tagged $110 (first time since May) as Iran stepped up Hormuz attacks — at least nine commercial ships hit. IEA released 20M barrels of diesel. WTI settled $101.41, up 10.4% on week. Gold remarkably stable at $4,181 (-0.8%). Silver crashed 5.5% to 57.305 as industrial-demand thesis broke. VIX surged 31.4% to 19.99. The 10Y yield fell 15bp to 5.09% — a safety bid into duration, not a growth trade. Mega-cap tech earnings loom.",
@@ -717,10 +717,10 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.87758,
+      "price": 1.88271,
       "previousClose": 1.88329,
-      "change": -0.00571,
-      "changePercent": -0.3032,
+      "change": -0.00058,
+      "changePercent": -0.0308,
       "dayHigh": 1.8844,
       "dayLow": 1.87669,
       "yearHigh": 1.90406,
@@ -738,7 +738,7 @@
         1.884573,
         1.87987,
         1.8836,
-        1.87758
+        1.88271
       ],
       "ohlc": [
         {
@@ -850,7 +850,7 @@
           "open": 1.8844000101089478,
           "high": 1.8844000101089478,
           "low": 1.8766900300979614,
-          "close": 1.8775800466537476,
+          "close": 1.8827099800109863,
           "volume": 0
         }
       ],
@@ -894,18 +894,17 @@
       "symbol": "XAGUSD",
       "name": "Silver Spot",
       "price": 57.305,
-      "previousClose": 58.064999,
-      "change": -0.759998,
-      "changePercent": -1.3089,
-      "dayHigh": 58.139999,
-      "dayLow": 57.035,
+      "previousClose": 57.305,
+      "change": 0.0,
+      "changePercent": 0.0,
+      "dayHigh": 57.235001,
+      "dayLow": 56.900002,
       "yearHigh": 121.300003,
       "yearLow": 45.845001,
       "signal": "BEARISH",
       "signalStrength": -60,
       "eventImpactProbability": 75,
       "sparkline": [
-        60.868999,
         61.167999,
         59.898998,
         59.063999,
@@ -914,17 +913,10 @@
         59.160999,
         55.549999,
         56.837002,
+        56.994999,
         57.305
       ],
       "ohlc": [
-        {
-          "date": "2026-09-29",
-          "open": 60.65999984741211,
-          "high": 61.20000076293945,
-          "low": 60.494998931884766,
-          "close": 60.667999267578125,
-          "volume": 146
-        },
         {
           "date": "2026-09-30",
           "open": 60.81999969482422,
@@ -1023,11 +1015,19 @@
         },
         {
           "date": "2026-10-16",
-          "open": 57.6349983215332,
-          "high": 58.13999938964844,
-          "low": 57.03499984741211,
+          "open": 56.994998931884766,
+          "high": 57.01499938964844,
+          "low": 56.994998931884766,
+          "close": 56.994998931884766,
+          "volume": 0
+        },
+        {
+          "date": "2026-10-18",
+          "open": 57.130001068115234,
+          "high": 57.23500061035156,
+          "low": 56.900001525878906,
           "close": 57.30500030517578,
-          "volume": 34163
+          "volume": 99
         }
       ],
       "supports": [
@@ -1070,18 +1070,17 @@
       "symbol": "XAUUSD",
       "name": "Gold Spot",
       "price": 4181.100098,
-      "previousClose": 4204.399902,
-      "change": -23.299805,
-      "changePercent": -0.5542,
-      "dayHigh": 4220.399902,
-      "dayLow": 4167.5,
+      "previousClose": 4181.100098,
+      "change": 0.0,
+      "changePercent": 0.0,
+      "dayHigh": 4187.200195,
+      "dayLow": 4176.0,
       "yearHigh": 5586.200195,
       "yearLow": 3901.300049,
       "signal": "NEUTRAL",
       "signalStrength": -5,
       "eventImpactProbability": 80,
       "sparkline": [
-        4156.799805,
         4187.100098,
         4140.700195,
         4157.0,
@@ -1090,17 +1089,10 @@
         4177.299805,
         4107.899902,
         4170.100098,
+        4181.100098,
         4181.100098
       ],
       "ohlc": [
-        {
-          "date": "2026-09-29",
-          "open": 4150.10009765625,
-          "high": 4218.10009765625,
-          "low": 4145.2001953125,
-          "close": 4179.7001953125,
-          "volume": 149747
-        },
         {
           "date": "2026-09-30",
           "open": 4216.2001953125,
@@ -1203,7 +1195,15 @@
           "high": 4220.39990234375,
           "low": 4167.5,
           "close": 4181.10009765625,
-          "volume": 135074
+          "volume": 159510
+        },
+        {
+          "date": "2026-10-18",
+          "open": 4185.0,
+          "high": 4187.2001953125,
+          "low": 4176.0,
+          "close": 4181.10009765625,
+          "volume": 184
         }
       ],
       "supports": [
