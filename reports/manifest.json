@@ -1,7 +1,19 @@
 {
-  "generatedAt": "2026-10-18T22:11:19Z",
-  "count": 30,
+  "generatedAt": "2026-10-21T10:39:08Z",
+  "count": 31,
   "reports": [
+    {
+      "slug": "2026-10-21-midweek",
+      "type": "Mid-Week",
+      "date": "2026-10-21",
+      "displayDate": "Wednesday 21 October 2026",
+      "title": "MARKET PULSE -- Mid-Week Trading Report",
+      "markdownFile": "2026-10-21-midweek.md",
+      "lastUpdated": "2026-10-21T10:39:08Z",
+      "marketSentiment": "NEUTRAL_BULLISH",
+      "macroTheme": "Rotation trade intensifies as Dow surges 530 points on strong industrials earnings and easing oil; NAS100 stabilises below 30,000 with META earnings the binary catalyst for the back half. Gold grinds lower as 10Y yield holds above 5.10%.",
+      "jsonFile": "2026-10-21-midweek.json"
+    },
     {
       "slug": "2026-10-18-weekly",
       "type": "Weekly",
@@ -9,7 +21,7 @@
       "displayDate": "Sunday 18 October 2026",
       "title": "MARKET PULSE -- Weekly Trading Report",
       "markdownFile": "2026-10-18-weekly.md",
-      "lastUpdated": "2026-10-18T21:13:35Z",
+      "lastUpdated": "2026-10-18T22:11:22Z",
       "marketSentiment": "NEUTRAL",
       "macroTheme": "Nasdaq suffers worst week since June as 3.7% CPI, CoreWeave credit scare and Kospi circuit breakers trigger AI de-rating; Dow escapes with gain as rotation into defensives and energy accelerates. Hormuz attacks escalate — Brent back at $110. Gold stable at $4,165-4,181 as geopolitics offset rate headwinds. 10Y yield fell 15bp despite hot CPI — safety bid, not duration trade.",
       "jsonFile": "2026-10-18-weekly.json"

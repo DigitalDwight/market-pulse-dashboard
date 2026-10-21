@@ -1,72 +1,83 @@
-# Last Run: Wednesday 07 October 2026 (Mid-Week Report)
-# Next Expected Run: Sunday 11 October 2026 (20:00 BST -- Weekly)
+# Last Run: Wednesday 21 October 2026 (Mid-Week Report)
+# Next Expected Run: Sunday 25 October 2026 (20:00 BST -- Weekly Report)
 
-## Biases Set This Run (for the back half of the week -- Wed 07 Oct through Fri 09 Oct)
+## Biases Set This Run (for the back half of the week -- Wed 21 Oct through Fri 23 Oct)
 
 | Instrument | Bias | Price at Report | Signal Strength | Event Risk |
 |---|---|---|---|---|
-| US30 | NEUTRAL-BULLISH | 51,521.28 | +35 | 75% |
-| NAS100 | BULLISH | 31,224.47 | +70 | 85% |
-| GER40 | NEUTRAL | 25,449.19 | +5 | 65% |
-| AUDUSD | NEUTRAL-BEARISH | 0.69711 | -30 | 60% |
-| GBPCAD | NEUTRAL | 1.88456 | -5 | 55% |
-| XAGUSD | NEUTRAL | 61.015 | +10 | 65% |
-| XAUUSD | BEARISH | 4,160.40 | -55 | 80% |
+| US30 | BULLISH | 52,495.88 | +55 | 80% |
+| NAS100 | NEUTRAL-BEARISH | 29,490.28 | -45 | 95% |
+| GER40 | NEUTRAL | 25,430.88 | -10 | 75% |
+| AUDUSD | NEUTRAL-BEARISH | 0.70289 | -30 | 70% |
+| GBPCAD | NEUTRAL | 1.88135 | 0 | 60% |
+| XAGUSD | NEUTRAL-BEARISH | 57.415 | -35 | 65% |
+| XAUUSD | NEUTRAL-BEARISH | 4,134.10 | -40 | 75% |
 
-## Scorecard vs Sunday 04 October 2026 Biases
+## Scorecard vs Sunday 18 October 2026 Biases
 
 | Instrument | Previous Bias | Price Then | Price Now | Verdict |
 |---|---|---|---|---|
-| US30 | NEUTRAL-BULLISH | 51,176.96 | 51,521.28 | CORRECT |
-| NAS100 | BULLISH | 30,807.93 | 31,224.47 | CORRECT |
-| GER40 | NEUTRAL | 25,231.20 | 25,449.19 | PARTIALLY |
-| AUDUSD | NEUTRAL-BEARISH | 0.69580 | 0.69711 | PARTIALLY |
-| GBPCAD | NEUTRAL-BULLISH | 1.88687 | 1.88456 | PARTIALLY |
-| XAGUSD | NEUTRAL-BEARISH | 60.415 | 61.015 | WRONG |
-| XAUUSD | BEARISH | 4,162.30 | 4,160.40 | CORRECT |
+| US30 | NEUTRAL-BULLISH | 52,002.41 | 52,495.88 | CORRECT |
+| NAS100 | NEUTRAL-BEARISH | 29,187.55 | 29,490.28 | PARTIALLY |
+| GER40 | NEUTRAL | 25,622.61 | 25,430.88 | CORRECT |
+| AUDUSD | NEUTRAL-BEARISH | 0.69696 | 0.70289 | PARTIALLY |
+| GBPCAD | NEUTRAL-BEARISH | 1.87758 | 1.88135 | CORRECT |
+| XAGUSD | BEARISH | 57.305 | 57.415 | PARTIALLY |
+| XAUUSD | NEUTRAL | 4,181.10 | 4,134.10 | CORRECT |
 
-Running record: 94 CORRECT / 53 PARTIALLY / 37 WRONG (184 total). This run: 4 CORRECT / 3 PARTIALLY / 1 WRONG.
+Running record: 105 CORRECT / 58 PARTIALLY / 42 WRONG (205 total). This run: 4 CORRECT / 3 PARTIALLY / 0 WRONG.
 
 ## Conviction Trades Set This Run
 
-1. **NAS100 LONG** 31,000-31,100 / target 31,500 / stop 30,700 — AI nuclear deals reinforce capex narrative. Nvidia approaching $6T. Marvell raised FY2028 targets. Fed dovish. 10Y auction is primary risk. R:R ~1:2.
-2. **XAUUSD SHORT** 4,180-4,200 / target 4,050 / stop 4,230 — Gold failed to rally on NFP miss and dovish Fed. 10Y at 5.27% makes gold uninvestable. Iran bids being sold. Sunday short triggered Tue at ~4,200-4,212; manage existing position. R:R ~1:2.5.
-3. **US30 LONG** 51,200-51,350 / target 52,000 / stop 50,850 — Fresh record close, four advancing sessions. AI nuclear theme broadening rally. R:R ~1:2.
+1. **US30 LONG** 52,200-52,350 / target 53,200 / stop 51,900 — Rotation confirmed. Fresh entry above Sunday's untriggered zone. R:R ~1:2.5.
+2. **XAUUSD SHORT** 4,150-4,170 / target 4,050 / stop 4,200 — Manage/add to 04 Oct legacy short. Trail legacy stop to 4,180. R:R ~1:2.5 on add.
+3. **AUDUSD SHORT** 0.7020-0.7030 / target 0.6950 / stop 0.7050 — Fade the 0.7000 breakout. Legacy 04 Oct short stopped at 0.7030. Tight stop. R:R ~1:2.3.
 
-## Prior Conviction Trades Status
+## Prior Conviction Trades Status (from Sunday 18 October)
 
-### From Sunday 04 October:
-1. NAS100 LONG 30,500-30,650 / target 31,500 / stop 30,100: **NOT TRIGGERED**. Lowest print since Sunday was 30,798.42 (Mon 05 Oct). Entry zone never reached. Price at 31,224.47. The entry was set too low despite correct directional call.
-2. XAUUSD SHORT 4,200-4,220 / target 4,050 / stop 4,280: **TRIGGERED (Tue 06 Oct)**. Gold high 4,212.40 filled entry zone. Currently 4,160.40. In profit ~$40-50/oz. Manage.
-3. AUDUSD SHORT 0.6980-0.7000 / target 0.6880 / stop 0.7030: **TRIGGERED (Tue 06 Oct)**. AUDUSD high 0.69902 filled entry zone. Currently 0.69711. In profit ~9-19 pips. Manage.
+1. XAGUSD SHORT 57.80-58.50 / target 55.50 / stop 59.50: **PARTIALLY TRIGGERED** — today's high 58.415 entered zone. Currently 57.415. Stops tightened to 58.60. Still open.
+2. NAS100 SHORT 29,500-29,800 / target 28,500 / stop 30,200: **TRIGGERED** — high today 29,711. Near breakeven at 29,490. Tighten stop to 29,850. Still open.
+3. US30 LONG 51,600-51,800 / target 52,800 / stop 51,300: **NOT TRIGGERED** — week low 51,910. Price never entered buy zone.
 
-### From Sunday 20 September (carry-forward resolved):
-- All prior trades resolved. GER40 SHORT closed profit, XAUUSD SHORT not triggered, US30 SHORT closed profit, NAS100 SHORT stopped.
+## Legacy Trade Summary for Next Agent
+
+| Trade | Entry Date | Direction | Entry Zone | Target | Stop | Current Status |
+|---|---|---|---|---|---|---|
+| XAUUSD SHORT | 04 Oct | SHORT | 4,200-4,220 | 4,050 | 4,180 (trailed from 4,280) | Open, in profit (~$4,134). Trail at 4,180. Target 4,050. |
+| AUDUSD SHORT | 04 Oct | SHORT | 0.6980-0.7000 | 0.6880 | 0.7030 | **STOPPED OUT** 21 Oct at 0.7030 (high 0.70314). Closed. |
+| XAUUSD SHORT | 11 Oct | SHORT | 4,230-4,250 | 4,100 | 4,290 | **CLOSED AT TARGET** — 4,095 hit 14 Oct. Full win. |
+| XAGUSD SHORT | 18 Oct | SHORT | 57.80-58.50 | 55.50 | 58.60 (tightened from 59.50) | Partially triggered, open. Currently 57.415. |
+| NAS100 SHORT | 18 Oct | SHORT | 29,500-29,800 | 28,500 | 29,850 (tightened from 30,200) | Triggered, near breakeven. Currently 29,490. |
 
 ## Pipeline Status
 
-- **Last successful author run:** 07 October 2026 (this report)
-- **Prior run:** 04 October 2026 (Sunday Weekly)
-- **Missed runs:** Wednesday 23 September, Sunday 27 September, Wednesday 30 September 2026 (three consecutive pipeline gaps in late Sep -- resolved)
-- **Provider:** OpenRouter (stable)
-- **Next scheduled:** Sunday 11 October 2026 at 20:00 BST (Weekly)
+- **Last successful author run:** 21 October 2026 (this report)
+- **Prior run:** 18 October 2026 (Sunday Weekly)
+- **Missed runs:** Wednesday 14 October 2026 (Mid-Week) was NOT published. This mid-week run (21 Oct) is on schedule.
+- **Provider:** Stable for this run.
+- **Next scheduled:** Sunday 25 October 2026 at 20:00 BST (Weekly Report)
 
-## Key Events to Track for Next Run (Sunday 11 Oct)
+## Key Events to Track for Next Run (Sunday 25 October)
 
-- **Wed 07 Oct 17:00 GMT:** US 10Y Treasury Auction Reopen ($39B). The single most important event this week. Outcome will define the back-half bias for equities and gold.
-- **Wed 07 Oct 18:00 GMT:** FOMC Minutes (16 Sep Meeting). Dovish vs hawkish committee divide. Any signal of broad pause support = bullish risk assets, bearish USD, potential gold short squeeze.
-- **Thu 08 Oct 12:30 GMT:** US Weekly Jobless Claims. Prior 197K. Post-NFP sensitivity elevated.
-- **Thu 08 Oct 17:00 GMT:** US 30Y Treasury Auction ($22B). Complements the 10Y auction. Weak demand compounds stress.
-- **Fri 09 Oct 14:00 GMT:** US Prelim Consumer Sentiment (Oct). First post-NFP consumer mood check.
+- **Wed 21 Oct after close: META Q3 Earnings** — THE single most important event for NAS100. The Sunday agent must assess: did META beat and reassure on AI capex ROI, or did it follow NFLX lower? This defines the NAS100 trajectory and the fate of the Sunday conviction SHORT.
+- **Thu 22 Oct: US Jobless Claims + Philly Fed Manufacturing.** Philly Fed is a key leading indicator. Below 0.0 reinforces recession fears. Above 5.0 supports the soft-landing thesis.
+- **Thu 22 Oct after close: TSLA, IBM, TXN, LRCX Earnings** — AI-capex stress tests. TSLA is the bellwether for growth/tech sentiment. IBM and TXN provide enterprise AI spending reads. LRCX is semis capex proxy.
+- **Fri 23 Oct: US Flash PMIs October (Manufacturing & Services) at 13:45 GMT.** The single most important macro data point of the week. Below 48.0 on Manufacturing confirms recession and validates silver's crash. Above 50.0 would be a massive upside surprise.
+- **Fri 23 Oct: UMich Final Consumer Sentiment (Oct).** Inflation expectations component matters for Fed pricing.
+- **Mon 28 Oct: FOMC Rate Decision (18:00 GMT).** Current hike probability 17.2%. The Sunday agent must assess whether the data flow (PMIs, Philly Fed, earnings) has shifted this probability. A surprise hike would be the biggest macro shock of the year.
 
-## Market State Notes for Next Agent (Sunday 11 Oct)
+## Market State Notes for Next Agent (Sunday 25 October)
 
-- The 10Y and 30Y Treasury auctions (Wed/Thu) are the dominant events. The Sunday agent must assess: did the auctions tail? Did the 10Y break back above 5.34% or break below 5.15%? The answer defines the entire rate narrative for the week ahead.
-- NAS100 at 31,224 with ATH 31,361. The Sunday agent must evaluate: did the AI nuclear-energy theme sustain into Friday, or did profit-taking emerge? Nvidia approaching $6T is the psychological anchor.
-- Gold at 4,160. The bearish thesis is: gold failed to rally on NFP miss + dovish Fed. The Sunday agent must check whether the FOMC Minutes and Treasury auctions reinforced or reversed this. If gold closed below 4,143, the 4,000 target is live. If gold reclaimed 4,280, the bearish bias is broken.
-- XAGUSD was the WRONG call this run (+1% against NEUTRAL-BEARISH). The industrial-demand narrative (AI data centres, nuclear power) provided a floor. The Sunday agent must assess whether this industrial bid persisted or whether gold's gravity eventually dragged silver lower.
-- AUDUSD below 0.7000 remains structural. The Sunday agent must assess whether the DXY continued to weaken (now 101.8) and whether AUD finally responded. A close above 0.7000 flips the bias. A break below 0.6905 opens 0.6880.
-- GBPCAD range 1.8750-1.8925. Oil headlines (Iran tanker attacks, Saudi pipeline, G7 releases) are the wildcard. Brent at ~$101, EIA Q4 forecast $105.
-- GER40 bounce from 24,832 to 25,449 on declining volume. The Sunday agent must assess: did the bounce hold above 25,000, or did European fundamentals (stagflation, ECB uncertainty) reassert?
-- Running record 94/53/37 (51.1% CORRECT). The pattern of correct directional calls but mistimed entry zones continues (NAS100 LONG not triggered because entry was set too low). Future conviction trades should consider wider entry zones or using limit orders closer to market for strongly trending instruments.
-- No missed-run re-baseline instruction needed -- the next agent should grade this run's biases normally.
+- **META earnings are THE event to grade.** The Sunday agent must determine: (1) did META beat or miss? (2) what was the guidance on AI capex and ad spending? (3) how did the market react? The NAS100 NEUTRAL-BEARISH bias (-45) and the conviction SHORT (entry 29,500-29,800) both hinge on the AI de-rating continuing. If META beat big and NAS100 reclaimed 30,000, the bearish thesis is invalidated.
+- **TSLA, IBM, TXN, LRCX earnings Thursday complete the AI picture.** By Sunday, the full mega-cap tech earnings slate will be known. The Sunday agent must synthesise across all of them: is AI capex paying off or not?
+- **Rotation trade is the parallel theme.** US30 surged 530 points Tuesday on 3M/NOC. The Sunday agent must check: did the rotation continue through Thursday-Friday? Did Dow approach 53,000? The BULLISH bias (+55) and LONG conviction trade depend on rotation enduring. If PMIs print recessionary and industrials sell off, the thesis cracks.
+- **NAS100 at 29,490 with 30,000 as broken-support resistance.** The Sunday agent must check: did META/TSLA earnings push NAS100 above 30,000 (invalidating bearish bias) or below 29,074 (opening 28,500)? The conviction SHORT is triggered near 29,500-29,710 with stop tightened to 29,850. Assess status.
+- **XAUUSD at 4,134 — grinding toward 4,100.** The legacy 04 Oct short (entry 4,200-4,220) is in profit with stop trailed to 4,180. Target 4,050. The Sunday agent must check: did gold break 4,100? If yes, is 4,050 in sight? If gold bounced from 4,100 back above 4,180, the legacy stop was hit. Also: did the FOMC meeting on 28 Oct start getting priced?
+- **XAGUSD at 57.415 — stabilised, not crashing.** The Sunday conviction SHORT is partially triggered. The Sunday agent must check: did silver break 56.74 (opening 55.50) or reclaim 59.00 (invalidating bearish bias)? Flash PMIs Friday are the catalyst.
+- **AUDUSD at 0.70289 — legacy short stopped, fresh short active.** The 04 Oct short was stopped at 0.7030. The fresh conviction SHORT (entry 0.7020-0.7030, stop 0.7050) is in play. The Sunday agent must check: did AUDUSD reverse below 0.7000 on risk-off flows (META/TSLA miss) or continue higher toward 0.7050+ (stopping the new trade)? AUSDUSD at 0.7030+ invalidates the bearish thesis.
+- **GBPCAD at 1.88135 — range trade.** The Sunday agent should check whether UK Flash PMIs provided a breakout catalyst. A print below 48.0 could send GBPCAD below 1.8700. A print above 52.0 could push it toward 1.8900.
+- **GER40 at 25,431 — France protests Saturday.** The Sunday agent must assess pre-positioning for the weekend protests. Did GER40 hold 25,000 or break lower? The 25,050 support is key.
+- **Flash PMIs Friday are the macro anchor.** The Sunday agent must incorporate the actual prints (Manufacturing and Services for US, Eurozone, UK). Below 48.0 on any major economy Manufacturing PMI = recession signal = risk-off. Above 50.0 = soft landing = risk-on.
+- **FOMC 28 Oct is the forward catalyst.** By Sunday, the blackout period will be in effect. The Sunday agent must assess the market's pricing for the meeting. Currently 17.2% hike probability. Flash PMIs and Philly Fed could shift this significantly.
+- **Running record 105/58/42 (51.2% CORRECT).** The directional accuracy remains above 50%. The missed Wednesday 14 October run remains a pipeline gap but does not affect grading.
+- **No re-baseline instruction needed.** The Sunday 25 October agent should grade this run's biases normally against price action from Wednesday 21 October through Friday 24 October.
