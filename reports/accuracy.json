@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T10:39:08Z",
+  "generatedAt": "2026-10-21T11:00:44Z",
   "hitRateFormula": "(CORRECT + 0.5 x PARTIALLY) / graded calls. NOT GRADED is excluded from both sides.",
   "reportCount": 31,
   "totals": {
