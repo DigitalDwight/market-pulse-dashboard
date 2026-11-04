@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T23:19:18Z",
+  "generatedAt": "2026-11-04T13:38:15Z",
   "count": 31,
   "reports": [
     {
@@ -9,7 +9,7 @@
       "displayDate": "Wednesday 21 October 2026",
       "title": "MARKET PULSE -- Mid-Week Trading Report",
       "markdownFile": "2026-10-21-midweek.md",
-      "lastUpdated": "2026-10-28T11:57:54Z",
+      "lastUpdated": "2026-11-01T23:19:20Z",
       "marketSentiment": "NEUTRAL_BULLISH",
       "macroTheme": "Rotation trade intensifies as Dow surges 530 points on strong industrials earnings and easing oil; NAS100 stabilises below 30,000 with META earnings the binary catalyst for the back half. Gold grinds lower as 10Y yield holds above 5.10%.",
       "jsonFile": "2026-10-21-midweek.json"
