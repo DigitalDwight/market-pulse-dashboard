@@ -5,7 +5,7 @@
   "displayDate": "Sunday 08 November 2026",
   "title": "MARKET PULSE — Weekly Trading Report",
   "markdownFile": "2026-11-08-weekly.md",
-  "lastUpdated": "2026-11-08T23:05:34Z",
+  "lastUpdated": "2026-11-08T23:23:56Z",
   "marketSentiment": "NEUTRAL_BEARISH",
   "macroTheme": "Historic AI/semis rout on Democratic midterm sweep fears of data-centre restrictions; oil crashes 14% on Iran ceasefire hopes; gold surges 3% as hedge bid; October payrolls crush forecasts pushing December Fed hike to 77-80%; BoE hikes to 4.00%; VIX at 25.64 signalling sustained volatility regime shift.",
   "macroOverview": "A violent risk-off rotation defined the week ending 06 November. The S&P 500 fell 2.2% but 10 of 11 sectors were positive — the signature of narrow AI/semis concentration dragging benchmarks down. NAS100 suffered its worst day since March 2020 (-6.36%) on Thursday 05 Nov. The semiconductor index crashed 12.25%, its second-biggest drop on record. NVDA -7.6%, AVGO -8.9%, TSLA -11.3% on the week. Oil fell 14% (WTI $89.93, Brent sub-$100) as Democratic Congress raised hopes of ending the US-Iran war. Gold +3.0% on hedge bid despite ceasefire narrative. NFP +165K vs ~59K expected, unemployment 4.1%, wages +0.4% MoM, prior months revised up +84K. December Fed hike odds surged to 77-80%. BoE hiked to 4.00%, RBA and Riksbank also tightened. US30 held 200DMA (50,676) — healthiest of the four major indices.",
@@ -541,10 +541,10 @@
     {
       "symbol": "AUDUSD",
       "name": "Australian Dollar vs US Dollar",
-      "price": 0.686436,
+      "price": 0.687285,
       "previousClose": 0.693241,
-      "change": -0.006805,
-      "changePercent": -0.9816,
+      "change": -0.005956,
+      "changePercent": -0.8591,
       "dayHigh": 0.687994,
       "dayLow": 0.686059,
       "yearHigh": 0.727738,
@@ -562,7 +562,7 @@
         0.69684,
         0.70043,
         0.69311,
-        0.686436
+        0.687285
       ],
       "ohlc": [
         {
@@ -674,7 +674,7 @@
           "open": 0.6868131756782532,
           "high": 0.6879944801330566,
           "low": 0.686059296131134,
-          "close": 0.6864360570907593,
+          "close": 0.6872851848602295,
           "volume": 0
         }
       ],
@@ -717,10 +717,10 @@
     {
       "symbol": "GBPCAD",
       "name": "British Pound vs Canadian Dollar",
-      "price": 1.88516,
+      "price": 1.88604,
       "previousClose": 1.886,
-      "change": -0.00084,
-      "changePercent": -0.0445,
+      "change": 4e-05,
+      "changePercent": 0.0021,
       "dayHigh": 1.8866,
       "dayLow": 1.88346,
       "yearHigh": 1.90406,
@@ -738,7 +738,7 @@
         1.88124,
         1.88267,
         1.88584,
-        1.88516
+        1.88604
       ],
       "ohlc": [
         {
@@ -850,7 +850,7 @@
           "open": 1.8861099481582642,
           "high": 1.8866000175476074,
           "low": 1.8834600448608398,
-          "close": 1.885159969329834,
+          "close": 1.8860399723052979,
           "volume": 0
         }
       ],
@@ -893,19 +893,18 @@
     {
       "symbol": "XAGUSD",
       "name": "Silver Spot",
-      "price": 51.942001,
-      "previousClose": 51.544998,
-      "change": 0.397003,
-      "changePercent": 0.7702,
-      "dayHigh": 52.375,
-      "dayLow": 51.200001,
+      "price": 51.93,
+      "previousClose": 51.942001,
+      "change": -0.012001,
+      "changePercent": -0.0231,
+      "dayHigh": 51.990002,
+      "dayLow": 51.415001,
       "yearHigh": 121.300003,
       "yearLow": 48.125,
       "signal": "NEUTRAL",
       "signalStrength": -15,
       "eventImpactProbability": 70,
       "sparkline": [
-        54.108002,
         54.292999,
         53.457001,
         52.191002,
@@ -914,17 +913,10 @@
         49.587002,
         52.119999,
         52.233002,
-        51.942001
+        51.803001,
+        51.93
       ],
       "ohlc": [
-        {
-          "date": "2026-10-20",
-          "open": 56.7400016784668,
-          "high": 57.70600128173828,
-          "low": 56.7400016784668,
-          "close": 57.70600128173828,
-          "volume": 3
-        },
         {
           "date": "2026-10-21",
           "open": 57.25,
@@ -1023,11 +1015,19 @@
         },
         {
           "date": "2026-11-06",
-          "open": 51.724998474121094,
-          "high": 52.375,
-          "low": 51.20000076293945,
-          "close": 51.94200134277344,
-          "volume": 45936
+          "open": 51.803001403808594,
+          "high": 51.845001220703125,
+          "low": 51.803001403808594,
+          "close": 51.803001403808594,
+          "volume": 56
+        },
+        {
+          "date": "2026-11-08",
+          "open": 51.61000061035156,
+          "high": 51.9900016784668,
+          "low": 51.415000915527344,
+          "close": 51.93000030517578,
+          "volume": 759
         }
       ],
       "supports": [
@@ -1069,19 +1069,18 @@
     {
       "symbol": "XAUUSD",
       "name": "Gold Spot",
-      "price": 4074.899902,
-      "previousClose": 4053.800049,
-      "change": 21.099854,
-      "changePercent": 0.5205,
-      "dayHigh": 4116.200195,
-      "dayLow": 4035.100098,
+      "price": 4077.199951,
+      "previousClose": 4074.899902,
+      "change": 2.300049,
+      "changePercent": 0.0564,
+      "dayHigh": 4080.899902,
+      "dayLow": 4065.699951,
       "yearHigh": 5586.200195,
       "yearLow": 3879.300049,
       "signal": "NEUTRAL",
       "signalStrength": 0,
       "eventImpactProbability": 85,
       "sparkline": [
-        4038.399902,
         4074.600098,
         4051.600098,
         4031.399902,
@@ -1090,17 +1089,10 @@
         3940.399902,
         4073.0,
         4113.5,
-        4074.899902
+        4074.899902,
+        4077.199951
       ],
       "ohlc": [
-        {
-          "date": "2026-10-20",
-          "open": 4162.39990234375,
-          "high": 4174.89990234375,
-          "low": 4130.10009765625,
-          "close": 4142.60009765625,
-          "volume": 161101
-        },
         {
           "date": "2026-10-21",
           "open": 4143.39990234375,
@@ -1203,7 +1195,15 @@
           "high": 4116.2001953125,
           "low": 4035.10009765625,
           "close": 4074.89990234375,
-          "volume": 166431
+          "volume": 215643
+        },
+        {
+          "date": "2026-11-08",
+          "open": 4074.300048828125,
+          "high": 4080.89990234375,
+          "low": 4065.699951171875,
+          "close": 4077.199951171875,
+          "volume": 1788
         }
       ],
       "supports": [
