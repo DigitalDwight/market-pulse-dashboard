@@ -1,87 +1,79 @@
-# Last Run: Sunday 18 October 2026 (Weekly Report)
-# Next Expected Run: Wednesday 22 October 2026 (06:00 BST -- Mid-Week Update)
+# Last Run: Sunday 08 November 2026 (Weekly Report)
+# Next Expected Run: Wednesday 11 November 2026 (06:00 GMT -- Mid-Week Update)
 
-## Biases Set This Run (for the week ahead -- Mon 19 Oct through Fri 23 Oct)
+## Biases Set This Run (for the full week ahead -- Mon 09 Nov through Fri 13 Nov)
 
 | Instrument | Bias | Price at Report | Signal Strength | Event Risk |
 |---|---|---|---|---|
-| US30 | NEUTRAL-BULLISH | 52,002.41 | +40 | 75% |
-| NAS100 | NEUTRAL-BEARISH | 29,187.55 | -55 | 90% |
-| GER40 | NEUTRAL | 25,622.61 | +15 | 70% |
-| AUDUSD | NEUTRAL-BEARISH | 0.69696 | -25 | 65% |
-| GBPCAD | NEUTRAL-BEARISH | 1.87758 | -20 | 60% |
-| XAGUSD | BEARISH | 57.305 | -60 | 75% |
-| XAUUSD | NEUTRAL | 4,181.10 | -5 | 80% |
+| US30 | NEUTRAL | 51,285.73 | +15 | 85% |
+| NAS100 | NEUTRAL-BEARISH | 26,989.99 | -55 | 95% |
+| GER40 | NEUTRAL | 25,820.36 | +5 | 75% |
+| AUDUSD | BEARISH | 0.68644 | -50 | 80% |
+| GBPCAD | NEUTRAL | 1.88516 | -5 | 55% |
+| XAGUSD | NEUTRAL | 51.942 | -15 | 70% |
+| XAUUSD | NEUTRAL | 4,074.90 | 0 | 85% |
 
-## Scorecard vs Sunday 11 October 2026 Biases
+## Scorecard vs Wednesday 21 October 2026 Biases
 
 | Instrument | Previous Bias | Price Then | Price Now | Verdict |
 |---|---|---|---|---|
-| US30 | NEUTRAL-BULLISH | 51,654.95 | 52,002.41 | CORRECT |
-| NAS100 | NEUTRAL-BULLISH | 30,883.15 | 29,187.55 | WRONG |
-| GER40 | NEUTRAL-BEARISH | 25,087.27 | 25,622.61 | WRONG |
-| AUDUSD | NEUTRAL-BEARISH | 0.69590 | 0.69696 | PARTIALLY |
-| GBPCAD | NEUTRAL | 1.88153 | 1.87758 | CORRECT |
-| XAGUSD | NEUTRAL | 61.22 | 57.305 | WRONG |
-| XAUUSD | NEUTRAL-BEARISH | 4,210.60 | 4,181.10 | CORRECT |
+| US30 | BULLISH | 52,495.88 | 51,285.73 | WRONG |
+| NAS100 | NEUTRAL-BEARISH | 29,490.28 | 26,989.99 | CORRECT |
+| GER40 | NEUTRAL | 25,430.88 | 25,820.36 | PARTIALLY |
+| AUDUSD | NEUTRAL-BEARISH | 0.70289 | 0.68644 | CORRECT |
+| GBPCAD | NEUTRAL | 1.88135 | 1.88516 | CORRECT |
+| XAGUSD | NEUTRAL-BEARISH | 57.415 | 51.942 | CORRECT |
+| XAUUSD | NEUTRAL-BEARISH | 4,134.10 | 4,074.90 | CORRECT |
 
-Running record: 101 CORRECT / 55 PARTIALLY / 42 WRONG (198 total). This run: 3 CORRECT / 1 PARTIALLY / 3 WRONG.
+Running record: 110 CORRECT / 59 PARTIALLY / 43 WRONG (212 total). This run: 5 CORRECT / 1 PARTIALLY / 1 WRONG.
 
 ## Conviction Trades Set This Run
 
-1. **XAGUSD SHORT** 57.80-58.50 / target 55.50 (then 53.00) / stop 59.50 — Silver weakest in basket. Industrial-demand thesis invalidated by AI capex scare. Broken 60.00 = resistance. R:R ~1:3.
-2. **NAS100 SHORT** 29,500-29,800 / target 28,500 / stop 30,200 — AI de-rating unfinished after -5.49% week. CoreWeave + Kospi + CPI. Mega-cap earnings binary risk. R:R ~1:2.5.
-3. **US30 LONG** 51,600-51,800 / target 52,800 / stop 51,300 — Rotation into defensives/energy is structural. Prior trade hit 52,000 target. Buy dips. R:R ~1:2.0.
+1. **NAS100 SHORT** 27,500-27,800 / target 26,000 / stop 28,100 — Sell into rally. Historic AI/semis rout. R:R ~1:2.3.
+2. **AUDUSD SHORT** 0.6900-0.6920 / target 0.6800 / stop 0.6950 — Trend continuation. DXY bid + Fed hike. R:R ~1:2.
+3. **XAUUSD RANGE** Buy 4,035-4,050 / target 4,150 / stop 3,990 AND Sell 4,150-4,170 / target 4,050 / stop 4,200 — Tug-of-war between ceasefire and equity-crash hedge bid. US CPI is tiebreaker. R:R ~1:2.5 each leg.
 
-## Prior Conviction Trades Status
+## Prior Conviction Trades Status (from Wednesday 21 October)
 
-### From Sunday 11 October:
-1. NAS100 LONG 30,500-30,650 / target 31,500 / stop 30,200: **TRIGGERED Mon-Tue, then STOPPED Wed post-CPI.** CPI 3.7% sent NAS100 through 30,200. Loss ~300-450 pts.
-2. XAUUSD SHORT 4,230-4,250 / target 4,100 / stop 4,290: **TRIGGERED Mon at ~4,235-4,242. HIT TARGET Wed at 4,095.** Full win. ~$130-150/oz.
-3. US30 LONG 51,200-51,400 / target 52,000 / stop 50,800: **ALREADY OPEN from prior week. HIT TARGET Fri at 52,002.** Full win. ~600-800 pts.
-
-### Legacy Carry-Forward (from 04 October):
-- XAUUSD SHORT 4,200-4,220 / target 4,050 / stop 4,280: **STILL OPEN.** Hit 4,095 Wed. Currently ~4,181. Near breakeven. Stop 4,280 intact.
-- AUDUSD SHORT 0.6980-0.7000 / target 0.6880 / stop 0.7030: **STILL OPEN.** Currently 0.69696. Modest profit. Target not reached.
-
-## Pipeline Status
-
-- **Last successful author run:** 18 October 2026 (this report)
-- **Prior run:** 11 October 2026 (Sunday Weekly)
-- **Missed runs:** Wednesday 14 October 2026 (Mid-Week Update) was NOT published. The pipeline missed its scheduled Wednesday run. The 11 October Sunday report was the last publication before this one. This means the Wednesday CPI post-mortem was never authored — the Wednesday agent should have run but did not.
-- **Consequence of missed Wednesday run:** The scorecard in this report grades directly against the 11 October Sunday biases (7 days of price action, not 3-4). The Wednesday 14 October report would have provided a mid-cycle re-baseline post-CPI. Since it was missed, this Sunday report handles the full week.
-- **Provider:** OpenRouter (stable for this run)
-- **Next scheduled:** Wednesday 22 October 2026 at 06:00 BST (Mid-Week Update)
-
-## Key Events to Track for Next Run (Wednesday 22 October)
-
-- **Mon 19 Oct:** Quiet start. US NAHB Housing Market Index. Focus on whether Friday's selloff extends or stabilises.
-- **Tue 20 Oct:** US Housing Starts & Building Permits. **Potential start of mega-cap tech earnings** — NFLX typically reports in this window. If NFLX reports Tuesday after close, the Wednesday agent must assess the print.
-- **Wed 21 Oct:** Fed Beige Book (18:00 GMT). Regional economic conditions. Look for signs of AI capex slowdown, loan tightening, or consumer weakness. **TSLA earnings possible in this window.**
-- **Thu 22 Oct:** US Jobless Claims + Philly Fed Manufacturing. The Philly Fed is a key leading indicator — any print below 0.0 reinforces recession fears already being priced by silver.
-- **Fri 23 Oct:** US Flash PMI October (Manufacturing & Services) at 13:45 GMT. This is the single most important data point for the back half of the week. A print below 48.0 validates the silver crash and could accelerate the NAS100 selloff.
-
-## Market State Notes for Next Agent (Wednesday 22 October)
-
-- **The AI de-rating is the dominant theme.** The Wednesday agent must assess whether the CoreWeave credit scare has intensified or faded. Key question: did the mega-cap earnings (NFLX, TSLA if reported) arrest the slide or accelerate it? The NAS100 NEUTRAL-BEARISH bias and the conviction SHORT trade hang on the de-rating continuing.
-- **NAS100 at 29,188 with the 30,000 broken-support zone as resistance.** The Wednesday agent must check: has NAS100 reclaimed 30,000 or is it consolidating below? A close above 30,000 invalidates the bearish thesis. A break below 29,000 opens 28,500. The conviction short entry zone of 29,500-29,800 may have been triggered on a dead-cat bounce. Assess the trade status.
-- **US30 at 52,002 with rotation intact.** The Dow benefited from the tech selloff. The Wednesday agent must assess: did the rotation continue? Did UNH, WMT, HD hold their gains? The NEUTRAL-BULLISH bias and LONG conviction trade depend on the rotation thesis holding. A broad-market liquidation that spares no sector is the primary risk — if the VIX spikes above 22, the US30 long is at risk.
-- **XAGUSD at 57.305 — the weakest link.** Silver crashed 5.5% last week. The BEARISH bias is the highest-conviction signal (-60) in the basket. The Wednesday agent must check whether silver has stabilised or continued lower. A break of 55.55 (Wednesday low) opens 53.00. The conviction SHORT entry of 57.80-58.50 may have triggered on a bounce. Assess.
-- **Gold range-bound 4,100-4,250.** The NEUTRAL call reflects opposing forces in balance. The Wednesday agent must check: did Hormuz escalate further (bullish gold) or did the hot CPI finally sink gold below 4,143? The two legacy XAUUSD shorts (04 Oct and 11 Oct) are both still open — the 04 Oct trade is near breakeven at 4,200-4,220 entry vs 4,181 current. The 11 Oct trade hit target and was partially closed. Assess whether to close both or let them run.
-- **AUDUSD at 0.69696 — the 04 October short is still open.** The pair cannot get through 0.7000. The Wednesday agent should assess: has the risk-off mood dragged AUDUSD below 0.6950? A break of 0.6900 opens the 0.6880 target on the legacy short. If DXY continues to weaken (101.78) and AUDUSD still cannot rally, the bearish case strengthens.
-- **GBPCAD at 1.87758 — oil at $110.** Hormuz remains the swing factor. If oil holds above $100, CAD strength persists and GBPCAD drifts toward 1.8700. If there is any de-escalation, oil drops and GBPCAD rallies toward 1.8900. The Wednesday agent should check the latest Brent price and Hormuz headlines.
-- **GER40 at 25,623 — surprise outperformer.** The DAX benefited from the rotation into European value. The NEUTRAL call reflects the approach of resistance at 25,700. The Wednesday agent must assess: did the DAX break above 25,700 or get rejected? A confirmed breakout above 25,700 would flip the bias to BULLISH with a target of 26,600 (ATH). A rejection would confirm range-trade dynamics.
-- **VIX at 19.99 (+31.4% on week).** The volatility regime has shifted. The Wednesday agent should note whether the VIX has continued to rise (above 22 = stress) or faded back toward 17-18 (risk-on returning). This is the single best barometer of market stress.
-- **Mega-cap earnings are THE event.** If NFLX and/or TSLA have reported by Wednesday, their results and guidance define the NAS100 trajectory for the back half. A bad print from either could trigger the 28,500 target on the NAS100 short conviction trade within 24 hours.
-- **Running record 101/55/42 (51.0% CORRECT).** The directional accuracy remains above 50% but the conviction-trade stop-out rate is elevated (NAS100 LONG stopped this cycle). The missed Wednesday run means the 11 October biases were graded over a full 7-day window — the Wednesday agent would normally have re-based post-CPI, which could have improved the NAS100 and GER40 calls.
-- **No re-baseline instruction needed.** The Wednesday 22 October agent should grade this run's biases normally against price action from Monday 19 October through Wednesday 22 October. The missed Wednesday 14 October run is a pipeline gap but does not require NOT GRADED treatment for this Sunday's biases — they were graded normally over the full week.
+1. US30 LONG 52,200-52,350 / target 53,200 / stop 51,900: **STOPPED** 30 Oct (low 51,563). Loss ~450 pts.
+2. XAUUSD SHORT 4,150-4,170 / target 4,050 / stop 4,180: **TARGET HIT** — 4,050 breached 22 Oct, extended to 3,879. Full win.
+3. AUDUSD SHORT 0.7020-0.7030 / target 0.6950 / stop 0.7050: **TARGET HIT** — 0.6950 broken, extended to 0.6864. Full win.
 
 ## Legacy Trade Summary for Next Agent
 
 | Trade | Entry Date | Direction | Entry Zone | Target | Stop | Current Status |
 |---|---|---|---|---|---|---|
-| XAUUSD SHORT | 04 Oct | SHORT | 4,200-4,220 | 4,050 | 4,280 | Open, near breakeven (~$4,181). Hit 4,095 Wed — close to target. Manage actively. |
-| AUDUSD SHORT | 04 Oct | SHORT | 0.6980-0.7000 | 0.6880 | 0.7030 | Open, modest profit (~0.69696). Target not reached. |
-| XAUUSD SHORT | 11 Oct | SHORT | 4,230-4,250 | 4,100 | 4,290 | Hit target Wed at 4,095. Partially or fully closed. Confirm status. |
-| NAS100 LONG | 11 Oct | LONG | 30,500-30,650 | 31,500 | 30,200 | STOPPED Wed. Closed. |
-| US30 LONG | 04 Oct / 11 Oct | LONG | 51,200-51,400 | 52,000 | 50,800 | Hit target Fri at 52,002. Closed. |
+| XAGUSD SHORT | 18 Oct | SHORT | 57.80-58.50 | 55.50 | 58.60 | **TARGET HIT AND EXCEEDED** — crashed to 48.13. Full win. Closed. |
+| XAUUSD SHORT | 04 Oct | SHORT | 4,200-4,220 | 4,050 | 4,180 | **TARGET HIT** — 4,050 breached 22 Oct, extended to 3,879. Full win. Closed. |
+| NAS100 SHORT | 18 Oct | SHORT | 29,500-29,800 | 28,500 | 29,850 | **TARGET HIT AND EXCEEDED** — crashed through 28,500 to 26,606. Full win. Closed. |
+
+All legacy trades are now closed. The Wednesday 11 November agent starts with a clean trade slate and the 3 fresh conviction trades above.
+
+## Pipeline Status
+
+- **Last successful author run:** 08 November 2026 (this report)
+- **Prior run:** 21 October 2026 (Wednesday Mid-Week)
+- **Missed runs:** Sunday 25 October 2026 (Weekly) and Sunday 01 November 2026 (Weekly) were NOT published. This report covers the full 2.5-week gap.
+- **Provider:** Stable for this run.
+- **Next scheduled:** Wednesday 11 November 2026 at 06:00 GMT (Mid-Week Update)
+
+## Key Events to Track for Next Run (Wednesday 11 November)
+
+- **Mon 09 Nov: US Consumer Inflation Expectations (Oct) at 14:00 GMT.** Sets the tone for CPI expectations. Above 3.5% would be USD-positive and risk-negative.
+- **Tue 10 Nov: China CPI / PPI (Oct) — tentative.** Critical for AUDUSD and metals. Deflationary PPI would compound risk-off and validate the AUDUSD BEARISH call.
+- **Wed 11 Nov: US CPI October at 12:30 GMT.** THE event of the week. Consensus not in feed but the market is primed for a hot print after NFP +165K. The Wednesday agent must assess: (1) did CPI beat or miss? (2) how did each instrument react? (3) did December Fed hike odds move above 85%? This print will resolve the XAUUSD NEUTRAL bias decisively — hot CPI = BEARISH, cool CPI = BULLISH.
+- **Thu 12 Nov: US Jobless Claims.** Continuation of labour market strength or first signs of softening?
+- **Fri 13 Nov: US PPI October + UMich Consumer Sentiment Prelim (Nov).** PPI is the second inflation read of the week. Sentiment inflation expectations component matters for Fed pricing.
+
+## Market State Notes for Next Agent (Wednesday 11 November)
+
+- **US CPI is the everything-event.** All 7 instrument biases hinge on this print. The Wednesday agent must make CPI the centrepiece of the mid-week update. Hot CPI (>3.3% YoY) = USD bid, equities sell, gold sell, AUD sell. Cool CPI (<3.0% YoY) = dovish Fed repricing, equities rally, gold rally, AUD bounce. The NAS100 NEUTRAL-BEARISH (-55) and AUDUSD BEARISH (-50) are positioned for a hot print. If CPI is cool, both biases must be reassessed.
+- **NAS100 at 26,990 — bounce or dead cat?** The Friday +1.28% bounce was modest relative to Thursday's -6.36% crash. The Wednesday agent must determine whether the bounce continued into Monday-Tuesday. The conviction SHORT entry (27,500-27,800) may or may not have triggered. A reclaim of 28,437 (04 Nov close) would be a meaningful recovery signal. Below 26,606 re-opens the crash low.
+- **Gold at 4,075 — the tug-of-war unresolved.** The NEUTRAL bias (0) reflects perfect balance between ceasefire deflation and safe-haven bid. The Wednesday agent must assess whether CPI broke this deadlock. Above 4,155 = hedge bid winning, flip BULLISH. Below 4,035 = ceasefire + Fed hike winning, flip BEARISH. The range trade conviction setup is designed to capture whichever direction breaks first.
+- **AUDUSD at 0.6864 — trend intact.** The bearish trend is clean but stretched. The Wednesday agent should check: did the pair hold below 0.6900 or bounce? China CPI/PPI Tuesday is the pre-CPI catalyst. Below 0.6855 opens 0.6800. A reclaim of 0.6930+ would be the first sign of a reversal.
+- **US30 at 51,286 — 200DMA at 50,676 is the line.** US30 held its 200DMA through the Thursday carnage. The Wednesday agent must check: did it hold again through Monday-Tuesday? A close below 50,676 would be a major structural break. A reclaim of 52,064 (50DMA) would signal the rotation trade is back on.
+- **GER40 ATH rejection at 26,693.** The Wednesday agent must determine whether the DAX stabilised or continued lower. The 25,618 Friday low is the near-term floor. Below 25,000 would be significant. The oil crash is a tailwind for European industrials — this narrative may take time to feed through.
+- **Oil stabilisation is a cross-cutting theme.** WTI at $89.93 (-14% on the week). If oil stabilises here, CAD pressure eases and GBPCAD range can hold. If oil resumes its decline, CAD weakens further and GBPCAD pushes toward 1.8900. The Wednesday agent should check Monday-Tuesday oil price action.
+- **December Fed hike at 77-80%.** US CPI is the last major data point before the December FOMC. A hot print pushes it above 85% and starts pricing January follow-up. A cool print drops it toward 60% and revives the "Fed is done" narrative. The Wednesday agent must update this probability with the actual CPI data.
+- **Running record 110/59/43 (51.9% CORRECT).** Directional accuracy holds above 50% over 212 graded calls. This run was strong at 5 CORRECT / 1 PARTIALLY / 1 WRONG.
+- **No re-baseline instruction needed.** The Wednesday 11 November agent should grade this run's biases normally against price action from Monday 09 November through Wednesday 11 November (CPI release and immediate reaction).

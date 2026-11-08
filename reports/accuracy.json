@@ -1,79 +1,79 @@
 {
-  "generatedAt": "2026-11-04T13:38:15Z",
+  "generatedAt": "2026-11-08T23:05:34Z",
   "hitRateFormula": "(CORRECT + 0.5 x PARTIALLY) / graded calls. NOT GRADED is excluded from both sides.",
-  "reportCount": 31,
+  "reportCount": 32,
   "totals": {
-    "CORRECT": 108,
-    "PARTIALLY": 59,
-    "WRONG": 43,
+    "CORRECT": 113,
+    "PARTIALLY": 60,
+    "WRONG": 44,
     "NOT GRADED": 7,
-    "graded": 210,
-    "hitRate": 65.5,
-    "correctPct": 51.4
+    "graded": 217,
+    "hitRate": 65.9,
+    "correctPct": 52.1
   },
   "byInstrument": {
     "AUDUSD": {
-      "CORRECT": 16,
+      "CORRECT": 17,
       "PARTIALLY": 11,
       "WRONG": 3,
       "NOT GRADED": 1,
-      "graded": 30,
-      "hitRate": 71.7,
-      "correctPct": 53.3
+      "graded": 31,
+      "hitRate": 72.6,
+      "correctPct": 54.8
     },
     "GBPCAD": {
-      "CORRECT": 12,
+      "CORRECT": 13,
       "PARTIALLY": 12,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 30,
-      "hitRate": 60.0,
-      "correctPct": 40.0
+      "graded": 31,
+      "hitRate": 61.3,
+      "correctPct": 41.9
     },
     "GER40": {
       "CORRECT": 16,
-      "PARTIALLY": 8,
+      "PARTIALLY": 9,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 30,
-      "hitRate": 66.7,
-      "correctPct": 53.3
+      "graded": 31,
+      "hitRate": 66.1,
+      "correctPct": 51.6
     },
     "NAS100": {
-      "CORRECT": 14,
+      "CORRECT": 15,
       "PARTIALLY": 6,
       "WRONG": 10,
       "NOT GRADED": 1,
-      "graded": 30,
-      "hitRate": 56.7,
-      "correctPct": 46.7
+      "graded": 31,
+      "hitRate": 58.1,
+      "correctPct": 48.4
     },
     "US30": {
       "CORRECT": 16,
       "PARTIALLY": 9,
-      "WRONG": 5,
+      "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 30,
-      "hitRate": 68.3,
-      "correctPct": 53.3
+      "graded": 31,
+      "hitRate": 66.1,
+      "correctPct": 51.6
     },
     "XAGUSD": {
-      "CORRECT": 14,
+      "CORRECT": 15,
       "PARTIALLY": 9,
       "WRONG": 7,
       "NOT GRADED": 1,
-      "graded": 30,
-      "hitRate": 61.7,
-      "correctPct": 46.7
+      "graded": 31,
+      "hitRate": 62.9,
+      "correctPct": 48.4
     },
     "XAUUSD": {
-      "CORRECT": 20,
+      "CORRECT": 21,
       "PARTIALLY": 4,
       "WRONG": 6,
       "NOT GRADED": 1,
-      "graded": 30,
-      "hitRate": 73.3,
-      "correctPct": 66.7
+      "graded": 31,
+      "hitRate": 74.2,
+      "correctPct": 67.7
     }
   },
   "byReport": [
@@ -479,6 +479,19 @@
       "graded": 7,
       "hitRate": 78.6,
       "correctPct": 57.1
+    },
+    {
+      "slug": "2026-11-08-weekly",
+      "date": "2026-11-08",
+      "displayDate": "Sunday 08 November 2026",
+      "type": "Weekly",
+      "CORRECT": 5,
+      "PARTIALLY": 1,
+      "WRONG": 1,
+      "NOT GRADED": 0,
+      "graded": 7,
+      "hitRate": 78.6,
+      "correctPct": 71.4
     }
   ],
   "misses": [
@@ -681,6 +694,16 @@
       "previousBias": "NEUTRAL-BEARISH",
       "result": "+2.44% from 28,938 to 29,644; post-FOMC clarity rally",
       "movePct": 2.44
+    },
+    {
+      "slug": "2026-11-08-weekly",
+      "date": "2026-11-08",
+      "displayDate": "Sunday 08 November 2026",
+      "type": "Weekly",
+      "instrument": "US30",
+      "previousBias": "BULLISH",
+      "result": "-2.30% — broke below 50DMA, rotation thesis overwhelmed by macro risk-off",
+      "movePct": -2.3
     },
     {
       "slug": "2026-07-12-weekly",
