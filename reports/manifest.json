@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T23:23:53Z",
+  "generatedAt": "2026-11-11T13:24:18Z",
   "count": 32,
   "reports": [
     {
@@ -9,7 +9,7 @@
       "displayDate": "Sunday 08 November 2026",
       "title": "MARKET PULSE — Weekly Trading Report",
       "markdownFile": "2026-11-08-weekly.md",
-      "lastUpdated": "2026-11-08T23:05:34Z",
+      "lastUpdated": "2026-11-08T23:23:56Z",
       "marketSentiment": "NEUTRAL_BEARISH",
       "macroTheme": "Historic AI/semis rout on Democratic midterm sweep fears of data-centre restrictions; oil crashes 14% on Iran ceasefire hopes; gold surges 3% as hedge bid; October payrolls crush forecasts pushing December Fed hike to 77-80%; BoE hikes to 4.00%; VIX at 25.64 signalling sustained volatility regime shift.",
       "jsonFile": "2026-11-08-weekly.json"
